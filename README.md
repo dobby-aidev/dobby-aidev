@@ -51,26 +51,40 @@ Hi! I'm **Alkan (Dobby B / dobby-aidev)**. I build production-ready AI agents, d
 
 ---
 
-## 🚀 Featured Projects
+## 🚀 Featured Showcase Repositories
 
-### 🕵️ [Agent Critiq](https://agentcritiq.com) — AI Tool Discovery Platform
+### 🕵️ [Agent Critiq Showcase](https://github.com/dobby-aidev/agent-critiq-showcase) — AI Tool Discovery Platform
 > Curated review platform for 100+ AI tools and autonomous agents. Native MCP server integration, open Hugging Face dataset, and AI-crawler search optimization.
 >
 > `TypeScript` `React` `MCP Server` `Hugging Face API`
 
 ---
 
-### 🧠 [Dona Codex: Overmind](https://github.com/dobby-aidev/dona-codex-overmind) — Multi-Agent Company Simulation
+### 🧠 [Dona Codex: Overmind Showcase](https://github.com/dobby-aidev/dona-codex-overmind-showcase) — Multi-Agent Company Simulation
 > Autonomous AI agent nodes (CEO, Researcher, Engineer) operating in a persistent game loop with Socket.IO telemetry and Firebase state.
 >
 > `React` `TypeScript` `Node.js` `Socket.IO` `Firebase`
 
 ---
 
-### 📈 [Dona Nexus](https://github.com/dobby-aidev/dona-nexus) — Deep RL Futures Trading Bot
+### 📈 [Dona Nexus Showcase](https://github.com/dobby-aidev/dona-nexus-showcase) — Deep RL Futures Trading Bot
 > **ApexBrain** — dual-policy PyTorch neural network executing 24/7 autonomous trades on Binance Futures.
 >
 > `PyTorch` `Deep RL` `Binance Futures API` `AWS`
+
+---
+
+### 🪙 [AI Coin Empire Showcase](https://github.com/dobby-aidev/ai-coin-empire-showcase) — Multiplayer Strategy Game
+> Real-time multiplayer strategy game on Firebase Firestore with mining algorithms, password cracking puzzles, and DONA collective AI loop.
+>
+> `React` `TypeScript` `Firebase`
+
+---
+
+### ✍️ [AI Prompt Builder Showcase](https://github.com/dobby-aidev/ai-prompt-builder-showcase) — Conversational Prompt Studio
+> Chat-based prompt engineering studio using Gemini API for interactive requirement compilation and export.
+>
+> `React` `TypeScript` `Gemini API`
 
 ---
 
