@@ -3,499 +3,322 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dobby B — AI Engineer & Autonomous Systems Architect</title>
-  <meta name="description" content="Official portfolio of Dobby B (Alkan): AI Engineer building autonomous agents, multi-agent frameworks, deep reinforcement learning trading engines, and AI applications." />
-  <meta name="keywords" content="Dobby B, AI Engineer, Autonomous Agents, Multi-Agent Systems, Deep RL, Quant Trading, React, TypeScript, Python" />
-  <meta property="og:title" content="Dobby B — AI Engineer & Autonomous Systems Architect" />
-  <meta property="og:description" content="Building Autonomous AI Agents · DRL Trading Systems · Multi-Agent Orchestration" />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="./logo.png" />
-
-  <!-- Favicon -->
+  <title>Dobby B (Alkan) — AI Systems Architect & Quant Engineer</title>
+  <meta name="description" content="Engineering portfolio of Dobby B (Alkan). Multi-agent systems, deep RL trading engines, and scalable AI infrastructure." />
+  
   <link rel="icon" type="image/png" href="./logo.png" />
   <link rel="apple-touch-icon" href="./logo.png" />
 
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 </head>
 <body>
 
-  <!-- Animated Background -->
-  <div class="bg-grid" aria-hidden="true"></div>
-  <div class="bg-orbs" aria-hidden="true">
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
-  </div>
-
-  <!-- Particles -->
-  <canvas class="particles-canvas" id="particles-canvas" aria-hidden="true"></canvas>
+  <!-- Subtle Subtle Top Ambient Glow -->
+  <div class="top-glow" aria-hidden="true"></div>
 
   <!-- Navigation -->
-  <nav class="nav" id="nav">
-    <div class="nav-inner">
-      <a href="#hero" class="nav-logo" id="nav-logo">
-        <img src="./logo.png" alt="Dobby B Logo" class="nav-logo-img" />
-        <span class="logo-bracket">&lt;</span>Dobby <span class="logo-accent">B</span><span class="logo-bracket">/&gt;</span>
+  <header class="header">
+    <div class="container nav-container">
+      <a href="#hero" class="brand">
+        <img src="./logo.png" alt="Dobby B" class="brand-logo" />
+        <span class="brand-name">Dobby B</span>
+        <span class="brand-tag">dobby-aidev</span>
       </a>
 
-      <ul class="nav-links" role="navigation" aria-label="Main navigation">
-        <li><a href="#about" class="nav-link" id="nav-about" data-i18n="nav_about">About</a></li>
-        <li><a href="#projects" class="nav-link" id="nav-projects" data-i18n="nav_projects">Projects</a></li>
-        <li><a href="#stack" class="nav-link" id="nav-stack" data-i18n="nav_stack">Stack</a></li>
-        <li><a href="#contact" class="nav-link" id="nav-contact" data-i18n="nav_contact">Contact</a></li>
-      </ul>
+      <nav class="nav-menu">
+        <a href="#about" data-i18n="nav_about">About</a>
+        <a href="#projects" data-i18n="nav_projects">Projects</a>
+        <a href="#stack" data-i18n="nav_stack">Stack</a>
+        <a href="#contact" data-i18n="nav_contact">Contact</a>
+      </nav>
 
-      <div class="nav-actions">
-        <!-- Language Switcher Toggle -->
-        <div class="lang-switch" id="lang-switch" title="Change Language / Dili Değiştir">
-          <button class="lang-btn active" id="btn-en" data-lang="en">EN</button>
-          <span class="lang-divider">|</span>
-          <button class="lang-btn" id="btn-tr" data-lang="tr">TR</button>
+      <div class="header-right">
+        <!-- Language Switcher -->
+        <div class="lang-toggle" id="lang-toggle">
+          <button type="button" class="lang-btn active" data-lang="en">EN</button>
+          <button type="button" class="lang-btn" data-lang="tr">TR</button>
         </div>
 
-        <a href="https://github.com/dobby-aidev" target="_blank" rel="noopener" class="btn-outline" id="nav-github">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-          dobby-aidev
+        <a href="https://github.com/dobby-aidev" target="_blank" rel="noopener" class="github-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          GitHub
         </a>
       </div>
     </div>
-  </nav>
+  </header>
 
-  <!-- Hero Section -->
-  <section class="hero" id="hero">
-    <div class="container">
-      <div class="hero-badge" id="hero-badge">
-        <span class="badge-dot"></span>
-        <span data-i18n="hero_status">Available for Systems Engineering & Architecture</span>
-      </div>
+  <main>
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+      <div class="container">
+        <div class="status-pill">
+          <span class="status-dot"></span>
+          <span data-i18n="hero_status">Open for Senior AI Engineering & Quant Architecture Roles</span>
+        </div>
 
-      <div class="hero-name-row">
-        <h1 class="hero-title" id="hero-title">
-          <span data-i18n="hero_greeting">Hey, I'm</span> <span class="gradient-text">Alkan</span>
+        <h1 class="hero-heading">
+          <span data-i18n="hero_title_prefix">Engineering</span>
+          <span class="highlight">Autonomous AI Systems</span>
+          <span data-i18n="hero_title_suffix">& Quantitative Trading Engines</span>
         </h1>
-        <span class="hero-alias" id="hero-alias">— Dobby B (dobby-aidev)</span>
-      </div>
 
-      <p class="hero-role" id="hero-role">
-        <span class="role-tag" data-i18n="role_1">AI Systems Architect</span>
-        <span class="role-sep">·</span>
-        <span class="role-tag" data-i18n="role_2">Autonomous Agent Engineer</span>
-        <span class="role-sep">·</span>
-        <span class="role-tag" data-i18n="role_3">Deep RL Quant Developer</span>
-      </p>
+        <p class="hero-bio" data-i18n="hero_bio">
+          I am <strong>Alkan (Dobby B)</strong>. I design and build production-grade multi-agent orchestration frameworks, deep reinforcement learning trading architectures (ApexBrain), and AI platform infrastructure.
+        </p>
 
-      <p class="hero-subtitle" id="hero-subtitle" data-i18n="hero_desc">
-        Specialized in engineering production multi-agent systems, deep reinforcement learning trading engines, and scalable AI infrastructure.
-      </p>
-
-      <div class="hero-actions" id="hero-actions">
-        <a href="#projects" class="btn-primary" id="cta-projects">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-          <span data-i18n="btn_projects">Explore Featured Systems</span>
-        </a>
-        <a href="https://agentcritiq.com" target="_blank" rel="noopener" class="btn-secondary" id="cta-agentcritiq">
-          🌐 agentcritiq.com
-        </a>
-      </div>
-
-      <div class="hero-stats" id="hero-stats">
-        <div class="stat-item">
-          <span class="stat-number">10+</span>
-          <span class="stat-label" data-i18n="stat_1">Production Systems</span>
+        <div class="hero-meta">
+          <div class="meta-item">
+            <span class="meta-val">10+</span>
+            <span class="meta-lbl" data-i18n="meta_systems">Deployed Systems</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-val">100+</span>
+            <span class="meta-lbl" data-i18n="meta_reviews">Curated AI Reviews</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-val">24/7</span>
+            <span class="meta-lbl" data-i18n="meta_uptime">Cloud Uptime</span>
+          </div>
         </div>
-        <div class="stat-divider" aria-hidden="true"></div>
-        <div class="stat-item">
-          <span class="stat-number">100+</span>
-          <span class="stat-label" data-i18n="stat_2">Curated AI Reviews</span>
-        </div>
-        <div class="stat-divider" aria-hidden="true"></div>
-        <div class="stat-item">
-          <span class="stat-number">50K+</span>
-          <span class="stat-label" data-i18n="stat_3">Lines of Code</span>
-        </div>
-        <div class="stat-divider" aria-hidden="true"></div>
-        <div class="stat-item">
-          <span class="stat-number">24/7</span>
-          <span class="stat-label" data-i18n="stat_4">Autonomous Execution</span>
+
+        <div class="hero-cta">
+          <a href="#projects" class="btn-main" data-i18n="btn_explore">View Codebases & Systems</a>
+          <a href="https://agentcritiq.com" target="_blank" rel="noopener" class="btn-sub">🌐 agentcritiq.com</a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- About Section -->
-  <section class="section" id="about">
+    <!-- About Section -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-head">
+          <span class="mono-tag">// ARCHITECTURE</span>
+          <h2 data-i18n="about_heading">Core Focus Areas</h2>
+        </div>
+
+        <div class="cards-grid three-col">
+          <div class="card">
+            <div class="card-code">01</div>
+            <h3 data-i18n="ab_card1_title">Autonomous Agent Engineering</h3>
+            <p data-i18n="ab_card1_desc">Architecting robust multi-agent state machines where autonomous LLM nodes (CEO, Researcher, Engineer, Analyst) execute asynchronous workflows with WebSocket telemetry and state persistence.</p>
+          </div>
+
+          <div class="card">
+            <div class="card-code">02</div>
+            <h3 data-i18n="ab_card2_title">Deep RL & Quant Systems</h3>
+            <p data-i18n="ab_card2_desc">Building production quantitative futures trading engines (ApexBrain) using dual-policy PyTorch neural networks, custom action masking, entropy confidence, and live execution on Binance.</p>
+          </div>
+
+          <div class="card">
+            <div class="card-code">03</div>
+            <h3 data-i18n="ab_card3_title">AI Products & MCP Protocols</h3>
+            <p data-i18n="ab_card3_desc">Founder of Agent Critiq — developing AI discovery platforms integrated with Model Context Protocol (MCP) servers, Hugging Face open datasets, and GEO crawler optimization.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-head">
+          <span class="mono-tag">// REPOSITORIES</span>
+          <h2 data-i18n="projects_heading">Featured Systems</h2>
+        </div>
+
+        <!-- Featured Project: Agent Critiq -->
+        <div class="featured-box">
+          <div class="featured-top">
+            <span class="badge-featured">LIVE PRODUCT</span>
+            <a href="https://agentcritiq.com" target="_blank" rel="noopener" class="link-live">agentcritiq.com ↗</a>
+          </div>
+
+          <div class="project-img-box" data-images-base="agent-critiq"></div>
+
+          <div class="featured-body">
+            <h3>Agent Critiq</h3>
+            <p class="project-sub">AI Tool & Autonomous Agent Discovery Platform</p>
+            <p class="project-text" data-i18n="prj_agentcritiq">Curated platform for 100+ AI tools and autonomous agents. Includes a native MCP Server letting Claude/Cursor query the live database, an open Hugging Face dataset, and AI-crawler optimized GEO index.</p>
+
+            <div class="tech-tags">
+              <span>TypeScript</span><span>React</span><span>MCP Server</span><span>Hugging Face API</span><span>GEO/SEO</span>
+            </div>
+
+            <div class="card-actions">
+              <a href="https://agentcritiq.com" target="_blank" rel="noopener" class="btn-sm-main">Visit Live Site</a>
+              <a href="https://github.com/dobby-aidev/agent-critiq" target="_blank" rel="noopener" class="btn-sm-sub">GitHub Repo</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category 1: AI Agents -->
+        <div class="cat-divider">
+          <span data-i18n="cat_ai">AI Agents & Multi-Agent Platforms</span>
+        </div>
+
+        <div class="cards-grid three-col">
+          <div class="card project-card">
+            <div class="project-img-box" data-images-base="dona-codex"></div>
+            <h3>Dona Codex: Overmind</h3>
+            <p class="project-sub">Multi-Agent Company OS</p>
+            <p class="project-text" data-i18n="prj_donacodex">Multi-agent simulation where autonomous AI nodes (CEO, Researcher, Engineer, Analyst) run a software company loop with real-time Socket.IO WebSockets and Firebase state.</p>
+            <div class="tech-tags"><span>TypeScript</span><span>React</span><span>Socket.IO</span><span>Firebase</span></div>
+            <a href="https://github.com/dobby-aidev/dona-codex-overmind" target="_blank" rel="noopener" class="card-link">Repository ↗</a>
+          </div>
+
+          <div class="card project-card">
+            <div class="project-img-box" data-images-base="dona-ai-lab"></div>
+            <h3>Dona AI Lab</h3>
+            <p class="project-sub">AI Research Environment</p>
+            <p class="project-text" data-i18n="prj_ailab">Experimental sandbox for testing novel model architectures, prompt evaluation pipelines, and Hugging Face Transformers benchmarks.</p>
+            <div class="tech-tags"><span>Python</span><span>HuggingFace</span><span>PyTorch</span></div>
+            <a href="https://github.com/dobby-aidev/dona-ai-lab" target="_blank" rel="noopener" class="card-link">Repository ↗</a>
+          </div>
+
+          <div class="card project-card">
+            <div class="project-img-box" data-images-base="ai-prompt-builder"></div>
+            <h3>AI Prompt Builder</h3>
+            <p class="project-sub">Prompt Optimization Studio</p>
+            <p class="project-text" data-i18n="prj_promptbuilder">Conversational prompt engineering tool using Gemini API for interactive requirement extraction, PDF/JSON export, and state management.</p>
+            <div class="tech-tags"><span>React</span><span>TypeScript</span><span>Gemini API</span></div>
+            <a href="https://github.com/dobby-aidev/ai-prompt-builder" target="_blank" rel="noopener" class="card-link">Repository ↗</a>
+          </div>
+        </div>
+
+        <!-- Category 2: Deep RL & Quant -->
+        <div class="cat-divider">
+          <span data-i18n="cat_quant">Deep RL & Quantitative Systems</span>
+        </div>
+
+        <div class="cards-grid three-col">
+          <div class="card project-card highlight-card">
+            <div class="project-img-box" data-images-base="dona-nexus"></div>
+            <h3>Dona Nexus</h3>
+            <p class="project-sub">Deep RL Futures Trading · ApexBrain</p>
+            <p class="project-text" data-i18n="prj_donanexus">ApexBrain — dual-policy PyTorch neural network with separate entry/exit heads, action masking, entropy confidence metrics, and 24/7 cloud execution on Binance Futures.</p>
+            <div class="tech-tags"><span>PyTorch</span><span>Deep RL</span><span>Binance API</span><span>AWS</span></div>
+            <a href="https://github.com/dobby-aidev/dona-nexus" target="_blank" rel="noopener" class="card-link">Repository ↗</a>
+          </div>
+
+          <div class="card project-card">
+            <div class="project-img-box" data-images-base="dona-grid"></div>
+            <h3>Dona Grid</h3>
+            <p class="project-sub">Algorithmic Grid Trading Bot</p>
+            <p class="project-text" data-i18n="prj_donagrid">Binance spot grid trading engine with dynamic ATR recentering, RSI anti-toxicity filters, 0.5s WebSocket latency, and desktop GUI.</p>
+            <div class="tech-tags"><span>Python</span><span>Binance API</span><span>NumPy</span></div>
+            <a href="https://github.com/dobby-aidev/dona-grid" target="_blank" rel="noopener" class="card-link">Repository ↗</a>
+          </div>
+
+          <div class="card project-card">
+            <div class="project-img-box" data-images-base="dona-quantum"></div>
+            <h3>Dona Quantum</h3>
+            <p class="project-sub">Quant Strategy Engine</p>
+            <p class="project-text" data-i18n="prj_donaquantum">Quantitative engine combining reinforcement learning with classical backtesting, adaptive sizing, and real-time market data pipelines.</p>
+            <div class="tech-tags"><span>Python</span><span>PyTorch</span><span>Backtrader</span></div>
+            <a href="https://github.com/dobby-aidev/dona-quantum" target="_blank" rel="noopener" class="card-link">Repository ↗</a>
+          </div>
+        </div>
+
+        <!-- Category 3: Automation & Full Stack -->
+        <div class="cat-divider">
+          <span data-i18n="cat_automation">Automation & Applications</span>
+        </div>
+
+        <div class="cards-grid three-col">
+          <div class="card project-card">
+            <div class="project-img-box" data-images-base="dona-music"></div>
+            <h3>Dona Music</h3>
+            <p class="project-sub">Stealth Browser Automation</p>
+            <p class="project-text" data-i18n="prj_donamusic">Automation framework featuring human behavior simulation (bezier mouse curves), RL behavior agent, ADB mobile control, and Flask analytics dashboard.</p>
+            <div class="tech-tags"><span>Python</span><span>Selenium</span><span>ADB</span><span>SQLite</span></div>
+            <a href="https://github.com/dobby-aidev/dona-music" target="_blank" rel="noopener" class="card-link">Repository ↗</a>
+          </div>
+
+          <div class="card project-card">
+            <div class="project-img-box" data-images-base="ai-coin-empire"></div>
+            <h3>AI Coin Empire</h3>
+            <p class="project-sub">Real-Time Multiplayer Engine</p>
+            <p class="project-text" data-i18n="prj_coinempire">Real-time strategy engine on Firebase Firestore. Features mining algorithms, hacking puzzles, market pricing, and DONA AI state loop.</p>
+            <div class="tech-tags"><span>React</span><span>TypeScript</span><span>Firebase</span></div>
+            <a href="https://github.com/dobby-aidev/ai-coin-empire" target="_blank" rel="noopener" class="card-link">Repository ↗</a>
+          </div>
+
+          <div class="card project-card">
+            <div class="project-img-box" data-images-base="zamani-bekcisi"></div>
+            <h3>Zamanın Bekçisi</h3>
+            <p class="project-sub">Branching Narrative Engine</p>
+            <p class="project-text" data-i18n="prj_zamaninbekcisi">Interactive fiction game set across multiple historical timelines. Energy resource management and directed story graph architecture.</p>
+            <div class="tech-tags"><span>React</span><span>TypeScript</span><span>Framer Motion</span></div>
+            <a href="https://github.com/dobby-aidev/zamani-bekcisi" target="_blank" rel="noopener" class="card-link">Repository ↗</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Stack Section -->
+    <section class="section" id="stack">
+      <div class="container">
+        <div class="section-head">
+          <span class="mono-tag">// CAPABILITIES</span>
+          <h2 data-i18n="stack_heading">Technical Stack</h2>
+        </div>
+
+        <div class="cards-grid two-col">
+          <div class="card">
+            <h3>🤖 AI & LLM Systems</h3>
+            <div class="pills-box">
+              <span>Gemini API</span><span>Anthropic Claude</span><span>LangChain</span><span>LlamaIndex</span><span>AutoGen</span><span>HuggingFace</span><span>MCP Server</span><span>Ollama</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>📈 Deep RL & Quant Trading</h3>
+            <div class="pills-box">
+              <span>PyTorch</span><span>Stable Baselines3</span><span>CCXT</span><span>Binance Futures API</span><span>TA-Lib</span><span>Backtrader</span><span>Pandas</span><span>NumPy</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>🎨 Frontend Architecture</h3>
+            <div class="pills-box">
+              <span>React 18</span><span>TypeScript</span><span>Next.js</span><span>Vite</span><span>Tailwind CSS</span><span>Framer Motion</span><span>Socket.IO Client</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>⚙️ Backend & Infrastructure</h3>
+            <div class="pills-box">
+              <span>Python 3.11+</span><span>FastAPI</span><span>Node.js</span><span>Express</span><span>Firebase Firestore</span><span>PostgreSQL</span><span>Redis</span><span>Docker</span><span>AWS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="contact-box">
+          <h2 data-i18n="contact_heading">Initiate Collaboration</h2>
+          <p data-i18n="contact_sub">Available for Senior AI Systems Engineering, Deep RL Quant Architecture, and Consulting.</p>
+
+          <div class="contact-links">
+            <a href="https://github.com/dobby-aidev" target="_blank" rel="noopener" class="btn-sub">github.com/dobby-aidev</a>
+            <a href="https://agentcritiq.com" target="_blank" rel="noopener" class="btn-sub">agentcritiq.com</a>
+            <a href="https://huggingface.co/dobbyb-aidev" target="_blank" rel="noopener" class="btn-sub">HuggingFace Datasets</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
     <div class="container">
-      <div class="section-header">
-        <span class="section-tag">// architecture & background</span>
-        <h2 class="section-title" data-i18n="about_title">Engineering Philosophy</h2>
-      </div>
-      <div class="about-grid">
-        <div class="glass-card about-card" id="about-main">
-          <div class="about-icon">🤖</div>
-          <h3 data-i18n="about_card1_title">Autonomous Agent Architect</h3>
-          <p data-i18n="about_card1_desc">Architecting robust multi-agent orchestration frameworks where autonomous LLM nodes (CEO, Researcher, Engineer, Analyst) execute complex task pipelines with WebSocket telemetry and state persistence.</p>
-        </div>
-        <div class="glass-card about-card" id="about-quant">
-          <div class="about-icon">📈</div>
-          <h3 data-i18n="about_card2_title">Deep RL Trading Systems</h3>
-          <p data-i18n="about_card2_desc">Designing production deep reinforcement learning systems (ApexBrain) featuring dual-policy PyTorch networks, action masking, entropy confidence metrics, and 24/7 cloud execution on Binance Futures.</p>
-        </div>
-        <div class="glass-card about-card" id="about-founder">
-          <div class="about-icon">🚀</div>
-          <h3 data-i18n="about_card3_title">AI Product & MCP Ecosystems</h3>
-          <p data-i18n="about_card3_desc">Founder of Agent Critiq — building AI discovery platforms with Model Context Protocol (MCP) servers, Hugging Face datasets, and GEO search architecture optimized for AI crawlers.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects Section -->
-  <section class="section" id="projects">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">// portfolio & codebases</span>
-        <h2 class="section-title" data-i18n="projects_title">Featured Engineering Work</h2>
-        <p class="section-subtitle" data-i18n="projects_subtitle">10 production-ready AI systems spanning multi-agent platforms, quantitative trading engines, and applications</p>
-      </div>
-
-      <!-- ★ Featured: Agent Critiq -->
-      <div class="featured-card glass-card" id="project-agent-critiq">
-        <div class="featured-badge">⭐ Featured Platform · Live Product</div>
-        
-        <!-- Multi-Image Slider Container -->
-        <div class="project-img-wrapper" data-images-base="agent-critiq"></div>
-
-        <div class="featured-content">
-          <div class="project-header">
-            <div class="project-icon featured-icon">🕵️</div>
-            <div>
-              <h3 class="project-title">Agent Critiq</h3>
-              <p class="project-subtitle">AI Tool & Autonomous Agent Discovery Platform · agentcritiq.com</p>
-            </div>
-            <a href="https://agentcritiq.com" target="_blank" rel="noopener" class="live-badge" id="agent-critiq-live">🌐 Live Platform</a>
-          </div>
-          <p class="project-desc" data-i18n="p_agentcritiq_desc">The premier curated platform for AI tools, autonomous agents, and LLMs. Features 100+ expert reviews, a built-in MCP server enabling Claude/Cursor to query the database, an open Hugging Face dataset, and complete GEO search optimization.</p>
-          <div class="project-tags">
-            <span class="tag">TypeScript</span>
-            <span class="tag">React</span>
-            <span class="tag">MCP Server</span>
-            <span class="tag">Hugging Face</span>
-            <span class="tag">GEO/SEO</span>
-            <span class="tag tag-live">agentcritiq.com</span>
-          </div>
-          <div class="project-links">
-            <a href="https://agentcritiq.com" target="_blank" rel="noopener" class="btn-primary small" id="agent-critiq-site">Visit Platform</a>
-            <a href="https://github.com/dobby-aidev/agent-critiq" target="_blank" rel="noopener" class="btn-outline small" id="agent-critiq-repo">View Repository</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project Category: AI & Agents -->
-      <div class="category-label">
-        <span class="category-icon">🧠</span> <span data-i18n="cat_agents">AI Agents & Multi-Agent Platforms</span>
-      </div>
-      <div class="projects-grid" id="grid-ai">
-
-        <div class="glass-card project-card" id="project-dona-codex">
-          <div class="project-img-wrapper" data-images-base="dona-codex"></div>
-          <div class="project-card-top">
-            <div class="project-icon">🤖</div>
-            <div class="project-meta">
-              <h3 class="project-title">Dona Codex: Overmind</h3>
-              <p class="project-subtitle-small">Autonomous Multi-Agent Company OS</p>
-            </div>
-          </div>
-          <p class="project-desc" data-i18n="p_donacodex_desc">Deploy autonomous AI agent nodes (CEO, Researcher, Engineer, Analyst) operating in a persistent game loop with real-time Socket.IO WebSocket telemetry, Firebase persistence, and pluggable LLM backends.</p>
-          <div class="project-tags">
-            <span class="tag">Multi-Agent</span>
-            <span class="tag">Socket.IO</span>
-            <span class="tag">Firebase</span>
-            <span class="tag">Gemini API</span>
-            <span class="tag">React</span>
-          </div>
-          <a href="https://github.com/dobby-aidev/dona-codex-overmind" target="_blank" rel="noopener" class="project-link" id="dona-codex-link">View Repository →</a>
-        </div>
-
-        <div class="glass-card project-card" id="project-ai-lab">
-          <div class="project-img-wrapper" data-images-base="dona-ai-lab"></div>
-          <div class="project-card-top">
-            <div class="project-icon">🔬</div>
-            <div class="project-meta">
-              <h3 class="project-title">Dona AI Lab</h3>
-              <p class="project-subtitle-small">AI Research & Experimentation Environment</p>
-            </div>
-          </div>
-          <p class="project-desc" data-i18n="p_ailab_desc">Experimental AI research environment for evaluating model architectures, prompt strategies, and agent behavior benchmarks. Integrated with Hugging Face Transformers and automated metrics.</p>
-          <div class="project-tags">
-            <span class="tag">Python</span>
-            <span class="tag">HuggingFace</span>
-            <span class="tag">PyTorch</span>
-            <span class="tag">Research</span>
-          </div>
-          <a href="https://github.com/dobby-aidev/dona-ai-lab" target="_blank" rel="noopener" class="project-link" id="dona-lab-link">View Repository →</a>
-        </div>
-
-        <div class="glass-card project-card" id="project-prompt-builder">
-          <div class="project-img-wrapper" data-images-base="ai-prompt-builder"></div>
-          <div class="project-card-top">
-            <div class="project-icon">✍️</div>
-            <div class="project-meta">
-              <h3 class="project-title">AI Prompt Builder</h3>
-              <p class="project-subtitle-small">Conversational Prompt Optimization Studio</p>
-            </div>
-          </div>
-          <p class="project-desc" data-i18n="p_promptbuilder_desc">Chat-based prompt engineering studio using Gemini API for interactive requirement compilation, dual-language translation, PDF/JSON export, and coin economy state management.</p>
-          <div class="project-tags">
-            <span class="tag">Gemini API</span>
-            <span class="tag">React</span>
-            <span class="tag">TypeScript</span>
-            <span class="tag">Framer Motion</span>
-          </div>
-          <a href="https://github.com/dobby-aidev/ai-prompt-builder" target="_blank" rel="noopener" class="project-link" id="prompt-builder-link">View Repository →</a>
-        </div>
-
-      </div>
-
-      <!-- Project Category: DRL & Quant Systems -->
-      <div class="category-label">
-        <span class="category-icon">📈</span> <span data-i18n="cat_quant">Deep RL & Quantitative Trading Engines</span>
-      </div>
-      <div class="projects-grid" id="grid-trading">
-
-        <div class="glass-card project-card project-card--highlight" id="project-dona-nexus">
-          <div class="project-img-wrapper" data-images-base="dona-nexus"></div>
-          <div class="project-card-top">
-            <div class="project-icon">🧠</div>
-            <div class="project-meta">
-              <h3 class="project-title">Dona Nexus</h3>
-              <p class="project-subtitle-small">Deep RL Crypto Trading · ApexBrain</p>
-            </div>
-          </div>
-          <p class="project-desc" data-i18n="p_donanexus_desc"><strong>ApexBrain</strong> — a dual-policy PyTorch neural network with separate entry/exit heads, action masking, entropy confidence, session kill zones, and 24/7 autonomous Binance Futures execution on AWS.</p>
-          <div class="project-tags">
-            <span class="tag">PyTorch</span>
-            <span class="tag">Deep RL</span>
-            <span class="tag">Stable Baselines3</span>
-            <span class="tag">Binance API</span>
-            <span class="tag">AWS</span>
-          </div>
-          <a href="https://github.com/dobby-aidev/dona-nexus" target="_blank" rel="noopener" class="project-link" id="dona-nexus-link">View Repository →</a>
-        </div>
-
-        <div class="glass-card project-card" id="project-dona-grid">
-          <div class="project-img-wrapper" data-images-base="dona-grid"></div>
-          <div class="project-card-top">
-            <div class="project-icon">📐</div>
-            <div class="project-meta">
-              <h3 class="project-title">Dona Grid</h3>
-              <p class="project-subtitle-small">Algorithmic Grid Trading · Binance Spot</p>
-            </div>
-          </div>
-          <p class="project-desc" data-i18n="p_donagrid_desc">Production algorithmic grid trading bot for Binance spot markets. SpotVenomSniper strategy with ATR-based dynamic recentering, RSI anti-toxicity filters, 0.5s WebSocket latency, and GUI dashboard.</p>
-          <div class="project-tags">
-            <span class="tag">Python</span>
-            <span class="tag">Binance API</span>
-            <span class="tag">ATR/RSI</span>
-            <span class="tag">NumPy</span>
-            <span class="tag">VPS</span>
-          </div>
-          <a href="https://github.com/dobby-aidev/dona-grid" target="_blank" rel="noopener" class="project-link" id="dona-grid-link">View Repository →</a>
-        </div>
-
-        <div class="glass-card project-card" id="project-dona-quantum">
-          <div class="project-img-wrapper" data-images-base="dona-quantum"></div>
-          <div class="project-card-top">
-            <div class="project-icon">⚡</div>
-            <div class="project-meta">
-              <h3 class="project-title">Dona Quantum</h3>
-              <p class="project-subtitle-small">Quant Strategy Engine · RL Optimization</p>
-            </div>
-          </div>
-          <p class="project-desc" data-i18n="p_donaquantum_desc">Quantitative strategy engine combining reinforcement learning with classical quantitative finance methods. Automated backtesting pipelines, adaptive position sizing, and real-time market signals.</p>
-          <div class="project-tags">
-            <span class="tag">Python</span>
-            <span class="tag">PyTorch</span>
-            <span class="tag">RL</span>
-            <span class="tag">Backtrader</span>
-            <span class="tag">TA-Lib</span>
-          </div>
-          <a href="https://github.com/dobby-aidev/dona-quantum" target="_blank" rel="noopener" class="project-link" id="dona-quantum-link">View Repository →</a>
-        </div>
-
-      </div>
-
-      <!-- Project Category: Automation & Full-Stack Applications -->
-      <div class="category-label">
-        <span class="category-icon">⚙️</span> <span data-i18n="cat_automation">Automation & Full-Stack Systems</span>
-      </div>
-      <div class="projects-grid" id="grid-automation">
-
-        <div class="glass-card project-card" id="project-dona-music">
-          <div class="project-img-wrapper" data-images-base="dona-music"></div>
-          <div class="project-card-top">
-            <div class="project-icon">🎵</div>
-            <div class="project-meta">
-              <h3 class="project-title">Dona Music</h3>
-              <p class="project-subtitle-small">Streaming Research & Evasion Automation</p>
-            </div>
-          </div>
-          <p class="project-desc" data-i18n="p_donamusic_desc">Stealth browser automation framework with human behavior simulation (mouse trajectory curves, timing distributions), RL behavior agent, multi-account persona engine, ADB mobile automation, and Flask analytics dashboard.</p>
-          <div class="project-tags">
-            <span class="tag">Python</span>
-            <span class="tag">Selenium</span>
-            <span class="tag">RL Agent</span>
-            <span class="tag">ADB</span>
-            <span class="tag">SQLite</span>
-          </div>
-          <a href="https://github.com/dobby-aidev/dona-music" target="_blank" rel="noopener" class="project-link" id="dona-music-link">View Repository →</a>
-        </div>
-
-        <div class="glass-card project-card" id="project-coin-empire">
-          <div class="project-img-wrapper" data-images-base="ai-coin-empire"></div>
-          <div class="project-card-top">
-            <div class="project-icon">🪙</div>
-            <div class="project-meta">
-              <h3 class="project-title">AI Coin Empire</h3>
-              <p class="project-subtitle-small">Real-Time Multiplayer Financial Engine</p>
-            </div>
-          </div>
-          <p class="project-desc" data-i18n="p_coinempire_desc">Real-time multiplayer strategy application powered by Firebase Firestore. Features mining algorithms, password cracking puzzles, dynamic market pricing, and DONA collective AI state management across 3 evolution phases.</p>
-          <div class="project-tags">
-            <span class="tag">React</span>
-            <span class="tag">TypeScript</span>
-            <span class="tag">Firebase</span>
-            <span class="tag">Multiplayer</span>
-            <span class="tag">Framer Motion</span>
-          </div>
-          <a href="https://github.com/dobby-aidev/ai-coin-empire" target="_blank" rel="noopener" class="project-link" id="coin-empire-link">View Repository →</a>
-        </div>
-
-        <div class="glass-card project-card" id="project-zamani">
-          <div class="project-img-wrapper" data-images-base="zamani-bekcisi"></div>
-          <div class="project-card-top">
-            <div class="project-icon">⏳</div>
-            <div class="project-meta">
-              <h3 class="project-title">Zamanın Bekçisi</h3>
-              <p class="project-subtitle-small">Interactive Narrative Engine</p>
-            </div>
-          </div>
-          <p class="project-desc" data-i18n="p_zamaninbekcisi_desc">Branching interactive fiction game set across Ancient Egypt, Medieval era, and Cyberpunk 2087. Features energy resource management, item inventory system, and directed story graph architecture — zero backend required.</p>
-          <div class="project-tags">
-            <span class="tag">React</span>
-            <span class="tag">TypeScript</span>
-            <span class="tag">Framer Motion</span>
-            <span class="tag">Story Graph</span>
-          </div>
-          <a href="https://github.com/dobby-aidev/zamani-bekcisi" target="_blank" rel="noopener" class="project-link" id="zamani-link">View Repository →</a>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Tech Stack Section -->
-  <section class="section" id="stack">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">// technology stack</span>
-        <h2 class="section-title" data-i18n="stack_title">Technical Capabilities</h2>
-      </div>
-      <div class="stack-grid" id="stack-grid">
-        <div class="glass-card stack-card" id="stack-ai">
-          <h3 class="stack-category">🤖 AI & LLM Architecture</h3>
-          <div class="stack-pills">
-            <span class="pill">Gemini API</span>
-            <span class="pill">Anthropic Claude</span>
-            <span class="pill">LangChain</span>
-            <span class="pill">LlamaIndex</span>
-            <span class="pill">AutoGen</span>
-            <span class="pill">HuggingFace</span>
-            <span class="pill">MCP Server</span>
-            <span class="pill">Ollama</span>
-          </div>
-        </div>
-        <div class="glass-card stack-card" id="stack-drl">
-          <h3 class="stack-category">📈 Deep RL & Quant Systems</h3>
-          <div class="stack-pills">
-            <span class="pill">PyTorch</span>
-            <span class="pill">Stable Baselines3</span>
-            <span class="pill">CCXT</span>
-            <span class="pill">Binance Futures API</span>
-            <span class="pill">TA-Lib</span>
-            <span class="pill">Backtrader</span>
-            <span class="pill">Pandas</span>
-            <span class="pill">NumPy</span>
-          </div>
-        </div>
-        <div class="glass-card stack-card" id="stack-frontend">
-          <h3 class="stack-category">🎨 Frontend Engineering</h3>
-          <div class="stack-pills">
-            <span class="pill">React 18</span>
-            <span class="pill">TypeScript</span>
-            <span class="pill">Next.js</span>
-            <span class="pill">Vite</span>
-            <span class="pill">Framer Motion</span>
-            <span class="pill">Tailwind CSS</span>
-            <span class="pill">Socket.IO Client</span>
-          </div>
-        </div>
-        <div class="glass-card stack-card" id="stack-backend">
-          <h3 class="stack-category">⚙️ Backend & Infrastructure</h3>
-          <div class="stack-pills">
-            <span class="pill">Python 3.11+</span>
-            <span class="pill">FastAPI</span>
-            <span class="pill">Node.js</span>
-            <span class="pill">Firebase Firestore</span>
-            <span class="pill">PostgreSQL</span>
-            <span class="pill">Redis</span>
-            <span class="pill">Docker</span>
-            <span class="pill">AWS / Cloud VPS</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section class="section" id="contact">
-    <div class="container">
-      <div class="contact-card glass-card" id="contact-card">
-        <div class="contact-glow" aria-hidden="true"></div>
-        <div class="contact-inner">
-          <div class="contact-emoji">🤝</div>
-          <h2 class="contact-title" data-i18n="contact_title">Initiate Collaboration</h2>
-          <p class="contact-subtitle" data-i18n="contact_desc">
-            I am <strong>Dobby B</strong> (Alkan) — available for senior AI engineering roles, systems architecture consulting, and quantitative project collaborations.
-          </p>
-          <div class="contact-links" id="contact-links">
-            <a href="https://github.com/dobby-aidev" target="_blank" rel="noopener" class="contact-link" id="contact-github">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-              github.com/dobby-aidev
-            </a>
-            <a href="https://agentcritiq.com" target="_blank" rel="noopener" class="contact-link" id="contact-agentcritiq">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-              agentcritiq.com
-            </a>
-            <a href="https://huggingface.co/dobbyb-aidev" target="_blank" rel="noopener" class="contact-link" id="contact-hf">
-              🤗 HuggingFace Datasets
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer" id="footer">
-    <div class="container">
-      <p class="footer-text">
-        <img src="./logo.png" alt="" class="footer-logo" aria-hidden="true" />
-        <strong>Dobby B (Alkan)</strong> &nbsp;·&nbsp; <span class="logo-bracket">&lt;</span>dobby<span class="logo-accent">-aidev</span><span class="logo-bracket">/&gt;</span>
-        &nbsp;·&nbsp; Autonomous Systems & Quant Engineering &nbsp;·&nbsp; MIT License
-      </p>
+      <p>© Dobby B (Alkan) · <code>dobby-aidev</code> · Autonomous Systems & Quant Engineering</p>
     </div>
   </footer>
 
