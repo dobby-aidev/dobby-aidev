@@ -8,8 +8,10 @@ const dictionary = {
   tr: {
     nav_about: "Hakkımda",
     nav_projects: "Projelerim",
+    nav_store: "Veri Setleri",
     nav_stack: "Teknolojiler",
     nav_contact: "İletişim",
+    store_title: "Whop Store & Veri Seti Merkezi",
     status_text: "Yeni projelere açık",
     hero_title: "Otonom Yapay Zeka Ajanları ve Algoritmik Ticaret Sistemleri Geliştiriyorum.",
     hero_bio: "Çoklu-ajan mimarileri (Multi-Agent Swarms), PyTorch tabanlı derin pekiştirmeli öğrenme (Deep RL) botları ve açık kaynaklı web platformları tasarlıyorum. Geliştirdiğim tüm araç ve kütüphaneleri GitHub üzerinde yayınlıyorum.",
@@ -94,31 +96,31 @@ const projectGalleries = {
     title: 'AI Prompt Builder',
     prefix: 'ai_prompt_builder',
     images: [
-      './assets/aı_prompt_builder_1.jpg',
-      './assets/AI_Prompt_Builder_2.jpg',
-      './assets/AI_Prompt_Builder_3.jpg',
-      './assets/AI_Prompt_Builder_4.jpg',
-      './assets/AI_Prompt_Builder_5.jpg',
-      './assets/AI_Prompt_Builder_6.jpg',
-      './assets/AI_Prompt_Builder_7.jpg',
-      './assets/AI_Prompt_Builder_8.jpg',
-      './assets/AI_Prompt_Builder_9.jpg',
-      './assets/AI_Prompt_Builder_10.jpg'
+      './assets/ai_prompt_builder_1.jpg',
+      './assets/ai_prompt_builder_2.jpg',
+      './assets/ai_prompt_builder_3.jpg',
+      './assets/ai_prompt_builder_4.jpg',
+      './assets/ai_prompt_builder_5.jpg',
+      './assets/ai_prompt_builder_6.jpg',
+      './assets/ai_prompt_builder_7.jpg',
+      './assets/ai_prompt_builder_8.jpg',
+      './assets/ai_prompt_builder_9.jpg',
+      './assets/ai_prompt_builder_10.jpg'
     ]
   },
   'zamanin-bekcisi': {
     title: 'Zamanın Bekçisi',
-    prefix: 'zamanın_bekçisi',
+    prefix: 'zamanin_bekcisi',
     images: [
-      './assets/zamanın_bekçisi_1.jpg',
-      './assets/zamanın_bekçisi_2.jpg',
-      './assets/zamanın_bekçisi_3.jpg',
-      './assets/zamanın_bekçisi_4.jpg',
-      './assets/zamanın_bekçisi_5.jpg',
-      './assets/zamanın_bekçisi_6.jpg',
-      './assets/zamanın_bekçisi_7.jpg',
-      './assets/zamanın_bekçisi_8.jpg',
-      './assets/zamanın_bekçisi_9.jpg'
+      './assets/zamanin_bekcisi_1.jpg',
+      './assets/zamanin_bekcisi_2.jpg',
+      './assets/zamanin_bekcisi_3.jpg',
+      './assets/zamanin_bekcisi_4.jpg',
+      './assets/zamanin_bekcisi_5.jpg',
+      './assets/zamanin_bekcisi_6.jpg',
+      './assets/zamanin_bekcisi_7.jpg',
+      './assets/zamanin_bekcisi_8.jpg',
+      './assets/zamanin_bekcisi_9.jpg'
     ]
   },
   'agent-critiq': {
@@ -159,12 +161,92 @@ const projectGalleries = {
       './assets/dona_codex_overmind_19.jpg'
     ]
   },
-  'dona-codex-vision': { title: 'Dona Codex: Vision', prefix: 'dona_codex_vision', images: [] },
-  'dona-nexus': { title: 'Dona Nexus (ApexBrain)', prefix: 'dona_nexus', images: [] },
-  'ai-coin-empire': { title: 'AI Coin Empire', prefix: 'ai_coin_empire', images: [] },
-  'dona-ai-lab': { title: 'Dona AI Lab', prefix: 'dona_ai_lab', images: [] },
-  'dona-grid': { title: 'Dona Grid', prefix: 'dona_grid', images: [] },
-  'dona-quantum': { title: 'Dona Quantum', prefix: 'dona_quantum', images: [] }
+  'dona-codex-vision': {
+    title: 'Dona Codex: Vision',
+    prefix: 'dona_codex_vision',
+    images: [
+      './assets/dona_codex_vision_1.jpg',
+      './assets/dona_codex_vision_2.jpg',
+      './assets/dona_codex_vision_3.jpg',
+      './assets/dona_codex_vision_4.jpg',
+      './assets/dona_codex_vision_5.jpg',
+      './assets/dona_codex_vision_6.jpg',
+      './assets/dona_codex_vision_7.jpg',
+      './assets/dona_codex_vision_8.jpg',
+      './assets/dona_codex_vision_9.jpg',
+      './assets/dona_codex_vision_10.jpg',
+      './assets/dona_codex_vision_11.jpg',
+      './assets/dona_codex_vision_12.jpg',
+      './assets/dona_codex_vision_13.jpg'
+    ]
+  },
+  'dona-nexus': {
+    title: 'Dona Nexus (ApexBrain)',
+    prefix: 'dona_nexus',
+    images: [
+      './assets/dona_nexus_1.jpg',
+      './assets/dona_nexus_2.jpg',
+      './assets/dona_nexus_3.jpg',
+      './assets/dona_nexus_4.jpg',
+      './assets/dona_nexus_5.jpg',
+      './assets/dona_nexus_6.jpg',
+      './assets/dona_nexus_7.jpg',
+      './assets/dona_nexus_8.jpg'
+    ]
+  },
+  'ai-coin-empire': {
+    title: 'AI Coin Empire',
+    prefix: 'ai_coin_empire',
+    images: [
+      './assets/ai_coin_empire_1.jpg',
+      './assets/ai_coin_empire_2.jpg',
+      './assets/ai_coin_empire_3.jpg',
+      './assets/ai_coin_empire_4.jpg',
+      './assets/ai_coin_empire_5.jpg',
+      './assets/ai_coin_empire_6.jpg',
+      './assets/ai_coin_empire_7.jpg',
+      './assets/ai_coin_empire_8.jpg',
+      './assets/ai_coin_empire_9.jpg',
+      './assets/ai_coin_empire_10.jpg',
+      './assets/ai_coin_empire_11.jpg',
+      './assets/ai_coin_empire_12.jpg',
+      './assets/ai_coin_empire_13.jpg',
+      './assets/ai_coin_empire_14.jpg',
+      './assets/ai_coin_empire_15.jpg',
+      './assets/ai_coin_empire_16.jpg',
+      './assets/ai_coin_empire_17.jpg',
+      './assets/ai_coin_empire_18.jpg',
+      './assets/ai_coin_empire_19.jpg',
+      './assets/ai_coin_empire_20.jpg',
+      './assets/ai_coin_empire_21.jpg'
+    ]
+  },
+  'dona-grid': {
+    title: 'Dona Grid',
+    prefix: 'dona_grid',
+    images: [
+      './assets/dona_grid_1.jpg',
+      './assets/dona_grid_2.jpg',
+      './assets/dona_grid_3.jpg',
+      './assets/dona_grid_4.jpg',
+      './assets/dona_grid_5.jpg'
+    ]
+  },
+  'dona-quantum': {
+    title: 'Dona Quantum',
+    prefix: 'dona_quantum',
+    images: [
+      './assets/dona_quantum_1.jpg',
+      './assets/dona_quantum_2.jpg',
+      './assets/dona_quantum_3.jpg',
+      './assets/dona_quantum_4.jpg',
+      './assets/dona_quantum_5.jpg',
+      './assets/dona_quantum_6.jpg',
+      './assets/dona_quantum_7.jpg',
+      './assets/dona_quantum_8.jpg'
+    ]
+  },
+  'dona-ai-lab': { title: 'Dona AI Lab', prefix: 'dona_ai_lab', images: [] }
 };
 
 // Automatic Asset Discovery Scanner for Newly Added Images
@@ -358,6 +440,64 @@ function initClipboardToast() {
   if (contactEmailBtn) {
     contactEmailBtn.addEventListener('click', () => copyText('contact@donacodex.com', '✔ E-posta adresi kopyalandı!'));
   }
+}
+
+// Cloudflare Worker Endpoint URL (Set your deployed worker URL here)
+const CLOUDFLARE_WORKER_URL = 'https://dobby-contact-form.donacodex.workers.dev/';
+
+function setupContactForm() {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = document.getElementById('contact-name').value;
+    const handle = document.getElementById('contact-handle').value;
+    const service = document.getElementById('contact-service').value;
+    const message = document.getElementById('contact-message').value;
+
+    const payload = { name, handle, service, message };
+
+    if (CLOUDFLARE_WORKER_URL && !CLOUDFLARE_WORKER_URL.includes('YOUR_CLOUDFLARE_WORKER_URL')) {
+      showToast('⏳ Mesajınız e-posta kutusuna iletiliyor...');
+      try {
+        const res = await fetch(CLOUDFLARE_WORKER_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (res.ok) {
+          showToast('✔ Mesajınız doğrudan Dobby B\'nin Gmail kutusuna iletildi!');
+          form.reset();
+          return;
+        }
+      } catch (err) {
+        console.warn('Cloudflare Worker fallback mailto triggered:', err);
+      }
+    }
+
+    // Fallback Mailto
+    showToast('✔ İletişim talebiniz kurgulandı! E-posta istemciniz açılıyor...');
+    const subject = encodeURIComponent(`[İletişim Talebi] ${service} - ${name}`);
+    const body = encodeURIComponent(`Merhaba Dobby B,\n\nBen ${name} (${handle}).\n\nİlgilendiğim Hizmet: ${service}\n\nProje Detayı / Mesaj:\n${message}\n\nİletişim Bilgilerim: ${handle}`);
+    
+    setTimeout(() => {
+      window.location.href = `mailto:dobbyb.aidev@gmail.com?subject=${subject}&body=${body}`;
+    }, 1000);
+  });
+}
+
+function showToast(msg) {
+  const toast = document.getElementById('toast-bar');
+  const toastMsg = document.getElementById('toast-msg');
+  if (!toast || !toastMsg) return;
+
+  toastMsg.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 4500);
 }
 
 // Initialization
