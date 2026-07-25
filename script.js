@@ -1,5 +1,5 @@
 /* ====================================================
-   Alkan (Dobby B) — Senior Engineer Minimalist Script
+   Dobby B (@dobby-aidev) — AI Dev Minimalist Script
    Per-Project Lightbox Engine, Auto Asset Discovery & i18n
    ==================================================== */
 
@@ -8,8 +8,10 @@ const dictionary = {
   tr: {
     nav_about: "Hakkımda",
     nav_projects: "Projelerim",
+    nav_store: "Veri Setleri",
     nav_stack: "Teknolojiler",
     nav_contact: "İletişim",
+    store_title: "Whop Store & Veri Seti Merkezi",
     status_text: "Yeni projelere açık",
     hero_title: "Otonom Yapay Zeka Ajanları ve Algoritmik Ticaret Sistemleri Geliştiriyorum.",
     hero_bio: "Çoklu-ajan mimarileri (Multi-Agent Swarms), PyTorch tabanlı derin pekiştirmeli öğrenme (Deep RL) botları ve açık kaynaklı web platformları tasarlıyorum. Geliştirdiğim tüm araç ve kütüphaneleri GitHub üzerinde yayınlıyorum.",
@@ -22,71 +24,54 @@ const dictionary = {
     ab_card3_title: "AI Platformları & Ürünler",
     ab_card3_desc: "Agent Critiq gibi yapay zeka araçlarını inceleyen, dahili MCP sunucusu sunan ve açık veri seti sağlayan web platformları geliştiriyorum.",
     projects_title: "Geliştirdiğim Projeler",
-    prj_donacodexvision: "ChatGPT/Gemini tarzı canlı kripto ticker'ları, işlem defteri ve piyasa radarı entegreli özelleştirilmiş finansal LLM web arayüzü. Piyasa duyarlılık analizi, risk yönetimi ve iki yönlü sohbet altyapısı sunar.",
+    prj_donacodexvision: "Transformer mimarisiyle özel olarak eğitilen finansal dil modeli (LLM). Kripto piyasa verileri, ABD Tahvil faizleri, X (Twitter) canlı haber akışı ve trader psikolojisi veri setiyle beslenerek canlı sohbet ve risk analizi sunar.",
     prj_agentcritiq: "100+ AI aracı ve otonom ajanı inceleyen web platformu. Claude/Cursor gibi yapay zekaların doğrudan veritabanını sorgulaması için dahili MCP Server ve Hugging Face açık veri seti içerir.",
     prj_donacodex: "4 otonom AI düğümünün (CEO, Araştırmacı, Yazılımcı, Analist) Socket.IO WebSockets haberleşmesi ve Firebase Firestore ile sanal bir yazılım şirketini yönettiği mimari.",
     prj_donanexus: "ApexBrain — PyTorch ile geliştirdiğim çift politikalı sinir ağı (Actor-Critic). Binance Futures üzerinde 7/24 otonom karar verip dinamik ATR risk bantları ile işlem yürütür.",
     prj_ailab: "Farklı LLM mimarilerini, açık kaynaklı HuggingFace modellerini ve deneysel prompt boru hatlarını kıyaslamak için tasarlanan araştırma ortamı.",
     prj_promptbuilder: "Gemini API altyapısını kullanarak sohbet üzerinden 8 farklı kategoride (Web, Mobile, Crypto, SEO...) mükemmel prompt'lar oluşturan, PDF/JSON export alan Studio.",
+    prj_coinempire: "10,000+ satır TypeScript ile inşa edilen gerçek zamanlı multiplayer oyun. Firebase Firestore `onSnapshot` senkronizasyonu, madencilik ve Wordle tarzı hack mini-oyunu.",
     prj_donagrid: "Binance spot piyasası için dinamik ATR (Average True Range) merkezlemeli ve RSI zehirli piyasa korumalı ızgara alım-satım algoritması.",
-    prj_donaquantum: "CrewAI ve OpenAI GPT / Gemini API tabanlı çoklu-ajan takımı (Scanner, Analyst, Risk Manager, Executor). Binance Futures piyasasında kaldıraçlı/spot fırsatları tespit eder, CVD/OI/Emir Akışı analizi ile otonom işlem önerileri ve alım-satım kararları üretir.",
-    prj_coinempire: "10,000+ satır TypeScript ile inşa edilen gerçek zamanlı multiplayer oyun. Firebase Firestore onSnapshot senkronizasyonu, madencilik ve Wordle tarzı hack mini-oyunu.",
+    prj_donaquantum: "CrewAI ve OpenAI GPT / Gemini API tabanlı çoklu-ajan takımı. Binance Futures piyasasında kaldıraçlı/spot fırsatları tespit eder, CVD/OI/Emir Akışı analizi ile otonom işlem önerileri üretir.",
     prj_zamaninbekcisi: "780 satır pure TypeScript hikaye motoruyla yazılmış; Antik Mısır MÖ 2500, Orta Çağ ve Siber 2087 arasında geçen dallanmalı macera oyunu.",
     stack_title: "Kullandığım Teknolojiler",
     contact_title: "İletişime Geçin",
-    contact_sub: "Yeni projeler, algoritmik sistemler veya iş birliği fikirleri için bana dilediğiniz zaman e-posta atabilirsiniz."
+    contact_sub: "Otonom AI mimarileri, algoritmik sistemler veya danışmanlık talepleri için dilediğiniz kanaldan ulaşabilirsiniz."
   },
   en: {
     nav_about: "About",
     nav_projects: "Projects",
-    nav_stack: "Stack",
+    nav_store: "Datasets & Store",
+    nav_stack: "Tech Stack",
     nav_contact: "Contact",
-    status_text: "Available for new work",
-    hero_title: "I Build Autonomous AI Agents and Quantitative Systems.",
-    hero_bio: "Specializing in Multi-Agent Swarm architectures, Deep Reinforcement Learning (Deep RL) crypto bots, and web platforms. All tools and repositories are shared open-source.",
+    store_title: "Whop Store & Datasets Hub",
+    status_text: "Available for projects",
+    hero_title: "Building Autonomous AI Swarms & Algorithmic Trading Systems.",
+    hero_bio: "Designing multi-agent swarms, PyTorch-based deep reinforcement learning trading bots, and open-source AI web platforms. Publishing models and tools on GitHub & HuggingFace.",
     btn_explore: "Explore Work ↓",
-    focus_title: "Core Architectural Focus",
-    ab_card1_title: "Autonomous AI Agents",
-    ab_card1_desc: "Architecting multi-agent systems where LLM nodes (CEO, Researcher, Engineer) coordinate via Socket.IO WebSockets to execute tasks.",
-    ab_card2_title: "Algorithmic Trading & Bots",
-    ab_card2_desc: "Designing crypto trading bots using PyTorch dual-policy Deep RL (ApexBrain) and dynamic ATR-recentered grid algorithms for Binance.",
-    ab_card3_title: "AI Platforms & Products",
-    ab_card3_desc: "Building platforms like Agent Critiq that curate AI tools, feature native MCP Servers for AI assistants, and publish open datasets.",
-    projects_title: "Featured Projects",
-    prj_donacodexvision: "Custom financial LLM conversational web platform integrated with live crypto tickers, trading journal, and market radar. Features market sentiment analysis, risk management, and interactive reasoning.",
-    prj_agentcritiq: "Curated review platform for 100+ AI tools and autonomous agents. Features native MCP Server integration, open Hugging Face dataset, and AI-crawler search optimization.",
-    prj_donacodex: "Multi-agent company simulation OS. Autonomous AI agent nodes (CEO, Researcher, Engineer, Analyst) operating in a persistent game loop with Socket.IO telemetry and Firebase state.",
-    prj_donanexus: "ApexBrain — a dual-policy PyTorch neural network (Actor-Critic) executing 24/7 autonomous trades on Binance Futures with dynamic ATR volatility banding.",
-    prj_ailab: "Experimental research sandbox for benchmarking model architectures, open-source HuggingFace models, and prompt pipelines.",
-    prj_promptbuilder: "Conversational prompt engineering studio powered by Gemini API for interactive requirement compilation, 8 domain categories, and PDF/JSON export.",
-    prj_donagrid: "Binance spot grid trading bot featuring dynamic ATR recentering and RSI anti-toxicity market filters.",
-    prj_donaquantum: "Multi-agent AI crypto trading crew built on CrewAI and OpenAI GPT / Gemini API. Coordinates specialized agents (Scanner, Analyst, Risk Manager, Executor) to analyze Binance Futures leveraged opportunities via CVD, Open Interest, and LLM order flow reasoning.",
-    prj_coinempire: "Real-time multiplayer strategy game built with 10,000+ lines of TypeScript. Powered by Firebase Firestore onSnapshot sync, mining algorithms, and Wordle-style hack puzzles.",
-    prj_zamaninbekcisi: "Time-travel branching text adventure written with a 780-line pure TypeScript story engine spanning Ancient Egypt, Medieval era, and Cyberpunk 2087.",
+    focus_title: "Architectural Focus",
+    ab_card1_title: "Autonomous AI Swarms",
+    ab_card1_desc: "Building multi-agent nodes (CEO, Researcher, Engineer) communicating via WebSockets for fully autonomous task execution.",
+    ab_card2_title: "Quantitative Trading & Bots",
+    ab_card2_desc: "Engineering PyTorch Deep RL neural networks (ApexBrain) and ATR-centered grid trading bots for Binance crypto futures.",
+    ab_card3_title: "AI Products & Platforms",
+    ab_card3_desc: "Architecting web platforms like Agent Critiq with native MCP servers and open HuggingFace datasets for AI crawlers.",
+    projects_title: "Featured Engineering Work",
+    prj_donacodexvision: "Proprietary Transformer LLM foundation model fine-tuned on crypto order flow, US 10-Year Treasury Yield bonds, X live news feeds, and trader psychology.",
+    prj_agentcritiq: "AI-native discovery platform indexing 100+ AI tools and autonomous agents. Features native MCP Server and open Hugging Face dataset.",
+    prj_donacodex: "Multi-agent company simulation OS running 4 autonomous AI nodes via Socket.IO WebSockets and Firebase Firestore.",
+    prj_donanexus: "ApexBrain — Dual-policy PyTorch neural network (Actor-Critic) executing 24/7 autonomous trades on Binance Futures with dynamic ATR risk bands.",
+    prj_ailab: "Experimental research sandbox for benchmarking open-source LLMs, HuggingFace models, and prompt pipelines.",
+    prj_promptbuilder: "Conversational prompt engineering studio built on Gemini API with 8 domain categories, PDF/JSON export, and coin economy.",
+    prj_coinempire: "Real-time multiplayer strategy game with 10,000+ lines of TypeScript, Firebase Firestore `onSnapshot` sync, and Wordle hack puzzle.",
+    prj_donagrid: "Spot grid trading bot for Binance with dynamic ATR recentering and RSI anti-toxicity market protection.",
+    prj_donaquantum: "Multi-agent AI trading crew built on CrewAI and OpenAI GPT/Gemini API for CVD, Open Interest, and order flow analysis.",
+    prj_zamaninbekcisi: "Branching interactive text adventure driven by a 780-line pure TypeScript engine spanning Ancient Egypt MÖ 2500 to Cyberpunk 2087.",
     stack_title: "Technical Stack",
     contact_title: "Get In Touch",
-    contact_sub: "Feel free to reach out via email or GitHub for collaboration, AI agent engineering, or quantitative tools."
+    contact_sub: "Feel free to reach out for autonomous AI agent architectures, quantitative systems, or consultancy."
   }
 };
-
-let activeLang = localStorage.getItem('dobby_lang') || 'tr';
-
-function applyLanguage(lang) {
-  if (!dictionary[lang]) return;
-  activeLang = lang;
-  localStorage.setItem('dobby_lang', lang);
-
-  document.querySelectorAll('#lang-toggle .lang-btn').forEach((btn) => {
-    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
-  });
-
-  document.querySelectorAll('[data-i18n]').forEach((node) => {
-    const key = node.getAttribute('data-i18n');
-    if (dictionary[lang][key]) {
-      node.textContent = dictionary[lang][key];
-    }
-  });
-}
 
 // 2. Project Screenshot Mapping & Dynamic Asset Discovery Engine
 const projectGalleries = {
@@ -94,31 +79,31 @@ const projectGalleries = {
     title: 'AI Prompt Builder',
     prefix: 'ai_prompt_builder',
     images: [
-      './assets/aı_prompt_builder_1.jpg',
-      './assets/AI_Prompt_Builder_2.jpg',
-      './assets/AI_Prompt_Builder_3.jpg',
-      './assets/AI_Prompt_Builder_4.jpg',
-      './assets/AI_Prompt_Builder_5.jpg',
-      './assets/AI_Prompt_Builder_6.jpg',
-      './assets/AI_Prompt_Builder_7.jpg',
-      './assets/AI_Prompt_Builder_8.jpg',
-      './assets/AI_Prompt_Builder_9.jpg',
-      './assets/AI_Prompt_Builder_10.jpg'
+      './assets/ai_prompt_builder_1.jpg',
+      './assets/ai_prompt_builder_2.jpg',
+      './assets/ai_prompt_builder_3.jpg',
+      './assets/ai_prompt_builder_4.jpg',
+      './assets/ai_prompt_builder_5.jpg',
+      './assets/ai_prompt_builder_6.jpg',
+      './assets/ai_prompt_builder_7.jpg',
+      './assets/ai_prompt_builder_8.jpg',
+      './assets/ai_prompt_builder_9.jpg',
+      './assets/ai_prompt_builder_10.jpg'
     ]
   },
   'zamanin-bekcisi': {
     title: 'Zamanın Bekçisi',
-    prefix: 'zamanın_bekçisi',
+    prefix: 'zamanin_bekcisi',
     images: [
-      './assets/zamanın_bekçisi_1.jpg',
-      './assets/zamanın_bekçisi_2.jpg',
-      './assets/zamanın_bekçisi_3.jpg',
-      './assets/zamanın_bekçisi_4.jpg',
-      './assets/zamanın_bekçisi_5.jpg',
-      './assets/zamanın_bekçisi_6.jpg',
-      './assets/zamanın_bekçisi_7.jpg',
-      './assets/zamanın_bekçisi_8.jpg',
-      './assets/zamanın_bekçisi_9.jpg'
+      './assets/zamanin_bekcisi_1.jpg',
+      './assets/zamanin_bekcisi_2.jpg',
+      './assets/zamanin_bekcisi_3.jpg',
+      './assets/zamanin_bekcisi_4.jpg',
+      './assets/zamanin_bekcisi_5.jpg',
+      './assets/zamanin_bekcisi_6.jpg',
+      './assets/zamanin_bekcisi_7.jpg',
+      './assets/zamanin_bekcisi_8.jpg',
+      './assets/zamanin_bekcisi_9.jpg'
     ]
   },
   'agent-critiq': {
@@ -159,172 +144,208 @@ const projectGalleries = {
       './assets/dona_codex_overmind_19.jpg'
     ]
   },
-  'dona-codex-vision': { title: 'Dona Codex: Vision', prefix: 'dona_codex_vision', images: [] },
-  'dona-nexus': { title: 'Dona Nexus (ApexBrain)', prefix: 'dona_nexus', images: [] },
-  'ai-coin-empire': { title: 'AI Coin Empire', prefix: 'ai_coin_empire', images: [] },
-  'dona-ai-lab': { title: 'Dona AI Lab', prefix: 'dona_ai_lab', images: [] },
-  'dona-grid': { title: 'Dona Grid', prefix: 'dona_grid', images: [] },
-  'dona-quantum': { title: 'Dona Quantum', prefix: 'dona_quantum', images: [] }
+  'dona-codex-vision': {
+    title: 'Dona Codex: Vision',
+    prefix: 'dona_codex_vision',
+    images: [
+      './assets/dona_codex_vision_1.jpg',
+      './assets/dona_codex_vision_2.jpg',
+      './assets/dona_codex_vision_3.jpg',
+      './assets/dona_codex_vision_4.jpg',
+      './assets/dona_codex_vision_5.jpg',
+      './assets/dona_codex_vision_6.jpg',
+      './assets/dona_codex_vision_7.jpg',
+      './assets/dona_codex_vision_8.jpg',
+      './assets/dona_codex_vision_9.jpg',
+      './assets/dona_codex_vision_10.jpg',
+      './assets/dona_codex_vision_11.jpg',
+      './assets/dona_codex_vision_12.jpg',
+      './assets/dona_codex_vision_13.jpg'
+    ]
+  },
+  'dona-nexus': {
+    title: 'Dona Nexus (ApexBrain)',
+    prefix: 'dona_nexus',
+    images: [
+      './assets/dona_nexus_1.jpg',
+      './assets/dona_nexus_2.jpg',
+      './assets/dona_nexus_3.jpg',
+      './assets/dona_nexus_4.jpg',
+      './assets/dona_nexus_5.jpg',
+      './assets/dona_nexus_6.jpg',
+      './assets/dona_nexus_7.jpg',
+      './assets/dona_nexus_8.jpg'
+    ]
+  },
+  'ai-coin-empire': {
+    title: 'AI Coin Empire',
+    prefix: 'ai_coin_empire',
+    images: [
+      './assets/ai_coin_empire_1.jpg',
+      './assets/ai_coin_empire_2.jpg',
+      './assets/ai_coin_empire_3.jpg',
+      './assets/ai_coin_empire_4.jpg',
+      './assets/ai_coin_empire_5.jpg',
+      './assets/ai_coin_empire_6.jpg',
+      './assets/ai_coin_empire_7.jpg',
+      './assets/ai_coin_empire_8.jpg',
+      './assets/ai_coin_empire_9.jpg',
+      './assets/ai_coin_empire_10.jpg',
+      './assets/ai_coin_empire_11.jpg',
+      './assets/ai_coin_empire_12.jpg',
+      './assets/ai_coin_empire_13.jpg',
+      './assets/ai_coin_empire_14.jpg',
+      './assets/ai_coin_empire_15.jpg',
+      './assets/ai_coin_empire_16.jpg',
+      './assets/ai_coin_empire_17.jpg',
+      './assets/ai_coin_empire_18.jpg',
+      './assets/ai_coin_empire_19.jpg',
+      './assets/ai_coin_empire_20.jpg',
+      './assets/ai_coin_empire_21.jpg'
+    ]
+  },
+  'dona-grid': {
+    title: 'Dona Grid',
+    prefix: 'dona_grid',
+    images: [
+      './assets/dona_grid_1.jpg',
+      './assets/dona_grid_2.jpg',
+      './assets/dona_grid_3.jpg',
+      './assets/dona_grid_4.jpg',
+      './assets/dona_grid_5.jpg'
+    ]
+  },
+  'dona-quantum': {
+    title: 'Dona Quantum',
+    prefix: 'dona_quantum',
+    images: [
+      './assets/dona_quantum_1.jpg',
+      './assets/dona_quantum_2.jpg',
+      './assets/dona_quantum_3.jpg',
+      './assets/dona_quantum_4.jpg',
+      './assets/dona_quantum_5.jpg',
+      './assets/dona_quantum_6.jpg',
+      './assets/dona_quantum_7.jpg',
+      './assets/dona_quantum_8.jpg'
+    ]
+  },
+  'dona-ai-lab': { title: 'Dona AI Lab', prefix: 'dona_ai_lab', images: [] }
 };
 
-// Automatic Asset Discovery Scanner for Newly Added Images
-function discoverNewAssets() {
-  Object.keys(projectGalleries).forEach((key) => {
-    const item = projectGalleries[key];
-    if (item.images.length > 0) return; // Already populated
+// 3. State Variables
+let currentLang = 'tr';
+let currentGallery = [];
+let currentImageIndex = 0;
+let currentProjectTitle = '';
 
-    const discovered = [];
-    const maxCheck = 30;
+// 4. Initialize Application
+document.addEventListener('DOMContentLoaded', () => {
+  setupLanguageSwitcher();
+  setupFilterTabs();
+  setupLightboxModal();
+  setupContactForm();
+});
 
-    function checkNext(idx) {
-      if (idx > maxCheck) {
-        if (discovered.length > 0) {
-          item.images = discovered;
-          updateCardThumbnailUI(key);
+// Cloudflare Worker Endpoint URL (Set your deployed worker URL here)
+const CLOUDFLARE_WORKER_URL = 'https://dobby-contact-form.donacodex.workers.dev/';
+
+function setupContactForm() {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = document.getElementById('contact-name').value;
+    const handle = document.getElementById('contact-handle').value;
+    const service = document.getElementById('contact-service').value;
+    const message = document.getElementById('contact-message').value;
+
+    const payload = { name, handle, service, message };
+
+    if (CLOUDFLARE_WORKER_URL && !CLOUDFLARE_WORKER_URL.includes('YOUR_CLOUDFLARE_WORKER_URL')) {
+      showToast('⏳ Mesajınız e-posta kutusuna iletiliyor...');
+      try {
+        const res = await fetch(CLOUDFLARE_WORKER_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (res.ok) {
+          showToast('✔ Mesajınız doğrudan Dobby B\'nin Gmail kutusuna iletildi!');
+          form.reset();
+          return;
         }
-        return;
-      }
-
-      const img = new Image();
-      const testPath = `./assets/${item.prefix}_${idx}.jpg`;
-      img.src = testPath;
-
-      img.onload = () => {
-        discovered.push(testPath);
-        checkNext(idx + 1);
-      };
-
-      img.onerror = () => {
-        checkNext(idx + 1);
-      };
-    }
-
-    checkNext(1);
-  });
-}
-
-function updateCardThumbnailUI(projKey) {
-  const item = projectGalleries[projKey];
-  if (!item || item.images.length === 0) return;
-
-  const cardThumbBox = document.querySelector(`.card-thumb-box[data-project-key="${projKey}"]`);
-  if (!cardThumbBox) return;
-
-  cardThumbBox.innerHTML = `
-    <img src="${item.images[0]}" alt="${item.title}" class="card-thumb-img" />
-    <span class="card-thumb-badge">📸 ${item.images.length} Görsel (İncele)</span>
-  `;
-
-  const footerCard = cardThumbBox.closest('.project-card');
-  if (footerCard) {
-    const triggerBtn = footerCard.querySelector('.gallery-trigger-btn');
-    if (triggerBtn) {
-      triggerBtn.className = 'gallery-trigger-btn';
-      triggerBtn.setAttribute('data-project-key', projKey);
-      triggerBtn.innerHTML = `📸 Galeri (${item.images.length})`;
-    }
-  }
-}
-
-let activeGalleryKey = null;
-let activeImageIndex = 0;
-
-function initPerProjectLightbox() {
-  const modal = document.getElementById('lightbox-modal');
-  const modalImg = document.getElementById('lightbox-img');
-  const modalCaption = document.getElementById('lightbox-caption');
-  const modalCounter = document.getElementById('lightbox-counter');
-  const closeBtn = document.getElementById('lightbox-close-btn');
-  const prevBtn = document.getElementById('lightbox-prev-btn');
-  const nextBtn = document.getElementById('lightbox-next-btn');
-
-  if (!modal || !modalImg) return;
-
-  function updateLightboxView() {
-    if (!activeGalleryKey || !projectGalleries[activeGalleryKey]) return;
-    const gallery = projectGalleries[activeGalleryKey];
-    const images = gallery.images;
-
-    if (images.length === 0) return;
-
-    modalImg.src = images[activeImageIndex];
-    if (modalCaption) modalCaption.textContent = `${gallery.title} — Screen ${activeImageIndex + 1}`;
-    if (modalCounter) modalCounter.textContent = `${activeImageIndex + 1} / ${images.length}`;
-  }
-
-  function openLightbox(projKey) {
-    if (!projectGalleries[projKey] || projectGalleries[projKey].images.length === 0) return;
-    activeGalleryKey = projKey;
-    activeImageIndex = 0;
-    updateLightboxView();
-    modal.classList.add('active');
-  }
-
-  function closeLightbox() {
-    modal.classList.remove('active');
-  }
-
-  function nextImage() {
-    if (!activeGalleryKey || !projectGalleries[activeGalleryKey]) return;
-    const count = projectGalleries[activeGalleryKey].images.length;
-    if (count === 0) return;
-    activeImageIndex = (activeImageIndex + 1) % count;
-    updateLightboxView();
-  }
-
-  function prevImage() {
-    if (!activeGalleryKey || !projectGalleries[activeGalleryKey]) return;
-    const count = projectGalleries[activeGalleryKey].images.length;
-    if (count === 0) return;
-    activeImageIndex = (activeImageIndex - 1 + count) % count;
-    updateLightboxView();
-  }
-
-  // Attach triggers to thumb boxes & gallery buttons
-  document.body.addEventListener('click', (e) => {
-    const trigger = e.target.closest('[data-project-key]');
-    if (trigger) {
-      const projKey = trigger.getAttribute('data-project-key');
-      if (projKey && projectGalleries[projKey] && projectGalleries[projKey].images.length > 0) {
-        e.preventDefault();
-        openLightbox(projKey);
+      } catch (err) {
+        console.warn('Cloudflare Worker fallback mailto triggered:', err);
       }
     }
-  });
 
-  if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
-  if (prevBtn) prevBtn.addEventListener('click', (e) => { e.stopPropagation(); prevImage(); });
-  if (nextBtn) nextBtn.addEventListener('click', (e) => { e.stopPropagation(); nextImage(); });
-
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeLightbox();
-  });
-
-  window.addEventListener('keydown', (e) => {
-    if (!modal.classList.contains('active')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowRight') nextImage();
-    if (e.key === 'ArrowLeft') prevImage();
+    // Fallback Mailto
+    showToast('✔ İletişim talebiniz kurgulandı! E-posta istemciniz açılıyor...');
+    const subject = encodeURIComponent(`[İletişim Talebi] ${service} - ${name}`);
+    const body = encodeURIComponent(`Merhaba Dobby B,\n\nBen ${name} (${handle}).\n\nİlgilendiğim Hizmet: ${service}\n\nProje Detayı / Mesaj:\n${message}\n\nİletişim Bilgilerim: ${handle}`);
+    
+    setTimeout(() => {
+      window.location.href = `mailto:dobbyb.aidev@gmail.com?subject=${subject}&body=${body}`;
+    }, 1000);
   });
 }
 
-// 3. Category Filter Tabs Engine
-function initCategoryFilters() {
+function showToast(msg) {
+  const toast = document.getElementById('toast-bar');
+  const toastMsg = document.getElementById('toast-msg');
+  if (!toast || !toastMsg) return;
+
+  toastMsg.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 4500);
+}
+
+// 5. Language Switcher Logic
+function setupLanguageSwitcher() {
+  const langBtns = document.querySelectorAll('.lang-btn');
+  langBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const selectedLang = e.target.getAttribute('data-lang');
+      if (selectedLang === currentLang) return;
+
+      currentLang = selectedLang;
+      langBtns.forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+
+      applyTranslations(currentLang);
+    });
+  });
+}
+
+function applyTranslations(lang) {
+  const elements = document.querySelectorAll('[data-i18n]');
+  elements.forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (dictionary[lang] && dictionary[lang][key]) {
+      el.textContent = dictionary[lang][key];
+    }
+  });
+}
+
+// 6. Category Filtering System
+function setupFilterTabs() {
   const filterBtns = document.querySelectorAll('.filter-btn');
-  const projectCards = document.querySelectorAll('.project-card');
+  const projectCards = document.querySelectorAll('#projects .project-card');
 
-  if (!filterBtns.length) return;
-
-  filterBtns.forEach((btn) => {
+  filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      filterBtns.forEach((b) => b.classList.remove('active'));
+      filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
       const filter = btn.getAttribute('data-filter');
 
-      projectCards.forEach((card) => {
-        const cat = card.getAttribute('data-category') || '';
-        if (filter === 'all' || cat.includes(filter)) {
+      projectCards.forEach(card => {
+        const categories = card.getAttribute('data-category') || '';
+        if (filter === 'all' || categories.includes(filter)) {
           card.classList.remove('hidden');
         } else {
           card.classList.add('hidden');
@@ -334,47 +355,72 @@ function initCategoryFilters() {
   });
 }
 
-// 4. Clipboard Toast Notification
-function initClipboardToast() {
-  const toastBar = document.getElementById('toast-bar');
-  const toastMsg = document.getElementById('toast-msg');
+// 7. Lightbox Modal System
+function setupLightboxModal() {
+  const modal = document.getElementById('lightbox-modal');
+  const closeBtn = document.getElementById('lightbox-close-btn');
+  const prevBtn = document.getElementById('lightbox-prev-btn');
+  const nextBtn = document.getElementById('lightbox-next-btn');
 
-  function copyText(text, message) {
-    navigator.clipboard.writeText(text).then(() => {
-      if (toastBar && toastMsg) {
-        toastMsg.textContent = message || '✔ E-posta adresi kopyalandı!';
-        toastBar.classList.add('show');
-        setTimeout(() => toastBar.classList.remove('show'), 2800);
-      }
+  // Trigger buttons
+  document.querySelectorAll('.gallery-trigger-btn, .card-thumb-box').forEach(trigger => {
+    trigger.addEventListener('click', (e) => {
+      const projectKey = trigger.getAttribute('data-project-key');
+      if (!projectKey || !projectGalleries[projectKey]) return;
+
+      const galleryData = projectGalleries[projectKey];
+      if (galleryData.images.length === 0) return; // Repoya doğrudan giden projeler
+
+      currentGallery = galleryData.images;
+      currentProjectTitle = galleryData.title;
+      currentImageIndex = 0;
+
+      openLightbox();
     });
-  }
+  });
 
-  const copyEmailBtn = document.getElementById('btn-copy-email');
-  const contactEmailBtn = document.getElementById('contact-email-btn');
+  closeBtn.addEventListener('click', closeLightbox);
+  prevBtn.addEventListener('click', showPrevImage);
+  nextBtn.addEventListener('click', showNextImage);
 
-  if (copyEmailBtn) {
-    copyEmailBtn.addEventListener('click', () => copyText('contact@donacodex.com', '✔ E-posta adresi kopyalandı!'));
-  }
-  if (contactEmailBtn) {
-    contactEmailBtn.addEventListener('click', () => copyText('contact@donacodex.com', '✔ E-posta adresi kopyalandı!'));
-  }
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (!modal.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') showPrevImage();
+    if (e.key === 'ArrowRight') showNextImage();
+  });
 }
 
-// Initialization
-document.addEventListener('DOMContentLoaded', () => {
-  const langToggle = document.getElementById('lang-toggle');
-  if (langToggle) {
-    langToggle.querySelectorAll('.lang-btn').forEach((btn) => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        applyLanguage(btn.getAttribute('data-lang'));
-      });
-    });
-  }
+function openLightbox() {
+  const modal = document.getElementById('lightbox-modal');
+  updateLightboxContent();
+  modal.classList.add('active');
+}
 
-  applyLanguage(activeLang);
-  initPerProjectLightbox();
-  discoverNewAssets();
-  initCategoryFilters();
-  initClipboardToast();
-});
+function closeLightbox() {
+  const modal = document.getElementById('lightbox-modal');
+  modal.classList.remove('active');
+}
+
+function showPrevImage() {
+  if (currentGallery.length <= 1) return;
+  currentImageIndex = (currentImageIndex - 1 + currentGallery.length) % currentGallery.length;
+  updateLightboxContent();
+}
+
+function showNextImage() {
+  if (currentGallery.length <= 1) return;
+  currentImageIndex = (currentImageIndex + 1) % currentGallery.length;
+  updateLightboxContent();
+}
+
+function updateLightboxContent() {
+  const imgEl = document.getElementById('lightbox-img');
+  const captionEl = document.getElementById('lightbox-caption');
+  const counterEl = document.getElementById('lightbox-counter');
+
+  imgEl.src = currentGallery[currentImageIndex];
+  captionEl.textContent = `${currentProjectTitle} — Görsel ${currentImageIndex + 1}`;
+  counterEl.textContent = `${currentImageIndex + 1} / ${currentGallery.length}`;
+}
