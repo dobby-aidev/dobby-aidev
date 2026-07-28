@@ -3,102 +3,130 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dobby B — AI Dev & Quant Builder</title>
-  <meta name="description" content="Personal engineering portfolio of Dobby B (@dobby-aidev). Building autonomous AI agent swarms, deep reinforcement learning quantitative bots, and web platforms." />
-  
+  <title>Dobby B — Creative AI & Quant Lab | Active Theory Architecture</title>
+  <meta name="description" content="Personal engineering portfolio of Dobby B (@dobby-aidev). Architecting autonomous AI agent swarms, deep reinforcement learning quantitative bots, and open-source platforms." />
+  <meta name="keywords" content="AI developer, quant trading, deep reinforcement learning, multi-agent AI, LLM, PyTorch, Three.js 3D WebGL, Active Theory" />
+  <meta property="og:title" content="Dobby B — Creative AI & Quant Lab" />
+  <meta property="og:description" content="Autonomous AI Swarms · Deep RL Quant Bots · Active Theory Creative WebGL" />
+
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="https://github.com/dobby-aidev.png" />
   <link rel="apple-touch-icon" href="https://github.com/dobby-aidev.png" />
+
+  <!-- Three.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Minimalist Header -->
+  <!-- Fullscreen GLSL Fluid Background Canvas -->
+  <canvas id="activetheory-glsl-canvas"></canvas>
+
+  <!-- Grain Overlay -->
+  <div class="bg-grain"></div>
+
+  <!-- Dynamic Floating Project Preview Card (Active Theory Signature) -->
+  <div id="floating-project-preview">
+    <img src="./assets/zamanin_bekcisi_1.jpg" alt="Preview" id="floating-preview-img" />
+  </div>
+
+  <!-- ====== FLOATING VERCEL/ACTIVE THEORY NAVBAR ====== -->
   <header class="header">
-    <div class="container nav-container">
+    <div class="nav-container">
       <a href="#hero" class="brand">
         <img src="https://github.com/dobby-aidev.png" alt="Dobby B" class="brand-avatar" />
-        <span class="brand-title">Dobby B</span>
+        <span class="brand-title">DOBBY B // LAB</span>
       </a>
 
       <nav class="nav-menu">
         <a href="#about" data-i18n="nav_about">Hakkımda</a>
-        <a href="#services">Hizmetler</a>
-        <a href="#process">Çalışma Süreci</a>
         <a href="#projects" data-i18n="nav_projects">Projelerim</a>
+        <a href="#stack" data-i18n="nav_stack">Teknolojiler</a>
         <a href="#store" data-i18n="nav_store">Veri Setleri</a>
         <a href="#contact" data-i18n="nav_contact">İletişim</a>
       </nav>
 
       <div class="header-right">
-        <!-- Language Switcher -->
+        <!-- Live UTC Clock -->
+        <div class="utc-clock-tag" id="utc-clock">00:00:00 UTC</div>
+
+        <!-- Audio Sound FX Toggle -->
+        <button type="button" class="audio-toggle-btn" id="audio-toggle-btn" title="Ses Efektleri">
+          <span>🔊</span>
+          <span>SOUND: OFF</span>
+        </button>
+
+        <!-- Cmd+K Trigger -->
+        <button type="button" class="cmdk-trigger-btn" id="cmdk-trigger-btn" title="Komut Menüsü (Cmd+K)">
+          <span>🔍</span>
+          <span style="background: rgba(255,255,255,0.08); padding: 0.1rem 0.35rem; border-radius: 4px; font-size: 0.65rem;">⌘K</span>
+        </button>
+
         <div class="lang-toggle" id="lang-toggle">
           <button type="button" class="lang-btn active" data-lang="tr">TR</button>
           <button type="button" class="lang-btn" data-lang="en">EN</button>
         </div>
 
         <a href="https://whop.com/dona-ai" target="_blank" rel="noopener" class="whop-header-btn">
-          <span>🛍️ Whop Store ↗</span>
-        </a>
-
-        <a href="https://github.com/dobby-aidev" target="_blank" rel="noopener" class="github-link">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-          </svg>
-          <span>GitHub</span>
+          <span>🛍️ Whop ↗</span>
         </a>
       </div>
     </div>
   </header>
 
   <main>
-    <!-- Hero Section -->
+
+    <!-- ====== HERO SECTION ====== -->
     <section class="hero" id="hero">
       <div class="container">
         <div class="hero-grid">
-          
-          <!-- Profile Sidebar Card -->
-          <div class="hero-profile-card">
-            <img src="https://github.com/dobby-aidev.png" alt="Dobby B" class="hero-avatar" />
-            <h1 class="profile-name">Dobby B</h1>
-            <p class="profile-role">@dobby-aidev · AI Dev</p>
 
-            <div class="status-badge">
-              <span class="dot-pulse"></span>
-              <span data-i18n="status_text">Yeni projelere açık</span>
-            </div>
-
-            <div class="social-grid">
-              <a href="https://whop.com/dona-ai" target="_blank" rel="noopener" class="social-link social-whop-link">🛍️ Whop Store</a>
-              <a href="https://github.com/dobby-aidev" target="_blank" rel="noopener" class="social-link">GitHub</a>
-              <a href="https://huggingface.co/dobbyb-aidev" target="_blank" rel="noopener" class="social-link">🤗 HuggingFace</a>
-              <a href="https://www.kaggle.com/dobbyb" target="_blank" rel="noopener" class="social-link">📊 Kaggle</a>
-              <a href="https://www.producthunt.com/@dobbyb_aidev" target="_blank" rel="noopener" class="social-link">😸 Product Hunt</a>
-              <a href="https://www.linkedin.com/in/dobbyb-aidev" target="_blank" rel="noopener" class="social-link">LinkedIn</a>
-              <a href="https://x.com/dobbyb_ai" target="_blank" rel="noopener" class="social-link">X (Twitter)</a>
-              <a href="https://instagram.com/dobbybmusic" target="_blank" rel="noopener" class="social-link">Instagram</a>
-            </div>
-          </div>
-
-          <!-- Hero Main Editorial Bio -->
-          <div class="hero-main">
+          <!-- Left Text Content -->
+          <div class="hero-content-wrap">
             <div class="hero-tag">
-              <span>AI DEV // QUANT & LLM SYSTEMS</span>
+              <span class="pulse-dot"></span>
+              <span data-i18n="status_text">Otonom AI &amp; Quant Sistemleri</span>
             </div>
 
-            <h2 class="hero-headline" data-i18n="hero_title">
-              Otonom Yapay Zeka Ajanları ve Algoritmik Ticaret Sistemleri Geliştiriyorum.
-            </h2>
+            <h1 class="hero-giant-title">
+              Otonom <span class="serif-italic-cyan">Yapay Zeka</span> Ajanları ve Derin Pekiştirmeli Öğrenme.
+            </h1>
 
             <p class="hero-bio" data-i18n="hero_bio">
-              Çoklu-ajan mimarileri (Multi-Agent Swarms), PyTorch tabanlı derin pekiştirmeli öğrenme (Deep RL) botları ve açık kaynaklı web platformları tasarlıyorum. Geliştirdiğim tüm araç ve kütüphaneleri GitHub üzerinde yayınlıyorum.
+              Çoklu-ajan mimarileri (Multi-Agent Swarms), PyTorch tabanlı derin pekiştirmeli öğrenme (Deep RL) botları ve açık kaynaklı web platformları tasarlıyorum.
             </p>
 
-            <div class="hero-actions">
-              <a href="#projects" class="btn-primary" data-i18n="btn_explore">Projeleri İncele ↓</a>
-              <a href="https://whop.com/dona-ai" target="_blank" rel="noopener" class="btn-whop">🛍️ Whop Mağazası ↗</a>
-              <a href="#contact" class="btn-secondary">💬 İletişim Kanalları ↓</a>
+            <div class="hero-telemetry-strip">
+              <div class="telemetry-item">
+                <span class="telemetry-value">10+</span>
+                <span class="telemetry-label">Proje</span>
+              </div>
+              <div class="telemetry-item">
+                <span class="telemetry-value">100K+</span>
+                <span class="telemetry-label">Kod Satırı</span>
+              </div>
+              <div class="telemetry-item">
+                <span class="telemetry-value">78.4%</span>
+                <span class="telemetry-label">DRL Winrate</span>
+              </div>
+              <div class="telemetry-item">
+                <span class="telemetry-value">24/7</span>
+                <span class="telemetry-label">Otonom Bot</span>
+              </div>
+            </div>
+
+            <div class="hero-actions-bar">
+              <a href="#projects" class="btn-primary-cyan" data-i18n="btn_explore">Projeleri İncele ↓</a>
+              <a href="https://whop.com/dona-ai" target="_blank" rel="noopener" class="btn-glass-secondary" data-i18n="btn_whop">Whop Mağazası ↗</a>
+            </div>
+          </div>
+
+          <!-- Right 3D Interactive WebGL Widget -->
+          <div class="hero-3d-widget">
+            <div id="hero-webgl-container" style="width: 100%; height: 100%;"></div>
+            <div class="widget-3d-hint">
+              <span>✨ Active Theory 3D Çekirdek — Fareyi Gezdirin / Tıklayın</span>
             </div>
           </div>
 
@@ -106,429 +134,267 @@
       </div>
     </section>
 
-    <!-- Core Focus Section -->
+    <!-- ====== BENTO GRID SECTION ====== -->
     <section class="section" id="about">
       <div class="container">
-        <div class="section-head">
-          <span class="section-mono-tag">// MİMARİ UZMANLIK</span>
-          <h2 class="section-title" data-i18n="focus_title">Odaklandığım Mimariler</h2>
+        <div class="section-head reveal">
+          <span class="mono-tag">// ODAK MİMARİLERİ</span>
+          <h2 class="section-title" data-i18n="sec_about_title">Mimariler &amp; Odak</h2>
         </div>
 
-        <div class="projects-grid">
-          <div class="project-card">
+        <div class="bento-grid-layout">
+          <!-- Card 1: Multi-Agent Swarms -->
+          <div class="bento-card bento-col-8 reveal reveal-delay-1">
             <div>
-              <div class="card-top">
-                <span class="card-tag">SYSTEMS</span>
-                <span>🤖</span>
-              </div>
-              <h3 class="card-title" data-i18n="ab_card1_title">Otonom Yapay Zeka Ajanları</h3>
-              <p class="card-desc" data-i18n="ab_card1_desc">Birden fazla AI ajanının (CEO, Araştırmacı, Yazılımcı) birbiriyle WebSocket üzerinden haberleşerek otonom görev yaptığı sistemler kuruyorum.</p>
+              <span class="bento-badge">🤖 MULTI-AGENT SWARM OS</span>
+              <h3>Otonom AI Ajan Takımları</h3>
+              <p style="margin-top: 0.5rem;">
+                CEO, Araştırmacı, Yazılımcı ve Analist düğümlerinin Socket.IO WebSockets üzerinden anlık haberleşerek sanal şirket simülasyonlarını otonom yönettiği çoklu-ajan mimarileri kuruyorum.
+              </p>
             </div>
           </div>
 
-          <div class="project-card">
+          <!-- Card 2: Deep RL Quant -->
+          <div class="bento-card bento-col-4 reveal reveal-delay-2">
             <div>
-              <div class="card-top">
-                <span class="card-tag">QUANT & RL</span>
-                <span>📈</span>
-              </div>
-              <h3 class="card-title" data-i18n="ab_card2_title">Algoritmik Ticaret & Botlar</h3>
-              <p class="card-desc" data-i18n="ab_card2_desc">Binance ve kripto piyasaları için PyTorch ile derin pekiştirmeli öğrenme (ApexBrain) ve ATR merkezlemeli Grid botları tasarlıyorum.</p>
+              <span class="bento-badge">📈 DEEP RL TRADING</span>
+              <h3>PyTorch Quant Botları</h3>
+              <p style="margin-top: 0.5rem;">
+                ApexBrain — PyTorch Actor-Critic sinir ağı (DRL). Binance Futures üzerinde CVD/OI emir akışını analiz ederek 7/24 otonom kararlar üretir.
+              </p>
             </div>
           </div>
 
-          <div class="project-card">
+          <!-- Card 3: AI Platforms -->
+          <div class="bento-card bento-col-4 reveal reveal-delay-1">
             <div>
-              <div class="card-top">
-                <span class="card-tag">WEB & PRODUCTS</span>
-                <span>🚀</span>
-              </div>
-              <h3 class="card-title" data-i18n="ab_card3_title">AI Platformları & Ürünler</h3>
-              <p class="card-desc" data-i18n="ab_card3_desc">Agent Critiq gibi yapay zeka araçlarını inceleyen, dahili MCP sunucusu sunan ve açık veri seti sağlayan web platformları geliştiriyorum.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="section" id="services">
-      <div class="container">
-        <div class="section-head">
-          <span class="section-mono-tag">// HİZMETLER & ÇÖZÜMLER</span>
-          <h2 class="section-title">Hangi Alanlarda Hizmet Veriyorum?</h2>
-          <p class="section-subtitle">Şirketler, girişimler ve bireysel projeler için uçtan uca teknik mimari ve yazılım çözümleri.</p>
-        </div>
-
-        <div class="projects-grid">
-          <div class="project-card">
-            <div>
-              <div class="card-top">
-                <span class="card-tag">AI AGENTS & SWARMS</span>
-                <span>🤖</span>
-              </div>
-              <h3 class="card-title">Otonom Yapay Zeka Ajan Mimarileri</h3>
-              <p class="card-sub">Özel Çoklu-Ajan (Multi-Agent) Tasarımı</p>
-              <p class="card-desc">Birden fazla AI ajanının (CEO, Araştırmacı, Yazılımcı, Analist) Socket.IO/WebSocket protokolü üzerinden eşzamanlı otonom kararlar aldığı ve karmaşık iş akışlarını yürüttüğü özel sistem mimarileri kuruyorum.</p>
-              <div class="tech-pills">
-                <span class="tech-pill">Multi-Agent</span><span class="tech-pill">Socket.IO</span><span class="tech-pill">LangChain</span><span class="tech-pill">Claude/Gemini API</span>
-              </div>
-            </div>
-            <div class="card-footer">
-              <a href="#contact" class="repo-btn">İletişime Geç ↗</a>
+              <span class="bento-badge">🚀 AI PLATFORMS</span>
+              <h3>AI Web Ürünleri</h3>
+              <p style="margin-top: 0.5rem;">
+                Agent Critiq gibi AI araçlarını inceleyen, dahili MCP Server ve Hugging Face veri seti sunan açık kaynaklı web platformları geliştiriyorum.
+              </p>
             </div>
           </div>
 
-          <div class="project-card">
+          <!-- Card 4: Open Datasets & LLM Fine-Tuning -->
+          <div class="bento-card bento-col-8 reveal reveal-delay-2">
             <div>
-              <div class="card-top">
-                <span class="card-tag">QUANT & ALGO-TRADING</span>
-                <span>📈</span>
-              </div>
-              <h3 class="card-title">Quant & Pekiştirmeli Öğrenme Botları</h3>
-              <p class="card-sub">Binance Futures & Spot Otomasyonu</p>
-              <p class="card-desc">Binance Futures ve Spot piyasaları için PyTorch Derin Pekiştirmeli Öğrenme (Deep RL Actor-Critic) sinir ağları, ATR merkezlemeli Grid algoritmaları ve RSI anti-zehirlenme korumalı 7/24 otonom bot sistemleri geliştiriyorum.</p>
-              <div class="tech-pills">
-                <span class="tech-pill">PyTorch</span><span class="tech-pill">Deep RL</span><span class="tech-pill">Binance API</span><span class="tech-pill">ATR Grid</span>
-              </div>
-            </div>
-            <div class="card-footer">
-              <a href="https://whop.com/dona-ai" target="_blank" rel="noopener" class="repo-btn">Whop Store'da İncele ↗</a>
-            </div>
-          </div>
-
-          <div class="project-card">
-            <div>
-              <div class="card-top">
-                <span class="card-tag">DATASETS & LLM FINE-TUNING</span>
-                <span>📊</span>
-              </div>
-              <h3 class="card-title">Finansal Veri Setleri & Özel Model Eğitimi</h3>
-              <p class="card-sub">Yüksek Frekanslı Veri & Transformer Fine-Tuning</p>
-              <p class="card-desc">Kripto emir akışı (CVD/OI), likidasyon haritaları, ABD Tahvil faizleri ve canlı finans haber akışlarını kapsayan veri kazıma (scraping), temizleme ve PyTorch/HuggingFace fine-tuning veri seti hazırlama hizmeti veriyorum.</p>
-              <div class="tech-pills">
-                <span class="tech-pill">Kaggle Data</span><span class="tech-pill">Hugging Face</span><span class="tech-pill">CVD / OI Data</span><span class="tech-pill">PyTorch</span>
-              </div>
-            </div>
-            <div class="card-footer">
-              <a href="https://www.kaggle.com/dobbyb" target="_blank" rel="noopener" class="repo-btn">Kaggle Verilerine Bak ↗</a>
+              <span class="bento-badge">🤗 OPEN DATASETS &amp; FINE-TUNING</span>
+              <h3>Finansal Veri Setleri &amp; Model Eğitimi</h3>
+              <p style="margin-top: 0.5rem;">
+                Kripto emir akışı, ABD 10 Yıllık Tahvil faizleri ve canlı finans haber akışlarını kapsayan serbest erişimli HuggingFace/Kaggle fine-tuning veri setleri hazırlıyorum.
+              </p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Work Process Section -->
-    <section class="section" id="process">
-      <div class="container">
-        <div class="section-head">
-          <span class="section-mono-tag">// ŞEFFAF İŞ BİRLİĞİ SÜRECİ</span>
-          <h2 class="section-title">Benimle Nasıl Çalışırsınız?</h2>
-          <p class="section-subtitle">Proje fikrinizi veya veri talebinizi 3 net adımda gerçeğe dönüştürüyoruz.</p>
-        </div>
-
-        <div class="process-grid">
-          <div class="process-card">
-            <div class="process-step-num">ADIM 01</div>
-            <h3 class="card-title">İhtiyaç & Kapsam Tanımı</h3>
-            <p class="card-desc">Sitedeki hızlı form, X (Twitter) veya LinkedIn üzerinden mesaj göndererek geliştirmek istediğiniz AI ajanı, quant botu veya ihtiyacınız olan veri setini iletin.</p>
-          </div>
-
-          <div class="process-card">
-            <div class="process-step-num">ADIM 02</div>
-            <h3 class="card-title">Mimari Tasarım & Prototip</h3>
-            <p class="card-desc">Sistem mimarisi (Multi-Agent / PyTorch DRL / Web App) belirlenir, veri akışları simüle edilir ve onayınızla birlikte kodlama aşamasına geçilir.</p>
-          </div>
-
-          <div class="process-card">
-            <div class="process-step-num">ADIM 03</div>
-            <h3 class="card-title">Teslimat & Veri Erişimi</h3>
-            <p class="card-desc">Temiz GitHub showcase reposu, Whop Store üzerinden özel veri paketi veya doğrudan canlı sunucu kurulumuyla projeniz kullanıma hazır teslim edilir.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Projects Section -->
+    <!-- ====== ACTIVE THEORY CASE STUDY PROJECT LIST ====== -->
     <section class="section" id="projects">
       <div class="container">
-        <div class="section-head">
-          <span class="section-mono-tag">// GELİŞTİRİLEN SİSTEMLER</span>
-          <h2 class="section-title" data-i18n="projects_title">Geliştirdiğim Projeler</h2>
-          <p class="section-subtitle">Tüm projeler GitHub üzerindeki ilgili <code>_showcase</code> depolarına bağlıdır.</p>
+        <div class="section-head reveal">
+          <span class="mono-tag">// ACTIVE THEORY CASE STUDIES</span>
+          <h2 class="section-title" data-i18n="sec_projects_title">Geliştirdiğim Projeler</h2>
         </div>
 
         <!-- Filter Category Tabs -->
-        <div class="filter-bar">
-          <button class="filter-btn active" data-filter="all">Tümü (9)</button>
-          <button class="filter-btn" data-filter="ai">🤖 AI Ajanları</button>
-          <button class="filter-btn" data-filter="quant">📈 Trading & Quant</button>
-          <button class="filter-btn" data-filter="web">🚀 Web & Oyun</button>
+        <div class="filter-tabs-bar reveal">
+          <button class="filter-chip active" data-filter="all">Tümü (10)</button>
+          <button class="filter-chip" data-filter="ai">🤖 AI Ajanları</button>
+          <button class="filter-chip" data-filter="quant">📈 Trading &amp; Quant</button>
+          <button class="filter-chip" data-filter="web">🚀 Web &amp; Oyun</button>
         </div>
 
-        <!-- Projects Grid -->
-        <div class="projects-grid">
+        <!-- Active Theory Project List -->
+        <div class="activetheory-project-list">
 
-          <!-- 1. Dona Codex: Vision (HAS 13 UPLOADED IMAGES!) -->
-          <div class="project-card" data-category="ai web">
-            <div>
-              <div class="card-thumb-box" data-project-key="dona-codex-vision">
-                <img src="./assets/dona_codex_vision_1.jpg" alt="Dona Codex: Vision" class="card-thumb-img" />
-                <span class="card-thumb-badge">📸 13 Görsel (İncele)</span>
-              </div>
-
-              <div class="card-top">
-                <span class="card-tag">PROPRIETARY TRANSFORMER LLM</span>
-                <span>🧠</span>
-              </div>
-              <h3 class="card-title">Dona Codex: Vision</h3>
-              <p class="card-sub">Özel Eğitilmiş Finans & Kripto Dil Modeli</p>
-              <p class="card-desc" data-i18n="prj_donacodexvision">Transformer mimarisiyle özel olarak eğitilen finansal dil modeli (LLM). Kripto piyasa verileri, ABD Tahvil faizleri, X (Twitter) canlı haber akışı ve trader psikolojisi veri setiyle beslenerek canlı sohbet ve risk analizi sunar.</p>
-
-              <div class="tech-pills">
-                <span class="tech-pill">Custom LLM</span><span class="tech-pill">Transformer</span><span class="tech-pill">PyTorch</span><span class="tech-pill">Financial Fine-Tuning</span><span class="tech-pill">React</span><span class="tech-pill">FastAPI</span>
-              </div>
+          <!-- 1. Dona Codex: Vision -->
+          <div class="activetheory-item reveal reveal-delay-1" data-project-key="dona-codex-vision" data-category="ai web">
+            <div class="item-num">01 //</div>
+            <div class="item-title-box">
+              <h3>Dona Codex: Vision</h3>
+              <span class="item-sub">Proprietary Financial LLM</span>
             </div>
-            <div class="card-footer">
-              <a href="https://github.com/dobby-aidev/dona-codex-vision-showcase" target="_blank" rel="noopener" class="repo-btn">GitHub Deposu ↗</a>
-              <button class="gallery-trigger-btn" data-project-key="dona-codex-vision">📸 Galeri (13)</button>
+            <div class="item-desc">Transformer mimarisiyle özel olarak eğitilen finansal dil modeli. Kripto verileri ve ABD Tahvilleriyle canlı sohbet.</div>
+            <div class="item-pills">
+              <span class="tech-tag-pill">Custom LLM</span>
+              <span class="tech-tag-pill">PyTorch</span>
+              <span class="tech-tag-pill">FastAPI</span>
+            </div>
+            <div class="item-action-btns">
+              <a href="https://github.com/dobby-aidev/dona-codex-vision-showcase" target="_blank" rel="noopener" class="repo-btn" onclick="event.stopPropagation()">GitHub ↗</a>
+              <button class="btn-item-gallery" data-project-key="dona-codex-vision">📸 Galeri (13)</button>
             </div>
           </div>
 
-          <!-- 2. Agent Critiq (HAS 7 UPLOADED IMAGES!) -->
-          <div class="project-card" data-category="web ai">
-            <div>
-              <div class="card-thumb-box" data-project-key="agent-critiq">
-                <img src="./assets/agent_critiq_1.jpg" alt="Agent Critiq" class="card-thumb-img" />
-                <span class="card-thumb-badge">📸 7 Görsel (İncele)</span>
-              </div>
-
-              <div class="card-top">
-                <span class="card-tag">LIVE PRODUCT</span>
-                <a href="https://agentcritiq.com" target="_blank" rel="noopener" class="card-sub">agentcritiq.com ↗</a>
-              </div>
-              <h3 class="card-title">Agent Critiq</h3>
-              <p class="card-sub">AI Araçları & Otonom Ajan Keşif Platformu</p>
-              <p class="card-desc" data-i18n="prj_agentcritiq">100+ AI aracı ve otonom ajanı inceleyen web platformu. Claude/Cursor gibi yapay zekaların doğrudan veritabanını sorgulaması için dahili MCP Server ve Hugging Face açık veri seti içerir.</p>
-
-              <div class="tech-pills">
-                <span class="tech-pill">TypeScript</span><span class="tech-pill">React</span><span class="tech-pill">MCP Server</span><span class="tech-pill">Hugging Face</span>
-              </div>
+          <!-- 2. Agent Critiq -->
+          <div class="activetheory-item reveal reveal-delay-2" data-project-key="agent-critiq" data-category="web ai">
+            <div class="item-num">02 //</div>
+            <div class="item-title-box">
+              <h3>Agent Critiq</h3>
+              <span class="item-sub">Live Platform (agentcritiq.com)</span>
             </div>
-            <div class="card-footer">
-              <a href="https://github.com/dobby-aidev/agent-critiq-showcase" target="_blank" rel="noopener" class="repo-btn">GitHub Deposu ↗</a>
-              <button class="gallery-trigger-btn" data-project-key="agent-critiq">📸 Galeri (7)</button>
+            <div class="item-desc">100+ AI aracı ve otonom ajanı inceleyen web platformu. Dahili MCP Server &amp; HuggingFace veri seti.</div>
+            <div class="item-pills">
+              <span class="tech-tag-pill">TypeScript</span>
+              <span class="tech-tag-pill">React</span>
+              <span class="tech-tag-pill">MCP Server</span>
+            </div>
+            <div class="item-action-btns">
+              <a href="https://github.com/dobby-aidev/agent-critiq-showcase" target="_blank" rel="noopener" class="repo-btn" onclick="event.stopPropagation()">GitHub ↗</a>
+              <button class="btn-item-gallery" data-project-key="agent-critiq">📸 Galeri (7)</button>
             </div>
           </div>
 
-          <!-- 3. Dona Codex: Overmind (HAS 19 UPLOADED IMAGES!) -->
-          <div class="project-card" data-category="ai">
-            <div>
-              <div class="card-thumb-box" data-project-key="dona-codex">
-                <img src="./assets/dona_codex_overmind_1.jpg" alt="Dona Codex: Overmind" class="card-thumb-img" />
-                <span class="card-thumb-badge">📸 19 Görsel (İncele)</span>
-              </div>
-
-              <div class="card-top">
-                <span class="card-tag">MULTI-AGENT OS</span>
-                <span>🧠</span>
-              </div>
-              <h3 class="card-title">Dona Codex: Overmind</h3>
-              <p class="card-sub">Çoklu-Ajan Şirket Simülasyonu</p>
-              <p class="card-desc" data-i18n="prj_donacodex">4 otonom AI düğümünün (CEO, Araştırmacı, Yazılımcı, Analist) Socket.IO WebSockets haberleşmesi ve Firebase Firestore ile sanal bir yazılım şirketini yönettiği mimari.</p>
-
-              <div class="tech-pills">
-                <span class="tech-pill">React</span><span class="tech-pill">TypeScript</span><span class="tech-pill">Node.js</span><span class="tech-pill">Socket.IO</span><span class="tech-pill">Firebase</span>
-              </div>
+          <!-- 3. Dona Codex: Overmind -->
+          <div class="activetheory-item reveal reveal-delay-3" data-project-key="dona-codex" data-category="ai">
+            <div class="item-num">03 //</div>
+            <div class="item-title-box">
+              <h3>Dona Codex: Overmind</h3>
+              <span class="item-sub">Multi-Agent Swarm OS</span>
             </div>
-            <div class="card-footer">
-              <a href="https://github.com/dobby-aidev/dona-codex-overmind-showcase" target="_blank" rel="noopener" class="repo-btn">GitHub Deposu ↗</a>
-              <button class="gallery-trigger-btn" data-project-key="dona-codex">📸 Galeri (19)</button>
+            <div class="item-desc">4 otonom AI düğümünün (CEO, Araştırmacı, Yazılımcı, Analist) Socket.IO haberleşmesiyle şirketi yönettiği mimari.</div>
+            <div class="item-pills">
+              <span class="tech-tag-pill">React</span>
+              <span class="tech-tag-pill">TypeScript</span>
+              <span class="tech-tag-pill">Socket.IO</span>
+            </div>
+            <div class="item-action-btns">
+              <a href="https://github.com/dobby-aidev/dona-codex-overmind-showcase" target="_blank" rel="noopener" class="repo-btn" onclick="event.stopPropagation()">GitHub ↗</a>
+              <button class="btn-item-gallery" data-project-key="dona-codex">📸 Galeri (19)</button>
             </div>
           </div>
 
-          <!-- 4. Dona Nexus (HAS 8 UPLOADED IMAGES!) -->
-          <div class="project-card" data-category="quant">
-            <div>
-              <div class="card-thumb-box" data-project-key="dona-nexus">
-                <img src="./assets/dona_nexus_1.jpg" alt="Dona Nexus" class="card-thumb-img" />
-                <span class="card-thumb-badge">📸 8 Görsel (İncele)</span>
-              </div>
-
-              <div class="card-top">
-                <span class="card-tag">DEEP RL TRADING</span>
-                <span>📈</span>
-              </div>
-              <h3 class="card-title">Dona Nexus (ApexBrain)</h3>
-              <p class="card-sub">Pekiştirmeli Öğrenme Trading Botu</p>
-              <p class="card-desc" data-i18n="prj_donanexus">ApexBrain — PyTorch ile geliştirdiğim çift politikalı sinir ağı (Actor-Critic). Binance Futures üzerinde 7/24 otonom karar verip dinamik ATR risk bantları ile işlem yürütür.</p>
-
-              <div class="tech-pills">
-                <span class="tech-pill">PyTorch</span><span class="tech-pill">Deep RL</span><span class="tech-pill">Binance Futures API</span><span class="tech-pill">AWS</span>
-              </div>
+          <!-- 4. Dona Nexus -->
+          <div class="activetheory-item reveal reveal-delay-1" data-project-key="dona-nexus" data-category="quant">
+            <div class="item-num">04 //</div>
+            <div class="item-title-box">
+              <h3>Dona Nexus (ApexBrain)</h3>
+              <span class="item-sub">Deep Reinforcement Learning</span>
             </div>
-            <div class="card-footer">
-              <a href="https://github.com/dobby-aidev/dona-nexus-showcase" target="_blank" rel="noopener" class="repo-btn">GitHub Deposu ↗</a>
-              <button class="gallery-trigger-btn" data-project-key="dona-nexus">📸 Galeri (8)</button>
+            <div class="item-desc">ApexBrain — PyTorch Actor-Critic sinir ağı. Binance Futures üzerinde 7/24 otonom karar verip işlem yürütür.</div>
+            <div class="item-pills">
+              <span class="tech-tag-pill">PyTorch</span>
+              <span class="tech-tag-pill">Deep RL</span>
+              <span class="tech-tag-pill">Binance Futures</span>
+            </div>
+            <div class="item-action-btns">
+              <a href="https://github.com/dobby-aidev/dona-nexus-showcase" target="_blank" rel="noopener" class="repo-btn" onclick="event.stopPropagation()">GitHub ↗</a>
+              <button class="btn-item-gallery" data-project-key="dona-nexus">📸 Galeri (8)</button>
             </div>
           </div>
 
-          <!-- 5. AI Prompt Builder (HAS 10 UPLOADED IMAGES!) -->
-          <div class="project-card" data-category="ai web">
-            <div>
-              <div class="card-thumb-box" data-project-key="ai-prompt-builder">
-                <img src="./assets/ai_prompt_builder_1.jpg" alt="AI Prompt Builder" class="card-thumb-img" />
-                <span class="card-thumb-badge">📸 10 Görsel (İncele)</span>
-              </div>
-
-              <div class="card-top">
-                <span class="card-tag">CONVERSATIONAL AI</span>
-                <span>💬</span>
-              </div>
-              <h3 class="card-title">AI Prompt Builder</h3>
-              <p class="card-sub">Sohbet Tabanlı Prompt Studio</p>
-              <p class="card-desc" data-i18n="prj_promptbuilder">Gemini API altyapısını kullanarak sohbet üzerinden 8 farklı kategoride (Web, Mobile, Crypto, SEO...) mükemmel prompt'lar oluşturan, PDF/JSON export alan Studio.</p>
-
-              <div class="tech-pills">
-                <span class="tech-pill">React</span><span class="tech-pill">TypeScript</span><span class="tech-pill">Gemini API</span><span class="tech-pill">Vite</span>
-              </div>
+          <!-- 5. AI Prompt Builder -->
+          <div class="activetheory-item reveal reveal-delay-2" data-project-key="ai-prompt-builder" data-category="ai web">
+            <div class="item-num">05 //</div>
+            <div class="item-title-box">
+              <h3>AI Prompt Builder</h3>
+              <span class="item-sub">Conversational Prompt Studio</span>
             </div>
-            <div class="card-footer">
-              <a href="https://github.com/dobby-aidev/ai-prompt-builder-showcase" target="_blank" rel="noopener" class="repo-btn">GitHub Deposu ↗</a>
-              <button class="gallery-trigger-btn" data-project-key="ai-prompt-builder">📸 Galeri (10)</button>
+            <div class="item-desc">Gemini API altyapısını kullanarak sohbet üzerinden 8 farklı kategoride mükemmel prompt'lar oluşturan Studio.</div>
+            <div class="item-pills">
+              <span class="tech-tag-pill">React</span>
+              <span class="tech-tag-pill">Gemini API</span>
+              <span class="tech-tag-pill">Vite</span>
+            </div>
+            <div class="item-action-btns">
+              <a href="https://github.com/dobby-aidev/ai-prompt-builder-showcase" target="_blank" rel="noopener" class="repo-btn" onclick="event.stopPropagation()">GitHub ↗</a>
+              <button class="btn-item-gallery" data-project-key="ai-prompt-builder">📸 Galeri (10)</button>
             </div>
           </div>
 
-          <!-- 6. AI Coin Empire (HAS 21 UPLOADED IMAGES!) -->
-          <div class="project-card" data-category="web">
-            <div>
-              <div class="card-thumb-box" data-project-key="ai-coin-empire">
-                <img src="./assets/ai_coin_empire_1.jpg" alt="AI Coin Empire" class="card-thumb-img" />
-                <span class="card-thumb-badge">📸 21 Görsel (İncele)</span>
-              </div>
-
-              <div class="card-top">
-                <span class="card-tag">MULTIPLAYER GAME</span>
-                <span>🪙</span>
-              </div>
-              <h3 class="card-title">AI Coin Empire</h3>
-              <p class="card-sub">Çok Oyunculu Kripto Strateji Oyunu</p>
-              <p class="card-desc" data-i18n="prj_coinempire">10,000+ satır TypeScript ile inşa edilen gerçek zamanlı multiplayer oyun. Firebase Firestore `onSnapshot` senkronizasyonu, madencilik ve Wordle tarzı hack mini-oyunu.</p>
-
-              <div class="tech-pills">
-                <span class="tech-pill">React 18</span><span class="tech-pill">TypeScript</span><span class="tech-pill">Firebase</span><span class="tech-pill">Framer Motion</span>
-              </div>
+          <!-- 6. AI Coin Empire -->
+          <div class="activetheory-item reveal reveal-delay-3" data-project-key="ai-coin-empire" data-category="web">
+            <div class="item-num">06 //</div>
+            <div class="item-title-box">
+              <h3>AI Coin Empire</h3>
+              <span class="item-sub">Multiplayer Crypto Game</span>
             </div>
-            <div class="card-footer">
-              <a href="https://github.com/dobby-aidev/ai-coin-empire-showcase" target="_blank" rel="noopener" class="repo-btn">GitHub Deposu ↗</a>
-              <button class="gallery-trigger-btn" data-project-key="ai-coin-empire">📸 Galeri (21)</button>
+            <div class="item-desc">10,000+ satır TypeScript ile inşa edilen multiplayer oyun. Firebase onSnapshot senkronizasyonu ve hack oyunu.</div>
+            <div class="item-pills">
+              <span class="tech-tag-pill">React 18</span>
+              <span class="tech-tag-pill">Firebase</span>
+              <span class="tech-tag-pill">TypeScript</span>
+            </div>
+            <div class="item-action-btns">
+              <a href="https://github.com/dobby-aidev/ai-coin-empire-showcase" target="_blank" rel="noopener" class="repo-btn" onclick="event.stopPropagation()">GitHub ↗</a>
+              <button class="btn-item-gallery" data-project-key="ai-coin-empire">📸 Galeri (21)</button>
             </div>
           </div>
 
           <!-- 7. Dona AI Lab -->
-          <div class="project-card" data-category="ai">
-            <div>
-              <div class="card-thumb-box" data-project-key="dona-ai-lab">
-                <div class="thumb-placeholder">
-                  <span class="thumb-placeholder-icon">🧪</span>
-                  <span class="thumb-placeholder-text">LLM Research Sandbox</span>
-                </div>
-                <span class="card-thumb-badge">🔬 HuggingFace API</span>
-              </div>
-
-              <div class="card-top">
-                <span class="card-tag">RESEARCH SANDBOX</span>
-                <span>🧪</span>
-              </div>
-              <h3 class="card-title">Dona AI Lab</h3>
-              <p class="card-sub">AI Araştırma & Model Sandbozu</p>
-              <p class="card-desc" data-i18n="prj_ailab">Farklı LLM mimarilerini, açık kaynaklı HuggingFace modellerini ve deneysel prompt boru hatlarını kıyaslamak için tasarlanan araştırma ortamı.</p>
-
-              <div class="tech-pills">
-                <span class="tech-pill">Python</span><span class="tech-pill">HuggingFace</span><span class="tech-pill">PyTorch</span><span class="tech-pill">Ollama</span>
-              </div>
+          <div class="activetheory-item reveal reveal-delay-1" data-project-key="dona-ai-lab" data-category="ai">
+            <div class="item-num">07 //</div>
+            <div class="item-title-box">
+              <h3>Dona AI Lab</h3>
+              <span class="item-sub">Research Sandbox</span>
             </div>
-            <div class="card-footer">
-              <a href="https://github.com/dobby-aidev/dona-ai-lab-showcase" target="_blank" rel="noopener" class="repo-btn">GitHub Deposu ↗</a>
-              <a href="https://github.com/dobby-aidev/dona-ai-lab-showcase" target="_blank" rel="noopener" class="gallery-trigger-btn">💻 Repo İncele</a>
+            <div class="item-desc">Farklı LLM mimarilerini ve açık kaynaklı HuggingFace modellerini kıyaslamak için tasarlanan araştırma ortamı.</div>
+            <div class="item-pills">
+              <span class="tech-tag-pill">Python</span>
+              <span class="tech-tag-pill">HuggingFace</span>
+              <span class="tech-tag-pill">PyTorch</span>
+            </div>
+            <div class="item-action-btns">
+              <a href="https://github.com/dobby-aidev/dona-ai-lab-showcase" target="_blank" rel="noopener" class="repo-btn" onclick="event.stopPropagation()">GitHub ↗</a>
             </div>
           </div>
 
-          <!-- 8. Dona Grid (HAS 5 UPLOADED IMAGES!) -->
-          <div class="project-card" data-category="quant">
-            <div>
-              <div class="card-thumb-box" data-project-key="dona-grid">
-                <img src="./assets/dona_grid_1.jpg" alt="Dona Grid" class="card-thumb-img" />
-                <span class="card-thumb-badge">📸 5 Görsel (İncele)</span>
-              </div>
-
-              <div class="card-top">
-                <span class="card-tag">SPOT QUANT</span>
-                <span>📊</span>
-              </div>
-              <h3 class="card-title">Dona Grid</h3>
-              <p class="card-sub">Spot Grid Trading Botu</p>
-              <p class="card-desc" data-i18n="prj_donagrid">Binance spot piyasası için dinamik ATR (Average True Range) merkezlemeli ve RSI zehirli piyasa korumalı ızgara alım-satım algoritması.</p>
-
-              <div class="tech-pills">
-                <span class="tech-pill">Python</span><span class="tech-pill">Binance API</span><span class="tech-pill">NumPy</span><span class="tech-pill">TA-Lib</span>
-              </div>
+          <!-- 8. Dona Grid -->
+          <div class="activetheory-item reveal reveal-delay-2" data-project-key="dona-grid" data-category="quant">
+            <div class="item-num">08 //</div>
+            <div class="item-title-box">
+              <h3>Dona Grid</h3>
+              <span class="item-sub">Spot Grid Trading Bot</span>
             </div>
-            <div class="card-footer">
-              <a href="https://github.com/dobby-aidev/dona-grid-showcase" target="_blank" rel="noopener" class="repo-btn">GitHub Deposu ↗</a>
-              <button class="gallery-trigger-btn" data-project-key="dona-grid">📸 Galeri (5)</button>
+            <div class="item-desc">Binance spot piyasası için dinamik ATR merkezlemeli ve RSI korumalı ızgara alım-satım algoritması.</div>
+            <div class="item-pills">
+              <span class="tech-tag-pill">Python</span>
+              <span class="tech-tag-pill">Binance API</span>
+              <span class="tech-tag-pill">TA-Lib</span>
+            </div>
+            <div class="item-action-btns">
+              <a href="https://github.com/dobby-aidev/dona-grid-showcase" target="_blank" rel="noopener" class="repo-btn" onclick="event.stopPropagation()">GitHub ↗</a>
+              <button class="btn-item-gallery" data-project-key="dona-grid">📸 Galeri (5)</button>
             </div>
           </div>
 
-          <!-- 9. Dona Quantum (HAS 8 UPLOADED IMAGES!) -->
-          <div class="project-card" data-category="ai quant">
-            <div>
-              <div class="card-thumb-box" data-project-key="dona-quantum">
-                <img src="./assets/dona_quantum_1.jpg" alt="Dona Quantum" class="card-thumb-img" />
-                <span class="card-thumb-badge">📸 8 Görsel (İncele)</span>
-              </div>
-
-              <div class="card-top">
-                <span class="card-tag">MULTI-AGENT AI TRADING</span>
-                <span>🤖</span>
-              </div>
-              <h3 class="card-title">Dona Quantum</h3>
-              <p class="card-sub">Çoklu-Ajan AI Kripto Analiz & İşlem Öneri Sistemi</p>
-              <p class="card-desc" data-i18n="prj_donaquantum">CrewAI ve OpenAI GPT / Gemini API tabanlı çoklu-ajan takımı (Scanner, Analyst, Risk Manager, Executor). Binance Futures piyasasında kaldıraçlı/spot fırsatları tespit eder, CVD/OI/Emir Akışı analizi ile otonom işlem önerileri ve alım-satım kararları üretir.</p>
-
-              <div class="tech-pills">
-                <span class="tech-pill">CrewAI</span><span class="tech-pill">OpenAI GPT-4</span><span class="tech-pill">Gemini API</span><span class="tech-pill">Binance Futures API</span><span class="tech-pill">Python</span><span class="tech-pill">AWS</span>
-              </div>
+          <!-- 9. Dona Quantum -->
+          <div class="activetheory-item reveal reveal-delay-3" data-project-key="dona-quantum" data-category="ai quant">
+            <div class="item-num">09 //</div>
+            <div class="item-title-box">
+              <h3>Dona Quantum</h3>
+              <span class="item-sub">Multi-Agent Trading Intelligence</span>
             </div>
-            <div class="card-footer">
-              <a href="https://github.com/dobby-aidev/dona-quantum-showcase" target="_blank" rel="noopener" class="repo-btn">GitHub Deposu ↗</a>
-              <button class="gallery-trigger-btn" data-project-key="dona-quantum">📸 Galeri (8)</button>
+            <div class="item-desc">CrewAI ve OpenAI GPT/Gemini API tabanlı çoklu-ajan takımı. Binance Futures piyasasında CVD/OI analizi.</div>
+            <div class="item-pills">
+              <span class="tech-tag-pill">CrewAI</span>
+              <span class="tech-tag-pill">OpenAI GPT-4</span>
+              <span class="tech-tag-pill">Python</span>
+            </div>
+            <div class="item-action-btns">
+              <a href="https://github.com/dobby-aidev/dona-quantum-showcase" target="_blank" rel="noopener" class="repo-btn" onclick="event.stopPropagation()">GitHub ↗</a>
+              <button class="btn-item-gallery" data-project-key="dona-quantum">📸 Galeri (8)</button>
             </div>
           </div>
 
-          <!-- 10. Zamanın Bekçisi (HAS 9 UPLOADED IMAGES!) -->
-          <div class="project-card" data-category="web">
-            <div>
-              <div class="card-thumb-box" data-project-key="zamanin-bekcisi">
-                <img src="./assets/zamanin_bekcisi_1.jpg" alt="Zamanın Bekçisi" class="card-thumb-img" />
-                <span class="card-thumb-badge">📸 9 Görsel (İncele)</span>
-              </div>
-
-              <div class="card-top">
-                <span class="card-tag">TEXT ADVENTURE</span>
-                <span>⏳</span>
-              </div>
-              <h3 class="card-title">Zamanın Bekçisi</h3>
-              <p class="card-sub">Metin Tabanlı Macera Oyunu</p>
-              <p class="card-desc" data-i18n="prj_zamaninbekcisi">780 satır pure TypeScript hikaye motoruyla yazılmış; Antik Mısır MÖ 2500, Orta Çağ ve Siber 2087 arasında geçen dallanmalı macera oyunu.</p>
-
-              <div class="tech-pills">
-                <span class="tech-pill">React</span><span class="tech-pill">TypeScript</span><span class="tech-pill">Framer Motion</span><span class="tech-pill">Vite</span>
-              </div>
+          <!-- 10. Zamanın Bekçisi -->
+          <div class="activetheory-item reveal reveal-delay-1" data-project-key="zamanin-bekcisi" data-category="web">
+            <div class="item-num">10 //</div>
+            <div class="item-title-box">
+              <h3>Zamanın Bekçisi</h3>
+              <span class="item-sub">Interactive Text Adventure Engine</span>
             </div>
-            <div class="card-footer">
-              <a href="https://github.com/dobby-aidev/zamani-bekcisi-showcase" target="_blank" rel="noopener" class="repo-btn">GitHub Deposu ↗</a>
-              <button class="gallery-trigger-btn" data-project-key="zamanin-bekcisi">📸 Galeri (9)</button>
+            <div class="item-desc">780 satır pure TypeScript hikaye motoruyla yazılmış; Antik Mısır MÖ 2500, Orta Çağ ve Siber 2087 arası macera oyunu.</div>
+            <div class="item-pills">
+              <span class="tech-tag-pill">React</span>
+              <span class="tech-tag-pill">TypeScript</span>
+              <span class="tech-tag-pill">Vite</span>
+            </div>
+            <div class="item-action-btns">
+              <a href="https://github.com/dobby-aidev/zamani-bekcisi-showcase" target="_blank" rel="noopener" class="repo-btn" onclick="event.stopPropagation()">GitHub ↗</a>
+              <button class="btn-item-gallery" data-project-key="zamanin-bekcisi">📸 Galeri (9)</button>
             </div>
           </div>
 
@@ -536,142 +402,117 @@
       </div>
     </section>
 
-    <!-- Whop Store & Open Datasets Hub Section -->
+    <!-- ====== TECH STACK & RADAR ====== -->
+    <section class="section" id="stack">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="mono-tag">// TEKNOLOJİ YIĞINI</span>
+          <h2 class="section-title" data-i18n="sec_stack_title">Kullandığım Teknolojiler</h2>
+        </div>
+
+        <div class="stack-layout">
+          <div class="radar-canvas-wrap reveal reveal-delay-1">
+            <canvas id="skills-radar-canvas"></canvas>
+          </div>
+
+          <div class="stack-cards-grid">
+            <div class="stack-card reveal reveal-delay-1">
+              <h3>🤖 AI &amp; LLM Ajan Mimari</h3>
+              <div class="tech-pills" style="margin-top: 0.5rem;">
+                <span class="tech-tag-pill">Gemini API</span>
+                <span class="tech-tag-pill">Claude 3.5</span>
+                <span class="tech-tag-pill">LangChain</span>
+                <span class="tech-tag-pill">CrewAI</span>
+                <span class="tech-tag-pill">HuggingFace</span>
+                <span class="tech-tag-pill">MCP Server</span>
+              </div>
+            </div>
+
+            <div class="stack-card reveal reveal-delay-2">
+              <h3>📈 Quant &amp; Deep RL</h3>
+              <div class="tech-pills" style="margin-top: 0.5rem;">
+                <span class="tech-tag-pill">PyTorch 2.2</span>
+                <span class="tech-tag-pill">Stable Baselines3</span>
+                <span class="tech-tag-pill">CCXT</span>
+                <span class="tech-tag-pill">Binance Futures API</span>
+                <span class="tech-tag-pill">TA-Lib</span>
+              </div>
+            </div>
+
+            <div class="stack-card reveal reveal-delay-1">
+              <h3>🎨 Web &amp; 3D Frontend</h3>
+              <div class="tech-pills" style="margin-top: 0.5rem;">
+                <span class="tech-tag-pill">Three.js</span>
+                <span class="tech-tag-pill">WebGL</span>
+                <span class="tech-tag-pill">React 18</span>
+                <span class="tech-tag-pill">TypeScript</span>
+                <span class="tech-tag-pill">Next.js</span>
+                <span class="tech-tag-pill">Vite</span>
+              </div>
+            </div>
+
+            <div class="stack-card reveal reveal-delay-2">
+              <h3>⚙️ Arka Uç &amp; Cloud</h3>
+              <div class="tech-pills" style="margin-top: 0.5rem;">
+                <span class="tech-tag-pill">Python 3.11+</span>
+                <span class="tech-tag-pill">FastAPI</span>
+                <span class="tech-tag-pill">Node.js</span>
+                <span class="tech-tag-pill">Firebase</span>
+                <span class="tech-tag-pill">Docker</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== STORE SECTION ====== -->
     <section class="section" id="store">
       <div class="container">
-        <div class="section-head">
-          <span class="section-mono-tag">// WHOP MAĞAZASI & AÇIK VERİ SETLERİ</span>
-          <h2 class="section-title" data-i18n="store_title">Whop Store & Veri Seti Merkezi</h2>
-          <p class="section-subtitle">Yapay zeka modelleri, finansal fine-tuning veri setleri ve quant algoritmaları.</p>
+        <div class="section-head reveal">
+          <span class="mono-tag">// WHOP STORE &amp; AÇIK VERİ SETLERİ</span>
+          <h2 class="section-title" data-i18n="sec_store_title">Whop Store &amp; Veri Seti Merkezi</h2>
         </div>
 
         <div class="store-grid">
-          <!-- Card 1: Free Data & Open Corpus -->
-          <div class="store-card store-free-card">
-            <div class="card-top">
-              <span class="store-badge free-badge">🎁 ÜCRETSİZ AÇIK VERİ SETLERİ</span>
-              <span>🤗</span>
+          <div class="store-card store-card-free reveal reveal-delay-1">
+            <div>
+              <span class="bento-badge" style="background: rgba(0, 255, 157, 0.1); color: #00ff9d; border-color: rgba(0, 255, 157, 0.25);">🎁 ÜCRETSİZ AÇIK VERİ SETLERİ</span>
+              <h3 style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--text-white); margin-bottom: 0.4rem;">Open Financial LLM Fine-Tuning Corpus</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-mono);">Serbest Erişimli Finansal Yapay Zeka Veri Seti</p>
+              <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.75rem; line-height: 1.7;">
+                Kripto fiyat hareketleri, CVD (Cumulative Volume Delta) emir akışı, ABD 10 Yıllık Tahvil faizleri ve X (Twitter) finansal haber akışını içeren açık kaynaklı LLM fine-tuning veri seti.
+              </p>
             </div>
-            <h3 class="card-title" style="margin-top: 0.5rem;">Open Financial LLM Fine-Tuning Corpus</h3>
-            <p class="card-sub">Serbest Erişimli Finansal Yapay Zeka Veri Seti</p>
-            <p class="card-desc">
-              Kripto fiyat hareketleri, CVD (Cumulative Volume Delta) emir akışı, ABD 10 Yıllık Tahvil faizleri ve X (Twitter) finansal haber akışını içeren açık kaynaklı LLM fine-tuning veri seti.
-            </p>
-            <div class="tech-pills" style="margin-top: 0.85rem;">
-              <span class="tech-pill">Free Open Data</span><span class="tech-pill">Hugging Face</span><span class="tech-pill">LLM Fine-Tuning</span><span class="tech-pill">JSON / CSV</span>
-            </div>
-            <div class="card-footer" style="margin-top: 1.25rem; flex-wrap: wrap;">
-              <a href="https://www.kaggle.com/dobbyb" target="_blank" rel="noopener" class="btn-primary" style="font-size: 0.8rem; padding: 0.45rem 0.85rem;">📊 Kaggle'da Ücretsiz İndir ↗</a>
-              <a href="https://huggingface.co/dobbyb-aidev" target="_blank" rel="noopener" class="repo-btn">🤗 HuggingFace ↗</a>
-              <a href="https://whop.com/dona-ai" target="_blank" rel="noopener" class="whop-header-btn">🛍️ Whop Store ↗</a>
+            <div style="margin-top: 1.5rem;">
+              <a href="https://www.kaggle.com/dobbyb" target="_blank" rel="noopener" class="btn-primary-cyan" style="font-size: 0.82rem; padding: 0.55rem 1.2rem; background: linear-gradient(135deg, #00ff9d, #059669); color: #040406;">📊 Kaggle'da Ücretsiz İndir ↗</a>
             </div>
           </div>
 
-          <!-- Card 2: Premium Quant & Order Flow Datasets -->
-          <div class="store-card store-premium-card">
-            <div class="card-top">
-              <span class="store-badge premium-badge">💎 PREMIUM QUANT VERİ SETLERİ & MODELLER</span>
-              <span>⚡</span>
+          <div class="store-card store-card-premium reveal reveal-delay-2">
+            <div>
+              <span class="bento-badge" style="background: rgba(168, 85, 247, 0.12); color: #c084fc; border-color: rgba(168, 85, 247, 0.3);">💎 PREMIUM QUANT VERİ SETLERİ &amp; MODELLER</span>
+              <h3 style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--text-white); margin-bottom: 0.4rem;">High-Frequency Order Flow &amp; DRL Checkpoints</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-mono);">Binance Futures Yüksek Frekanslı Veri &amp; Model Ağırlıkları</p>
+              <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.75rem; line-height: 1.7;">
+                Binance Futures için yüksek frekanslı emir akışı verileri, likidasyon haritaları ve ApexBrain PyTorch pekiştirmeli öğrenme botlarının eğitilmiş model ağırlıkları (.pt checkpoints).
+              </p>
             </div>
-            <h3 class="card-title" style="margin-top: 0.5rem;">High-Frequency Order Flow & DRL Checkpoints</h3>
-            <p class="card-sub">Binance Futures Yüksek Frekanslı Veri & Model Ağırlıkları</p>
-            <p class="card-desc">
-              Binance Futures için yüksek frekanslı emir akışı verileri, likidasyon haritaları ve ApexBrain PyTorch pekiştirmeli öğrenme botlarının eğitilmiş model ağırlıkları (.pt checkpoints).
-            </p>
-            <div class="tech-pills" style="margin-top: 0.85rem;">
-              <span class="tech-pill">Premium Models</span><span class="tech-pill">Binance Futures</span><span class="tech-pill">PyTorch Checkpoints</span><span class="tech-pill">Whop Store</span>
-            </div>
-            <div class="card-footer" style="margin-top: 1.25rem;">
-              <a href="https://whop.com/dona-ai" target="_blank" rel="noopener" class="btn-whop">🛍️ Whop Store'da Satın Al ↗</a>
-              <a href="https://www.kaggle.com/dobbyb" target="_blank" rel="noopener" class="repo-btn">📊 Kaggle Profili ↗</a>
+            <div style="margin-top: 1.5rem;">
+              <a href="https://whop.com/dona-ai" target="_blank" rel="noopener" class="btn-primary-cyan" style="font-size: 0.82rem; padding: 0.55rem 1.2rem;">🛍️ Whop Store'da Satın Al ↗</a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Technical Stack Section -->
-    <section class="section" id="stack">
-      <div class="container">
-        <div class="section-head">
-          <span class="section-mono-tag">// TEKNOLOJİ YIĞINI</span>
-          <h2 class="section-title" data-i18n="stack_title">Kullandığım Teknolojiler</h2>
-        </div>
-
-        <div class="stack-grid">
-          <div class="stack-card">
-            <h3>🤖 Yapay Zeka & LLM Ajan Mimari</h3>
-            <div class="stack-pills-list">
-              <span class="stack-item">Gemini API</span>
-              <span class="stack-item">Anthropic Claude</span>
-              <span class="stack-item">LangChain</span>
-              <span class="stack-item">LlamaIndex</span>
-              <span class="stack-item">AutoGen</span>
-              <span class="stack-item">HuggingFace</span>
-              <span class="stack-item">MCP Server</span>
-              <span class="stack-item">Ollama</span>
-            </div>
-          </div>
-
-          <div class="stack-card">
-            <h3>📈 Quant & Pekiştirmeli Öğrenme</h3>
-            <div class="stack-pills-list">
-              <span class="stack-item">PyTorch</span>
-              <span class="stack-item">Stable Baselines3</span>
-              <span class="stack-item">CCXT</span>
-              <span class="stack-item">Binance Futures API</span>
-              <span class="stack-item">TA-Lib</span>
-              <span class="stack-item">Backtrader</span>
-              <span class="stack-item">Pandas</span>
-              <span class="stack-item">NumPy</span>
-            </div>
-          </div>
-
-          <div class="stack-card">
-            <h3>🎨 Web & Frontend Mimari</h3>
-            <div class="stack-pills-list">
-              <span class="stack-item">React 18</span>
-              <span class="stack-item">TypeScript</span>
-              <span class="stack-item">Next.js</span>
-              <span class="stack-item">Vite</span>
-              <span class="stack-item">Tailwind CSS</span>
-              <span class="stack-item">Socket.IO Client</span>
-            </div>
-          </div>
-
-          <div class="stack-card">
-            <h3>⚙️ Arka Uç & Bulut Altyapı</h3>
-            <div class="stack-pills-list">
-              <span class="stack-item">Python 3.11+</span>
-              <span class="stack-item">FastAPI</span>
-              <span class="stack-item">Node.js</span>
-              <span class="stack-item">Express</span>
-              <span class="stack-item">Firebase Firestore</span>
-              <span class="stack-item">PostgreSQL</span>
-              <span class="stack-item">Redis</span>
-              <span class="stack-item">Docker</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
+    <!-- ====== CONTACT SECTION ====== -->
     <section class="section" id="contact">
       <div class="container">
-        <div class="contact-card">
-          <span class="section-mono-tag">// İLETİŞİM & İŞ BİRLİĞİ</span>
-          <h2 class="section-title" data-i18n="contact_title">İletişime Geçin</h2>
-          <p class="section-subtitle" data-i18n="contact_sub" style="margin-top: 0.5rem;">
-            Otonom AI mimarileri, algoritmik sistemler veya danışmanlık talepleri için dilediğiniz kanaldan ulaşabilirsiniz.
-          </p>
+        <div class="contact-card reveal">
+          <span class="mono-tag">// İLETİŞİM &amp; İŞ BİRLİĞİ</span>
+          <h2 class="section-title" data-i18n="sec_contact_title">İletişime Geçin</h2>
 
-          <div class="response-time-badge">
-            <span class="dot-pulse"></span>
-            <span>⚡ Yanıt Süresi: Genellikle 24 Saat İçinde</span>
-          </div>
-
-          <!-- Direct Quick Inquiry Form -->
           <form class="quick-form" id="contact-form">
             <div class="form-row">
               <div class="form-group">
@@ -680,86 +521,102 @@
               </div>
               <div class="form-group">
                 <label class="form-label" for="contact-handle">E-Posta Veya X / LinkedIn Kullanıcı Adınız</label>
-                <input type="text" id="contact-handle" class="form-input" placeholder="Örn: ahmet@company.com veya @ahmet_dev" required />
+                <input type="text" id="contact-handle" class="form-input" placeholder="ahmet@company.com veya @ahmet_dev" required />
               </div>
             </div>
 
             <div class="form-group">
-                <label class="form-label" for="contact-service">İlgilendiğiniz Hizmet / Konu</label>
-                <select id="contact-service" class="form-select" required>
-                  <option value="AI Ajan Mimarisi">🤖 Otonom AI & Multi-Agent Ajan Mimarisi</option>
-                  <option value="Quant Trading Botu">📈 Quant / PyTorch DRL & Grid Trading Botu</option>
-                  <option value="Veri Setleri & Model">📊 Finansal Veri Setleri & Özel Model Fine-Tuning</option>
-                  <option value="Danışmanlık & Diğer">💡 AI Danışmanlık & Özel Proje İhtiyacı</option>
-                </select>
+              <label class="form-label" for="contact-service">İlgilendiğiniz Hizmet</label>
+              <select id="contact-service" class="form-select" required>
+                <option value="AI Ajan Mimarisi">🤖 Otonom AI &amp; Multi-Agent Swarm Mimarisi</option>
+                <option value="Quant Trading Botu">📈 Quant / PyTorch DRL &amp; Grid Trading Botu</option>
+                <option value="Veri Setleri & Model">📊 Finansal Veri Setleri &amp; Model Fine-Tuning</option>
+                <option value="Danışmanlık & Diğer">💡 AI Danışmanlık &amp; Özel Proje</option>
+              </select>
             </div>
 
             <div class="form-group">
-                <label class="form-label" for="contact-message">Mesajınız / Proje Özeti</label>
-                <textarea id="contact-message" class="form-textarea" placeholder="Geliştirmek istediğiniz proje veya ihtiyacınız olan teknik mimari hakkında kısaca bilgi verin..." required></textarea>
+              <label class="form-label" for="contact-message">Mesajınız / Proje Özeti</label>
+              <textarea id="contact-message" class="form-textarea" placeholder="Geliştirmek istediğiniz proje hakkında bilgi verin..." required></textarea>
             </div>
 
             <button type="submit" class="form-submit-btn">
-              <span>💬 İletişim Talebi Gönder ↗</span>
+              💬 İletişim Talebi Gönder ↗
             </button>
           </form>
 
           <div class="contact-methods-grid">
-            <a href="https://whop.com/dona-ai" target="_blank" rel="noopener" class="contact-link-pill whop-contact-pill">
-              <span>🛍️ Whop Store (dona-ai) ↗</span>
-            </a>
-
-            <a href="https://www.kaggle.com/dobbyb" target="_blank" rel="noopener" class="contact-link-pill">
-              <span>📊 Kaggle ↗</span>
-            </a>
-
-            <a href="https://huggingface.co/dobbyb-aidev" target="_blank" rel="noopener" class="contact-link-pill">
-              <span>🤗 HuggingFace ↗</span>
-            </a>
-
-            <a href="https://www.linkedin.com/in/dobbyb-aidev" target="_blank" rel="noopener" class="contact-link-pill">
-              <span>💼 LinkedIn ↗</span>
-            </a>
-
-            <a href="https://x.com/dobbyb_ai" target="_blank" rel="noopener" class="contact-link-pill">
-              <span>🐦 X (Twitter) ↗</span>
-            </a>
-
-            <a href="https://instagram.com/dobbybmusic" target="_blank" rel="noopener" class="contact-link-pill">
-              <span>📸 Instagram ↗</span>
-            </a>
-
-            <a href="https://github.com/dobby-aidev" target="_blank" rel="noopener" class="contact-link-pill">
-              <span>💻 GitHub (@dobby-aidev) ↗</span>
-            </a>
+            <a href="https://whop.com/dona-ai" target="_blank" rel="noopener" class="contact-link-pill">🛍️ Whop Store ↗</a>
+            <a href="https://www.kaggle.com/dobbyb" target="_blank" rel="noopener" class="contact-link-pill">📊 Kaggle ↗</a>
+            <a href="https://huggingface.co/dobbyb-aidev" target="_blank" rel="noopener" class="contact-link-pill">🤗 HuggingFace ↗</a>
+            <a href="https://www.linkedin.com/in/dobbyb-aidev" target="_blank" rel="noopener" class="contact-link-pill">💼 LinkedIn ↗</a>
+            <a href="https://x.com/dobbyb_ai" target="_blank" rel="noopener" class="contact-link-pill">🐦 X (Twitter) ↗</a>
+            <a href="https://github.com/dobby-aidev" target="_blank" rel="noopener" class="contact-link-pill">💻 GitHub ↗</a>
           </div>
         </div>
       </div>
     </section>
+
   </main>
 
-  <!-- Fullscreen Lightbox Modal Engine -->
+  <!-- ====== CMD+K MODAL ====== -->
+  <div class="cmdk-modal" id="cmdk-modal">
+    <div class="cmdk-card">
+      <div class="cmdk-input-wrap">
+        <span style="font-size: 1.2rem; color: var(--text-muted);">🔍</span>
+        <input type="text" id="cmdk-input" class="cmdk-input" placeholder="Bir komut yazın veya bölümde gezinin..." />
+      </div>
+      <div class="cmdk-results-list">
+        <div class="cmdk-item" data-target-id="about">
+          <span>⚡ Hızlı Git: Mimariler &amp; Odak</span>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-cyan);">#about</span>
+        </div>
+        <div class="cmdk-item" data-target-id="projects">
+          <span>💻 Hızlı Git: Geliştirilen Projeler (10)</span>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-cyan);">#projects</span>
+        </div>
+        <div class="cmdk-item" data-target-id="stack">
+          <span>📊 Hızlı Git: Teknoloji Yığını &amp; Radar</span>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-cyan);">#stack</span>
+        </div>
+        <div class="cmdk-item" data-target-id="store">
+          <span>🛍️ Hızlı Git: Whop Store &amp; Veri Setleri</span>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-cyan);">#store</span>
+        </div>
+        <div class="cmdk-item" data-target-id="contact">
+          <span>💬 Hızlı Git: İletişim Formu</span>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-cyan);">#contact</span>
+        </div>
+      </div>
+      <div style="display: flex; justify-content: space-between; padding: 0.75rem 1.25rem; background: rgba(0,0,0,0.4); border-top: 1px solid var(--border-subtle); font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted);">
+        <span>Gezinmek için tıkla veya dokun</span>
+        <span>ESC ile kapat</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== LIGHTBOX MODAL ENGINE ====== -->
   <div class="lightbox-modal" id="lightbox-modal">
     <button class="lightbox-close" id="lightbox-close-btn">&times;</button>
     <div class="lightbox-img-wrap">
-      <button type="button" class="lightbox-nav-btn lightbox-prev" id="lightbox-prev-btn">‹</button>
-      <img src="" alt="Fullscreen Lightbox View" class="lightbox-img" id="lightbox-img" />
-      <button type="button" class="lightbox-nav-btn lightbox-next" id="lightbox-next-btn">›</button>
+      <button type="button" class="lightbox-nav-btn" id="lightbox-prev-btn">‹</button>
+      <img src="" alt="Proje Görseli" class="lightbox-img" id="lightbox-img" />
+      <button type="button" class="lightbox-nav-btn" id="lightbox-next-btn">›</button>
     </div>
-    <div class="lightbox-info">
-      <div class="lightbox-caption" id="lightbox-caption">Project Screenshot</div>
+    <div style="display: flex; align-items: center; gap: 1.5rem;">
+      <div style="font-size: 0.88rem; color: var(--text-secondary);" id="lightbox-caption">Project Screenshot</div>
       <div class="lightbox-counter" id="lightbox-counter">1 / 1</div>
     </div>
   </div>
 
-  <!-- Toast Notification -->
+  <!-- Toast Bar -->
   <div class="toast-bar" id="toast-bar">
-    <span id="toast-msg">✔ E-posta adresi kopyalandı!</span>
+    <span id="toast-msg">✔ İşlem tamamlandı</span>
   </div>
 
-  <footer class="footer">
+  <footer style="border-top: 1px solid var(--border-subtle); padding: 2rem 0; text-align: center; font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-mono);">
     <div class="container">
-      <p>© 2026 Dona Codex Inc. · Autonomous AI & Quant Systems · All rights reserved.</p>
+      <p>© 2026 Dona Codex Inc. · 1:1 Faithful Active Theory WebGL Engine · All rights reserved.</p>
     </div>
   </footer>
 
