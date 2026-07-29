@@ -28,6 +28,23 @@
 
 👉 **[https://dobby-aidev.github.io/dobby-aidev/](https://dobby-aidev.github.io/dobby-aidev/)**
 
+This repository contains my personal developer portfolio site built as a futuristic **Neural Operating System (Neural OS v2.0)** using vanilla Javascript, HTML5, custom CSS styling, and Three.js WebGL rendering.
+
+---
+
+## 🎨 Neural OS v2.0 Portfolio Features
+
+The site has been engineered to showcase high-end creative coding and premium UI elements:
+
+- **🖥️ Cyberpunk Boot Simulation:** A custom terminals-like BIOS loading screens simulation with interactive skips and progress updates.
+- **✨ Cosmic Particle Background:** A highly optimized Three.js WebGL particle cosmic field that dynamic acceleration behaves directly corresponding to client pointer movement.
+- **🧬 3D Neural Core Widget:** Interactive 3D wireframe core reacting smoothly to cursor locations.
+- **🖼️ Smart Thumbnail Grid:** Auto-populated dynamic gallery assets with an integrated overlay (e.g. `+18 Images`) for project showcases.
+- **🔍 Fullscreen Lightbox Gallery:** Keyboard-navigable (`Right`, `Left`, `Esc`) image modal system to inspect detailed repository screenshots with double-click integration.
+- **💫 Synaptic Cursor Trail:** Custom HTML5 Canvas-based smooth particle trail tracking client mouse coordinates.
+- **🇹🇷 Double Language Support:** Client-side localization engine handling active transitions between TR and EN languages smoothly.
+- **📊 Real-time UTC Counter & Active Indicators:** Dynamic headers incorporating system telemetry logs.
+
 ---
 
 ## 👤 About Me
@@ -53,7 +70,7 @@ Hi! I'm **Dobby B (@dobby-aidev)** — AI Dev. I build autonomous AI agents, pro
 | **AI & Custom LLMs** | Custom Transformer LLMs · PyTorch · Gemini API · Anthropic Claude · LangChain · LlamaIndex · AutoGen · MCP Server · HuggingFace |
 | **Quant & DRL Trading** | PyTorch ApexBrain · Deep RL · CrewAI · CCXT · Binance Futures API · TA-Lib · Backtrader · Pandas · NumPy |
 | **Backend & Cloud** | Python 3.11+ · FastAPI · Node.js · Express · Firebase Firestore · PostgreSQL · Redis · Docker · AWS |
-| **Frontend & Web** | React 18 · TypeScript · Next.js · Vite · Tailwind CSS · Framer Motion · Socket.IO |
+| **Frontend & Web** | React 18 · TypeScript · Next.js · Vite · Tailwind CSS · Framer Motion · Socket.IO · Three.js |
 
 ---
 

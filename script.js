@@ -1,896 +1,1228 @@
-/* ==========================================================================
-   1:1 FAITHFUL ACTIVE THEORY (ACTIVETHEORY.NET) CREATIVE WEBGL ENGINE
-   GLSL Fluid Shaders · Dynamic Floating Previews · Web Audio API · Lightbox
-   ========================================================================== */
+/* ═══════════════════════════════════════════════════════════════════
+   NEURAL OS v2.0 — MAIN JAVASCRIPT ENGINE
+   Dobby B Portfolio · dobby-aidev
+   ═══════════════════════════════════════════════════════════════════ */
 
-// ================================================================
-// 1. TRANSLATION DICTIONARY
-// ================================================================
-const dictionary = {
+'use strict';
+
+// ═══════════════════════════════════════════════════════════
+// 0. GLOBALS & STATE
+// ═══════════════════════════════════════════════════════════
+const STATE = {
+  lang: 'tr',
+  bootDone: false,
+  mouseX: 0,
+  mouseY: 0,
+  targetCursorX: 0,
+  targetCursorY: 0,
+  cursorX: 0,
+  cursorY: 0,
+};
+
+// ═══════════════════════════════════════════════════════════
+// 1. TRANSLATIONS
+// ═══════════════════════════════════════════════════════════
+const i18n = {
   tr: {
-    nav_about: "Hakkımda",
-    nav_projects: "Projelerim",
-    nav_store: "Veri Setleri",
-    nav_stack: "Teknolojiler",
-    nav_contact: "İletişim",
-    status_text: "Otonom AI & Quant Sistemleri",
-    hero_title: "Otonom Yapay Zeka Ajanları ve Derin Pekiştirmeli Öğrenme.",
-    hero_bio: "Çoklu-ajan mimarileri (Multi-Agent Swarms), PyTorch tabanlı derin pekiştirmeli öğrenme (Deep RL) botları ve açık kaynaklı web platformları tasarlıyorum.",
-    btn_explore: "Projeleri İncele ↓",
-    btn_whop: "Whop Mağazası ↗",
-    sec_about_title: "Mimariler & Odak",
-    sec_projects_title: "Geliştirdiğim Projeler",
-    sec_stack_title: "Kullandığım Teknolojiler",
-    sec_store_title: "Whop Store & Veri Seti Merkezi",
-    sec_contact_title: "İletişime Geçin"
+    sec_about_title:   'Mimariler & Odak',
+    sec_projects_title: 'Geliştirilen Projeler',
+    sec_stack_title:   'Teknoloji Yığını',
+    sec_store_title:   'Whop Store & Veri Seti Merkezi',
+    sec_contact_title: 'İletişime Geçin',
+    hero_status:       'Otonom AI & Quant Sistemleri',
+    hero_bio:          'Çoklu-ajan swarm\'ları, PyTorch derin pekiştirmeli öğrenme botları ve açık kaynaklı AI web platformları inşa ediyorum.',
+    form_success:      '> Handshake başarıyla kuruldu. En kısa sürede dönüş yapılacak.',
+    form_error:        '> HATA: Lütfen tüm alanları doldurun.',
+    nav_about:         'SİSTEM',
+    nav_projects:      'SÜREÇLER',
+    nav_stack:         'MODÜLLER',
+    nav_store:         'VERİ KASASI',
+    nav_contact:       'BAĞLANTI',
+    btn_store:         'STORE ↗'
   },
   en: {
-    nav_about: "About",
-    nav_projects: "Projects",
-    nav_store: "Datasets & Store",
-    nav_stack: "Tech Stack",
-    nav_contact: "Contact",
-    status_text: "Autonomous AI & Quant Systems",
-    hero_title: "Building Autonomous AI Agent Swarms & Quantitative Systems.",
-    hero_bio: "Architecting multi-agent swarms, PyTorch-based deep reinforcement learning trading bots, and open-source AI web platforms.",
-    btn_explore: "Explore Work ↓",
-    btn_whop: "Whop Store ↗",
-    sec_about_title: "Architectures & Focus",
-    sec_projects_title: "Featured Engineering Work",
-    sec_stack_title: "Technical Stack",
-    sec_store_title: "Whop Store & Datasets Hub",
-    sec_contact_title: "Get In Touch"
+    sec_about_title:   'Architectures & Focus',
+    sec_projects_title: 'Featured Engineering Work',
+    sec_stack_title:   'Technical Stack',
+    sec_store_title:   'Whop Store & Datasets Hub',
+    sec_contact_title: 'Get In Touch',
+    hero_status:       'Autonomous AI & Quant Systems',
+    hero_bio:          'Architecting multi-agent swarms, PyTorch deep reinforcement learning trading bots, and open-source AI web platforms.',
+    form_success:      '> Handshake established successfully. Will respond shortly.',
+    form_error:        '> ERROR: Please fill in all required fields.',
+    nav_about:         'SYSTEM',
+    nav_projects:      'PROCESSES',
+    nav_stack:         'MODULES',
+    nav_store:         'DATA VAULT',
+    nav_contact:       'CONNECT',
+    btn_store:         'STORE ↗'
   }
 };
 
-// ================================================================
-// 2. PROJECT GALLERIES MAPPING (Includes Zamanın Bekçisi 9-Images)
-// ================================================================
-const projectGalleries = {
-  'dona-codex-vision': {
-    title: 'Dona Codex: Vision',
-    preview: './assets/dona_codex_vision_1.jpg',
-    images: Array.from({ length: 13 }, (_, i) => `./assets/dona_codex_vision_${i + 1}.jpg`)
-  },
-  'agent-critiq': {
-    title: 'Agent Critiq',
-    preview: './assets/agent_critiq_1.jpg',
-    images: Array.from({ length: 7 }, (_, i) => `./assets/agent_critiq_${i + 1}.jpg`)
-  },
-  'dona-codex': {
-    title: 'Dona Codex: Overmind',
-    preview: './assets/dona_codex_overmind_1.jpg',
-    images: Array.from({ length: 19 }, (_, i) => `./assets/dona_codex_overmind_${i + 1}.jpg`)
-  },
-  'dona-nexus': {
-    title: 'Dona Nexus (ApexBrain)',
-    preview: './assets/dona_nexus_1.jpg',
-    images: Array.from({ length: 8 }, (_, i) => `./assets/dona_nexus_${i + 1}.jpg`)
-  },
-  'ai-prompt-builder': {
-    title: 'AI Prompt Builder',
-    preview: './assets/ai_prompt_builder_1.jpg',
-    images: Array.from({ length: 10 }, (_, i) => `./assets/ai_prompt_builder_${i + 1}.jpg`)
-  },
-  'ai-coin-empire': {
-    title: 'AI Coin Empire',
-    preview: './assets/ai_coin_empire_1.jpg',
-    images: Array.from({ length: 21 }, (_, i) => `./assets/ai_coin_empire_${i + 1}.jpg`)
-  },
-  'dona-grid': {
-    title: 'Dona Grid',
-    preview: './assets/dona_grid_1.jpg',
-    images: Array.from({ length: 5 }, (_, i) => `./assets/dona_grid_${i + 1}.jpg`)
-  },
-  'dona-quantum': {
-    title: 'Dona Quantum',
-    preview: './assets/dona_quantum_1.jpg',
-    images: Array.from({ length: 8 }, (_, i) => `./assets/dona_quantum_${i + 1}.jpg`)
-  },
-  'zamanin-bekcisi': {
-    title: 'Zamanın Bekçisi',
-    preview: './assets/zamanin_bekcisi_1.jpg',
-    images: Array.from({ length: 9 }, (_, i) => `./assets/zamanin_bekcisi_${i + 1}.jpg`)
-  },
-  'dona-ai-lab': {
-    title: 'Dona AI Lab',
-    preview: '',
-    images: []
+function applyTranslations(lang) {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (i18n[lang] && i18n[lang][key]) {
+      // Keep number span intact for nav links
+      const numSpan = el.querySelector('.nav-link-num');
+      if (numSpan) {
+        el.innerHTML = '';
+        el.appendChild(numSpan);
+        el.appendChild(document.createTextNode(i18n[lang][key]));
+      } else {
+        el.textContent = i18n[lang][key];
+      }
+    }
+  });
+  const heroStatus = document.getElementById('hero-status-text');
+  if (heroStatus) heroStatus.textContent = i18n[lang].hero_status;
+  const heroBio = document.getElementById('hero-bio');
+  if (heroBio) heroBio.textContent = i18n[lang].hero_bio;
+}
+
+// ═══════════════════════════════════════════════════════════
+// 2. BOOT SEQUENCE
+// ═══════════════════════════════════════════════════════════
+const BOOT_LINES = [
+  { text: 'NEURAL OS v2.0 — DOBBY B // LAB', delay: 0,    color: 'white',   bold: true },
+  { text: '────────────────────────────────────────────', delay: 150,  color: 'muted' },
+  { text: 'BIOS: Neural Matrix v8.2.1 — OK', delay: 300 },
+  { text: 'CPU: AI Cortex [8 Cores] .............. [OK]', delay: 500,  color: 'ok' },
+  { text: 'MEM: Synaptic RAM 128TB ............... [OK]', delay: 700,  color: 'ok' },
+  { text: 'GPU: WebGL 2.0 Accelerator ............ [OK]', delay: 900,  color: 'ok' },
+  { text: '', delay: 1000 },
+  { text: 'Loading consciousness matrix ........... [OK]', delay: 1200, color: 'ok' },
+  { text: 'Calibrating synaptic pathways ......... [OK]', delay: 1450, color: 'ok' },
+  { text: 'Establishing neural links .............. [OK]', delay: 1700, color: 'ok' },
+  { text: 'Mounting /dev/quant_engine ............. [OK]', delay: 1950, color: 'ok' },
+  { text: 'Starting AI agent swarm ................ [OK]', delay: 2200, color: 'ok' },
+  { text: 'Deploying portfolio interface .......... [OK]', delay: 2450, color: 'ok' },
+  { text: '', delay: 2600 },
+  { text: '█ BOOT COMPLETE — WELCOME TO THE LAB', delay: 2750, color: 'cyan', bold: true },
+  { text: 'Press any key or wait to enter...', delay: 2950, color: 'muted', blink: true },
+];
+
+function runBootSequence() {
+  const terminal   = document.getElementById('boot-terminal');
+  const progressBar= document.getElementById('boot-progress-bar');
+  const hintEl     = document.getElementById('boot-hint');
+  const bootScreen = document.getElementById('boot-screen');
+  const mainContent= document.getElementById('main-content');
+
+  if (!terminal) { finishBoot(bootScreen, mainContent); return; }
+
+  let lineIndex = 0;
+  const total = BOOT_LINES.length;
+
+  function appendLine() {
+    if (lineIndex >= total) {
+      setTimeout(() => finishBoot(bootScreen, mainContent), 400);
+      return;
+    }
+
+    const item = BOOT_LINES[lineIndex];
+    const span = document.createElement('div');
+
+    if (item.color === 'ok')    span.style.color = 'var(--pulse)';
+    else if (item.color === 'muted') span.style.color = 'var(--text-muted)';
+    else if (item.color === 'cyan')  span.style.color = 'var(--synapse)';
+    else if (item.color === 'white') span.style.color = 'var(--text-white)';
+
+    if (item.bold) span.style.fontWeight = '700';
+    if (item.blink) {
+      span.classList.add('boot-blink-cursor');
+      hintEl.textContent = 'Enter veya boşluk tuşuna basın...';
+    }
+
+    span.textContent = item.text || '\u00A0';
+    terminal.appendChild(span);
+    terminal.scrollTop = terminal.scrollHeight;
+
+    const pct = Math.round(((lineIndex + 1) / total) * 100);
+    progressBar.style.width = pct + '%';
+    lineIndex++;
+    setTimeout(appendLine, (BOOT_LINES[lineIndex] ? BOOT_LINES[lineIndex].delay : 0) - item.delay + 60);
   }
-};
 
-let currentLang = 'tr';
-let currentGallery = [];
-let currentImgIndex = 0;
-let currentTitle = '';
-let audioEnabled = false;
+  const firstDelay = BOOT_LINES[0].delay;
+  setTimeout(appendLine, firstDelay);
 
-// ================================================================
-// 3. APPLICATION INITIALIZATION
-// ================================================================
-document.addEventListener('DOMContentLoaded', () => {
-  initGLSLFluidCanvas();
-  init3DHeroWidget();
-  initFloatingPreviewEngine();
-  initSpecularBentoCards();
-  initSkillsRadar();
-  initScrollEffects();
+  // Skip boot only via specialized keypresses (Enter or Space) to prevent accidental mouse triggers
+  const skipBoot = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      finishBoot(bootScreen, mainContent);
+    }
+  };
+  document.addEventListener('keydown', skipBoot);
+  STATE.skipBootRef = skipBoot;
+}
+
+function finishBoot(bootScreen, mainContent) {
+  if (STATE.bootDone) return;
+  STATE.bootDone = true;
+
+  if (STATE.skipBootRef) {
+    document.removeEventListener('keydown', STATE.skipBootRef);
+  }
+
+  bootScreen.classList.add('boot-hidden');
+  document.body.classList.remove('boot-active');
+
+  mainContent.classList.remove('main-content-hidden');
+  mainContent.classList.add('main-content-visible');
+
+  // Init all systems
+  initNeuralBgCanvas();
+  initNeuralNodeCanvas();
+  initRevealObserver();
+  initNeuralStatCounter();
+  initProjectExpand();
+  initFilterBar();
+  initContactForm();
+  initFooterBinary();
+  initNavScroll();
+  initMobileMenu();
+  initConsciousnessBar();
+  initSectionActiveNav();
+  initStackChipLevels();
+  initCardGlowEffect();
+  initLangToggle();
   initUTCClock();
-  setupAudioEngine();
-  setupCommandPalette();
-  setupLanguageSwitcher();
-  setupFilterTabs();
-  setupLightbox();
-  setupContactForm();
-  setupHeaderScroll();
-});
+  initTypewriter();
+  initLightboxGallery();
+  initThemeSelector();
+}
 
-// ================================================================
-// 4. FULL-SCREEN GLSL FLUID SHADER CANVAS ENGINE (BACKGROUND)
-// ================================================================
-function initGLSLFluidCanvas() {
-  const canvas = document.getElementById('activetheory-glsl-canvas');
+// ═══════════════════════════════════════════════════════════
+// 3. SYNAPTIC CURSOR
+// ═══════════════════════════════════════════════════════════
+function initCursor() {
+  const dot   = document.getElementById('cursor-dot');
+  const ring  = document.getElementById('cursor-ring');
+  const trail = document.getElementById('cursor-trail-canvas');
+  if (!dot || !ring || !trail) return;
+
+  const ctx = trail.getContext('2d');
+  let W = window.innerWidth;
+  let H = window.innerHeight;
+  trail.width = W;
+  trail.height = H;
+
+  window.addEventListener('resize', () => {
+    W = window.innerWidth;
+    H = window.innerHeight;
+    trail.width = W;
+    trail.height = H;
+  });
+
+  const trailPoints = [];
+  const MAX_POINTS  = 28;
+
+  document.addEventListener('pointermove', e => {
+    STATE.mouseX = e.clientX;
+    STATE.mouseY = e.clientY;
+    STATE.targetCursorX = e.clientX;
+    STATE.targetCursorY = e.clientY;
+
+    trailPoints.push({ x: e.clientX, y: e.clientY, life: 1.0 });
+    if (trailPoints.length > MAX_POINTS) trailPoints.shift();
+  }, { passive: true });
+
+  // Hover detection
+  document.querySelectorAll('a, button, [role="button"], .process-row, .sys-card, .stack-chip, .social-node, .vault-card').forEach(el => {
+    el.addEventListener('mouseenter', () => ring.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave', () => ring.classList.remove('cursor-hover'));
+  });
+
+  document.addEventListener('pointerdown', () => {
+    ring.classList.add('cursor-click');
+    setTimeout(() => ring.classList.remove('cursor-click'), 200);
+  });
+
+  let prevRingX = 0, prevRingY = 0;
+
+  function animateCursor() {
+    // Smooth ring follow
+    prevRingX += (STATE.targetCursorX - prevRingX) * 0.14;
+    prevRingY += (STATE.targetCursorY - prevRingY) * 0.14;
+
+    dot.style.left  = STATE.targetCursorX + 'px';
+    dot.style.top   = STATE.targetCursorY + 'px';
+    ring.style.left = prevRingX + 'px';
+    ring.style.top  = prevRingY + 'px';
+
+    // Trail
+    ctx.clearRect(0, 0, W, H);
+    trailPoints.forEach((pt, i) => {
+      pt.life -= 0.055;
+      const alpha = Math.max(0, pt.life);
+      const size  = alpha * 4;
+      ctx.beginPath();
+      ctx.arc(pt.x, pt.y, size, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(107, 33, 232, ${alpha * 0.6})`;
+      ctx.fill();
+
+      if (i > 0) {
+        const prev = trailPoints[i - 1];
+        ctx.beginPath();
+        ctx.moveTo(prev.x, prev.y);
+        ctx.lineTo(pt.x, pt.y);
+        ctx.strokeStyle = `rgba(6, 182, 212, ${alpha * 0.25})`;
+        ctx.lineWidth = alpha * 2;
+        ctx.stroke();
+      }
+    });
+    // Remove dead points
+    for (let i = trailPoints.length - 1; i >= 0; i--) {
+      if (trailPoints[i].life <= 0) trailPoints.splice(i, 1);
+    }
+
+    requestAnimationFrame(animateCursor);
+  }
+
+  animateCursor();
+}
+
+// ═══════════════════════════════════════════════════════════
+// 4. NEURAL BACKGROUND CANVAS (Three.js)
+// ═══════════════════════════════════════════════════════════
+function initNeuralBgCanvas() {
+  const canvas = document.getElementById('neural-bg-canvas');
   if (!canvas || typeof THREE === 'undefined') return;
 
-  const scene = new THREE.Scene();
-  const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
   renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-  const uniforms = {
-    u_time: { value: 0 },
-    u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
-    u_mouse: { value: new THREE.Vector2(0.5, 0.5) }
-  };
+  const scene  = new THREE.Scene();
+  const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
 
-  const vertexShader = `
-    varying vec2 vUv;
-    void main() {
-      vUv = uv;
-      gl_Position = vec4(position, 1.0);
-    }
-  `;
+  const geo = new THREE.PlaneGeometry(2, 2);
+  const mat = new THREE.ShaderMaterial({
+    uniforms: {
+      uTime:   { value: 0 },
+      uMouseX: { value: 0 },
+      uMouseY: { value: 0 },
+      uColorA: { value: new THREE.Color('#6B21E8') },
+      uColorB: { value: new THREE.Color('#06B6D4') },
+    },
+    vertexShader: `
+      varying vec2 vUv;
+      void main() {
+        vUv = uv;
+        gl_Position = vec4(position, 1.0);
+      }
+    `,
+    fragmentShader: `
+      uniform float uTime;
+      uniform float uMouseX;
+      uniform float uMouseY;
+      uniform vec3 uColorA;
+      uniform vec3 uColorB;
+      varying vec2 vUv;
 
-  const fragmentShader = `
-    uniform float u_time;
-    uniform vec2 u_resolution;
-    uniform vec2 u_mouse;
-    varying vec2 vUv;
+      // Gentle 2D noise algorithm for organic aurora flows
+      float noise(in vec2 p) {
+        return sin(p.x * 2.2 + uTime * 0.08) * cos(p.y * 1.8 - uTime * 0.07);
+      }
 
-    // Simplex noise approximation
-    vec3 permute(vec3 x) { return mod(((x*34.0)+1.0)*x, 289.0); }
-    float snoise(vec2 v){
-      const vec4 C = vec4(0.211324865405187, 0.366025403784439,
-               -0.577350269189626, 0.024390243902439);
-      vec2 i  = floor(v + dot(v, C.yy) );
-      vec2 x0 = v -   i + dot(i, C.xx);
-      vec2 i1;
-      i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
-      vec4 x12 = x0.xyxy + C.xxzz;
-      x12.xy -= i1;
-      i = mod(i, 289.0);
-      vec3 p = permute( permute( i.y + vec3(0.0, i1.y, 1.0 ))
-      + i.x + vec3(0.0, i1.x, 1.0 ));
-      vec3 m = max(0.5 - vec3(dot(x0,x0), dot(x12.xy,x12.xy), dot(x12.zw,x12.zw)), 0.0);
-      m = m*m ;
-      m = m*m ;
-      vec3 x = 2.0 * fract(p * C.www) - 1.0;
-      vec3 h = abs(x) - 0.5;
-      vec3 ox = floor(x + 0.5);
-      vec3 a0 = x - ox;
-      m *= 1.79284291400159 - 0.85373472095314 * ( a0*a0 + h*h );
-      vec3 g;
-      g.x  = a0.x  * x0.x  + h.x  * x0.y;
-      g.yz = a0.yz * x12.xz + h.yz * x12.yw;
-      return 130.0 * dot(m, g);
-    }
+      void main() {
+        vec2 uv = vUv;
+        // Connect mouse coordinates for a highly responsive fluid ripple
+        uv.x += uMouseX * 0.04;
+        uv.y += uMouseY * 0.04;
 
-    void main() {
-      vec2 st = gl_FragCoord.xy / u_resolution.xy;
-      vec2 mouse = u_mouse;
-      
-      float dist = distance(st, mouse);
-      float ripple = sin(dist * 25.0 - u_time * 3.0) * exp(-dist * 4.0);
+        float n = noise(uv * 2.0);
+        float pattern = sin(uv.x * 1.5 + n * 0.9) * cos(uv.y * 1.5 + n * 0.9) * 0.5 + 0.5;
 
-      float n = snoise(st * 3.0 + vec2(u_time * 0.1, u_time * 0.15));
-      
-      vec3 cyan = vec3(0.0, 0.94, 1.0);
-      vec3 violet = vec3(0.65, 0.33, 0.96);
-      vec3 base = mix(cyan, violet, n * 0.5 + 0.5);
+        // Dynamic gradient mix utilizing theme colors, tuned to be dark and calm
+        vec3 colA = uColorA * 0.06; // extremely soft ambient glow
+        vec3 colB = uColorB * 0.055;
+        vec3 baseVoid = vec3(0.015, 0.015, 0.03); // calm deep space void
 
-      float alpha = clamp(n * 0.08 + ripple * 0.12, 0.0, 0.25);
-      gl_FragColor = vec4(base, alpha);
-    }
-  `;
+        vec3 blended = mix(colA, colB, pattern);
+        vec3 finalCol = mix(baseVoid, blended, 0.5 + 0.2 * sin(uTime * 0.04));
 
-  const material = new THREE.ShaderMaterial({
-    vertexShader,
-    fragmentShader,
-    uniforms,
-    transparent: true
+        gl_FragColor = vec4(finalCol, 1.0);
+      }
+    `,
+    transparent: true,
+    depthWrite: false,
   });
 
-  const plane = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material);
-  scene.add(plane);
+  const mesh = new THREE.Mesh(geo, mat);
+  scene.add(mesh);
 
-  window.addEventListener('mousemove', (e) => {
-    uniforms.u_mouse.value.x = e.clientX / window.innerWidth;
-    uniforms.u_mouse.value.y = 1.0 - (e.clientY / window.innerHeight);
-  });
-
-  const clock = new THREE.Clock();
-  function animate() {
-    requestAnimationFrame(animate);
-    uniforms.u_time.value = clock.getElapsedTime();
-    renderer.render(scene, camera);
-  }
-  animate();
+  STATE.bgMaterial = mat;
 
   window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
-    uniforms.u_resolution.value.set(window.innerWidth, window.innerHeight);
-  });
+  }, { passive: true });
+
+  const clock = new THREE.Clock();
+  let animationFrameId;
+  let lastTime = 0;
+
+  function animate(time) {
+    animationFrameId = requestAnimationFrame(animate);
+    if (time - lastTime < 16) return;
+    lastTime = time;
+
+    const t = clock.getElapsedTime();
+    mat.uniforms.uTime.value = t;
+    mat.uniforms.uMouseX.value += ((STATE.mouseX / window.innerWidth  * 2 - 1) - mat.uniforms.uMouseX.value) * 0.02;
+    mat.uniforms.uMouseY.value += (-(STATE.mouseY / window.innerHeight * 2 - 1) - mat.uniforms.uMouseY.value) * 0.02;
+
+    renderer.render(scene, camera);
+  }
+
+  animate(0);
 }
 
-// ================================================================
-// 5. HERO 3D WIDGET (3D CORE)
-// ================================================================
-function init3DHeroWidget() {
-  const container = document.getElementById('hero-webgl-container');
-  if (!container || typeof THREE === 'undefined') return;
+// ═══════════════════════════════════════════════════════════
+// 5. NEURAL NODE CANVAS (Hero 3D Widget — Three.js)
+// ═══════════════════════════════════════════════════════════
+function initNeuralNodeCanvas() {
+  const canvas = document.getElementById('neural-node-canvas');
+  if (!canvas || typeof THREE === 'undefined') return;
 
-  const width = container.clientWidth;
-  const height = container.clientHeight;
+  const container = document.getElementById('neural-node-container');
+  const closeBtn  = document.getElementById('neural-core-close');
 
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
-  camera.position.z = 6;
+  let W = container.clientWidth || 400;
+  let H = container.clientHeight || 400;
 
-  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
-  renderer.setSize(width, height);
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  container.appendChild(renderer.domElement);
+  renderer.setSize(W, H);
+  renderer.setClearColor(0x000000, 0);
 
-  const mainGroup = new THREE.Group();
-  scene.add(mainGroup);
+  const scene  = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(60, W / H, 0.1, 100);
+  camera.position.z = 4.5;
 
-  // Outer Wireframe Icosahedron
-  const outerGeo = new THREE.IcosahedronGeometry(1.8, 2);
-  const outerMat = new THREE.MeshBasicMaterial({
-    color: 0x00f0ff,
+  // Group to rotate everything (nodes & lines) together
+  const group = new THREE.Group();
+  scene.add(group);
+
+  // 1) Core Glow Sphere (Inner core)
+  const coreSphereGeom = new THREE.SphereGeometry(0.85, 32, 32);
+  const coreSphereMat = new THREE.MeshBasicMaterial({
+    color: 0x06B6D4,
+    transparent: true,
+    opacity: 0.18,
+    blending: THREE.AdditiveBlending
+  });
+  const coreSphere = new THREE.Mesh(coreSphereGeom, coreSphereMat);
+  group.add(coreSphere);
+
+  // Inner bright nucleus
+  const nucleusGeom = new THREE.SphereGeometry(0.35, 16, 16);
+  const nucleusMat = new THREE.MeshBasicMaterial({
+    color: 0x00ffff,
+    transparent: true,
+    opacity: 0.7,
+    blending: THREE.AdditiveBlending
+  });
+  const nucleus = new THREE.Mesh(nucleusGeom, nucleusMat);
+  group.add(nucleus);
+
+  // 2) Outer wireframe purple icosahedron (The shell)
+  const outerWireGeom = new THREE.IcosahedronGeometry(1.6, 2);
+  const outerWireMat = new THREE.MeshBasicMaterial({
+    color: 0x8B5CF6,
     wireframe: true,
     transparent: true,
-    opacity: 0.35
+    opacity: 0.28,
+    blending: THREE.AdditiveBlending
   });
-  const outerMesh = new THREE.Mesh(outerGeo, outerMat);
-  mainGroup.add(outerMesh);
+  const outerWireframe = new THREE.Mesh(outerWireGeom, outerWireMat);
+  group.add(outerWireframe);
 
-  // Inner Core Sphere
-  const innerGeo = new THREE.IcosahedronGeometry(0.95, 3);
-  const innerMat = new THREE.MeshStandardMaterial({
-    color: 0xa855f7,
-    emissive: 0x00f0ff,
-    emissiveIntensity: 0.8,
-    roughness: 0.2,
-    metalness: 0.8
+  // Secondary outer thin cyan wireframe for parallax depth
+  const secondWireGeom = new THREE.IcosahedronGeometry(1.95, 1);
+  const secondWireMat = new THREE.MeshBasicMaterial({
+    color: 0x06B6D4,
+    wireframe: true,
+    transparent: true,
+    opacity: 0.12,
+    blending: THREE.AdditiveBlending
   });
-  const innerMesh = new THREE.Mesh(innerGeo, innerMat);
-  mainGroup.add(innerMesh);
+  const secondWireframe = new THREE.Mesh(secondWireGeom, secondWireMat);
+  group.add(secondWireframe);
 
-  // Particles
-  const particleCount = 1200;
-  const particleGeo = new THREE.BufferGeometry();
-  const positions = new Float32Array(particleCount * 3);
+  // 3) Synaptic Nodes Setup (Floating organically inside and outside the core structures)
+  const NODE_COUNT = 85;
+  const nodes = [];
+  const geom = new THREE.BufferGeometry();
+  const positions = new Float32Array(NODE_COUNT * 3);
 
-  for (let i = 0; i < particleCount; i++) {
+  for (let i = 0; i < NODE_COUNT; i++) {
+    // Spherical distribution
     const u = Math.random();
     const v = Math.random();
     const theta = u * 2.0 * Math.PI;
     const phi = Math.acos(2.0 * v - 1.0);
-    const r = 2.2 + (Math.random() - 0.5) * 0.8;
+    // Radius ranges from 0.45 (deep inside) to 2.45 (way outside the core shell)
+    const r = 0.45 + Math.random() * 2.0;
 
-    positions[i * 3] = r * Math.sin(phi) * Math.cos(theta);
-    positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
-    positions[i * 3 + 2] = r * Math.cos(phi);
+    const x = r * Math.sin(phi) * Math.cos(theta);
+    const y = r * Math.sin(phi) * Math.sin(theta);
+    const z = r * Math.cos(phi);
+
+    positions[i * 3] = x;
+    positions[i * 3 + 1] = y;
+    positions[i * 3 + 2] = z;
+
+    nodes.push({
+      baseR: r,
+      theta: theta,
+      phi: phi,
+      // Speeds of oscillation
+      speedTheta: (Math.random() - 0.5) * 0.008,
+      speedPhi: (Math.random() - 0.5) * 0.008,
+      // Current positions
+      pos: new THREE.Vector3(x, y, z)
+    });
   }
 
-  particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-  const particleMat = new THREE.PointsMaterial({
-    color: 0x38bdf8,
-    size: 0.035,
+  geom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+  // Node Points (Glowing dots)
+  const nodeMat = new THREE.PointsMaterial({
+    color: 0x06B6D4,
+    size: 0.11,
     transparent: true,
-    opacity: 0.75,
-    blending: THREE.AdditiveBlending
+    opacity: 0.85,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false
   });
-  const particleSystem = new THREE.Points(particleGeo, particleMat);
-  mainGroup.add(particleSystem);
+  const nodeSystem = new THREE.Points(geom, nodeMat);
+  group.add(nodeSystem);
 
-  // Lights
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
-  scene.add(ambientLight);
+  // Line segment links (Synaptic cords)
+  const lineMat = new THREE.LineBasicMaterial({
+    color: 0x8B5CF6,
+    transparent: true,
+    opacity: 0.32,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false
+  });
 
-  const light1 = new THREE.PointLight(0x00f0ff, 2.5, 10);
-  light1.position.set(3, 3, 3);
-  scene.add(light1);
+  let connectionLines = new THREE.LineSegments(new THREE.BufferGeometry(), lineMat);
+  group.add(connectionLines);
 
+  // 2) Drag to Rotate Camera (Interactive Orbit)
+  let isDragging = false;
+  let previousMousePosition = { x: 0, y: 0 };
   let targetRotX = 0, targetRotY = 0;
-  container.addEventListener('mousemove', (e) => {
+  let curRotX = 0, curRotY = 0;
+
+  // Mouse tilt when not dragging & not fullscreen
+  document.addEventListener('pointermove', e => {
+    if (isDragging || container.classList.contains('fullscreen')) return;
     const rect = container.getBoundingClientRect();
-    const mx = ((e.clientX - rect.left) / rect.width) * 2 - 1;
-    const my = -((e.clientY - rect.top) / rect.height) * 2 + 1;
-    targetRotY = mx * 0.8;
-    targetRotX = my * 0.8;
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top)  / rect.height - 0.5;
+    targetRotY = x * 0.35;
+    targetRotX = -y * 0.35;
+  }, { passive: true });
+
+  // Custom drag rotations
+  canvas.addEventListener('pointerdown', e => {
+    isDragging = true;
+    previousMousePosition = { x: e.clientX, y: e.clientY };
   });
 
-  let impulse = 0;
-  container.addEventListener('click', () => {
-    impulse = 1.0;
-    innerMat.emissiveIntensity = 2.2;
-    playClickAudio();
+  document.addEventListener('pointermove', e => {
+    if (!isDragging) return;
+    const deltaMove = {
+      x: e.clientX - previousMousePosition.x,
+      y: e.clientY - previousMousePosition.y
+    };
+
+    const speedScale = 0.007;
+    group.rotation.y += deltaMove.x * speedScale;
+    group.rotation.x += deltaMove.y * speedScale;
+
+    previousMousePosition = { x: e.clientX, y: e.clientY };
   });
 
+  document.addEventListener('pointerup', () => {
+    isDragging = false;
+  });
+
+  // 3) Fullscreen Transition Logic
+  function toggleFullscreen(e) {
+    if (e) e.stopPropagation();
+    const isFullscreen = container.classList.toggle('fullscreen');
+    
+    // Give browser brief window to align DOM box reflow
+    setTimeout(() => {
+      W = container.clientWidth || window.innerWidth;
+      H = container.clientHeight || window.innerHeight;
+      renderer.setSize(W, H);
+      camera.aspect = W / H;
+      camera.updateProjectionMatrix();
+    }, 150);
+  }
+
+  container.addEventListener('click', (e) => {
+    if (e.target === closeBtn) return;
+    if (!container.classList.contains('fullscreen')) {
+      toggleFullscreen(e);
+    }
+  });
+
+  container.addEventListener('dblclick', (e) => {
+    if (container.classList.contains('fullscreen')) {
+      toggleFullscreen(e);
+    }
+  });
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', (e) => {
+      toggleFullscreen(e);
+    });
+  }
+
+  // Escape key support
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && container.classList.contains('fullscreen')) {
+      toggleFullscreen(e);
+    }
+  });
+
+  const resizeObs = new ResizeObserver(() => {
+    W = container.clientWidth;
+    H = container.clientHeight;
+    renderer.setSize(W, H);
+    camera.aspect = W / H;
+    camera.updateProjectionMatrix();
+  });
+  resizeObs.observe(container);
+
+  // Render Loop
   const clock = new THREE.Clock();
-  function animate() {
+  let lastTime = 0;
+
+  function animate(time) {
     requestAnimationFrame(animate);
-    const elapsed = clock.getElapsedTime();
+    if (time - lastTime < 16) return;
+    lastTime = time;
 
-    mainGroup.rotation.y += (targetRotY - mainGroup.rotation.y) * 0.05;
-    mainGroup.rotation.x += (targetRotX - mainGroup.rotation.x) * 0.05;
+    const t = clock.getElapsedTime();
 
-    outerMesh.rotation.y = elapsed * 0.2;
-    innerMesh.rotation.y = -elapsed * 0.3;
-    particleSystem.rotation.y = elapsed * 0.1;
+    // 4) Drift particles & bounce off boundaries
+    const posArr = nodeSystem.geometry.attributes.position.array;
+    const linePositions = [];
 
-    if (impulse > 0) {
-      impulse *= 0.94;
-      mainGroup.scale.setScalar(1.0 + impulse * 0.15);
-      innerMat.emissiveIntensity = 0.8 + impulse * 1.5;
-    } else {
-      mainGroup.scale.setScalar(1.0);
-      innerMat.emissiveIntensity = 0.8;
+    for (let i = 0; i < NODE_COUNT; i++) {
+      const node = nodes[i];
+      
+      // Update spherical angles and radius dynamically for organic wave drift
+      node.theta += node.speedTheta;
+      node.phi += node.speedPhi;
+      
+      // Radial breathing oscillation
+      const waveR = node.baseR + Math.sin(t * 1.5 + i) * 0.08;
+
+      node.pos.x = waveR * Math.sin(node.phi) * Math.cos(node.theta);
+      node.pos.y = waveR * Math.sin(node.phi) * Math.sin(node.theta);
+      node.pos.z = waveR * Math.cos(node.phi);
+
+      posArr[i * 3] = node.pos.x;
+      posArr[i * 3 + 1] = node.pos.y;
+      posArr[i * 3 + 2] = node.pos.z;
+    }
+    nodeSystem.geometry.attributes.position.needsUpdate = true;
+
+    // 5) Synthesize lines dynamic bindings
+    for (let i = 0; i < NODE_COUNT; i++) {
+      for (let j = i + 1; j < NODE_COUNT; j++) {
+        const dist = nodes[i].pos.distanceTo(nodes[j].pos);
+        if (dist < 0.78) { // links threshold
+          linePositions.push(nodes[i].pos.x, nodes[i].pos.y, nodes[i].pos.z);
+          linePositions.push(nodes[j].pos.x, nodes[j].pos.y, nodes[j].pos.z);
+        }
+      }
+    }
+
+    if (connectionLines.geometry) {
+      connectionLines.geometry.dispose();
+    }
+    const lineGeom = new THREE.BufferGeometry();
+    lineGeom.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
+    connectionLines.geometry = lineGeom;
+
+    // Parallax depth offset rotations for individual shells
+    coreSphere.rotation.y = t * -0.06;
+    outerWireframe.rotation.y = t * 0.04;
+    outerWireframe.rotation.x = t * 0.02;
+    secondWireframe.rotation.y = t * -0.02;
+
+    // Drift rotation when not dragging
+    if (!isDragging && !container.classList.contains('fullscreen')) {
+      curRotX += (targetRotX - curRotX) * 0.05;
+      curRotY += (targetRotY - curRotY) * 0.05;
+      group.rotation.x = t * 0.08 + curRotX;
+      group.rotation.y = t * 0.10 + curRotY;
+    } else if (!isDragging && container.classList.contains('fullscreen')) {
+      group.rotation.y += 0.0012;
     }
 
     renderer.render(scene, camera);
   }
-  animate();
 
-  window.addEventListener('resize', () => {
-    const w = container.clientWidth;
-    const h = container.clientHeight;
-    camera.aspect = w / h;
-    camera.updateProjectionMatrix();
-    renderer.setSize(w, h);
-  });
+  animate(0);
 }
 
-// ================================================================
-// 6. DYNAMIC FLOATING PREVIEW ENGINE (ACTIVE THEORY SIGNATURE)
-// ================================================================
-function initFloatingPreviewEngine() {
-  const floatingBox = document.getElementById('floating-project-preview');
-  const previewImg  = document.getElementById('floating-preview-img');
-  const listItems   = document.querySelectorAll('.activetheory-item');
 
-  if (!floatingBox || !previewImg) return;
 
-  let mouseX = 0, mouseY = 0;
-  let currentX = 0, currentY = 0;
+// ═══════════════════════════════════════════════════════════
+// 8. TYPEWRITER EFFECT (Hero accent line)
+// ═══════════════════════════════════════════════════════════
+function initTypewriter() {
+  const el = document.getElementById('typewriter-target');
+  if (!el) return;
 
-  window.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-  });
+  const words = ['Yapay Zeka', 'AI Ajanları', 'Quant Botları', 'Deep RL', 'Neural OS'];
+  let wordIdx = 0, charIdx = 0, deleting = false;
 
-  function updateFloatingPos() {
-    currentX += (mouseX - currentX) * 0.15;
-    currentY += (mouseY - currentY) * 0.15;
-    floatingBox.style.left = `${currentX}px`;
-    floatingBox.style.top  = `${currentY}px`;
-    requestAnimationFrame(updateFloatingPos);
+  function tick() {
+    const word = words[wordIdx];
+    if (!deleting) {
+      el.textContent = word.slice(0, charIdx + 1);
+      charIdx++;
+      if (charIdx === word.length) {
+        deleting = true;
+        setTimeout(tick, 1800);
+        return;
+      }
+      setTimeout(tick, 95);
+    } else {
+      el.textContent = word.slice(0, charIdx - 1);
+      charIdx--;
+      if (charIdx === 0) {
+        deleting = false;
+        wordIdx = (wordIdx + 1) % words.length;
+        setTimeout(tick, 400);
+        return;
+      }
+      setTimeout(tick, 50);
+    }
   }
-  updateFloatingPos();
 
-  listItems.forEach(item => {
-    item.addEventListener('mouseenter', () => {
-      const key = item.getAttribute('data-project-key');
-      if (key && projectGalleries[key] && projectGalleries[key].preview) {
-        previewImg.src = projectGalleries[key].preview;
-        floatingBox.classList.add('active');
-        playHoverAudio();
+  setTimeout(tick, 1000);
+}
+
+// ═══════════════════════════════════════════════════════════
+// 9. REVEAL OBSERVER (Intersection Observer)
+// ═══════════════════════════════════════════════════════════
+function initRevealObserver() {
+  const els = document.querySelectorAll('.reveal');
+  if (!els.length) return;
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        obs.unobserve(entry.target);
       }
     });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-    item.addEventListener('mouseleave', () => {
-      floatingBox.classList.remove('active');
+  els.forEach(el => obs.observe(el));
+}
+
+// ═══════════════════════════════════════════════════════════
+// 10. STAT COUNTERS
+// ═══════════════════════════════════════════════════════════
+function initNeuralStatCounter() {
+  const stats = document.querySelectorAll('.stat-val[data-target]');
+  if (!stats.length) return;
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el     = entry.target;
+      const target = parseInt(el.dataset.target, 10);
+      const suffix = el.dataset.suffix || '';
+      let start = 0;
+      const duration = 1400;
+      const startTime = performance.now();
+
+      function update(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        start = Math.round(eased * target);
+        el.textContent = start + suffix;
+        if (progress < 1) requestAnimationFrame(update);
+        else el.textContent = target + suffix;
+      }
+
+      requestAnimationFrame(update);
+      obs.unobserve(el);
     });
+  }, { threshold: 0.5 });
 
-    item.addEventListener('click', () => {
-      const key = item.getAttribute('data-project-key');
-      if (key && projectGalleries[key] && projectGalleries[key].images.length > 0) {
-        currentGallery = projectGalleries[key].images;
-        currentTitle   = projectGalleries[key].title;
-        currentImgIndex = 0;
-        openLightbox();
-        playClickAudio();
+  stats.forEach(el => obs.observe(el));
+}
+
+// ═══════════════════════════════════════════════════════════
+// 11. PROJECT EXPAND (Process Manager)
+// ═══════════════════════════════════════════════════════════
+function initProjectExpand() {
+  document.querySelectorAll('.pr-btn-expand').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const projectKey = btn.dataset.project;
+      const row = btn.closest('.process-row');
+      const panel = row ? row.querySelector('.pr-detail-panel') : null;
+      if (!panel) return;
+
+      const isOpen = panel.classList.contains('open');
+
+      // Close all
+      document.querySelectorAll('.pr-detail-panel.open').forEach(p => {
+        p.classList.remove('open');
+      });
+      document.querySelectorAll('.pr-btn-expand.expanded').forEach(b => {
+        b.classList.remove('expanded');
+        b.textContent = 'EXPAND';
+      });
+
+      if (!isOpen) {
+        panel.classList.add('open');
+        btn.classList.add('expanded');
+        btn.textContent = 'CLOSE';
       }
     });
   });
 }
 
-// ================================================================
-// 7. SPECULAR BENTO CARDS & TILT
-// ================================================================
-function initSpecularBentoCards() {
-  const cards = document.querySelectorAll('.bento-card, .stack-card, .store-card');
-  cards.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
+// ═══════════════════════════════════════════════════════════
+// 12. PROJECT FILTER BAR
+// ═══════════════════════════════════════════════════════════
+function initFilterBar() {
+  const btns = document.querySelectorAll('.filter-btn');
+  const rows = document.querySelectorAll('.process-row');
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed', 'false'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
+
+      const filter = btn.dataset.filter;
+      rows.forEach(row => {
+        if (filter === 'all') {
+          row.classList.remove('hidden');
+        } else {
+          const cats = (row.dataset.category || '').split(' ');
+          row.classList.toggle('hidden', !cats.includes(filter));
+        }
+      });
+    });
+  });
+}
+
+// ═══════════════════════════════════════════════════════════
+// 13. CONTACT FORM
+// ═══════════════════════════════════════════════════════════
+function initContactForm() {
+  const form   = document.getElementById('contact-form');
+  const btn    = document.getElementById('contact-submit');
+  const status = document.getElementById('form-status');
+  if (!form || !btn || !status) return;
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const name    = document.getElementById('contact-name')?.value.trim();
+    const contact = document.getElementById('contact-email')?.value.trim();
+    const message = document.getElementById('contact-message')?.value.trim();
+
+    if (!name || !contact || !message) {
+      status.textContent = i18n[STATE.lang].form_error;
+      status.className   = 't-form-status error';
+      return;
+    }
+
+    btn.classList.add('loading');
+    btn.disabled = true;
+    status.className = 't-form-status';
+
+    // Simulate async submission
+    await new Promise(r => setTimeout(r, 1500));
+
+    btn.classList.remove('loading');
+    btn.disabled = false;
+    status.textContent = i18n[STATE.lang].form_success;
+    status.className   = 't-form-status success';
+    form.reset();
+    showToast('✔ Mesaj başarıyla gönderildi!');
+
+    setTimeout(() => { status.className = 't-form-status'; }, 6000);
+  });
+}
+
+// ═══════════════════════════════════════════════════════════
+// 14. TOAST NOTIFICATION
+// ═══════════════════════════════════════════════════════════
+function showToast(msg, duration = 3500) {
+  const toast = document.getElementById('toast');
+  if (!toast) return;
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), duration);
+}
+
+// ═══════════════════════════════════════════════════════════
+// 15. FOOTER BINARY
+// ═══════════════════════════════════════════════════════════
+function initFooterBinary() {
+  const el = document.getElementById('footer-binary');
+  if (!el) return;
+  let bin = '';
+  for (let i = 0; i < 600; i++) bin += Math.random() > 0.5 ? '1 ' : '0 ';
+  el.textContent = bin;
+}
+
+// ═══════════════════════════════════════════════════════════
+// 16. NAVBAR SCROLL
+// ═══════════════════════════════════════════════════════════
+function initNavScroll() {
+  const nav = document.getElementById('navbar');
+  if (!nav) return;
+  const onScroll = () => {
+    nav.classList.toggle('scrolled', window.scrollY > 30);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+}
+
+// ═══════════════════════════════════════════════════════════
+// 17. MOBILE MENU
+// ═══════════════════════════════════════════════════════════
+function initMobileMenu() {
+  const hamburger = document.getElementById('nav-hamburger');
+  const menu = document.getElementById('mobile-menu');
+  if (!hamburger || !menu) return;
+
+  hamburger.addEventListener('click', () => {
+    const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+    hamburger.setAttribute('aria-expanded', String(!expanded));
+    menu.classList.toggle('open', !expanded);
+    menu.setAttribute('aria-hidden', String(expanded));
+  });
+
+  // Close on link click
+  menu.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.setAttribute('aria-expanded', 'false');
+      menu.classList.remove('open');
+      menu.setAttribute('aria-hidden', 'true');
+    });
+  });
+}
+
+// ═══════════════════════════════════════════════════════════
+// 18. CONSCIOUSNESS BAR (scroll depth)
+// ═══════════════════════════════════════════════════════════
+function initConsciousnessBar() {
+  const bar = document.getElementById('consciousness-bar');
+  const val = document.getElementById('consciousness-value');
+  if (!bar || !val) return;
+
+  window.addEventListener('scroll', () => {
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = maxScroll > 0 ? Math.round((window.scrollY / maxScroll) * 100) : 0;
+    bar.style.height = pct + '%';
+    val.textContent  = pct + '%';
+  }, { passive: true });
+}
+
+// ═══════════════════════════════════════════════════════════
+// 19. ACTIVE NAV SECTION HIGHLIGHT
+// ═══════════════════════════════════════════════════════════
+function initSectionActiveNav() {
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.dataset.section === id);
+        });
+      }
+    });
+  }, { threshold: 0.35 });
+
+  sections.forEach(s => obs.observe(s));
+}
+
+// ═══════════════════════════════════════════════════════════
+// 20. STACK CHIP LEVELS (CSS variable)
+// ═══════════════════════════════════════════════════════════
+function initStackChipLevels() {
+  document.querySelectorAll('.stack-chip[data-level]').forEach(chip => {
+    chip.style.setProperty('--level', chip.dataset.level);
+  });
+}
+
+// ═══════════════════════════════════════════════════════════
+// 21. CARD GLOW EFFECT (mouse tracking)
+// ═══════════════════════════════════════════════════════════
+function initCardGlowEffect() {
+  document.querySelectorAll('.sys-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-
-      card.style.setProperty('--mouse-x', `${x}px`);
-      card.style.setProperty('--mouse-y', `${y}px`);
-
-      const cx = rect.width / 2;
-      const cy = rect.height / 2;
-      const rotX = ((y - cy) / cy) * -4;
-      const rotY = ((x - cx) / cx) * 4;
-      card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-4px)`;
-    });
-
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
+      card.style.setProperty('--mouse-x', x + 'px');
+      card.style.setProperty('--mouse-y', y + 'px');
     });
   });
 }
 
-// ================================================================
-// 8. SKILLS RADAR CANVAS
-// ================================================================
-function initSkillsRadar() {
-  const canvas = document.getElementById('skills-radar-canvas');
-  if (!canvas) return;
-
-  const ctx = canvas.getContext('2d');
-  const SIZE = 380;
-  canvas.width = SIZE;
-  canvas.height = SIZE;
-
-  const cx = SIZE / 2;
-  const cy = SIZE / 2;
-  const radius = 135;
-
-  const skills = [
-    { label: 'Deep RL',     val: 0.92, col: '#00f0ff' },
-    { label: 'LLM Swarms',  val: 0.96, col: '#a855f7' },
-    { label: 'Quant Engine',val: 0.90, col: '#ff007a' },
-    { label: 'TypeScript',  val: 0.88, col: '#38bdf8' },
-    { label: 'PyTorch',     val: 0.94, col: '#00ff9d' },
-    { label: 'FastAPI/Node',val: 0.86, col: '#d4af37' }
-  ];
-
-  const N = skills.length;
-  let progress = 0;
-
-  function getAngle(i) {
-    return (Math.PI * 2 * i) / N - Math.PI / 2;
-  }
-
-  function draw(p) {
-    ctx.clearRect(0, 0, SIZE, SIZE);
-
-    for (let r = 1; r <= 4; r++) {
-      const rr = (radius * r) / 4;
-      ctx.beginPath();
-      for (let i = 0; i < N; i++) {
-        const a = getAngle(i);
-        const x = cx + Math.cos(a) * rr;
-        const y = cy + Math.sin(a) * rr;
-        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-      }
-      ctx.closePath();
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
-      ctx.lineWidth = 1;
-      ctx.stroke();
-    }
-
-    ctx.beginPath();
-    for (let i = 0; i < N; i++) {
-      const a = getAngle(i);
-      const v = skills[i].val * p;
-      const x = cx + Math.cos(a) * radius * v;
-      const y = cy + Math.sin(a) * radius * v;
-      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-    }
-    ctx.closePath();
-
-    const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
-    grad.addColorStop(0, 'rgba(0, 240, 255, 0.4)');
-    grad.addColorStop(0.6, 'rgba(168, 85, 247, 0.2)');
-    grad.addColorStop(1, 'rgba(255, 0, 122, 0.1)');
-    ctx.fillStyle = grad;
-    ctx.fill();
-
-    ctx.strokeStyle = '#00f0ff';
-    ctx.lineWidth = 2;
-    ctx.stroke();
-
-    for (let i = 0; i < N; i++) {
-      const a = getAngle(i);
-      const v = skills[i].val * p;
-      const x = cx + Math.cos(a) * radius * v;
-      const y = cy + Math.sin(a) * radius * v;
-
-      ctx.beginPath();
-      ctx.arc(x, y, 4, 0, Math.PI * 2);
-      ctx.fillStyle = skills[i].col;
-      ctx.shadowColor = skills[i].col;
-      ctx.shadowBlur = 10;
-      ctx.fill();
-      ctx.shadowBlur = 0;
-
-      const lx = cx + Math.cos(a) * (radius + 24);
-      const ly = cy + Math.sin(a) * (radius + 24);
-      ctx.fillStyle = '#94a3b8';
-      ctx.font = '600 11px "Geist Mono", monospace';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText(skills[i].label, lx, ly);
-    }
-  }
-
-  function animate() {
-    if (progress < 1) {
-      progress += 0.03;
-      draw(Math.min(progress, 1));
-      requestAnimationFrame(animate);
-    } else {
-      draw(1);
-    }
-  }
-
-  const observer = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting) {
-      progress = 0;
-      animate();
-      observer.unobserve(canvas);
-    }
-  }, { threshold: 0.3 });
-
-  observer.observe(canvas);
-}
-
-// ================================================================
-// 9. WEB AUDIO API SYNTHESIZER
-// ================================================================
-let audioCtx = null;
-
-function setupAudioEngine() {
-  const btn = document.getElementById('audio-toggle-btn');
-  btn?.addEventListener('click', () => {
-    if (!audioCtx) {
-      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    }
-    audioEnabled = !audioEnabled;
-    btn.classList.toggle('active', audioEnabled);
-    btn.querySelector('span:last-child').textContent = audioEnabled ? 'SOUND: ON' : 'SOUND: OFF';
-    if (audioEnabled) playClickAudio();
+// ═══════════════════════════════════════════════════════════
+// 22. LANGUAGE TOGGLE
+// ═══════════════════════════════════════════════════════════
+function initLangToggle() {
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const lang = btn.dataset.lang;
+      STATE.lang = lang;
+      document.querySelectorAll('.lang-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.lang === lang);
+        b.setAttribute('aria-pressed', String(b.dataset.lang === lang));
+      });
+      applyTranslations(lang);
+    });
   });
 }
 
-function playHoverAudio() {
-  if (!audioEnabled || !audioCtx) return;
-  try {
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(440, audioCtx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.04);
-    gain.gain.setValueAtTime(0.02, audioCtx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.04);
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
-    osc.start();
-    osc.stop(audioCtx.currentTime + 0.04);
-  } catch (e) {}
-}
-
-function playClickAudio() {
-  if (!audioEnabled || !audioCtx) return;
-  try {
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-    osc.type = 'triangle';
-    osc.frequency.setValueAtTime(220, audioCtx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(110, audioCtx.currentTime + 0.08);
-    gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.08);
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
-    osc.start();
-    osc.stop(audioCtx.currentTime + 0.08);
-  } catch (e) {}
-}
-
-// ================================================================
-// 10. UTC CLOCK
-// ================================================================
+// ═══════════════════════════════════════════════════════════
+// 23. UTC CLOCK
+// ═══════════════════════════════════════════════════════════
 function initUTCClock() {
-  const clockEl = document.getElementById('utc-clock');
+  const el = document.getElementById('utc-clock');
+  if (!el) return;
+
   function update() {
-    if (!clockEl) return;
     const now = new Date();
-    const hrs = String(now.getUTCHours()).padStart(2, '0');
-    const mins = String(now.getUTCMinutes()).padStart(2, '0');
-    const secs = String(now.getUTCSeconds()).padStart(2, '0');
-    clockEl.textContent = `${hrs}:${mins}:${secs} UTC`;
+    const h = String(now.getUTCHours()).padStart(2, '0');
+    const m = String(now.getUTCMinutes()).padStart(2, '0');
+    const s = String(now.getUTCSeconds()).padStart(2, '0');
+    el.textContent = `${h}:${m}:${s} UTC`;
   }
+
   update();
   setInterval(update, 1000);
 }
 
-// ================================================================
-// 11. COMMAND PALETTE (`Cmd + K` MENU)
-// ================================================================
-function setupCommandPalette() {
-  const modal = document.getElementById('cmdk-modal');
-  const triggerBtn = document.getElementById('cmdk-trigger-btn');
-  const input = document.getElementById('cmdk-input');
-  const items = document.querySelectorAll('.cmdk-item');
+// ═══════════════════════════════════════════════════════════
+// 24. FULLSCREEN LIGHTBOX GALLERY
+// ═══════════════════════════════════════════════════════════
+function initLightboxGallery() {
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lb-img');
+  const lbPrev = document.getElementById('lb-prev');
+  const lbNext = document.getElementById('lb-next');
+  const lbCounter = document.getElementById('lb-counter');
+  const lbClose = document.getElementById('lb-close');
+  const lbOverlay = document.getElementById('lb-close-overlay');
+  if (!lightbox) return;
 
-  function openCmdk() {
-    if (!modal) return;
-    modal.classList.add('active');
-    input?.focus();
-    playClickAudio();
+  let currentPrefix = '';
+  let currentCount = 0;
+  let currentIndex = 1;
+
+  function updateImage() {
+    lbImg.src = `assets/${currentPrefix}_${currentIndex}.jpg`;
+    lbCounter.textContent = `${currentIndex} / ${currentCount}`;
   }
 
-  function closeCmdk() {
-    if (!modal) return;
-    modal.classList.remove('active');
-    if (input) input.value = '';
+  function openGallery(prefix, count, startIndex = 1) {
+    currentPrefix = prefix;
+    currentCount = count;
+    currentIndex = startIndex;
+    updateImage();
+    lightbox.classList.add('visible');
   }
 
-  triggerBtn?.addEventListener('click', openCmdk);
+  function closeGallery() {
+    lightbox.classList.remove('visible');
+  }
 
-  document.addEventListener('keydown', (e) => {
-    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+  function nextImg() {
+    if (currentIndex < currentCount) {
+      currentIndex++;
+      updateImage();
+    }
+  }
+
+  function prevImg() {
+    if (currentIndex > 1) {
+      currentIndex--;
+      updateImage();
+    }
+  }
+
+  // 1) Create Thumbnail Galleries dynamically and attach triggers
+  document.querySelectorAll('.pr-gallery').forEach(gallery => {
+    const prefix = gallery.dataset.galleryPrefix;
+    const count = parseInt(gallery.dataset.galleryCount, 10);
+    if (!prefix || count <= 0) return;
+
+    let html = `<div class="pr-thumbnails">`;
+    const maxThumbs = Math.min(count, 3);
+    for (let i = 1; i <= maxThumbs; i++) {
+      if (i === 3 && count > 3) {
+        html += `<div class="pr-thumb-more" data-prefix="${prefix}" data-count="${count}" data-index="${i}">
+                   <img src="assets/${prefix}_${i}.jpg" alt="${prefix} thumbnail" loading="lazy" />
+                   <div class="pr-more-overlay">+${count - 2} Görsel</div>
+                 </div>`;
+      } else {
+        html += `<img src="assets/${prefix}_${i}.jpg" class="pr-thumb-img" data-prefix="${prefix}" data-count="${count}" data-index="${i}" alt="${prefix} thumbnail" loading="lazy" />`;
+      }
+    }
+    html += `</div>`;
+    gallery.innerHTML = html;
+
+    // Attach click events to the newly generated thumbnails
+    gallery.querySelectorAll('.pr-thumb-img, .pr-thumb-more').forEach(thumb => {
+      thumb.addEventListener('click', (e) => {
+        e.stopPropagation(); // prevent expanding the row if double clicking or single clicking inside
+        const startIdx = parseInt(e.currentTarget.dataset.index, 10);
+        openGallery(prefix, count, startIdx);
+      });
+    });
+  });
+
+  // 1b) Add dblclick to process-row elements to open the gallery directly
+  const rows = document.querySelectorAll('.process-row');
+  rows.forEach(row => {
+    row.addEventListener('dblclick', (e) => {
+      // Prevent dblclick text selection behavior
       e.preventDefault();
-      if (modal?.classList.contains('active')) closeCmdk();
-      else openCmdk();
-    }
-    if (e.key === 'Escape' && modal?.classList.contains('active')) {
-      closeCmdk();
-    }
-  });
-
-  modal?.addEventListener('click', (e) => {
-    if (e.target === modal) closeCmdk();
-  });
-
-  items.forEach(item => {
-    item.addEventListener('click', () => {
-      const target = item.getAttribute('data-target-id');
-      closeCmdk();
-      if (target) {
-        const el = document.getElementById(target);
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      const galleryDiv = row.querySelector('.pr-gallery');
+      if (galleryDiv) {
+        const prefix = galleryDiv.dataset.galleryPrefix;
+        const count = parseInt(galleryDiv.dataset.galleryCount, 10);
+        if (prefix && count > 0) {
+          openGallery(prefix, count, 1);
+        }
       }
     });
   });
-}
 
-// ================================================================
-// 12. SCROLL REVEAL & HEADER STICKY
-// ================================================================
-function initScrollEffects() {
-  const revealEls = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
+  // 2) UI buttons
+  if (lbClose) lbClose.addEventListener('click', closeGallery);
+  if (lbOverlay) lbOverlay.addEventListener('click', closeGallery);
+  if (lbNext) lbNext.addEventListener('click', nextImg);
+  if (lbPrev) lbPrev.addEventListener('click', prevImg);
 
-  revealEls.forEach(el => observer.observe(el));
-}
-
-function setupHeaderScroll() {
-  const header = document.querySelector('.header');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 40) header.classList.add('scrolled');
-    else header.classList.remove('scrolled');
+  // 3) Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('visible')) return;
+    if (e.key === 'Escape') closeGallery();
+    if (e.key === 'ArrowRight') nextImg();
+    if (e.key === 'ArrowLeft') prevImg();
   });
 }
 
-// ================================================================
-// 13. LANGUAGE SWITCHER
-// ================================================================
-function setupLanguageSwitcher() {
-  const langBtns = document.querySelectorAll('.lang-btn');
-  langBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      const lang = e.target.getAttribute('data-lang');
-      if (lang === currentLang) return;
+// ═══════════════════════════════════════════════════════════
+// 25. THEME SELECTOR ENGINE
+// ═══════════════════════════════════════════════════════════
+function initThemeSelector() {
+  const btns = document.querySelectorAll('.theme-btn');
+  if (btns.length === 0) return;
 
-      currentLang = lang;
-      langBtns.forEach(b => b.classList.remove('active'));
-      e.target.classList.add('active');
-
-      applyTranslations(lang);
-      playClickAudio();
-    });
-  });
-}
-
-function applyTranslations(lang) {
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    if (dictionary[lang]?.[key]) el.textContent = dictionary[lang][key];
-  });
-}
-
-// ================================================================
-// 14. PROJECT FILTER TABS
-// ================================================================
-function setupFilterTabs() {
-  const filterBtns = document.querySelectorAll('.filter-chip');
-  const projectItems = document.querySelectorAll('#projects .activetheory-item');
-
-  filterBtns.forEach(btn => {
+  btns.forEach(btn => {
     btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
+      const theme = btn.dataset.theme;
+
+      // Update active button state
+      btns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
 
-      const filter = btn.getAttribute('data-filter');
-
-      projectItems.forEach(item => {
-        const cats = item.getAttribute('data-category') || '';
-        if (filter === 'all' || cats.includes(filter)) {
-          item.classList.remove('hidden');
-        } else {
-          item.classList.add('hidden');
-        }
-      });
-
-      playClickAudio();
-    });
-  });
-}
-
-// ================================================================
-// 15. LIGHTBOX ENGINE (Includes Zamanın Bekçisi 9-Images)
-// ================================================================
-function setupLightbox() {
-  const modal    = document.getElementById('lightbox-modal');
-  const closeBtn = document.getElementById('lightbox-close-btn');
-  const prevBtn  = document.getElementById('lightbox-prev-btn');
-  const nextBtn  = document.getElementById('lightbox-next-btn');
-
-  document.querySelectorAll('.btn-item-gallery').forEach(trigger => {
-    trigger.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const key = trigger.getAttribute('data-project-key');
-      if (!key || !projectGalleries[key]) return;
-
-      const gallery = projectGalleries[key];
-      if (!gallery.images || gallery.images.length === 0) return;
-
-      currentGallery = gallery.images;
-      currentTitle   = gallery.title;
-      currentImgIndex = 0;
-
-      openLightbox();
-      playClickAudio();
-    });
-  });
-
-  if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
-  if (prevBtn)  prevBtn.addEventListener('click', () => changeImage(-1));
-  if (nextBtn)  nextBtn.addEventListener('click', () => changeImage(1));
-
-  modal?.addEventListener('click', (e) => {
-    if (e.target === modal) closeLightbox();
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (!modal?.classList.contains('active')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowLeft') changeImage(-1);
-    if (e.key === 'ArrowRight') changeImage(1);
-  });
-}
-
-function openLightbox() {
-  const modal = document.getElementById('lightbox-modal');
-  updateLightboxContent();
-  modal.classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeLightbox() {
-  const modal = document.getElementById('lightbox-modal');
-  modal.classList.remove('active');
-  document.body.style.overflow = '';
-}
-
-function changeImage(dir) {
-  if (currentGallery.length <= 1) return;
-  currentImgIndex = (currentImgIndex + dir + currentGallery.length) % currentGallery.length;
-  updateLightboxContent();
-  playHoverAudio();
-}
-
-function updateLightboxContent() {
-  const imgEl     = document.getElementById('lightbox-img');
-  const captionEl = document.getElementById('lightbox-caption');
-  const counterEl = document.getElementById('lightbox-counter');
-
-  if (!imgEl) return;
-
-  imgEl.style.opacity = '0';
-  setTimeout(() => {
-    imgEl.src = currentGallery[currentImgIndex];
-    imgEl.onload = () => { imgEl.style.opacity = '1'; };
-  }, 80);
-
-  if (captionEl) captionEl.textContent = `${currentTitle} — Görsel ${currentImgIndex + 1}`;
-  if (counterEl) counterEl.textContent = `${currentImgIndex + 1} / ${currentGallery.length}`;
-}
-
-// ================================================================
-// 16. CONTACT FORM & TOAST
-// ================================================================
-const CLOUDFLARE_WORKER_URL = 'https://dobby-contact-form.donacodex.workers.dev/';
-
-function setupContactForm() {
-  const form = document.getElementById('contact-form');
-  if (!form) return;
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const name    = document.getElementById('contact-name').value;
-    const handle  = document.getElementById('contact-handle').value;
-    const service = document.getElementById('contact-service').value;
-    const message = document.getElementById('contact-message').value;
-
-    showToast('⏳ Mesajınız iletiliyor...');
-
-    if (CLOUDFLARE_WORKER_URL && !CLOUDFLARE_WORKER_URL.includes('YOUR_CLOUDFLARE')) {
-      try {
-        const res = await fetch(CLOUDFLARE_WORKER_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, handle, service, message })
-        });
-        if (res.ok) {
-          showToast('✔ Mesajınız doğrudan Dobby B\'nin e-posta kutusuna ulaştı!');
-          form.reset();
-          return;
-        }
-      } catch (err) {
-        console.warn('Worker fallback:', err);
+      // Update body classes
+      document.body.className = document.body.className.replace(/\btheme-\S+/g, '').trim();
+      if (theme !== 'default') {
+        document.body.classList.add(`theme-${theme}`);
       }
-    }
 
-    setTimeout(() => {
-      showToast('✔ E-posta istemciniz açılıyor...');
-      const subject = encodeURIComponent(`[İletişim Talebi] ${service} - ${name}`);
-      const body    = encodeURIComponent(`Gönderen: ${name} (${handle})\nHizmet: ${service}\n\nMesaj:\n${message}`);
-      window.location.href = `mailto:dobbyb.aidev@gmail.com?subject=${subject}&body=${body}`;
-    }, 1000);
+      // Live WebGL Background color transitions
+      if (STATE.bgMaterial) {
+        if (theme === 'gold') {
+          STATE.bgMaterial.uniforms.uColorA.value.set('#D4AF37');
+          STATE.bgMaterial.uniforms.uColorB.value.set('#AA7C11');
+        } else if (theme === 'aurora') {
+          STATE.bgMaterial.uniforms.uColorA.value.set('#E07A5F');
+          STATE.bgMaterial.uniforms.uColorB.value.set('#81B29A');
+        } else {
+          // default theme
+          STATE.bgMaterial.uniforms.uColorA.value.set('#6B21E8');
+          STATE.bgMaterial.uniforms.uColorB.value.set('#06B6D4');
+        }
+      }
+    });
   });
 }
 
-function showToast(msg) {
-  const toast    = document.getElementById('toast-bar');
-  const toastMsg = document.getElementById('toast-msg');
-  if (!toast || !toastMsg) return;
+// ═══════════════════════════════════════════════════════════
+// 26. DYNAMIC CIRCULAR FAVICON ENGINE
+// ═══════════════════════════════════════════════════════════
+function makeFaviconCircular() {
+  const imgUrl = 'profile.png';
+  const img = new Image();
+  // With a local file, we bypass restrictive CORS rules causing the white SVG issues
+  img.onload = function() {
+    try {
+      const canvas = document.createElement('canvas');
+      canvas.width = 32;
+      canvas.height = 32;
+      const ctx = canvas.getContext('2d');
 
-  toastMsg.textContent = msg;
-  toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 4500);
+      // Circular clip mask
+      ctx.beginPath();
+      ctx.arc(16, 16, 16, 0, Math.PI * 2);
+      ctx.closePath();
+      ctx.clip();
+
+      ctx.drawImage(img, 0, 0, 32, 32);
+
+      let link = document.querySelector("link[rel*='icon']");
+      if (!link) {
+        link = document.createElement('link');
+        link.rel = 'icon';
+        document.head.appendChild(link);
+      }
+      link.type = 'image/png';
+      link.href = canvas.toDataURL('image/png');
+    } catch (e) {
+      console.error("Favicon process failed:", e);
+    }
+  };
+  img.src = imgUrl;
 }
+
+// ═══════════════════════════════════════════════════════════
+// INIT ENTRY POINT
+// ═══════════════════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  document.body.classList.add('boot-active');
+
+  // Convert square GitHub profile into a clean circle in browser tab dynamically
+  makeFaviconCircular();
+
+  // Cursor is always active (even during boot)
+  initCursor();
+
+  // Boot sequence
+  runBootSequence();
+});
