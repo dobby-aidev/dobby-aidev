@@ -29,6 +29,22 @@ Built entirely in **React + TypeScript** with cinematic **Framer Motion** animat
 
 ---
 
+## 📸 Interface Screenshots
+
+<div align="center">
+
+<img src="./assets/zamanin_bekcisi_1.jpg" width="48%" alt="Zamanın Bekçisi Main Menu" />
+<img src="./assets/zamanin_bekcisi_2.jpg" width="48%" alt="Temporal Energy & Inventory Systems" />
+
+<br/><br/>
+
+<img src="./assets/zamanin_bekcisi_3.jpg" width="48%" alt="Branching Choice Story Graph" />
+<img src="./assets/zamanin_bekcisi_4.jpg" width="48%" alt="Cyberpunk 2087 Era Scene" />
+
+</div>
+
+---
+
 ## 🌍 Time Periods
 
 | Era | Year | Setting |

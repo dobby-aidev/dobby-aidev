@@ -91,34 +91,79 @@
     <header class="navbar" id="navbar" role="banner">
       <div class="nav-inner">
         <a href="#hero" class="nav-brand" aria-label="Ana Sayfa">
-          <img src="https://github.com/dobby-aidev.png" alt="Dobby B Profile" class="nav-brand-logo" />
-          <span class="nav-brand-text">Dobby B<span class="nav-brand-cursor"></span></span>
+          <div class="nav-brand-avatar-wrap">
+            <img src="https://github.com/dobby-aidev.png" alt="Dobby B Profile" class="nav-brand-logo" />
+            <span class="nav-brand-status-dot"></span>
+          </div>
+          <div class="nav-brand-info">
+            <span class="nav-brand-text">DOBBY_B<span class="nav-brand-cursor"></span></span>
+            <span class="nav-brand-sub">QUANT AI LAB</span>
+          </div>
         </a>
 
         <nav class="nav-links" role="navigation" aria-label="Ana Navigasyon">
-          <a href="#about" class="nav-link" data-section="about" data-i18n="nav_about"> <span
-              class="nav-link-num"></span>SİSTEM</a>
-          <a href="#projects" class="nav-link" data-section="projects" data-i18n="nav_projects"> <span
-              class="nav-link-num"></span>SÜREÇLER</a>
-          <a href="#stack" class="nav-link" data-section="stack" data-i18n="nav_stack"> <span
-              class="nav-link-num"></span>MODÜLLER</a>
-          <a href="#store" class="nav-link" data-section="store" data-i18n="nav_store"> <span
-              class="nav-link-num"></span>VERİ KASASI</a>
-          <a href="#contact" class="nav-link" data-section="contact" data-i18n="nav_contact"> <span
-              class="nav-link-num"></span>BAĞLANTI</a>
+          <a href="#about" class="nav-link" data-section="about" data-i18n="nav_about">SİSTEM</a>
+          <a href="#projects" class="nav-link" data-section="projects" data-i18n="nav_projects">SÜREÇLER</a>
+          <a href="#stack" class="nav-link" data-section="stack" data-i18n="nav_stack">MODÜLLER</a>
+          <a href="#store" class="nav-link" data-section="store" data-i18n="nav_store">VERİ KASASI</a>
+          <a href="#contact" class="nav-link" data-section="contact" data-i18n="nav_contact">BAĞLANTI</a>
         </nav>
 
         <div class="nav-right">
+          <!-- Palette Dropdown Wrap -->
+          <div class="nav-dropdown-wrap" id="palette-dropdown-wrap">
+            <button class="nav-dropdown-btn" id="palette-btn" aria-label="Tema Paletleri" aria-expanded="false">
+              <span class="nav-btn-icon">🎨</span>
+              <span class="nav-btn-text">PALET</span>
+              <span class="nav-btn-chevron">▾</span>
+            </button>
+            <div class="nav-dropdown-menu palette-menu" id="palette-menu" aria-hidden="true">
+              <button class="palette-option active" data-theme="default">
+                <span class="palette-swatch swatch-default"></span>
+                <span class="palette-name">Synaptic Void (Mor)</span>
+              </button>
+              <button class="palette-option" data-theme="gold">
+                <span class="palette-swatch swatch-gold"></span>
+                <span class="palette-name">Obsidian Gold (Altın)</span>
+              </button>
+              <button class="palette-option" data-theme="aurora">
+                <span class="palette-swatch swatch-aurora"></span>
+                <span class="palette-name">Nordic Emerald (Zümrüt)</span>
+              </button>
+              <button class="palette-option" data-theme="ruby">
+                <span class="palette-swatch swatch-ruby"></span>
+                <span class="palette-name">Cyber Crimson (Yakut)</span>
+              </button>
+              <button class="palette-option" data-theme="sapphire">
+                <span class="palette-swatch swatch-sapphire"></span>
+                <span class="palette-name">Quantum Sapphire (Safir)</span>
+              </button>
+              <button class="palette-option" data-theme="synthwave">
+                <span class="palette-swatch swatch-synthwave"></span>
+                <span class="palette-name">Neon Synthwave (Pembe)</span>
+              </button>
+            </div>
+          </div>
 
-          <div class="lang-toggle" role="group" aria-label="Dil Seçimi">
-            <button class="lang-btn active" data-lang="tr" id="lang-tr" aria-pressed="true">TR</button>
-            <button class="lang-btn" data-lang="en" id="lang-en" aria-pressed="false">EN</button>
+          <!-- Language Dropdown Wrap -->
+          <div class="nav-dropdown-wrap" id="lang-dropdown-wrap">
+            <button class="nav-dropdown-btn" id="lang-btn" aria-label="Dil Seçimi" aria-expanded="false">
+              <span class="nav-btn-icon">🌐</span>
+              <span class="nav-btn-text" id="lang-current-label">TR</span>
+              <span class="nav-btn-chevron">▾</span>
+            </button>
+            <div class="nav-dropdown-menu lang-menu" id="lang-menu" aria-hidden="true">
+              <button class="lang-option active" data-lang="tr">
+                <span class="lang-flag">🇹🇷</span>
+                <span class="lang-name">Türkçe</span>
+              </button>
+              <button class="lang-option" data-lang="en">
+                <span class="lang-flag">🇬🇧</span>
+                <span class="lang-name">English</span>
+              </button>
+            </div>
           </div>
-          <div class="theme-selector" role="group" aria-label="Tema Seçimi">
-            <button class="theme-btn active" data-theme="default" title="Synaptic Void"></button>
-            <button class="theme-btn" data-theme="gold" title="Obsidian Gold"></button>
-            <button class="theme-btn" data-theme="aurora" title="Nordic Aurora"></button>
-          </div>
+
           <a href="https://whop.com/dona-ai" target="_blank" rel="noopener noreferrer" class="nav-cta"
             aria-label="Whop Store'a git">
             STORE <span class="nav-cta-arrow">↗</span>
@@ -152,9 +197,7 @@
           <!-- Left: Identity -->
           <div class="hero-left">
             <div class="hero-status-tag" aria-live="polite">
-              <span class="tag-bracket">[</span><span class="tag-num">
-                <!DOCTYPE html>
-              </span><span class="tag-bracket">]</span>
+              <span class="tag-bracket">[</span><span class="tag-num">00</span><span class="tag-bracket">]</span>
               <span id="hero-status-text">Otonom AI &amp; Quant Sistemleri</span>
             </div>
 
@@ -178,11 +221,6 @@
               <div class="stat-divider" aria-hidden="true"></div>
               <div class="stat-cell">
                 <div class="stat-val" data-target="100" data-suffix="K+">0</div>
-                <div class="stat-label">Kod Satırı</div>
-              </div>
-              <div class="stat-divider" aria-hidden="true"></div>
-              <div class="stat-cell">
-                <div class="stat-val" data-target="78" data-suffix="%">0</div>
                 <div class="stat-label">DRL Winrate</div>
               </div>
               <div class="stat-divider" aria-hidden="true"></div>
@@ -1223,6 +1261,124 @@
         <button id="lb-next" class="lb-btn" aria-label="Sonraki Görsel">❯</button>
       </div>
       <button id="lb-close" class="lb-close-btn" aria-label="Kapat">✕</button>
+    </div>
+  </div>
+
+  <!-- Floating Quick Settings Button -->
+  <button id="floating-settings-btn" class="floating-settings-btn" aria-label="Hızlı Ayarlar Paneli" title="Sistem Ayarları">
+    <span class="floating-gear">⚙️</span>
+    <span class="floating-ping"></span>
+  </button>
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- SYSTEM SETTINGS MODAL & CONTROL CENTER                         -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div id="settings-modal" class="settings-modal" aria-hidden="true" role="dialog" aria-labelledby="settings-title">
+    <div class="settings-backdrop" id="settings-backdrop"></div>
+    <div class="settings-panel">
+      <div class="settings-header">
+        <div class="settings-title-wrap">
+          <span class="settings-badge">[SYS_CFG]</span>
+          <h3 id="settings-title" class="settings-title">Sistem Ayarları &amp; Kontrol Paneli</h3>
+        </div>
+        <button class="settings-close-btn" id="close-settings-btn" aria-label="Kapat">✕</button>
+      </div>
+
+      <div class="settings-body">
+        <!-- 1. Color Theme Palette -->
+        <div class="settings-group">
+          <label class="settings-group-label">🎨 Matris Renk Teması (Accent Palette)</label>
+          <div class="theme-grid">
+            <button class="theme-card active" data-theme="default">
+              <span class="theme-card-dot default-dot"></span>
+              <div class="theme-card-info">
+                <span class="theme-card-name">Synaptic Void</span>
+                <span class="theme-card-desc">Siber Mor &amp; Neon Mavi</span>
+              </div>
+            </button>
+            <button class="theme-card" data-theme="gold">
+              <span class="theme-card-dot gold-dot"></span>
+              <div class="theme-card-info">
+                <span class="theme-card-name">Obsidian Gold</span>
+                <span class="theme-card-desc">Altın &amp; Kehribar Işıltısı</span>
+              </div>
+            </button>
+            <button class="theme-card" data-theme="aurora">
+              <span class="theme-card-dot aurora-dot"></span>
+              <div class="theme-card-info">
+                <span class="theme-card-name">Nordic Aurora</span>
+                <span class="theme-card-desc">Zümrüt &amp; Nane Yeşili</span>
+              </div>
+            </button>
+            <button class="theme-card" data-theme="ruby">
+              <span class="theme-card-dot ruby-dot"></span>
+              <div class="theme-card-info">
+                <span class="theme-card-name">Cyber Ruby</span>
+                <span class="theme-card-desc">Kıpkırmızı &amp; Turuncu Matris</span>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <!-- 2. Audio SFX Toggle -->
+        <div class="settings-group settings-row">
+          <div class="settings-info">
+            <label class="settings-group-label">🔊 Siber Ses Efektleri (Web Audio Synthesizer)</label>
+            <span class="settings-subtext">Buton tıklamaları ve etkileşimler için sci-fi ses dönütleri</span>
+          </div>
+          <button class="toggle-switch active" id="sfx-toggle" aria-pressed="true">
+            <span class="toggle-handle"></span>
+          </button>
+        </div>
+
+        <!-- 3. Particle Density -->
+        <div class="settings-group">
+          <label class="settings-group-label">✨ Parçacık Yoğunluğu (WebGL Background)</label>
+          <div class="density-buttons">
+            <button class="density-btn" data-density="low">Düşük (30)</button>
+            <button class="density-btn active" data-density="med">Dengeli (70)</button>
+            <button class="density-btn" data-density="high">Yüksek (120)</button>
+          </div>
+        </div>
+
+        <!-- 4. CRT Scanlines & Grain -->
+        <div class="settings-group settings-row">
+          <div class="settings-info">
+            <label class="settings-group-label">📺 CRT Scanline / Siber Parazit Kaplaması</label>
+            <span class="settings-subtext">Sinematik tarama çizgileri ve parazit dokusu</span>
+          </div>
+          <button class="toggle-switch active" id="scanlines-toggle" aria-pressed="true">
+            <span class="toggle-handle"></span>
+          </button>
+        </div>
+
+        <!-- 5. Quick Reset & Close -->
+        <div class="settings-footer">
+          <button class="settings-reset-btn" id="reset-settings-btn">Varsayılana Sıfırla</button>
+          <button class="settings-save-btn" id="save-settings-btn">Kaydet &amp; Kapat</button>
+        </div>
+      </div>
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <!-- COMMAND PALETTE (Ctrl+K HUD OVERLAY)                          -->
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div id="cmd-palette-modal" class="cmd-modal" aria-hidden="true" role="dialog" aria-label="Komut Paleti">
+    <div class="cmd-backdrop" id="cmd-backdrop"></div>
+    <div class="cmd-panel">
+      <div class="cmd-search-wrap">
+        <span class="cmd-search-icon">⚡</span>
+        <input type="text" id="cmd-input" class="cmd-input" placeholder="Bir komut yazın veya arayın (ör: projelere git, tema, ayarlar, github...)" autocomplete="off" spellcheck="false" />
+        <kbd class="cmd-esc-badge">ESC</kbd>
+      </div>
+
+      <div class="cmd-results" id="cmd-results" role="listbox">
+        <!-- Dynamically rendered command options -->
+      </div>
+
+      <div class="cmd-footer">
+        <span class="cmd-hint-item"><kbd class="cmd-kbd">↑</kbd> <kbd class="cmd-kbd">↓</kbd> Gezin</span>
+        <span class="cmd-hint-item"><kbd class="cmd-kbd">↵</kbd> Seç</span>
+        <span class="cmd-hint-item"><kbd class="cmd-kbd">ESC</kbd> Kapat</span>
+      </div>
     </div>
   </div>
 
