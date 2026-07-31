@@ -36,14 +36,15 @@ This repository contains my personal developer portfolio site built as a futuris
 
 The site has been engineered to showcase high-end creative coding and premium UI elements:
 
+- **🌊 WebGL Liquid Aurora Background:** Advanced Three.js Fragment Shader utilizing Multi-Octave Fractal Brownian Motion (FBM) for a dynamic fluid-metal background reacting to scroll momentum.
+- **🧲 Magnetic UI Interactions:** Interactive buttons and links that organically pull towards the cursor using physics-based spring logic for a tactile, physical feel.
+- **🌌 3D Parallax Hero Illusion:** Multi-layered spatial depth tracking on the main hero section, creating a responsive optical illusion based on mouse position.
+- **⭕ Dynamic Cursor Progress Ring:** A custom zero-latency lerp cursor wrapped in an SVG ring that tracks global scroll percentage, replacing standard scrollbars.
+- **🏎️ Spatial Kinetic Marquee:** A massive background typography track that dynamically skews and accelerates in 3D space based on the user's scroll velocity.
+- **💧 Fluid Mobile Menu Overlay:** An ink-drop SVG clip-path expansion menu with staggered cascading link reveals for premium mobile UX.
+- **🔍 Apple-style Glassmorphic Spotlights:** Bento grid project cards utilizing dynamic CSS radial gradients that track mouse coordinates for a premium glassmorphic glow.
 - **🖥️ Cyberpunk Boot Simulation:** A custom terminals-like BIOS loading screens simulation with interactive skips and progress updates.
-- **✨ Cosmic Particle Background:** A highly optimized Three.js WebGL particle cosmic field that dynamic acceleration behaves directly corresponding to client pointer movement.
-- **🧬 3D Neural Core Widget:** Interactive 3D wireframe core reacting smoothly to cursor locations.
-- **🖼️ Smart Thumbnail Grid:** Auto-populated dynamic gallery assets with an integrated overlay (e.g. `+18 Images`) for project showcases.
-- **🔍 Fullscreen Lightbox Gallery:** Keyboard-navigable (`Right`, `Left`, `Esc`) image modal system to inspect detailed repository screenshots with double-click integration.
-- **💫 Synaptic Cursor Trail:** Custom HTML5 Canvas-based smooth particle trail tracking client mouse coordinates.
 - **🇹🇷 Double Language Support:** Client-side localization engine handling active transitions between TR and EN languages smoothly.
-- **📊 Real-time UTC Counter & Active Indicators:** Dynamic headers incorporating system telemetry logs.
 
 ---
 

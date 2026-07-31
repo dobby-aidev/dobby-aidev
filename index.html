@@ -35,7 +35,12 @@
   <!-- SYNAPTIC CURSOR                                                -->
   <!-- ══════════════════════════════════════════════════════════════ -->
   <div id="cursor-dot" aria-hidden="true"></div>
-  <div id="cursor-ring" aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true">
+    <svg width="40" height="40" viewBox="0 0 40 40" class="cursor-svg">
+      <circle class="cursor-progress-bg" cx="20" cy="20" r="18" />
+      <circle class="cursor-progress" id="cursor-progress" cx="20" cy="20" r="18" />
+    </svg>
+  </div>
   <canvas id="cursor-trail-canvas" aria-hidden="true"></canvas>
 
   <!-- ══════════════════════════════════════════════════════════════ -->
@@ -76,8 +81,13 @@
     <!-- Noise/Grain Texture -->
     <div class="grain-overlay" aria-hidden="true"></div>
 
-
-
+    <!-- Spatial Kinetic Typography Marquee -->
+    <div class="spatial-marquee-container" id="spatial-marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span class="marquee-text">CREATIVE DEVELOPER • QUANT AI LAB • BESPOKE EXPERIENCES •</span>
+        <span class="marquee-text">CREATIVE DEVELOPER • QUANT AI LAB • BESPOKE EXPERIENCES •</span>
+      </div>
+    </div>
     <!-- Consciousness Level Indicator -->
     <div class="consciousness-indicator" id="consciousness-indicator" aria-label="Consciousness Level">
       <div class="consciousness-label">CONSCIOUSNESS</div>
@@ -196,24 +206,24 @@
 
           <!-- Left: Identity -->
           <div class="hero-left">
-            <div class="hero-status-tag" aria-live="polite">
+            <div class="hero-status-tag" aria-live="polite" data-depth="0.2" style="position: relative;">
               <span class="tag-bracket">[</span><span class="tag-num">00</span><span class="tag-bracket">]</span>
               <span id="hero-status-text">Otonom AI &amp; Quant Sistemleri</span>
             </div>
 
-            <h1 class="hero-title" id="hero-heading">
+            <h1 class="hero-title" id="hero-heading" data-depth="0.6" style="position: relative;">
               <span class="hero-title-line">Otonom</span>
               <span class="hero-title-line hero-title-accent" id="typewriter-target">Yapay Zeka</span>
               <span class="hero-title-line">Mimarileri.</span>
             </h1>
 
-            <p class="hero-bio" id="hero-bio">
+            <p class="hero-bio" id="hero-bio" data-depth="0.3" style="position: relative;">
               Çoklu-ajan swarm'ları, PyTorch derin pekiştirmeli öğrenme botları ve açık kaynaklı AI web platformları
               inşa ediyorum.
             </p>
 
             <!-- Neural Stats Row -->
-            <div class="hero-stats" aria-label="İstatistikler">
+            <div class="hero-stats" aria-label="İstatistikler" data-depth="0.1" style="position: relative;">
               <div class="stat-cell">
                 <div class="stat-val" data-target="10">0</div>
                 <div class="stat-label">Proje</div>
@@ -388,6 +398,38 @@
               <div class="sys-card-glow" aria-hidden="true"></div>
             </div>
 
+          </div>
+
+          <!-- Sci-Fi Interactive IDE Code Playground -->
+          <div class="ide-playground reveal reveal-d1" id="ide-playground">
+            <div class="ide-header">
+              <div class="ide-dots">
+                <span class="ide-dot dot-red"></span>
+                <span class="ide-dot dot-yellow"></span>
+                <span class="ide-dot dot-green"></span>
+              </div>
+              <div class="ide-tabs">
+                <button class="ide-tab active" data-tab="pytorch">
+                  <span class="ide-tab-icon">🔥</span> apex_quant.py
+                </button>
+                <button class="ide-tab" data-tab="swarm">
+                  <span class="ide-tab-icon">⚡</span> overmind_swarm.ts
+                </button>
+                <button class="ide-tab" data-tab="shader">
+                  <span class="ide-tab-icon">🌐</span> neural_warp.glsl
+                </button>
+              </div>
+              <button class="ide-copy-btn" id="ide-copy-btn" title="Kodu Kopyala">
+                <span class="ide-copy-icon">📋</span> KOPYALA
+              </button>
+            </div>
+            <div class="ide-body">
+              <pre class="ide-code"><code id="ide-code-target"></code></pre>
+            </div>
+            <div class="ide-footer">
+              <span class="ide-status-dot"></span>
+              <span class="ide-footer-text" id="ide-footer-text">Neural Engine v2.0 • UTF-8 • PyTorch DRL</span>
+            </div>
           </div>
         </div>
       </section>
@@ -1265,7 +1307,8 @@
   </div>
 
   <!-- Floating Quick Settings Button -->
-  <button id="floating-settings-btn" class="floating-settings-btn" aria-label="Hızlı Ayarlar Paneli" title="Sistem Ayarları">
+  <button id="floating-settings-btn" class="floating-settings-btn" aria-label="Hızlı Ayarlar Paneli"
+    title="Sistem Ayarları">
     <span class="floating-gear">⚙️</span>
     <span class="floating-ping"></span>
   </button>
@@ -1358,31 +1401,33 @@
           <button class="settings-save-btn" id="save-settings-btn">Kaydet &amp; Kapat</button>
         </div>
       </div>
-  <!-- ══════════════════════════════════════════════════════════════ -->
-  <!-- COMMAND PALETTE (Ctrl+K HUD OVERLAY)                          -->
-  <!-- ══════════════════════════════════════════════════════════════ -->
-  <div id="cmd-palette-modal" class="cmd-modal" aria-hidden="true" role="dialog" aria-label="Komut Paleti">
-    <div class="cmd-backdrop" id="cmd-backdrop"></div>
-    <div class="cmd-panel">
-      <div class="cmd-search-wrap">
-        <span class="cmd-search-icon">⚡</span>
-        <input type="text" id="cmd-input" class="cmd-input" placeholder="Bir komut yazın veya arayın (ör: projelere git, tema, ayarlar, github...)" autocomplete="off" spellcheck="false" />
-        <kbd class="cmd-esc-badge">ESC</kbd>
+      <!-- ══════════════════════════════════════════════════════════════ -->
+      <!-- COMMAND PALETTE (Ctrl+K HUD OVERLAY)                          -->
+      <!-- ══════════════════════════════════════════════════════════════ -->
+      <div id="cmd-palette-modal" class="cmd-modal" aria-hidden="true" role="dialog" aria-label="Komut Paleti">
+        <div class="cmd-backdrop" id="cmd-backdrop"></div>
+        <div class="cmd-panel">
+          <div class="cmd-search-wrap">
+            <span class="cmd-search-icon">⚡</span>
+            <input type="text" id="cmd-input" class="cmd-input"
+              placeholder="Bir komut yazın veya arayın (ör: projelere git, tema, ayarlar, github...)" autocomplete="off"
+              spellcheck="false" />
+            <kbd class="cmd-esc-badge">ESC</kbd>
+          </div>
+
+          <div class="cmd-results" id="cmd-results" role="listbox">
+            <!-- Dynamically rendered command options -->
+          </div>
+
+          <div class="cmd-footer">
+            <span class="cmd-hint-item"><kbd class="cmd-kbd">↑</kbd> <kbd class="cmd-kbd">↓</kbd> Gezin</span>
+            <span class="cmd-hint-item"><kbd class="cmd-kbd">↵</kbd> Seç</span>
+            <span class="cmd-hint-item"><kbd class="cmd-kbd">ESC</kbd> Kapat</span>
+          </div>
+        </div>
       </div>
 
-      <div class="cmd-results" id="cmd-results" role="listbox">
-        <!-- Dynamically rendered command options -->
-      </div>
-
-      <div class="cmd-footer">
-        <span class="cmd-hint-item"><kbd class="cmd-kbd">↑</kbd> <kbd class="cmd-kbd">↓</kbd> Gezin</span>
-        <span class="cmd-hint-item"><kbd class="cmd-kbd">↵</kbd> Seç</span>
-        <span class="cmd-hint-item"><kbd class="cmd-kbd">ESC</kbd> Kapat</span>
-      </div>
-    </div>
-  </div>
-
-  <script src="script.js?v=2"></script>
+      <script src="script.js?v=2"></script>
 </body>
 
 </html>
