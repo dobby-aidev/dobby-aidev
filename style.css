@@ -1596,15 +1596,18 @@ img {
 .sys-card {
   position: relative;
   grid-column: span 4;
-  background: rgba(10, 10, 20, 0.4);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(10, 10, 20, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 20px;
   padding: clamp(1.25rem, 3vw, 1.75rem);
   overflow: hidden;
   box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.75);
-  transition: transform var(--dur-slow) var(--ease-spring), box-shadow var(--dur-base) ease;
+  transition: transform var(--dur-slow) var(--ease-spring), box-shadow var(--dur-base) ease, border-color var(--dur-base) ease;
+  contain: layout paint;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 /* Glassmorphism Spotlight Border Mask */
@@ -1826,9 +1829,11 @@ img {
   align-items: center;
   padding: 1rem 1.25rem;
   border-bottom: 1px solid var(--border-3);
-  transition: all var(--dur-fast) ease;
+  transition: background var(--dur-fast) ease, border-color var(--dur-fast) ease, box-shadow var(--dur-fast) ease;
   cursor: none;
-  /* Keep synaptic cursor active */
+  contain: layout paint;
+  will-change: background, border-color;
+  transform: translateZ(0);
 }
 
 .process-row:hover {

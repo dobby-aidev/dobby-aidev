@@ -254,11 +254,15 @@ function initCursor() {
 
     if (document.hidden) return;
 
-    // Snappy High-Speed Ring Lerp (0.45 factor = ultra responsive 144fps tracking)
-    prevRingX += (STATE.targetCursorX - prevRingX) * 0.45;
-    prevRingY += (STATE.targetCursorY - prevRingY) * 0.45;
+    const dx = STATE.targetCursorX - prevRingX;
+    const dy = STATE.targetCursorY - prevRingY;
 
-    ring.style.transform = `translate3d(${prevRingX}px, ${prevRingY}px, 0) translate(-50%, -50%)`;
+    if (Math.abs(dx) < 0.05 && Math.abs(dy) < 0.05) return;
+
+    prevRingX += dx * 0.45;
+    prevRingY += dy * 0.45;
+
+    ring.style.transform = `translate3d(${prevRingX.toFixed(1)}px, ${prevRingY.toFixed(1)}px, 0) translate(-50%, -50%)`;
   }
 
   animateCursor();
@@ -271,8 +275,8 @@ function initNeuralBgCanvas() {
   const canvas = document.getElementById('neural-bg-canvas');
   if (!canvas || typeof THREE === 'undefined') return;
 
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.25));
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: true, powerPreference: 'high-performance' });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.0));
   renderer.setSize(window.innerWidth, window.innerHeight);
 
   const scene = new THREE.Scene();
@@ -314,14 +318,13 @@ function initNeuralBgCanvas() {
                    mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), u.x), u.y);
       }
 
-      // Advanced Liquid Aurora / Metal displacement
+      // Optimized Fluid displacement
       float fbm(vec2 p) {
         float v = 0.0;
         float a = 0.5;
         vec2 shift = vec2(100.0);
-        // Rotate to add swirling complexity
         mat2 rot = mat2(cos(0.5), sin(0.5), -sin(0.5), cos(0.5));
-        for (int i = 0; i < 3; ++i) { // Increased octaves for richer fluid detail
+        for (int i = 0; i < 2; ++i) { // 2 octaves for smooth performance without GPU lag
           v += a * noise(p);
           p = rot * p * 2.0 + shift;
           a *= 0.5;
@@ -332,8 +335,6 @@ function initNeuralBgCanvas() {
       void main() {
         vec2 uv = vUv;
         vec2 m = vec2(uMouseX * 0.5 + 0.5, uMouseY * 0.5 + 0.5);
-
-        // Slow down time for a majestic fluid flow
         float time = uTime * 0.06;
 
         vec2 q = vec2(0.0);
@@ -350,12 +351,10 @@ function initNeuralBgCanvas() {
         vec3 colB = uColorB * 0.20;
         vec3 baseVoid = vec3(0.02, 0.02, 0.035);
 
-        // Smooth color interpolation for "liquid metal" / "aurora" effect
         vec3 col = mix(colA, colB, smoothstep(0.1, 0.9, f));
         col = mix(col, uColorB * 0.3, smoothstep(0.1, 0.8, length(q)));
         col = mix(col, uColorA * 0.35, smoothstep(0.1, 0.8, length(r.x)));
 
-        // Core glow and contrast boost
         vec3 finalCol = mix(baseVoid, col, f * 1.5 + 0.2);
         gl_FragColor = vec4(finalCol, 1.0);
       }
@@ -384,20 +383,19 @@ function initNeuralBgCanvas() {
   }, { passive: true });
 
   const clock = new THREE.Clock();
-  let animationFrameId;
   let lastTime = 0;
 
   function animate(time) {
-    animationFrameId = requestAnimationFrame(animate);
+    requestAnimationFrame(animate);
 
-    if (document.hidden) return;
+    // Pause WebGL bg shader when page is hidden or scrolled past hero section to eliminate scroll lag
+    if (document.hidden || window.scrollY > window.innerHeight * 1.5) return;
 
-    if (time - lastTime < 22) return;
+    if (time - lastTime < 32) return; // 30fps throttle for smooth ambient background
     lastTime = time;
 
-    // Fluid background displacement advances faster during scrolling
     mat.uniforms.uTime.value += 0.016 + scrollSpeed;
-    scrollSpeed *= 0.90; // Smooth decay back to base fluid pace
+    scrollSpeed *= 0.90;
 
     mat.uniforms.uMouseX.value += ((STATE.mouseX / window.innerWidth * 2 - 1) - mat.uniforms.uMouseX.value) * 0.02;
     mat.uniforms.uMouseY.value += (-(STATE.mouseY / window.innerHeight * 2 - 1) - mat.uniforms.uMouseY.value) * 0.02;
@@ -421,8 +419,8 @@ function initNeuralNodeCanvas() {
   let W = container.clientWidth || 400;
   let H = container.clientHeight || 400;
 
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: true, powerPreference: 'high-performance' });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.0));
   renderer.setSize(W, H);
   renderer.setClearColor(0x000000, 0);
 
@@ -481,7 +479,7 @@ function initNeuralNodeCanvas() {
   group.add(secondWireframe);
 
   // 3) Synaptic Nodes Setup
-  const NODE_COUNT = 75;
+  const NODE_COUNT = 45;
   const nodes = [];
   const geom = new THREE.BufferGeometry();
   const positions = new Float32Array(NODE_COUNT * 3);
@@ -640,7 +638,7 @@ function initNeuralNodeCanvas() {
     // Completely pause 3D node rendering when scrolled out of view or tab hidden
     if (!isNodeVisible || document.hidden) return;
 
-    if (time - lastTime < 16) return;
+    if (time - lastTime < 30) return;
     lastTime = time;
 
     const t = clock.getElapsedTime();
@@ -1046,43 +1044,43 @@ function initMagneticUI() {
   const magnets = document.querySelectorAll('.nav-link, .pr-btn, .vault-btn, .social-node, .nav-hamburger, .nav-dropdown-btn');
   
   magnets.forEach(magnet => {
+    let ticking = false;
     magnet.addEventListener('mousemove', (e) => {
-      const rect = magnet.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
-      
-      // Calculate magnetic pull strength (max 15px)
-      const pullX = x * 0.3;
-      const pullY = y * 0.3;
-      
-      magnet.style.transform = `translate(${pullX}px, ${pullY}px)`;
-      
-      // Optional: If there's an icon inside, pull it a bit more for parallax
-      const icon = magnet.querySelector('.nav-btn-icon, .social-icon, .pr-active-dot');
-      if (icon) {
-        icon.style.transform = `translate(${pullX * 0.5}px, ${pullY * 0.5}px)`;
-      }
-    });
+      if (ticking) return;
+      ticking = true;
+      const clientX = e.clientX;
+      const clientY = e.clientY;
+      requestAnimationFrame(() => {
+        const rect = magnet.getBoundingClientRect();
+        const x = clientX - rect.left - rect.width / 2;
+        const y = clientY - rect.top - rect.height / 2;
+        const pullX = x * 0.25;
+        const pullY = y * 0.25;
+        magnet.style.transform = `translate3d(${pullX}px, ${pullY}px, 0)`;
+        const icon = magnet.querySelector('.nav-btn-icon, .social-icon, .pr-active-dot');
+        if (icon) {
+          icon.style.transform = `translate3d(${pullX * 0.5}px, ${pullY * 0.5}px, 0)`;
+        }
+        ticking = false;
+      });
+    }, { passive: true });
     
     magnet.addEventListener('mouseleave', () => {
-      // Spring back to original position
-      magnet.style.transform = 'translate(0px, 0px)';
-      magnet.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
+      magnet.style.transform = 'translate3d(0px, 0px, 0)';
+      magnet.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
       
       const icon = magnet.querySelector('.nav-btn-icon, .social-icon, .pr-active-dot');
       if (icon) {
-        icon.style.transform = 'translate(0px, 0px)';
-        icon.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
+        icon.style.transform = 'translate3d(0px, 0px, 0)';
+        icon.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
       }
       
-      // Remove transition after it's done to keep hover snappy
       setTimeout(() => {
         magnet.style.transition = '';
         if (icon) icon.style.transition = '';
-      }, 500);
+      }, 400);
     });
     
-    // Ensure transition is removed when entering for immediate tracking
     magnet.addEventListener('mouseenter', () => {
       magnet.style.transition = 'transform 0.1s ease-out';
       const icon = magnet.querySelector('.nav-btn-icon, .social-icon, .pr-active-dot');
@@ -1118,25 +1116,26 @@ function initHeroParallax() {
     });
   });
   
+  let parallaxTicking = false;
   heroSection.addEventListener('mousemove', (e) => {
-    if (!isHovering) return;
-    
-    // Calculate mouse position relative to center of screen
-    const centerX = window.innerWidth / 2;
-    const centerY = window.innerHeight / 2;
-    const x = (e.clientX - centerX) / centerX;
-    const y = (e.clientY - centerY) / centerY;
-    
-    parallaxElements.forEach(el => {
-      const depth = parseFloat(el.getAttribute('data-depth')) || 0.1;
-      
-      // Calculate offset (invert x and y to push away from mouse)
-      const moveX = x * depth * -40; // Max 40px movement
-      const moveY = y * depth * -40;
-      
-      el.style.transform = `translate3d(${moveX}px, ${moveY}px, 0)`;
+    if (!isHovering || parallaxTicking) return;
+    parallaxTicking = true;
+    const clientX = e.clientX;
+    const clientY = e.clientY;
+    requestAnimationFrame(() => {
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+      const x = (clientX - centerX) / centerX;
+      const y = (clientY - centerY) / centerY;
+      parallaxElements.forEach(el => {
+        const depth = parseFloat(el.getAttribute('data-depth')) || 0.1;
+        const moveX = x * depth * -30;
+        const moveY = y * depth * -30;
+        el.style.transform = `translate3d(${moveX}px, ${moveY}px, 0)`;
+      });
+      parallaxTicking = false;
     });
-  });
+  }, { passive: true });
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -1778,6 +1777,8 @@ function initCommandPalette() {
   if (!modal || !input || !resultsContainer) return;
 
   const COMMANDS = [
+    { icon: '🌐', title: 'Dona Nova — Live Platform (donanova.donacodex.workers.dev)', desc: '3D WebGL Altyapı İstihbarat Platformu (Canlı)', badge: 'CANLI', action: () => window.open('https://donanova.donacodex.workers.dev', '_blank') },
+    { icon: '🧬', title: 'Dona Æon — Embodied Spiking Agent', desc: 'Serbest Enerji Prensibi & Spiking Nöron Biyolojik Dijital Organizma', badge: 'ARAŞTIRMA', action: () => window.open('https://github.com/dobby-aidev/dona-aeon-showcase', '_blank') },
     { icon: '🚀', title: 'Geliştirilen Projeler (Processes)', desc: 'Proje vitrini ve teknik detaylara git', badge: 'GEZİNTİ', action: () => scrollToSection('projects') },
     { icon: '⚡', title: 'Sistem & Mimari (System)', desc: 'Mimariler ve uzmanlık alanlarına git', badge: 'GEZİNTİ', action: () => scrollToSection('about') },
     { icon: '🛠️', title: 'Teknoloji Yığını (Modules)', desc: 'Kullanılan diller ve kütüphaneler', badge: 'GEZİNTİ', action: () => scrollToSection('stack') },

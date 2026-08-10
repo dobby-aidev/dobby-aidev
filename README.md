@@ -7,6 +7,7 @@
 [![Portfolio Site](https://img.shields.io/badge/🌐%20Live%20Portfolio-dobby--aidev-6366f1?style=for-the-badge&logo=google-chrome&logoColor=white)](https://dobby-aidev.github.io/dobby-aidev/)
 [![Whop Store](https://img.shields.io/badge/🛍️%20Whop%20Store-dona--ai-FFB800?style=for-the-badge)](https://whop.com/dona-ai)
 [![Agent Critiq](https://img.shields.io/badge/Agent%20Critiq-agentcritiq.com-10b981?style=for-the-badge&logo=globe&logoColor=white)](https://agentcritiq.com)
+[![Dona Nova](https://img.shields.io/badge/🌐%20Dona%20Nova-Live%20Platform-00C7B7?style=for-the-badge&logo=cloudflare&logoColor=white)](https://donanova.donacodex.workers.dev)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/dobbyb-aidev)
 [![X / Twitter](https://img.shields.io/badge/X%20(Twitter)-dobbyb__ai-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/dobbyb_ai)
 [![Instagram](https://img.shields.io/badge/Instagram-dobbybmusic-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/dobbybmusic)
@@ -88,6 +89,20 @@ Hi! I'm **Dobby B (@dobby-aidev)** — AI Dev. I build autonomous AI agents, pro
 > Curated review platform for 100+ AI tools and autonomous agents. Native MCP server integration, open Hugging Face dataset, and AI-crawler search optimization.
 >
 > `TypeScript` `React` `MCP Server` `Hugging Face API`
+
+---
+
+### 🌐 [Dona Nova Showcase](https://github.com/dobby-aidev/dona-nova-showcase) — 3D WebGL Infrastructure Intelligence Platform
+> **[Live Platform](https://donanova.donacodex.workers.dev)** — The World's Infrastructure Intelligence Digital Planet. Visualizes global power grids, 35,000+ power plants, carbon intensity telemetry, and IXPs in 3D WebGL via verified real-time APIs (EIA, ENTSO-E, Electricity Maps, WRI).
+>
+> `Next.js 16` `Three.js / R3F` `TypeScript` `Cloudflare Workers` `Tailwind CSS v4`
+
+---
+
+### 🧬 [Dona Æon Showcase](https://github.com/dobby-aidev/dona-aeon-showcase) — Active Inference Embodied Spiking Agent
+> Biological digital organism simulation operating on Karl Friston's **Free Energy Principle**, predictive spiking neural networks, synaptic plasticity, 730-day growth progression cycle, and REM sleep memory consolidation.
+>
+> `PyTorch` `Spiking Neural Nets` `Free Energy Principle` `Active Inference` `Python 3.11`
 
 ---
 
