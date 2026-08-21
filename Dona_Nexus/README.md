@@ -63,6 +63,27 @@ Entry Policy               Exit Policy
 
 ---
 
+## 📈 Live Paper Trading Performance
+
+**ApexBrain (`gen_510.pth`)** has been running autonomously in live paper-trading mode on Binance Futures. Starting from a **$100.00** balance, here are the validated real-time statistics over 9 days (Aug 13 - Aug 21, 2026):
+
+| Metric | Value |
+|---|---|
+| ⏳ **Duration** | 9 Days |
+| 📊 **Total Trades** | 76 Trades |
+| 🎯 **Win Rate** | **53.95%** (41 Wins) |
+| 💰 **Initial Balance** | $100.00 |
+| 📈 **Final Balance** | **$174.24** |
+| 🚀 **Total Return (ROE)** | **+74.24%** |
+| 💵 **Avg Profit/Trade** | $1.43 |
+| 👑 **Max Single Win** | +$31.30 |
+
+📥 **[View / Download Full Trade History CSV](./trade_history_gen_510.csv)** (152 entries, raw execution logs)
+
+![Dona Nexus Trading Dashboard](assets/dona_nexus_trading_dashboard.jpg)
+
+---
+
 ## 🚀 Key Features
 
 | Feature | Description |
