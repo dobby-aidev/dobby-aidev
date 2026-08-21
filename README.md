@@ -100,7 +100,7 @@ Hi! I'm **Dobby B (@dobby-aidev)** — AI Dev. I build autonomous AI agents, pro
 ---
 
 ### 🧬 [Dona Æon Showcase](https://github.com/dobby-aidev/dona-aeon-showcase) — Active Inference Embodied Spiking Agent
-> Biological digital organism simulation operating on Karl Friston's **Free Energy Principle**, predictive spiking neural networks, synaptic plasticity, 730-day growth progression cycle, and REM sleep memory consolidation.
+> Modular biological digital organism (`core/`, `modules/`, `scripts/`, `memory/`) operating on Karl Friston's **Free Energy Principle**, 512-neuron LIF spiking neocortex, zero token bounds, continuous open-ended lifespan, and REM sleep memory consolidation.
 >
 > `PyTorch` `Spiking Neural Nets` `Free Energy Principle` `Active Inference` `Python 3.11`
 
@@ -114,7 +114,9 @@ Hi! I'm **Dobby B (@dobby-aidev)** — AI Dev. I build autonomous AI agents, pro
 ---
 
 ### 📈 [Dona Nexus Showcase](https://github.com/dobby-aidev/dona-nexus-showcase) — Deep RL Futures Trading Bot
-> **ApexBrain** — dual-policy PyTorch neural network (Actor-Critic) executing 24/7 autonomous trades on Binance Futures.
+> **ApexBrain (`gen_510.pth`)** — dual-policy PyTorch neural network (Actor-Critic) executing 24/7 autonomous trades on Binance Futures.
+> 
+> 🔴 **LIVE STATS:** 9 Days | 76 Trades | 53.95% Win Rate | **+74.24% ROI**
 >
 > `PyTorch` `Deep RL` `Binance Futures API` `AWS`
 
