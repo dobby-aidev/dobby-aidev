@@ -35,7 +35,7 @@
     <span class="at-logo-text">Dobby B</span>
   </a>
 
-  <!-- Top-Right HUD: ONLY PILL [ ANA SAYFA ── PROJELER ── İLETİŞİM ] -->
+  <!-- Top-Right HUD: ONLY PILL [ ANA SAYFA ── PROJELER ── İLETİŞİM ] (Desktop) -->
   <header class="at-hud-top">
     <nav class="at-nav-pill">
       <a href="javascript:void(0)" onclick="switchView('home')" class="at-nav-item active" id="nav-home"
@@ -48,6 +48,26 @@
         data-i18n="nav_contact">İLETİŞİM</a>
     </nav>
   </header>
+
+  <!-- Hamburger Button (Mobile Only ≤600px) -->
+  <button class="mobile-menu-btn" id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menüyü Aç">
+    <span class="burger-line"></span>
+    <span class="burger-line"></span>
+    <span class="burger-line"></span>
+  </button>
+
+  <!-- Mobile Nav Overlay -->
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+    <button class="mobile-nav-close" onclick="toggleMobileMenu()" aria-label="Menüyü Kapat">✕</button>
+    <nav class="mobile-nav-links">
+      <a href="javascript:void(0)" onclick="switchView('home'); toggleMobileMenu()" class="mobile-nav-link" data-i18n="nav_home">ANA SAYFA</a>
+      <a href="javascript:void(0)" onclick="switchView('work'); toggleMobileMenu()" class="mobile-nav-link" data-i18n="nav_work">PROJELER</a>
+      <a href="javascript:void(0)" onclick="switchView('contact'); toggleMobileMenu()" class="mobile-nav-link" data-i18n="nav_contact">İLETİŞİM</a>
+    </nav>
+    <div class="mobile-nav-footer">
+      <button class="at-circle-btn at-lang-switch-btn" onclick="toggleLanguage()" title="Switch Language">EN</button>
+    </div>
+  </div>
 
   <!-- Bottom HUD: Social Icon Circles + Centered Copyright + Whop Store -->
   <footer class="at-bottom-hud">
@@ -132,7 +152,16 @@
     <!-- VIEW 2: WORK (RAINBOW WATERFALL + 3D CAROUSEL)                 -->
     <!-- ══════════════════════════════════════════════════════════════ -->
     <section class="at-view-page at-work-page" id="view-work">
-      <!-- Left Category Filter Menu (Isolated Safe Sidebar) -->
+      <!-- Mobile Pill Filter Bar (visible only on mobile ≤768px) -->
+      <div class="at-mobile-filter-bar" id="mobile-filter-bar">
+        <button class="at-mobile-filter-pill active" onclick="filterCategoryMobile('all', this)" data-i18n="cat_all_short">TÜMÜ</button>
+        <button class="at-mobile-filter-pill" onclick="filterCategoryMobile('ai', this)" data-i18n="cat_ai_short">AI / LLM</button>
+        <button class="at-mobile-filter-pill" onclick="filterCategoryMobile('quant', this)" data-i18n="cat_quant_short">QUANT</button>
+        <button class="at-mobile-filter-pill" onclick="filterCategoryMobile('3d', this)" data-i18n="cat_3d_short">3D WEBGL</button>
+        <button class="at-mobile-filter-pill" onclick="filterCategoryMobile('swarm', this)" data-i18n="cat_swarm_short">SWARM</button>
+      </div>
+
+      <!-- Left Category Filter Menu (Isolated Safe Sidebar — Desktop) -->
       <div class="at-work-left-sidebar">
         <div class="at-sidebar-title" data-i18n="sidebar_title">NE ARIYORSUNUZ?</div>
         <div class="at-sidebar-list">

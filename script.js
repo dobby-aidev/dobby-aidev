@@ -250,7 +250,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initCarouselGestures();
   initLightboxGestures();
   applyLanguage(currentLang);
+  initMobileNavSync();
 });
+
 
 /* --------------------------------------------------------------------------
    1. WATER RIPPLE + UPWARD AMBIENT PARTICLES (FAST GPU CANVAS)
@@ -396,7 +398,9 @@ function buildCarousel() {
     const angle = idx * angleStep;
     const card = document.createElement('div');
     card.className = 'at-card-panel';
+    card.dataset.angle = angle;          // store base angle for hit-testing
     card.style.transform = `rotateY(${angle}deg) translateZ(${radius}px)`;
+    card.style.pointerEvents = 'none';   // disabled by default — enabled only when facing viewer
 
     card.innerHTML = `
       <div class="at-card-img-wrap">
@@ -422,7 +426,34 @@ function buildCarousel() {
 
   currentRotation = 0;
   rotator.style.transform = `rotateY(0deg)`;
+  updateCarouselPointerEvents();
 }
+
+/**
+ * After every rotation, find which card faces the viewer and
+ * enable pointer-events only on that card. All others get none.
+ * This prevents invisible/rotated rear cards from intercepting clicks.
+ */
+function updateCarouselPointerEvents() {
+  const cards = document.querySelectorAll('#carousel-rotator .at-card-panel');
+  const count = cards.length;
+  if (!count) return;
+
+  const angleStep = 360 / count;
+  const halfStep = angleStep / 2 + 10; // tolerance window
+
+  cards.forEach((card) => {
+    const baseAngle = parseFloat(card.dataset.angle) || 0;
+    // Effective angle of this card relative to the camera (0 = facing front)
+    let eff = ((baseAngle + currentRotation) % 360 + 360) % 360;
+    if (eff > 180) eff -= 360; // normalise to [-180, +180]
+
+    const isFront = Math.abs(eff) < halfStep;
+    card.style.pointerEvents = isFront ? 'auto' : 'none';
+    card.style.cursor = isFront ? 'pointer' : 'default';
+  });
+}
+
 
 function initCarouselGestures() {
   const stage = document.getElementById('carousel-stage');
@@ -433,6 +464,7 @@ function initCarouselGestures() {
     if (document.getElementById('view-work').classList.contains('active') && rotator) {
       currentRotation -= e.deltaY * 0.08;
       rotator.style.transform = `rotateY(${currentRotation}deg)`;
+      updateCarouselPointerEvents();
     } else if (document.getElementById('view-detail').classList.contains('active')) {
       if (e.deltaY > 30) {
         stepDetailGallery(1);
@@ -460,11 +492,13 @@ function initCarouselGestures() {
         }
         currentRotation = dragRotationStart + dx * 0.25;
         rotator.style.transform = `rotateY(${currentRotation}deg)`;
+        updateCarouselPointerEvents();
       }
     });
 
     window.addEventListener('pointerup', () => {
       isDragging = false;
+      updateCarouselPointerEvents();
     });
   }
 
@@ -499,6 +533,29 @@ function filterCategory(cat, btnElement) {
 
   buildCarousel();
 }
+
+/* Mobile pill filter — syncs with desktop sidebar and rebuilds carousel */
+function filterCategoryMobile(cat, btnElement) {
+  if (btnElement) {
+    document.querySelectorAll('.at-mobile-filter-pill').forEach(b => b.classList.remove('active'));
+    btnElement.classList.add('active');
+  }
+  // Also sync desktop sidebar if visible
+  document.querySelectorAll('.at-category-btn').forEach(b => {
+    b.classList.remove('active');
+    const onclick = b.getAttribute('onclick') || '';
+    if (onclick.includes(`'${cat}'`)) b.classList.add('active');
+  });
+
+  if (cat === 'all') {
+    filteredProjects = [...PROJECTS];
+  } else {
+    filteredProjects = PROJECTS.filter(p => p.category === cat);
+  }
+
+  buildCarousel();
+}
+
 
 /* --------------------------------------------------------------------------
    3. SEAMLESS PAGE VIEW SWITCHING & LUXURY 3D GALLERY ARC STACK
@@ -839,3 +896,109 @@ function initLightboxGestures() {
     }
   });
 }
+
+/* --------------------------------------------------------------------------
+   7. MOBILE HAMBURGER NAV
+   -------------------------------------------------------------------------- */
+function toggleMobileMenu() {
+  const overlay = document.getElementById('mobile-nav-overlay');
+  const btn = document.getElementById('mobile-menu-btn');
+  if (!overlay || !btn) return;
+
+  const isOpen = overlay.classList.contains('open');
+  if (isOpen) {
+    overlay.classList.remove('open');
+    btn.classList.remove('open');
+    btn.setAttribute('aria-label', 'Menüyü Aç');
+  } else {
+    overlay.classList.add('open');
+    btn.classList.add('open');
+    btn.setAttribute('aria-label', 'Menüyü Kapat');
+  }
+}
+
+/* Sync mobile nav active state when view changes */
+function initMobileNavSync() {
+  // Close mobile menu on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      const overlay = document.getElementById('mobile-nav-overlay');
+      if (overlay && overlay.classList.contains('open')) {
+        toggleMobileMenu();
+      }
+    }
+  });
+}
+
+/* --------------------------------------------------------------------------
+   8. TOUCH SWIPE GESTURES (Carousel + Mini Gallery + Lightbox)
+   -------------------------------------------------------------------------- */
+(function initTouchGestures() {
+  let touchStartX = 0;
+  let touchStartY = 0;
+
+  /* Carousel swipe */
+  const carouselStage = document.getElementById('carousel-stage');
+  if (carouselStage) {
+    carouselStage.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      pointerMoved = false;
+      dragRotationStart = currentRotation;
+    }, { passive: true });
+
+    carouselStage.addEventListener('touchmove', (e) => {
+      const dx = e.touches[0].clientX - touchStartX;
+      const dy = e.touches[0].clientY - touchStartY;
+      if (Math.abs(dx) > Math.abs(dy)) {
+        // Horizontal swipe — rotate carousel
+        if (Math.hypot(dx, dy) > 8) pointerMoved = true;
+        const rotator = document.getElementById('carousel-rotator');
+        if (rotator) {
+          currentRotation = dragRotationStart + dx * 0.35;
+          rotator.style.transform = `rotateY(${currentRotation}deg)`;
+          updateCarouselPointerEvents();
+        }
+      }
+    }, { passive: true });
+
+    carouselStage.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      // If minimal movement, treat as a tap (card click via pointerup handles it)
+      if (Math.abs(dx) < 8) pointerMoved = false;
+      updateCarouselPointerEvents();
+    }, { passive: true });
+  }
+
+
+  /* Mini gallery swipe */
+  const miniStage = document.getElementById('mini-gallery-stage');
+  if (miniStage) {
+    let miniTouchStartX = 0;
+    miniStage.addEventListener('touchstart', (e) => {
+      miniTouchStartX = e.touches[0].clientX;
+    }, { passive: true });
+
+    miniStage.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].clientX - miniTouchStartX;
+      if (dx > 40) stepDetailGallery(-1);
+      if (dx < -40) stepDetailGallery(1);
+    }, { passive: true });
+  }
+
+  /* Lightbox swipe */
+  const lbBody = document.getElementById('lightbox-body');
+  if (lbBody) {
+    let lbTouchStartX = 0;
+    lbBody.addEventListener('touchstart', (e) => {
+      lbTouchStartX = e.touches[0].clientX;
+    }, { passive: true });
+
+    lbBody.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].clientX - lbTouchStartX;
+      if (dx > 40) stepLightbox(-1);
+      if (dx < -40) stepLightbox(1);
+    }, { passive: true });
+  }
+})();
+
