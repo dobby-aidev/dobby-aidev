@@ -37,6 +37,7 @@ const TRANSLATIONS = {
     contact_success: 'İSTEK ALINDI ✓ (MAİL İLETİLDİ)',
     contact_error: 'GÖNDERİM BAŞARISIZ ✕',
     network_header: 'OFFICIAL NODES & REPOSITORIES',
+    cv_download: 'ÖZGEÇMİŞ (CV / RESUME)',
     footer_rights: '© 2026 Dona Codex. All rights reserved.'
   },
   en: {
@@ -62,6 +63,7 @@ const TRANSLATIONS = {
     contact_success: 'RECEIVED ✓ (MAIL DISPATCHED)',
     contact_error: 'DISPATCH FAILED ✕',
     network_header: 'OFFICIAL NODES & REPOSITORIES',
+    cv_download: 'CURRICULUM VITAE (RESUME)',
     footer_rights: '© 2026 Dona Codex. All rights reserved.'
   }
 };
@@ -381,12 +383,15 @@ function initWaterAndParticles() {
 }
 
 /* --------------------------------------------------------------------------
-   2. 3D CAROUSEL (CENTRAL ROTATION AROUND RAINBOW WATERFALL)
+   2. 3D CAROUSEL (CENTRAL ROTATION AROUND 3D NEURAL SPINE)
    -------------------------------------------------------------------------- */
 function buildCarousel() {
   const rotator = document.getElementById('carousel-rotator');
   if (!rotator) return;
-  rotator.innerHTML = '';
+
+  // Remove previous project cards but preserve the 3D Neural Spine Core in the center
+  const existingSpine = document.getElementById('neural-spine-core');
+  rotator.querySelectorAll('.at-card-panel').forEach(c => c.remove());
 
   const count = filteredProjects.length;
   if (count === 0) return;
@@ -404,7 +409,9 @@ function buildCarousel() {
 
     card.innerHTML = `
       <div class="at-card-img-wrap">
+        <canvas class="at-card-hologram-canvas" data-src="${proj.img}"></canvas>
         <img src="${proj.img}" class="at-card-img" alt="${proj.title}" />
+        <div class="at-card-holo-shimmer"></div>
         <span class="at-card-badge">${proj.pid}</span>
       </div>
       <div class="at-card-info">
@@ -413,9 +420,12 @@ function buildCarousel() {
       </div>
     `;
 
-    // Direct card click opens its exact detail modal
-    card.addEventListener('pointerup', (e) => {
-      if (!pointerMoved) {
+    // Initialize WebGL Liquid Hologram Shader on this card
+    initCardLiquidShader(card);
+
+    // Click handler for front-facing card only
+    card.addEventListener('click', (e) => {
+      if (!pointerMoved && isCardFacingViewer(card)) {
         e.stopPropagation();
         openDetail(proj);
       }
@@ -430,25 +440,30 @@ function buildCarousel() {
 }
 
 /**
+ * Check whether a specific card is currently facing the front viewer (within tight threshold)
+ */
+function isCardFacingViewer(card) {
+  const cards = document.querySelectorAll('#carousel-rotator .at-card-panel');
+  const count = cards.length;
+  if (!count) return false;
+  const angleStep = 360 / count;
+  const tolerance = Math.min(35, (angleStep / 2) + 6);
+
+  const baseAngle = parseFloat(card.dataset.angle) || 0;
+  let eff = ((baseAngle + currentRotation) % 360 + 360) % 360;
+  if (eff > 180) eff -= 360;
+
+  return Math.abs(eff) <= tolerance;
+}
+
+/**
  * After every rotation, find which card faces the viewer and
  * enable pointer-events only on that card. All others get none.
- * This prevents invisible/rotated rear cards from intercepting clicks.
  */
 function updateCarouselPointerEvents() {
   const cards = document.querySelectorAll('#carousel-rotator .at-card-panel');
-  const count = cards.length;
-  if (!count) return;
-
-  const angleStep = 360 / count;
-  const halfStep = angleStep / 2 + 10; // tolerance window
-
   cards.forEach((card) => {
-    const baseAngle = parseFloat(card.dataset.angle) || 0;
-    // Effective angle of this card relative to the camera (0 = facing front)
-    let eff = ((baseAngle + currentRotation) % 360 + 360) % 360;
-    if (eff > 180) eff -= 360; // normalise to [-180, +180]
-
-    const isFront = Math.abs(eff) < halfStep;
+    const isFront = isCardFacingViewer(card);
     card.style.pointerEvents = isFront ? 'auto' : 'none';
     card.style.cursor = isFront ? 'pointer' : 'default';
   });
@@ -494,11 +509,26 @@ function initCarouselGestures() {
         rotator.style.transform = `rotateY(${currentRotation}deg)`;
         updateCarouselPointerEvents();
       }
+
+      // Interactive 3D Parallax & Spatial Orientation on Neural Spine
+      const spine = document.getElementById('neural-spine-core');
+      if (spine && document.getElementById('view-work').classList.contains('active')) {
+        const rect = stage.getBoundingClientRect();
+        const mouseRelX = (e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
+        const mouseRelY = (e.clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
+        const tiltX = -mouseRelY * 20;
+        const tiltY = mouseRelX * 28;
+        spine.style.transform = `translate(-50%, -50%) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateZ(${Math.abs(mouseRelX) * 15}px)`;
+      }
     });
 
     window.addEventListener('pointerup', () => {
       isDragging = false;
       updateCarouselPointerEvents();
+      const spine = document.getElementById('neural-spine-core');
+      if (spine) {
+        spine.style.transform = `translate(-50%, -50%) rotateX(0deg) rotateY(0deg) translateZ(0px)`;
+      }
     });
   }
 
