@@ -16,7 +16,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
     rel="stylesheet" />
 
-  <link rel="stylesheet" href="style.css?v=at_exact_clean_7" />
+  <link rel="stylesheet" href="style.css?v=quantum_clean_v12" />
 </head>
 
 <body>
@@ -26,6 +26,9 @@
 
   <!-- 3D Canvas Water Ripples & Upward Particles -->
   <canvas id="canvas-3d"></canvas>
+
+  <!-- Fullscreen WebGL Glass Shatter & Liquid Vortex Transition Layer -->
+  <canvas id="canvas-shatter-transition"></canvas>
 
   <!-- Top-Left Architectural Logo with Profile Avatar -->
   <a href="javascript:void(0)" onclick="switchView('home')" class="at-logo-top" title="Home">
@@ -132,7 +135,7 @@
     <!-- VIEW 1: HOME (DUAL LOCALIZATION BIO + 3D HOLOGRAM PROFILE)     -->
     <!-- ══════════════════════════════════════════════════════════════ -->
     <section class="at-view-page at-home-hero active" id="view-home">
-      <div class="at-hero-symbol-3d" onclick="switchView('work')" style="cursor:pointer;" title="Explore Projects">
+      <div class="at-hero-symbol-3d" id="hero-avatar-node" onclick="triggerElementShatterTransition(this, 'work', 'avatar')" style="cursor:pointer;" title="Explore Projects">
         <div class="at-ring-outer"></div>
         <div class="at-ring-inner"></div>
         <div class="at-ring-core-avatar-wrap">
@@ -143,7 +146,7 @@
         DONA AI Kurucusu &amp; Yapay Zeka Sistem Mimarı | Agent Critiq Yaratıcısı | Otonom Yapay Zeka Sistemleri,
         Çoklu-Ajan Mimarileri &amp; Pekiştirmeli Öğrenme Altyapıları Geliştiricisi
       </div>
-      <button class="at-hero-explore-btn" onclick="switchView('work')" data-i18n="hero_explore">
+      <button class="at-hero-explore-btn" id="hero-explore-btn" onclick="triggerElementShatterTransition(this, 'work', 'button')" data-i18n="hero_explore">
         PROJELERİ KEŞFET ->
       </button>
     </section>
@@ -349,7 +352,7 @@
     </div>
   </div>
 
-  <script src="script.js?v=at_exact_clean_7"></script>
+  <script src="script.js?v=quantum_shatter_v14"></script>
 </body>
 
 </html>

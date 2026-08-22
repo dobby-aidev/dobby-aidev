@@ -253,7 +253,18 @@ document.addEventListener('DOMContentLoaded', () => {
   initLightboxGestures();
   applyLanguage(currentLang);
   initMobileNavSync();
+  triggerQuantumHeroIntro();
 });
+
+function triggerQuantumHeroIntro() {
+  const avatar = document.getElementById('hero-avatar-node');
+  const bio = document.getElementById('hero-bio-text');
+  const btn = document.querySelector('.at-hero-explore-btn');
+
+  if (avatar) avatar.classList.add('quantum-intro-anim');
+  if (bio) bio.classList.add('quantum-intro-anim');
+  if (btn) btn.classList.add('quantum-intro-anim');
+}
 
 
 /* --------------------------------------------------------------------------
@@ -377,7 +388,13 @@ function initWaterAndParticles() {
     requestAnimationFrame(render);
   }
 
-  window.addEventListener('resize', resize);
+  // Debounced resize & visibility check to save GPU cycles
+  let resizeTimeout = null;
+  window.addEventListener('resize', () => {
+    if (resizeTimeout) clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(resize, 100);
+  }, { passive: true });
+
   resize();
   render();
 }
@@ -408,26 +425,64 @@ function buildCarousel() {
     card.style.pointerEvents = 'none';   // disabled by default — enabled only when facing viewer
 
     card.innerHTML = `
-      <div class="at-card-img-wrap">
-        <canvas class="at-card-hologram-canvas" data-src="${proj.img}"></canvas>
-        <img src="${proj.img}" class="at-card-img" alt="${proj.title}" />
-        <div class="at-card-holo-shimmer"></div>
-        <span class="at-card-badge">${proj.pid}</span>
-      </div>
-      <div class="at-card-info">
-        <div class="at-card-title">${proj.title}</div>
-        <div class="at-card-meta">${proj.meta}</div>
+      <div class="at-card-3d-box">
+        <!-- 3D Extrusion Side Bevel Walls -->
+        <div class="at-card-side top"></div>
+        <div class="at-card-side bottom"></div>
+        <div class="at-card-side left"></div>
+        <div class="at-card-side right"></div>
+
+        <!-- 3D Corner Neon Brackets -->
+        <div class="at-card-corner-bracket tl"></div>
+        <div class="at-card-corner-bracket tr"></div>
+        <div class="at-card-corner-bracket bl"></div>
+        <div class="at-card-corner-bracket br"></div>
+
+        <!-- 3D Front Glass Layer with High-Clarity AI HUD -->
+        <div class="at-card-face-front">
+          <div class="at-card-img-wrap">
+            <canvas class="at-card-hologram-canvas" data-src="${proj.img}"></canvas>
+            <img src="${proj.img}" class="at-card-img" alt="${proj.title}" />
+            <div class="at-card-holo-shimmer"></div>
+            
+            <!-- AI HUD System Header -->
+            <div class="at-card-hud-header">
+              <span class="at-card-badge">${proj.pid}</span>
+              <span class="at-card-live-node"><span class="at-node-dot"></span>SYS::ONLINE</span>
+            </div>
+            <div class="at-card-glass-specular"></div>
+          </div>
+          <div class="at-card-info">
+            <div class="at-card-title-row">
+              <div class="at-card-title">${proj.title}</div>
+              <span class="at-card-arrow-icon">↗</span>
+            </div>
+            <div class="at-card-meta-row">
+              <div class="at-card-meta">${proj.meta}</div>
+              <div class="at-card-chip">NEURAL_NET</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3D Back Chassis Plate with Circuit Grid -->
+        <div class="at-card-face-back">
+          <div class="at-card-back-grid"></div>
+          <div class="at-card-back-logo">DONA//CODEX · QUANTUM OS</div>
+        </div>
       </div>
     `;
+
+    // Initialize 3D Mouse Gyro Tilt on this card
+    initCard3DGyro(card);
 
     // Initialize WebGL Liquid Hologram Shader on this card
     initCardLiquidShader(card);
 
-    // Click handler for front-facing card only
+    // Direct project click: opens the exact clicked project with card shard explosion
     card.addEventListener('click', (e) => {
-      if (!pointerMoved && isCardFacingViewer(card)) {
+      if (!pointerMoved) {
         e.stopPropagation();
-        openDetail(proj);
+        openDetail(proj, card);
       }
     });
 
@@ -440,32 +495,55 @@ function buildCarousel() {
 }
 
 /**
- * Check whether a specific card is currently facing the front viewer (within tight threshold)
+ * Check whether a specific card is facing the front hemisphere (visible to user)
  */
 function isCardFacingViewer(card) {
-  const cards = document.querySelectorAll('#carousel-rotator .at-card-panel');
-  const count = cards.length;
-  if (!count) return false;
-  const angleStep = 360 / count;
-  const tolerance = Math.min(35, (angleStep / 2) + 6);
-
   const baseAngle = parseFloat(card.dataset.angle) || 0;
   let eff = ((baseAngle + currentRotation) % 360 + 360) % 360;
   if (eff > 180) eff -= 360;
 
-  return Math.abs(eff) <= tolerance;
+  // If card is in the front 180-degree view arc, it is visible and interactable
+  return Math.abs(eff) < 85;
 }
 
 /**
- * After every rotation, find which card faces the viewer and
- * enable pointer-events only on that card. All others get none.
+ * Calculate dynamic depth of field (DoF) and enable pointer-events on front-facing cards
+ * Front-most active card: Crystal clear (card-focused)
+ * Side cards: Optical depth blur (card-blurred)
+ * Rear cards: Deep background blur (card-deep-blurred)
  */
 function updateCarouselPointerEvents() {
   const cards = document.querySelectorAll('#carousel-rotator .at-card-panel');
+  if (!cards.length) return;
+
+  const count = cards.length;
+  const angleStep = 360 / count;
+
   cards.forEach((card) => {
-    const isFront = isCardFacingViewer(card);
-    card.style.pointerEvents = isFront ? 'auto' : 'none';
-    card.style.cursor = isFront ? 'pointer' : 'default';
+    const baseAngle = parseFloat(card.dataset.angle) || 0;
+    let eff = ((baseAngle + currentRotation) % 360 + 360) % 360;
+    if (eff > 180) eff -= 360;
+    const absEff = Math.abs(eff);
+
+    // Reset classes
+    card.classList.remove('card-focused', 'card-blurred', 'card-deep-blurred');
+
+    if (absEff <= angleStep * 0.6) {
+      // Primary Focused Card (Facing Viewer)
+      card.classList.add('card-focused');
+      card.style.pointerEvents = 'auto';
+      card.style.cursor = 'pointer';
+    } else if (absEff <= 85) {
+      // Side visible cards (Soft Optical Blur)
+      card.classList.add('card-blurred');
+      card.style.pointerEvents = 'auto';
+      card.style.cursor = 'pointer';
+    } else {
+      // Rear/Distant cards (Deep Blur & Dim)
+      card.classList.add('card-deep-blurred');
+      card.style.pointerEvents = 'none';
+      card.style.cursor = 'default';
+    }
   });
 }
 
@@ -597,11 +675,34 @@ function switchView(viewName) {
   const targetPage = document.getElementById(`view-${viewName}`);
   const targetNav = document.getElementById(`nav-${viewName}`);
 
-  if (targetPage) targetPage.classList.add('active');
+  if (targetPage) {
+    targetPage.classList.add('active');
+    // Scroll smoothly to top on mobile/desktop switch
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
   if (targetNav) targetNav.classList.add('active');
+
+  // Trigger carousel pointer check if opening work view
+  if (viewName === 'work') {
+    setTimeout(updateCarouselPointerEvents, 50);
+  }
 }
 
-function openDetail(proj) {
+/**
+ * Universal Shatter Transition Trigger for UI Elements (Avatar, Buttons, Tiles, Nav)
+ * Triggers wide cinematic crystal shatter and transitions seamlessly to target page
+ */
+function triggerElementShatterTransition(element, targetViewName, type = 'button') {
+  if (element) {
+    triggerLocalElementShatter(element, () => {
+      switchView(targetViewName);
+    }, type);
+  } else {
+    switchView(targetViewName);
+  }
+}
+
+function openDetail(proj, cardElement) {
   if (!proj) return;
   currentDetailProject = proj;
   activeDetailIndex = 0;
@@ -629,7 +730,10 @@ function openDetail(proj) {
   // Build Luxury 3D Arc Deck Gallery
   buildMiniGallery(proj);
 
-  switchView('detail');
+  // Trigger Localized Card Shatter & Seamless Zoom Transition
+  triggerLocalElementShatter(cardElement, () => {
+    switchView('detail');
+  }, 'card');
 }
 
 function buildMiniGallery(proj) {
@@ -1031,4 +1135,354 @@ function initMobileNavSync() {
     }, { passive: true });
   }
 })();
+
+/* --------------------------------------------------------------------------
+   9. WEBGL LIQUID METAL & RAYMARCHING HOLOGRAPHIC SHADER ENGINE
+   - Hardware Accelerated GLSL Fragment Shader on GPU
+   - Dynamic Chromatic Aberration & Liquid Refraction
+   - Event-driven: Only renders active hovering cards (Zero CPU/GPU Lag)
+   -------------------------------------------------------------------------- */
+const CARD_VERTEX_SHADER = `
+  attribute vec2 a_position;
+  varying vec2 v_uv;
+  void main() {
+    v_uv = (a_position + 1.0) * 0.5;
+    v_uv.y = 1.0 - v_uv.y; // Correct UV orientation
+    gl_Position = vec4(a_position, 0.0, 1.0);
+  }
+`;
+
+const CARD_FRAGMENT_SHADER = `
+  precision mediump float;
+  uniform sampler2D u_image;
+  uniform vec2 u_resolution;
+  uniform vec2 u_mouse;
+  uniform float u_time;
+  uniform float u_hover;
+  varying vec2 v_uv;
+
+  // Simplex Noise Hash
+  vec3 hash33(vec3 p) {
+    p = fract(p * vec3(443.897, 441.423, 437.195));
+    p += dot(p, p.yxz + 19.19);
+    return fract((p.xxy + p.yxx) * p.zyx);
+  }
+
+  void main() {
+    vec2 uv = v_uv;
+    vec2 mouse = u_mouse;
+
+    // Calculate distance and angle from pointer
+    vec2 dir = uv - mouse;
+    float dist = length(dir);
+
+    // Liquid ripple wave equations
+    float wave = sin(dist * 24.0 - u_time * 4.5) * exp(-dist * 3.5) * u_hover;
+    vec2 offset = normalize(dir + 0.001) * wave * 0.045;
+
+    // Raymarching holographic scanline & chromatic aberration
+    float scanline = sin(uv.y * 320.0 + u_time * 6.0) * 0.035 * u_hover;
+    
+    // Chromatic dispersion sampling (RGB split)
+    float r = texture2D(u_image, uv + offset * 1.35 + vec2(0.004 * u_hover, 0.0)).r;
+    float g = texture2D(u_image, uv + offset + vec2(scanline * 0.5, 0.0)).g;
+    float b = texture2D(u_image, uv + offset * 0.75 - vec2(0.004 * u_hover, 0.0)).b;
+
+    vec3 col = vec3(r, g, b);
+
+    // Holographic Liquid Chrome Rim Highlight
+    float fresnel = pow(1.0 - abs(dot(normalize(vec3(dir, 0.4)), vec3(0.0, 0.0, 1.0))), 2.5);
+    vec3 holoTint = vec3(0.0, 1.0, 1.0) * fresnel * u_hover * 0.6;
+    vec3 magentaTint = vec3(1.0, 0.0, 0.5) * pow(fresnel, 3.0) * u_hover * 0.5;
+
+    col += holoTint + magentaTint;
+
+    gl_FragColor = vec4(col, 1.0);
+  }
+`;
+
+function initCardLiquidShader(cardElement) {
+  const canvas = cardElement.querySelector('.at-card-hologram-canvas');
+  if (!canvas) return;
+
+  const imgSrc = canvas.getAttribute('data-src');
+  if (!imgSrc) return;
+
+  let gl = canvas.getContext('webgl', { alpha: true, antialias: false, preserveDrawingBuffer: false });
+  if (!gl) {
+    gl = canvas.getContext('experimental-webgl');
+    if (!gl) return; // Fallback smoothly to CSS image
+  }
+
+  // Compile Shaders
+  function createShader(gl, type, source) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, source);
+    gl.compileShader(s);
+    return s;
+  }
+
+  const vShader = createShader(gl, gl.VERTEX_SHADER, CARD_VERTEX_SHADER);
+  const fShader = createShader(gl, gl.FRAGMENT_SHADER, CARD_FRAGMENT_SHADER);
+  const program = gl.createProgram();
+  gl.attachShader(program, vShader);
+  gl.attachShader(program, fShader);
+  gl.linkProgram(program);
+
+  // Geometry
+  const posBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, posBuffer);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+    -1, -1,
+     1, -1,
+    -1,  1,
+    -1,  1,
+     1, -1,
+     1,  1,
+  ]), gl.STATIC_DRAW);
+
+  const aPosition = gl.getAttribLocation(program, 'a_position');
+  const uImage = gl.getUniformLocation(program, 'u_image');
+  const uResolution = gl.getUniformLocation(program, 'u_resolution');
+  const uMouse = gl.getUniformLocation(program, 'u_mouse');
+  const uTime = gl.getUniformLocation(program, 'u_time');
+  const uHover = gl.getUniformLocation(program, 'u_hover');
+
+  // Texture creation
+  const texture = gl.createTexture();
+  gl.bindTexture(gl.TEXTURE_2D, texture);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+
+  const img = new Image();
+  img.crossOrigin = 'anonymous';
+  let textureReady = false;
+
+  img.onload = () => {
+    gl.bindTexture(gl.TEXTURE_2D, texture);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+    textureReady = true;
+  };
+  img.src = imgSrc;
+
+  let animFrame = null;
+  let startTime = performance.now();
+  let hoverVal = 0.0;
+  let targetHover = 0.0;
+  let mouse = { x: 0.5, y: 0.5 };
+
+  function resizeCanvas() {
+    const rect = canvas.getBoundingClientRect();
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    if (canvas.width !== rect.width * dpr || canvas.height !== rect.height * dpr) {
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      gl.viewport(0, 0, canvas.width, canvas.height);
+    }
+  }
+
+  function renderShader() {
+    if (!textureReady) {
+      animFrame = requestAnimationFrame(renderShader);
+      return;
+    }
+
+    resizeCanvas();
+    gl.useProgram(program);
+
+    // Smooth hover lerp
+    hoverVal += (targetHover - hoverVal) * 0.12;
+
+    const time = (performance.now() - startTime) * 0.001;
+
+    gl.uniform2f(uResolution, canvas.width, canvas.height);
+    gl.uniform2f(uMouse, mouse.x, mouse.y);
+    gl.uniform1f(uTime, time);
+    gl.uniform1f(uHover, hoverVal);
+
+    gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D, texture);
+    gl.uniform1i(uImage, 0);
+
+    gl.bindBuffer(gl.ARRAY_BUFFER, posBuffer);
+    gl.enableVertexAttribArray(aPosition);
+    gl.vertexAttribPointer(aPosition, 2, gl.FLOAT, false, 0, 0);
+
+    gl.drawArrays(gl.TRIANGLES, 0, 6);
+
+    // Continue loop only when actively hovering or interpolating
+    if (hoverVal > 0.002 || targetHover > 0) {
+      animFrame = requestAnimationFrame(renderShader);
+    } else {
+      cancelAnimationFrame(animFrame);
+      animFrame = null;
+    }
+  }
+
+  // Pointer Listeners with zero overhead
+  cardElement.addEventListener('pointerenter', (e) => {
+    targetHover = 1.0;
+    const rect = cardElement.getBoundingClientRect();
+    mouse.x = (e.clientX - rect.left) / rect.width;
+    mouse.y = (e.clientY - rect.top) / rect.height;
+    if (!animFrame) animFrame = requestAnimationFrame(renderShader);
+  });
+
+  cardElement.addEventListener('pointermove', (e) => {
+    const rect = cardElement.getBoundingClientRect();
+    mouse.x = (e.clientX - rect.left) / rect.width;
+    mouse.y = (e.clientY - rect.top) / rect.height;
+  });
+
+  cardElement.addEventListener('pointerleave', () => {
+    targetHover = 0.0;
+  });
+}
+
+/* --------------------------------------------------------------------------
+   10. UNIVERSAL ORGANIC 3D GLASS SHATTER & NATURAL PHYSICS DISPERSION
+   - Works on Project Cards, Home Profile Avatar & Explore Projects CTA
+   - Organic Voronoi-like polygonal glass geometry with multi-angled facets
+   - Natural physics: angular impulse, progressive alpha drag & chromatic laser rims
+   -------------------------------------------------------------------------- */
+function triggerLocalElementShatter(element, onCompleteCallback, customType = 'card') {
+  if (!element) {
+    if (onCompleteCallback) onCompleteCallback();
+    return;
+  }
+
+  const rect = element.getBoundingClientRect();
+  const imgElement = element.querySelector('img') || (element.tagName === 'IMG' ? element : null);
+  const imgSrc = imgElement ? imgElement.src : '';
+
+  // Create temporary container for local shards exactly over the clicked element
+  const shatterBox = document.createElement('div');
+  shatterBox.className = 'at-local-shatter-container';
+  shatterBox.style.cssText = `
+    position: fixed;
+    left: ${rect.left}px;
+    top: ${rect.top}px;
+    width: ${rect.width}px;
+    height: ${rect.height}px;
+    pointer-events: none;
+    z-index: 99999;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+  `;
+  document.body.appendChild(shatterBox);
+
+  // Hide the original element briefly during shatter
+  element.style.opacity = '0';
+
+  // Generate 32 Organic Faceted Glass Shards (More scattered & cinematic)
+  const cols = 8;
+  const rows = 4;
+  const shardW = rect.width / cols;
+  const shardH = rect.height / rows;
+
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      const shard = document.createElement('div');
+      shard.className = 'at-local-card-shard';
+
+      // Natural organic jagged clip-path for each crystal facet
+      const p1x = (Math.random() * 25).toFixed(1);
+      const p1y = (Math.random() * 25).toFixed(1);
+      const p2x = (75 + Math.random() * 25).toFixed(1);
+      const p2y = (Math.random() * 25).toFixed(1);
+      const p3x = (75 + Math.random() * 25).toFixed(1);
+      const p3y = (75 + Math.random() * 25).toFixed(1);
+      const p4x = (Math.random() * 25).toFixed(1);
+      const p4y = (75 + Math.random() * 25).toFixed(1);
+      const clipPoly = `polygon(${p1x}% ${p1y}%, ${p2x}% ${p2y}%, ${p3x}% ${p3y}%, ${p4x}% ${p4y}%)`;
+
+      // Distance from center for wide circular wave explosion
+      const centerDistX = (c - (cols - 1) / 2);
+      const centerDistY = (r - (rows - 1) / 2);
+      const distFromCenter = Math.hypot(centerDistX, centerDistY);
+      const staggerDelay = distFromCenter * 0.055; // organic ripple stagger
+
+      // Broad, scattered 3D physics trajectory (2.2s+ epic dispersion)
+      const angle = Math.atan2(centerDistY, centerDistX) + (Math.random() - 0.5) * 0.8;
+      const speed = 220 + distFromCenter * 75 + Math.random() * 120; // Much wider scatter
+      const dirX = Math.cos(angle) * speed;
+      const dirY = Math.sin(angle) * speed + (Math.random() * 50); // natural gravity drift
+      const dirZ = 300 + Math.random() * 650; // Deep 3D pop towards viewer
+      const rotX = (Math.random() - 0.5) * 540;
+      const rotY = (Math.random() - 0.5) * 540;
+      const rotZ = (Math.random() - 0.5) * 360;
+
+      const isAvatar = customType === 'avatar';
+      const isBtn = customType === 'button';
+
+      let bgStyle = '';
+      if (imgSrc) {
+        bgStyle = `
+          background-image: url('${imgSrc}');
+          background-size: ${rect.width}px ${rect.height}px;
+          background-position: -${c * shardW}px -${r * shardH}px;
+        `;
+      } else if (isBtn) {
+        bgStyle = `
+          background: linear-gradient(135deg, rgba(0,255,255,0.95) 0%, rgba(13,17,29,0.98) 100%);
+        `;
+      } else {
+        bgStyle = `
+          background: #0e1017;
+        `;
+      }
+
+      shard.style.cssText = `
+        position: absolute;
+        left: ${c * shardW}px;
+        top: ${r * shardH}px;
+        width: ${shardW}px;
+        height: ${shardH}px;
+        ${bgStyle}
+        clip-path: ${clipPoly};
+        border: 1.5px solid rgba(0, 255, 255, 0.95);
+        box-shadow: 0 0 25px rgba(0, 255, 255, 0.9), inset 0 0 12px rgba(255, 255, 255, 0.8);
+        transition: transform 2.4s cubic-bezier(0.06, 0.84, 0.15, 1) ${staggerDelay}s, opacity 2.3s ease ${staggerDelay}s;
+        transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1);
+        opacity: 1;
+      `;
+
+      shatterBox.appendChild(shard);
+
+      // Trigger wide slow-motion physics explosion on next frame
+      requestAnimationFrame(() => {
+        shard.style.transform = `translate3d(${dirX}px, ${dirY}px, ${dirZ}px) rotateX(${rotX}deg) rotateY(${rotY}deg) rotateZ(${rotZ}deg) scale(0.2)`;
+        shard.style.opacity = '0';
+      });
+    }
+  }
+
+  // Cinematic midpoint transition to next view (after 680ms, so shards disperse in mid-air)
+  setTimeout(() => {
+    if (onCompleteCallback) onCompleteCallback();
+  }, 680);
+
+  // Clean up DOM and restore element (2.6s total)
+  setTimeout(() => {
+    shatterBox.remove();
+    element.style.opacity = '1';
+  }, 2600);
+}
+
+/* --------------------------------------------------------------------------
+   11. ROCK-SOLID 3D VOLUMETRIC CARDS (ZERO JITTER / ZERO GYRO WOBBLE)
+   - Clean hardware-accelerated CSS 3D elevation only
+   - Pure, stable hover state with zero mouse tracking jitter
+   -------------------------------------------------------------------------- */
+function initCard3DGyro(cardElement) {
+  // Pure static 3D elevation via CSS — no JS mouse jitter
+}
+
+
+
+
+
+
 
