@@ -8,6 +8,7 @@
 [![Whop Store](https://img.shields.io/badge/🛍️%20Whop%20Store-dona--ai-FFB800?style=for-the-badge)](https://whop.com/dona-ai)
 [![Agent Critiq](https://img.shields.io/badge/Agent%20Critiq-agentcritiq.com-10b981?style=for-the-badge&logo=globe&logoColor=white)](https://agentcritiq.com)
 [![Dona Nova](https://img.shields.io/badge/🌐%20Dona%20Nova-Live%20Platform-00C7B7?style=for-the-badge&logo=cloudflare&logoColor=white)](https://donanova.donacodex.workers.dev)
+[![AI Coin Empire](https://img.shields.io/badge/🪙%20AI%20Coin%20Empire-Live%20Game-F59E0B?style=for-the-badge&logo=cloudflare&logoColor=white)](https://aicoinempire.donacodex.workers.dev)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/dobbyb-aidev)
 [![X / Twitter](https://img.shields.io/badge/X%20(Twitter)-dobbyb__ai-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/dobbyb_ai)
 [![Instagram](https://img.shields.io/badge/Instagram-dobbybmusic-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/dobbybmusic)
@@ -130,9 +131,9 @@ Hi! I'm **Dobby B (@dobby-aidev)** — AI Dev. I build autonomous AI agents, pro
 ---
 
 ### 🪙 [AI Coin Empire Showcase](https://github.com/dobby-aidev/ai-coin-empire-showcase) — Multiplayer Strategy Game
-> Real-time multiplayer strategy game on Firebase Firestore with mining algorithms, password cracking puzzles, and DONA collective AI loop.
+> **[Live Game](https://aicoinempire.donacodex.workers.dev)** — Real-time multiplayer strategy game on Firebase Firestore with mining algorithms, password cracking puzzles, and DONA collective AI loop.
 >
-> `React 18` `TypeScript` `Firebase` `Framer Motion`
+> `React 18` `TypeScript` `Firebase` `Framer Motion` `Cloudflare Workers`
 
 ---
 

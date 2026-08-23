@@ -37,6 +37,10 @@ const TRANSLATIONS = {
     contact_success: 'İSTEK ALINDI ✓ (MAİL İLETİLDİ)',
     contact_error: 'GÖNDERİM BAŞARISIZ ✕',
     network_header: 'OFFICIAL NODES & REPOSITORIES',
+    node_tab_all: 'TÜMÜ (9)',
+    node_tab_live: '⚡ CANLI (3)',
+    node_tab_repos: '📦 DOKÜMAN & MAĞAZA (3)',
+    node_tab_social: '🌐 NETWORK (3)',
     cv_download: 'ÖZGEÇMİŞ (CV / RESUME)',
     footer_rights: '© 2026 Dona Codex. All rights reserved.'
   },
@@ -63,6 +67,10 @@ const TRANSLATIONS = {
     contact_success: 'RECEIVED ✓ (MAIL DISPATCHED)',
     contact_error: 'DISPATCH FAILED ✕',
     network_header: 'OFFICIAL NODES & REPOSITORIES',
+    node_tab_all: 'ALL (9)',
+    node_tab_live: '⚡ LIVE APPS (3)',
+    node_tab_repos: '📦 STORE & DOCS (3)',
+    node_tab_social: '🌐 NETWORK (3)',
     cv_download: 'CURRICULUM VITAE (RESUME)',
     footer_rights: '© 2026 Dona Codex. All rights reserved.'
   }
@@ -208,6 +216,7 @@ const PROJECTS = [
     galleryCount: 21,
     prefix: 'assets/ai_coin_empire_',
     ext: 'jpg',
+    live: 'https://aicoinempire.donacodex.workers.dev',
     repo: 'https://github.com/dobby-aidev/ai-coin-empire-showcase'
   },
   {
@@ -662,6 +671,33 @@ function filterCategoryMobile(cat, btnElement) {
   }
 
   buildCarousel();
+}
+
+/**
+ * Filter Official Nodes & Repositories on the Contact Page
+ */
+function filterContactNodes(category, btnElement) {
+  document.querySelectorAll('.at-node-filter-pill').forEach(btn => btn.classList.remove('active'));
+  if (btnElement) btnElement.classList.add('active');
+
+  const tiles = document.querySelectorAll('#contact-nodes-grid .at-network-tile');
+  let visibleCount = 0;
+
+  tiles.forEach((tile) => {
+    const tileCat = tile.getAttribute('data-cat');
+    if (category === 'all' || tileCat === category) {
+      tile.style.display = 'flex';
+      tile.style.opacity = '1';
+      visibleCount++;
+    } else {
+      tile.style.display = 'none';
+    }
+  });
+
+  const countBadge = document.getElementById('node-count-badge');
+  if (countBadge) {
+    countBadge.textContent = `${visibleCount} NODES`;
+  }
 }
 
 

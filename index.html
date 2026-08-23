@@ -16,7 +16,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
     rel="stylesheet" />
 
-  <link rel="stylesheet" href="style.css?v=quantum_clean_v12" />
+  <link rel="stylesheet" href="style.css?v=quantum_clean_v13" />
 </head>
 
 <body>
@@ -283,47 +283,132 @@
           </form>
         </div>
 
-        <!-- Right Column: Minimal Architectural Network Links -->
+        <!-- Right Column: Minimal Architectural Network Links & Nodes HUD -->
         <div class="at-contact-right">
-          <div class="at-network-header" data-i18n="network_header">OFFICIAL NODES &amp; REPOSITORIES</div>
-          <div class="at-network-grid">
-            <a href="Dobby_B_AI_Systems_Architect_CV.pdf" target="_blank" download="Dobby_B_AI_Systems_Architect_CV.pdf" class="at-network-tile at-cv-download-tile">
-              <span style="display:flex; align-items:center; gap:8px;">
-                <span class="at-cv-badge">PDF</span>
-                <span data-i18n="cv_download">CURRICULUM VITAE (RESUME)</span>
-              </span>
+          <div class="at-network-top-bar">
+            <div class="at-network-header">
+              <span class="at-network-pulse-dot"></span>
+              <span data-i18n="network_header">OFFICIAL NODES &amp; REPOSITORIES</span>
+            </div>
+            <span class="at-network-count" id="node-count-badge">9 NODES</span>
+          </div>
+
+          <!-- Architectural Filter Tab Pills -->
+          <div class="at-node-filter-bar" id="contact-filter-bar">
+            <button class="at-node-filter-pill active" onclick="filterContactNodes('all', this)" data-i18n="node_tab_all">TÜMÜ (9)</button>
+            <button class="at-node-filter-pill" onclick="filterContactNodes('live', this)" data-i18n="node_tab_live">⚡ CANLI (3)</button>
+            <button class="at-node-filter-pill" onclick="filterContactNodes('repo', this)" data-i18n="node_tab_repos">📦 DOKÜMAN &amp; MAĞAZA (3)</button>
+            <button class="at-node-filter-pill" onclick="filterContactNodes('social', this)" data-i18n="node_tab_social">🌐 NETWORK (3)</button>
+          </div>
+
+          <!-- Filterable Architectural Node Grid -->
+          <div class="at-network-grid" id="contact-nodes-grid">
+            <!-- CV -->
+            <a href="Dobby_B_AI_Systems_Architect_CV.pdf" target="_blank" download="Dobby_B_AI_Systems_Architect_CV.pdf" class="at-network-tile at-cv-download-tile" data-cat="repo">
+              <div class="at-node-left">
+                <span class="at-node-badge pdf">PDF</span>
+                <div class="at-node-info">
+                  <span class="at-node-title" data-i18n="cv_download">ÖZGEÇMİŞ (CV / RESUME)</span>
+                  <span class="at-node-sub">OFFICIAL ARCHITECT CV</span>
+                </div>
+              </div>
               <span class="at-network-arrow" style="color:var(--accent-cyan);">DOWNLOAD ↗</span>
             </a>
-            <a href="https://github.com/dobby-aidev" target="_blank" rel="noopener noreferrer" class="at-network-tile">
-              <span>GITHUB</span>
+
+            <!-- AI Coin Empire -->
+            <a href="https://aicoinempire.donacodex.workers.dev" target="_blank" rel="noopener noreferrer" class="at-network-tile at-live-node-tile" data-cat="live">
+              <div class="at-node-left">
+                <span class="at-node-badge live">GAME</span>
+                <div class="at-node-info">
+                  <span class="at-node-title">AI COIN EMPIRE</span>
+                  <span class="at-node-sub">aicoinempire.workers.dev</span>
+                </div>
+              </div>
+              <span class="at-network-arrow" style="color:var(--accent-lime);">ONLINE ↗</span>
+            </a>
+
+            <!-- Dona Nova 3D -->
+            <a href="https://donanova.donacodex.workers.dev" target="_blank" rel="noopener noreferrer" class="at-network-tile at-live-node-tile" data-cat="live">
+              <div class="at-node-left">
+                <span class="at-node-badge live">3D GLOBE</span>
+                <div class="at-node-info">
+                  <span class="at-node-title">DONA NOVA 3D</span>
+                  <span class="at-node-sub">donanova.workers.dev</span>
+                </div>
+              </div>
+              <span class="at-network-arrow" style="color:var(--accent-cyan);">ONLINE ↗</span>
+            </a>
+
+            <!-- Agent Critiq -->
+            <a href="https://agentcritiq.com" target="_blank" rel="noopener noreferrer" class="at-network-tile at-live-node-tile" data-cat="live">
+              <div class="at-node-left">
+                <span class="at-node-badge live">MCP BENCH</span>
+                <div class="at-node-info">
+                  <span class="at-node-title">AGENT CRITIQ</span>
+                  <span class="at-node-sub">agentcritiq.com</span>
+                </div>
+              </div>
+              <span class="at-network-arrow" style="color:#10b981;">ONLINE ↗</span>
+            </a>
+
+            <!-- GitHub -->
+            <a href="https://github.com/dobby-aidev" target="_blank" rel="noopener noreferrer" class="at-network-tile" data-cat="repo">
+              <div class="at-node-left">
+                <span class="at-node-badge repo">REPO</span>
+                <div class="at-node-info">
+                  <span class="at-node-title">GITHUB</span>
+                  <span class="at-node-sub">@dobby-aidev</span>
+                </div>
+              </div>
               <span class="at-network-arrow">@dobby-aidev ↗</span>
             </a>
-            <a href="https://whop.com/dona-ai" target="_blank" rel="noopener noreferrer" class="at-network-tile">
-              <span>WHOP STORE</span>
-              <span class="at-network-arrow" style="color:var(--accent-lime);">whop.com/dona-ai ↗</span>
+
+            <!-- Whop Store -->
+            <a href="https://whop.com/dona-ai" target="_blank" rel="noopener noreferrer" class="at-network-tile" data-cat="repo">
+              <div class="at-node-left">
+                <span class="at-node-badge store">STORE</span>
+                <div class="at-node-info">
+                  <span class="at-node-title">WHOP STORE</span>
+                  <span class="at-node-sub">whop.com/dona-ai</span>
+                </div>
+              </div>
+              <span class="at-network-arrow" style="color:#FFB800;">DONA AI ↗</span>
             </a>
-            <a href="https://agentcritiq.com" target="_blank" rel="noopener noreferrer" class="at-network-tile">
-              <span>AGENT CRITIQ</span>
-              <span class="at-network-arrow">agentcritiq.com ↗</span>
+
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/in/dobbyb-aidev" target="_blank" rel="noopener noreferrer" class="at-network-tile" data-cat="social">
+              <div class="at-node-left">
+                <span class="at-node-badge social">NETWORK</span>
+                <div class="at-node-info">
+                  <span class="at-node-title">LINKEDIN</span>
+                  <span class="at-node-sub">in/dobbyb-aidev</span>
+                </div>
+              </div>
+              <span class="at-network-arrow" style="color:#38bdf8;">CONNECT ↗</span>
             </a>
-            <a href="https://donanova.donacodex.workers.dev" target="_blank" rel="noopener noreferrer"
-              class="at-network-tile">
-              <span>DONA NOVA 3D</span>
-              <span class="at-network-arrow">donanova.workers.dev ↗</span>
-            </a>
-            <a href="https://www.linkedin.com/in/dobbyb-aidev" target="_blank" rel="noopener noreferrer"
-              class="at-network-tile">
-              <span>LINKEDIN</span>
-              <span class="at-network-arrow">in/dobbyb-aidev ↗</span>
-            </a>
-            <a href="https://x.com/dobbyb_ai" target="_blank" rel="noopener noreferrer" class="at-network-tile">
-              <span>X (TWITTER)</span>
+
+            <!-- X Twitter -->
+            <a href="https://x.com/dobbyb_ai" target="_blank" rel="noopener noreferrer" class="at-network-tile" data-cat="social">
+              <div class="at-node-left">
+                <span class="at-node-badge social">INTEL</span>
+                <div class="at-node-info">
+                  <span class="at-node-title">X (TWITTER)</span>
+                  <span class="at-node-sub">@dobbyb_ai</span>
+                </div>
+              </div>
               <span class="at-network-arrow">@dobbyb_ai ↗</span>
             </a>
-            <a href="https://instagram.com/dobbybmusic" target="_blank" rel="noopener noreferrer"
-              class="at-network-tile">
-              <span>INSTAGRAM</span>
-              <span class="at-network-arrow">@dobbybmusic ↗</span>
+
+            <!-- Instagram -->
+            <a href="https://instagram.com/dobbybmusic" target="_blank" rel="noopener noreferrer" class="at-network-tile" data-cat="social">
+              <div class="at-node-left">
+                <span class="at-node-badge social">MEDIA</span>
+                <div class="at-node-info">
+                  <span class="at-node-title">INSTAGRAM</span>
+                  <span class="at-node-sub">@dobbybmusic</span>
+                </div>
+              </div>
+              <span class="at-network-arrow" style="color:#E4405F;">@dobbybmusic ↗</span>
             </a>
           </div>
         </div>
@@ -352,7 +437,7 @@
     </div>
   </div>
 
-  <script src="script.js?v=quantum_shatter_v14"></script>
+  <script src="script.js?v=quantum_live_v15"></script>
 </body>
 
 </html>

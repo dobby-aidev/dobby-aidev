@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dobby B — AI Systems Architect & Quant Developer | Curriculum Vitae</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #090a0f;
+      color: #e2e8f0;
+      line-height: 1.45;
+      font-size: 9.5pt;
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 66mm 1fr;
+      box-sizing: border-box;
+      position: relative;
+    }
+    
+    /* LEFT SIDEBAR */
+    .sidebar {
+      background: #0d0f17;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 24px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    
+    .profile-header {
+      text-align: center;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .profile-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: 2px solid #00ffff;
+      box-shadow: 0 0 16px rgba(0, 255, 255, 0.3);
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+    .profile-name {
+      font-size: 16pt;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      line-height: 1.1;
+    }
+    .profile-handle {
+      font-family: 'Space Mono', monospace;
+      font-size: 7.5pt;
+      color: #00ffff;
+      letter-spacing: 0.05em;
+      margin-top: 3px;
+    }
+    .profile-role {
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: #94a3b8;
+      margin-top: 4px;
+      line-height: 1.3;
+    }
+    
+    .section-title {
+      font-family: 'Space Mono', monospace;
+      font-size: 7.5pt;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #00ffff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 8px;
+      border-bottom: 1px dashed rgba(0, 255, 255, 0.25);
+      padding-bottom: 3px;
+    }
+    
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+    }
+    .contact-label {
+      font-size: 6.5pt;
+      color: #64748b;
+      font-family: 'Space Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .contact-val {
+      font-size: 8pt;
+      color: #cbd5e1;
+      font-weight: 500;
+      text-decoration: none;
+      word-break: break-all;
+    }
+    .contact-val a {
+      color: #38bdf8;
+      text-decoration: none;
+    }
+    
+    .skills-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .skill-category {
+      font-size: 7.5pt;
+      font-weight: 700;
+      color: #f1f5f9;
+      margin-bottom: 3px;
+    }
+    .tags-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .tag {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 7pt;
+      color: #94a3b8;
+      font-family: 'Space Mono', monospace;
+    }
+    .tag.accent {
+      border-color: rgba(0, 255, 255, 0.35);
+      color: #00ffff;
+      background: rgba(0, 255, 255, 0.06);
+    }
+    .tag.lime {
+      border-color: rgba(0, 255, 136, 0.35);
+      color: #00ff88;
+      background: rgba(0, 255, 136, 0.06);
+    }
+    
+    .stats-box {
+      background: rgba(0, 255, 255, 0.03);
+      border: 1px solid rgba(0, 255, 255, 0.15);
+      border-radius: 6px;
+      padding: 8px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .stat-k {
+      font-size: 7pt;
+      color: #94a3b8;
+    }
+    .stat-v {
+      font-size: 7.5pt;
+      font-family: 'Space Mono', monospace;
+      font-weight: 700;
+      color: #00ff88;
+    }
+
+    /* RIGHT MAIN CONTENT */
+    .main-content {
+      padding: 24px 24px 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    
+    .summary-box {
+      background: rgba(255, 255, 255, 0.02);
+      border-left: 2.5px solid #00ffff;
+      padding: 8px 12px;
+      border-radius: 0 6px 6px 0;
+    }
+    .summary-text {
+      font-size: 8.5pt;
+      color: #cbd5e1;
+      line-height: 1.45;
+    }
+    
+    .main-section-title {
+      font-family: 'Space Mono', monospace;
+      font-size: 9pt;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      padding-bottom: 4px;
+      margin-bottom: 10px;
+    }
+    .main-section-title span.sub {
+      font-size: 6.5pt;
+      color: #00ffff;
+      font-weight: 400;
+    }
+    
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    
+    .project-card {
+      background: #0f121d;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 6px;
+      padding: 8px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      position: relative;
+    }
+    .project-card.featured {
+      border-color: rgba(0, 255, 255, 0.3);
+      background: linear-gradient(135deg, rgba(0, 255, 255, 0.03) 0%, #0f121d 100%);
+    }
+    
+    .proj-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .proj-title {
+      font-size: 9pt;
+      font-weight: 700;
+      color: #ffffff;
+    }
+    .proj-pid {
+      font-family: 'Space Mono', monospace;
+      font-size: 6.5pt;
+      color: #00ffff;
+      background: rgba(0, 255, 255, 0.08);
+      padding: 1px 4px;
+      border-radius: 3px;
+    }
+    .proj-meta {
+      font-family: 'Space Mono', monospace;
+      font-size: 6.5pt;
+      color: #00ff88;
+      font-weight: 700;
+    }
+    .proj-desc {
+      font-size: 7.2pt;
+      color: #94a3b8;
+      line-height: 1.35;
+    }
+    .proj-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px;
+      margin-top: 2px;
+    }
+    .proj-tag {
+      font-size: 6pt;
+      font-family: 'Space Mono', monospace;
+      color: #cbd5e1;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+    
+    .experience-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .exp-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .exp-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .exp-role {
+      font-size: 8.5pt;
+      font-weight: 700;
+      color: #ffffff;
+    }
+    .exp-company {
+      font-size: 8pt;
+      color: #38bdf8;
+      font-weight: 600;
+    }
+    .exp-time {
+      font-family: 'Space Mono', monospace;
+      font-size: 6.5pt;
+      color: #64748b;
+    }
+    .exp-desc {
+      font-size: 7.5pt;
+      color: #94a3b8;
+      line-height: 1.35;
+    }
+    
+    .footer-note {
+      margin-top: auto;
+      padding-top: 8px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 6.5pt;
+      color: #64748b;
+      font-family: 'Space Mono', monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="sidebar">
+    <div class="profile-header">
+      <img src="profile.png" class="profile-avatar" alt="Dobby B" />
+      <h1 class="profile-name">Dobby B</h1>
+      <div class="profile-handle">@dobby-aidev</div>
+      <div class="profile-role">Founder &amp; AI Systems Architect at DONA AI</div>
+    </div>
+
+    <!-- CONTACT & NODES -->
+    <div>
+      <div class="section-title">Official Nodes</div>
+      <div class="contact-list">
+        <div class="contact-item">
+          <span class="contact-label">Portfolio</span>
+          <span class="contact-val"><a href="https://dobby-aidev.github.io/dobby-aidev/">dobby-aidev.github.io</a></span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">GitHub</span>
+          <span class="contact-val"><a href="https://github.com/dobby-aidev">github.com/dobby-aidev</a></span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">LinkedIn</span>
+          <span class="contact-val"><a href="https://linkedin.com/in/dobbyb-aidev">in/dobbyb-aidev</a></span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">X / Twitter</span>
+          <span class="contact-val"><a href="https://x.com/dobbyb_ai">@dobbyb_ai</a></span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Whop AI Store</span>
+          <span class="contact-val"><a href="https://whop.com/dona-ai">whop.com/dona-ai</a></span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Platforms</span>
+          <span class="contact-val"><a href="https://agentcritiq.com">agentcritiq.com</a></span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Live Game</span>
+          <span class="contact-val"><a href="https://aicoinempire.donacodex.workers.dev">aicoinempire.workers.dev</a></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CORE COMPETENCIES -->
+    <div>
+      <div class="section-title">Tech Matrix</div>
+      <div class="skills-group">
+        <div>
+          <div class="skill-category">AI &amp; Neural Systems</div>
+          <div class="tags-wrap">
+            <span class="tag accent">Custom LLMs</span>
+            <span class="tag accent">Transformer</span>
+            <span class="tag accent">PyTorch</span>
+            <span class="tag">MCP Server</span>
+            <span class="tag">Active Inference</span>
+            <span class="tag">Spiking LIF</span>
+            <span class="tag">CrewAI Swarms</span>
+            <span class="tag">HuggingFace</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="skill-category">Quant &amp; DRL Trading</div>
+          <div class="tags-wrap">
+            <span class="tag lime">Actor-Critic DRL</span>
+            <span class="tag lime">Binance Futures</span>
+            <span class="tag">L5 Orderbook</span>
+            <span class="tag">CVD / Open Interest</span>
+            <span class="tag">Spot Grid (ATR)</span>
+            <span class="tag">TA-Lib &amp; CCXT</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="skill-category">Full-Stack &amp; 3D WebGL</div>
+          <div class="tags-wrap">
+            <span class="tag">Three.js / R3F</span>
+            <span class="tag">React 18 / Next.js</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">Python 3.11+</span>
+            <span class="tag">Cloudflare Workers</span>
+            <span class="tag">FastAPI</span>
+            <span class="tag">Firebase Firestore</span>
+            <span class="tag">Socket.IO</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIVE TELEMETRY -->
+    <div>
+      <div class="section-title">Telemetry &amp; Benchmarks</div>
+      <div class="stats-box">
+        <div class="stat-row">
+          <span class="stat-k">ApexBrain DRL (Gen 510)</span>
+          <span class="stat-v">+74.24% ROI</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-k">Win Rate (9d Real Exec)</span>
+          <span class="stat-v">53.95%</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-k">Agent Critiq Benchmark</span>
+          <span class="stat-v">100+ Tools Tested</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-k">Dona Nova 3D Globe</span>
+          <span class="stat-v">35K+ Power Plants</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- RIGHT MAIN CONTENT -->
+  <main class="main-content">
+    
+    <!-- EXECUTIVE SUMMARY -->
+    <div class="summary-box">
+      <p class="summary-text">
+        <strong>AI Systems Architect &amp; Quantitative Developer</strong> with deep expertise in architecting autonomous AI multi-agent swarms, training proprietary financial Transformer LLMs, engineering PyTorch Deep Reinforcement Learning (Actor-Critic) quant trading bots, and deploying high-performance 3D WebGL geospatial platforms.
+      </p>
+    </div>
+
+    <!-- REPUTATION / ROLES -->
+    <div>
+      <div class="main-section-title">
+        <span>Leadership &amp; Engineering</span>
+        <span class="sub">// 2024 — PRESENT</span>
+      </div>
+      <div class="experience-list">
+        <div class="exp-item">
+          <div class="exp-head">
+            <div>
+              <span class="exp-role">Founder &amp; Lead AI Systems Architect</span> — <span class="exp-company">DONA AI / Dona Codex</span>
+            </div>
+            <span class="exp-time">2024 – PRESENT</span>
+          </div>
+          <p class="exp-desc">
+            Directing end-to-end research and deployment of multi-agent cognitive swarms, proprietary financial Transformer models, high-frequency futures trading bots, and open-source MCP benchmarking platforms.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEATURED ARCHITECTURES & PRODUCTION PROJECTS -->
+    <div>
+      <div class="main-section-title">
+        <span>Signature Systems &amp; Deployments</span>
+        <span class="sub">// 12+ PRODUCTION REPOSITORIES</span>
+      </div>
+
+      <div class="project-grid">
+        
+        <!-- Dona Codex Vision -->
+        <div class="project-card featured">
+          <div class="proj-head">
+            <span class="proj-title">Dona Codex: Vision</span>
+            <span class="proj-pid">PID·4201</span>
+          </div>
+          <div class="proj-meta">PROPRIETARY FINANCIAL LLM // 2026</div>
+          <p class="proj-desc">Custom Transformer language model fine-tuned on crypto L5 orderbook microstructure, live X financial feeds, and US Treasury yield curves for directional alpha generation.</p>
+          <div class="proj-stack">
+            <span class="proj-tag">PyTorch</span>
+            <span class="proj-tag">Transformer</span>
+            <span class="proj-tag">FastAPI</span>
+            <span class="proj-tag">WebSockets</span>
+          </div>
+        </div>
+
+        <!-- ApexBrain Nexus -->
+        <div class="project-card featured">
+          <div class="proj-head">
+            <span class="proj-title">ApexBrain Nexus</span>
+            <span class="proj-pid">PID·4204</span>
+          </div>
+          <div class="proj-meta">ACTOR-CRITIC DRL // +74.24% ROI // GEN 510</div>
+          <p class="proj-desc">510th-generation deep reinforcement learning quant agent on Binance Futures trained with CVD, OI, and funding telemetry. Verifiable live trade history CSV open-sourced.</p>
+          <div class="proj-stack">
+            <span class="proj-tag">PyTorch DRL</span>
+            <span class="proj-tag">Binance Futures</span>
+            <span class="proj-tag">Actor-Critic</span>
+          </div>
+        </div>
+
+        <!-- Agent Critiq -->
+        <div class="project-card">
+          <div class="proj-head">
+            <span class="proj-title">Agent Critiq Platform</span>
+            <span class="proj-pid">PID·4202</span>
+          </div>
+          <div class="proj-meta">LIVE DIRECTORY // MCP SERVER // HUGGINGFACE</div>
+          <p class="proj-desc">Global benchmark indexing 100+ autonomous agents with automated telemetry scoring, native Model Context Protocol (MCP) server, and open HuggingFace dataset.</p>
+          <div class="proj-stack">
+            <span class="proj-tag">TypeScript</span>
+            <span class="proj-tag">React</span>
+            <span class="proj-tag">MCP Protocol</span>
+            <span class="proj-tag">HuggingFace</span>
+          </div>
+        </div>
+
+        <!-- Dona Nova 3D -->
+        <div class="project-card">
+          <div class="proj-head">
+            <span class="proj-title">Dona Nova 3D WebGL</span>
+            <span class="proj-pid">PID·4211</span>
+          </div>
+          <div class="proj-meta">35K+ POWER PLANTS // GEOSPATIAL R3F</div>
+          <p class="proj-desc">Planetary geospatial 3D intelligence platform rendering 35,000+ power plants, real-time carbon telemetry, and submarine fiber optics on an interactive WebGL sphere.</p>
+          <div class="proj-stack">
+            <span class="proj-tag">Next.js 16</span>
+            <span class="proj-tag">Three.js / R3F</span>
+            <span class="proj-tag">Cloudflare Workers</span>
+          </div>
+        </div>
+
+        <!-- Dona Aeon -->
+        <div class="project-card">
+          <div class="proj-head">
+            <span class="proj-title">Dona Æon</span>
+            <span class="proj-pid">PID·4212</span>
+          </div>
+          <div class="proj-meta">SPIKING LIF // FREE ENERGY PRINCIPLE</div>
+          <p class="proj-desc">Embodied digital organism running on Karl Friston's Free Energy Principle and a 512-neuron LIF spiking neocortex with infinite context and REM sleep consolidation.</p>
+          <div class="proj-stack">
+            <span class="proj-tag">Spiking Neural</span>
+            <span class="proj-tag">Active Inference</span>
+            <span class="proj-tag">Python 3.11</span>
+          </div>
+        </div>
+
+        <!-- Dona Codex Overmind -->
+        <div class="project-card">
+          <div class="proj-head">
+            <span class="proj-title">Dona Codex: Overmind</span>
+            <span class="proj-pid">PID·4203</span>
+          </div>
+          <div class="proj-meta">MULTI-AGENT COMPANY SWARM</div>
+          <p class="proj-desc">Autonomous AI agent nodes (CEO, Researcher, Engineer, Analyst) operating in a persistent decentralized game loop with Socket.IO telemetry and Firebase state.</p>
+          <div class="proj-stack">
+            <span class="proj-tag">React</span>
+            <span class="proj-tag">Node.js</span>
+            <span class="proj-tag">Socket.IO</span>
+            <span class="proj-tag">Firebase</span>
+          </div>
+        </div>
+
+        <!-- Dona Quantum Crew -->
+        <div class="project-card">
+          <div class="proj-head">
+            <span class="proj-title">Dona Quantum</span>
+            <span class="proj-pid">PID·4209</span>
+          </div>
+          <div class="proj-meta">CREWAI MULTI-AGENT QUANT ENGINE</div>
+          <p class="proj-desc">Consensus-driven trading system orchestrating 4 AI agents (Scanner, Technical Analyst, Sentiment Model, Risk Manager) to evaluate leveraged setups.</p>
+          <div class="proj-stack">
+            <span class="proj-tag">CrewAI</span>
+            <span class="proj-tag">Gemini API</span>
+            <span class="proj-tag">GPT-4</span>
+            <span class="proj-tag">CCXT</span>
+          </div>
+        </div>
+
+        <!-- Dona Grid Spot -->
+        <div class="project-card">
+          <div class="proj-head">
+            <span class="proj-title">Dona Grid Bot</span>
+            <span class="proj-pid">PID·4208</span>
+          </div>
+          <div class="proj-meta">DYNAMIC ATR VOLATILITY SPOT ENGINE</div>
+          <p class="proj-desc">Automated high-frequency spot market making bot featuring dynamic ATR recentering and RSI anti-toxicity filters for 24/7 spread extraction.</p>
+          <div class="proj-stack">
+            <span class="proj-tag">Python</span>
+            <span class="proj-tag">Binance API</span>
+            <span class="proj-tag">TA-Lib</span>
+            <span class="proj-tag">NumPy</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer-note">
+      <span>DONA CODEX // ARCHITECTURAL CV TELEMETRY</span>
+      <span>VERIFIABLE ON GITHUB (@dobby-aidev)</span>
+    </div>
+
+  </main>
+
+</body>
+</html>
