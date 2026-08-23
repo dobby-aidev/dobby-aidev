@@ -165,8 +165,17 @@ Hi! I'm **Dobby B (@dobby-aidev)** — AI Dev. I build autonomous AI agents, pro
 
 ---
 
+## 📜 License & Intellectual Property
+
+Copyright (c) 2021-2026 **Dona Codex**. All Rights Reserved.
+
+This project is licensed under the [MIT License](LICENSE). All proprietary model architectures, neural configurations, and visual emblems are the intellectual property of **Dona Codex**.
+
+---
+
 <div align="center">
 
 *Building autonomous AI agents, proprietary LLMs & quantitative systems.*
 
 </div>
+

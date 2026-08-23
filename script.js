@@ -1,3 +1,11 @@
+/**
+ * Copyright (c) 2021-2026 Dona Codex.
+ * All Rights Reserved.
+ * https://dobby-aidev.github.io/dobby-aidev/
+ * 
+ * DONA CODEX // NEURAL OS & 3D INTERFACE JAVASCRIPT ENGINE
+ */
+
 /* ==========================================================================
    AUTHENTIC ACTIVE THEORY JAVASCRIPT ENGINE (FINAL BULLETPROOF EDITION)
    1. Dynamic Category Filtering + Seamless Carousel Rebuilding:
