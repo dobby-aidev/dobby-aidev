@@ -11,7 +11,7 @@
 [![AI Coin Empire](https://img.shields.io/badge/🪙%20AI%20Coin%20Empire-Live%20Game-F59E0B?style=for-the-badge&logo=cloudflare&logoColor=white)](https://aicoinempire.donacodex.workers.dev)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/dobbyb-aidev)
 [![X / Twitter](https://img.shields.io/badge/X%20(Twitter)-dobbyb__ai-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/dobbyb_ai)
-[![Instagram](https://img.shields.io/badge/Instagram-dobbybmusic-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/dobbybmusic)
+[![Instagram](https://img.shields.io/badge/Instagram-dobby.aidev-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/dobby.aidev)
 [![Hugging Face](https://img.shields.io/badge/🤗%20HuggingFace-dobbyb--aidev-FF9D00?style=for-the-badge)](https://huggingface.co/dobbyb-aidev)
 [![Kaggle](https://img.shields.io/badge/📊%20Kaggle-dobbyb-20BEFF?style=for-the-badge&logo=kaggle&logoColor=white)](https://www.kaggle.com/dobbyb)
 [![Product Hunt](https://img.shields.io/badge/😸%20Product%20Hunt-dobbyb__aidev-DA552F?style=for-the-badge&logo=producthunt&logoColor=white)](https://www.producthunt.com/@dobbyb_aidev)
@@ -62,7 +62,7 @@ Hi! I'm **Dobby B (@dobby-aidev)** — AI Dev. I build autonomous AI agents, pro
 - 😸 **Product Hunt:** [producthunt.com/@dobbyb_aidev](https://www.producthunt.com/@dobbyb_aidev)
 - 💼 **LinkedIn:** [linkedin.com/in/dobbyb-aidev](https://www.linkedin.com/in/dobbyb-aidev)
 - 𝕏 **X (Twitter):** [x.com/dobbyb_ai](https://x.com/dobbyb_ai)
-- 📸 **Instagram:** [instagram.com/dobbybmusic](https://instagram.com/dobbybmusic)
+- 📸 **Instagram:** [instagram.com/dobby.aidev](https://instagram.com/dobby.aidev)
 
 ---
 

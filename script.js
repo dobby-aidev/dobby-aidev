@@ -50,6 +50,9 @@ const TRANSLATIONS = {
     node_tab_repos: '📦 DOKÜMAN & MAĞAZA (3)',
     node_tab_social: '🌐 NETWORK (3)',
     cv_download: 'ÖZGEÇMİŞ (CV / RESUME)',
+    toggle_view_mode: '📱 IZGARA GÖRÜNÜMÜ',
+    toggle_view_mode_grid: '📱 IZGARA GÖRÜNÜMÜ',
+    toggle_view_mode_3d: '🌌 3D KORİDOR',
     footer_rights: '© 2026 Dona Codex. All rights reserved.'
   },
   en: {
@@ -80,6 +83,9 @@ const TRANSLATIONS = {
     node_tab_repos: '📦 STORE & DOCS (3)',
     node_tab_social: '🌐 NETWORK (3)',
     cv_download: 'CURRICULUM VITAE (RESUME)',
+    toggle_view_mode: '📱 GRID VIEW',
+    toggle_view_mode_grid: '📱 GRID VIEW',
+    toggle_view_mode_3d: '🌌 3D CAROUSEL',
     footer_rights: '© 2026 Dona Codex. All rights reserved.'
   }
 };
@@ -260,6 +266,69 @@ let miniStartX = 0;
 /* Fullscreen Lightbox state */
 let activeLightboxImages = [];
 let currentLightboxIndex = 0;
+
+/* Mobile 2D Grid / 3D Carousel view toggle state */
+let mobileViewMode = '3d'; // '3d' or 'grid'
+
+function toggleMobileViewMode(mode) {
+  if (mode) {
+    mobileViewMode = mode;
+  } else {
+    mobileViewMode = (mobileViewMode === '3d') ? 'grid' : '3d';
+  }
+
+  const stage = document.getElementById('carousel-stage');
+  const grid = document.getElementById('projects-grid-mobile');
+  const btn = document.getElementById('mobile-view-mode-btn');
+
+  if (mobileViewMode === 'grid') {
+    if (stage) stage.style.display = 'none';
+    if (grid) {
+      grid.style.display = 'flex';
+      buildMobileGrid();
+    }
+    if (btn) btn.textContent = (TRANSLATIONS[currentLang] && TRANSLATIONS[currentLang].toggle_view_mode_3d) ? TRANSLATIONS[currentLang].toggle_view_mode_3d : '🌌 3D CAROUSEL';
+  } else {
+    if (stage) stage.style.display = 'flex';
+    if (grid) grid.style.display = 'none';
+    if (btn) btn.textContent = (TRANSLATIONS[currentLang] && TRANSLATIONS[currentLang].toggle_view_mode_grid) ? TRANSLATIONS[currentLang].toggle_view_mode_grid : '📱 GRID VIEW';
+  }
+}
+
+function buildMobileGrid() {
+  const grid = document.getElementById('projects-grid-mobile');
+  if (!grid) return;
+  grid.innerHTML = '';
+
+  filteredProjects.forEach(proj => {
+    const card = document.createElement('div');
+    card.className = 'at-project-grid-card';
+
+    const descText = (currentLang === 'en' && proj.desc_en) ? proj.desc_en : proj.desc;
+
+    card.innerHTML = `
+      <div class="at-grid-card-img-wrap">
+        <span class="at-grid-card-badge">${proj.pid}</span>
+        <img src="${proj.img}" class="at-grid-card-img" alt="${proj.title}" loading="lazy" />
+      </div>
+      <div class="at-grid-card-content">
+        <div class="at-grid-card-header">
+          <span class="at-grid-card-title">${proj.title}</span>
+          <span class="at-grid-card-arrow">↗</span>
+        </div>
+        <div class="at-grid-card-meta">${proj.meta}</div>
+        <div class="at-grid-card-desc">${descText}</div>
+      </div>
+    `;
+
+    card.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openDetail(proj, card);
+    });
+
+    grid.appendChild(card);
+  });
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   'use strict';
@@ -455,19 +524,16 @@ function buildCarousel() {
         <div class="at-card-corner-bracket bl"></div>
         <div class="at-card-corner-bracket br"></div>
 
-        <!-- 3D Front Glass Layer with High-Clarity AI HUD -->
+        <!-- 3D Front Glass Layer with High-Clarity Real Screenshot Preview -->
         <div class="at-card-face-front">
           <div class="at-card-img-wrap">
-            <canvas class="at-card-hologram-canvas" data-src="${proj.img}"></canvas>
             <img src="${proj.img}" class="at-card-img" alt="${proj.title}" />
-            <div class="at-card-holo-shimmer"></div>
             
             <!-- AI HUD System Header -->
             <div class="at-card-hud-header">
               <span class="at-card-badge">${proj.pid}</span>
               <span class="at-card-live-node"><span class="at-node-dot"></span>SYS::ONLINE</span>
             </div>
-            <div class="at-card-glass-specular"></div>
           </div>
           <div class="at-card-info">
             <div class="at-card-title-row">
@@ -492,9 +558,6 @@ function buildCarousel() {
     // Initialize 3D Mouse Gyro Tilt on this card
     initCard3DGyro(card);
 
-    // Initialize WebGL Liquid Hologram Shader on this card
-    initCardLiquidShader(card);
-
     // Direct project click: opens the exact clicked project with card shard explosion
     card.addEventListener('click', (e) => {
       if (!pointerMoved) {
@@ -509,6 +572,7 @@ function buildCarousel() {
   currentRotation = 0;
   rotator.style.transform = `rotateY(0deg)`;
   updateCarouselPointerEvents();
+  buildMobileGrid();
 }
 
 /**
@@ -597,7 +661,8 @@ function initCarouselGestures() {
       if (isDragging) {
         const dx = e.clientX - startX;
         const dy = e.clientY - startY;
-        if (Math.hypot(dx, dy) > 5) {
+        const dragThreshold = (e.pointerType === 'touch') ? 12 : 5;
+        if (Math.hypot(dx, dy) > dragThreshold) {
           pointerMoved = true;
         }
         currentRotation = dragRotationStart + dx * 0.25;
@@ -628,19 +693,36 @@ function initCarouselGestures() {
   }
 
   if (miniStage) {
-    miniStage.addEventListener('mousedown', (e) => {
+    let miniTouchStartX = 0;
+
+    miniStage.addEventListener('pointerdown', (e) => {
       isMiniDragging = true;
       miniStartX = e.clientX;
     });
 
-    window.addEventListener('mouseup', (e) => {
+    window.addEventListener('pointerup', (e) => {
       if (isMiniDragging) {
         const dx = e.clientX - miniStartX;
-        if (dx > 40) stepDetailGallery(-1);
-        if (dx < -40) stepDetailGallery(1);
+        if (dx > 35) stepDetailGallery(-1);
+        if (dx < -35) stepDetailGallery(1);
         isMiniDragging = false;
       }
     });
+
+    // Touch events fallback for mobile touchscreens
+    miniStage.addEventListener('touchstart', (e) => {
+      if (e.touches && e.touches.length > 0) {
+        miniTouchStartX = e.touches[0].clientX;
+      }
+    }, { passive: true });
+
+    miniStage.addEventListener('touchend', (e) => {
+      if (e.changedTouches && e.changedTouches.length > 0) {
+        const dx = e.changedTouches[0].clientX - miniTouchStartX;
+        if (dx > 35) stepDetailGallery(-1);
+        if (dx < -35) stepDetailGallery(1);
+      }
+    }, { passive: true });
   }
 }
 
@@ -877,13 +959,21 @@ function applyLanguage(lang) {
   const t = TRANSLATIONS[lang];
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
-    if (t[key]) {
+    if (t && t[key]) {
       el.textContent = t[key];
     }
   });
 
   const langBtn = document.getElementById('lang-btn');
   if (langBtn) langBtn.textContent = lang === 'tr' ? 'EN' : 'TR';
+
+  // Update view mode toggle button text if present
+  const viewToggleBtn = document.getElementById('mobile-view-mode-btn');
+  if (viewToggleBtn && t) {
+    viewToggleBtn.textContent = (mobileViewMode === 'grid') ? t.toggle_view_mode_3d : t.toggle_view_mode_grid;
+  }
+
+  buildMobileGrid();
 
   // Update Detail view dynamically if active
   if (currentDetailProject && document.getElementById('view-detail').classList.contains('active')) {
@@ -1053,6 +1143,30 @@ function initLightboxGestures() {
           stepLightbox(1);
         } else if (e.deltaY < -30) {
           stepLightbox(-1);
+        }
+      }
+    }, { passive: true });
+
+    let lbTouchStartX = 0;
+    let lbTouchStartY = 0;
+
+    body.addEventListener('touchstart', (e) => {
+      if (lbModal && lbModal.classList.contains('active') && e.touches && e.touches.length > 0) {
+        lbTouchStartX = e.touches[0].clientX;
+        lbTouchStartY = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    body.addEventListener('touchend', (e) => {
+      if (lbModal && lbModal.classList.contains('active') && e.changedTouches && e.changedTouches.length > 0) {
+        const dx = e.changedTouches[0].clientX - lbTouchStartX;
+        const dy = e.changedTouches[0].clientY - lbTouchStartY;
+        if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 35) {
+          if (dx < 0) {
+            stepLightbox(1);
+          } else {
+            stepLightbox(-1);
+          }
         }
       }
     }, { passive: true });
@@ -1278,11 +1392,11 @@ function initCardLiquidShader(cardElement) {
   gl.bindBuffer(gl.ARRAY_BUFFER, posBuffer);
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
     -1, -1,
-     1, -1,
-    -1,  1,
-    -1,  1,
-     1, -1,
-     1,  1,
+    1, -1,
+    -1, 1,
+    -1, 1,
+    1, -1,
+    1, 1,
   ]), gl.STATIC_DRAW);
 
   const aPosition = gl.getAttribLocation(program, 'a_position');
