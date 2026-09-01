@@ -143,7 +143,7 @@ const PROJECTS = [
     prefix: 'assets/agent_critiq_',
     ext: 'jpg',
     live: 'https://agentcritiq.com',
-    repo: 'https://agentcritiq.com'
+    repo: 'https://github.com/dobby-aidev/agent-critiq-showcase'
   },
   {
     id: 'dona-nova',
@@ -159,7 +159,7 @@ const PROJECTS = [
     prefix: 'assets/dona_nova_',
     ext: 'jpg',
     live: 'https://donanova.donacodex.workers.dev',
-    repo: 'https://donanova.donacodex.workers.dev'
+    repo: 'https://github.com/dobby-aidev/dona-nova-showcase'
   },
   {
     id: 'dona-nexus',
@@ -279,7 +279,7 @@ const PROJECTS = [
     galleryCount: 9,
     prefix: 'assets/zamanin_bekcisi_',
     ext: 'jpg',
-    repo: 'https://github.com/dobby-aidev/zamani-bekcisi-showcase'
+    repo: 'https://github.com/dobby-aidev/zamanin-bekcisi-showcase'
   }
 ];
 
@@ -383,6 +383,12 @@ function preloadProjectThumbnails() {
     if (proj.img) {
       const img = new Image();
       img.src = proj.img;
+    }
+    if (proj.prefix && proj.ext && proj.galleryCount) {
+      for (let i = 1; i <= Math.min(3, proj.galleryCount); i++) {
+        const gImg = new Image();
+        gImg.src = `${proj.prefix}${i}.${proj.ext}`;
+      }
     }
   });
 }
