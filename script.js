@@ -21,30 +21,48 @@
 
 let currentLang = localStorage.getItem('dobby_lang') || 'tr';
 
+/* Fallback SVG generator for any broken or slow-loading screenshot */
+function generateFallbackSvg(title) {
+  const safeTitle = (title || 'Project Preview').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  return `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500"><rect fill="%230f0f13" width="800" height="500"/><circle cx="400" cy="200" r="48" fill="%23f5eedc" opacity="0.15"/><path d="M380 200 L420 200 M400 180 L400 220" stroke="%23f5eedc" stroke-width="3" stroke-linecap="round"/><text fill="%23faf7f2" font-family="system-ui, sans-serif" font-size="22" font-weight="600" x="50%" y="300" text-anchor="middle">${safeTitle}</text><text fill="%23a8a29e" font-family="monospace" font-size="14" x="50%" y="335" text-anchor="middle">DONA CODEX // PRODUCTION</text></svg>`;
+}
+
+function handleImgError(imgEl, title) {
+  if (imgEl && !imgEl.dataset.hasFailed) {
+    imgEl.dataset.hasFailed = 'true';
+    imgEl.src = generateFallbackSvg(title);
+  }
+}
+
 const TRANSLATIONS = {
   tr: {
     nav_home: 'ANA SAYFA',
     nav_work: 'PROJELER',
     nav_contact: 'İLETİŞİM',
-    hero_bio: 'Dona Codex Kurucusu & Yapay Zeka Sistem Mimarı | Agent Critiq Yaratıcısı | Otonom Yapay Zeka Sistemleri, Çoklu-Ajan Mimarileri & Pekiştirmeli Öğrenme Altyapıları Geliştiricisi',
+    hero_bio: 'Dona Codex Kurucusu & Sistem Mimarı | Agent Critiq Geliştiricisi | Otonom Ajan Sistemleri, PyTorch Pekiştirmeli Öğrenme & 3D WebGL Platformları Geliştiricisi',
     hero_explore: 'PROJELERİ KEŞFET ->',
-    sidebar_title: 'NE ARIYORSUNUZ?',
-    cat_all: 'TÜM SİSTEMLER (12)',
+    sidebar_title: 'KATEGORİLER',
+    cat_all: 'TÜM PROJELER (12)',
+    cat_all_short: 'TÜMÜ',
     cat_ai: 'AI & CUSTOM LLM',
+    cat_ai_short: 'AI / LLM',
     cat_quant: 'QUANT & DEEP RL',
+    cat_quant_short: 'QUANT',
     cat_3d: '3D WEBGL PLATFORMLARI',
+    cat_3d_short: '3D WEBGL',
     cat_swarm: 'SWARM SİMÜLASYONLARI',
-    detail_close: '<- GERİ DÖN // SCROLL İLE KAPAT',
+    cat_swarm_short: 'SWARM',
+    detail_close: '<- PROJELERE GERİ DÖN',
     open_fullscreen_gallery: 'TAM EKRAN GALERİ',
     live_demo_btn: 'CANLI UYGULAMA ↗',
-    contact_tag: 'DIRECT DISPATCH // LAB ONLINE',
+    contact_tag: 'İLETİŞİM // GET IN TOUCH',
     contact_title: 'BAĞLANTI KURUN.',
     contact_desc: 'Otonom yapay zeka ajanları, PyTorch DRL quant modelleri ve özel web uygulamaları geliştirmek için iletişime geçin.',
     contact_send: 'GÖNDER ->',
     contact_sending: 'GÖNDERİLİYOR...',
     contact_success: 'İSTEK ALINDI ✓ (MAİL İLETİLDİ)',
     contact_error: 'GÖNDERİM BAŞARISIZ ✕',
-    network_header: 'OFFICIAL NODES & REPOSITORIES',
+    network_header: 'PROJELER & BAĞLANTILAR',
     node_tab_all: 'TÜMÜ (9)',
     node_tab_live: '⚡ CANLI (3)',
     node_tab_repos: '📦 DOKÜMAN & MAĞAZA (3)',
@@ -59,25 +77,30 @@ const TRANSLATIONS = {
     nav_home: 'HOME',
     nav_work: 'WORK',
     nav_contact: 'CONTACT',
-    hero_bio: 'Founder & AI Systems Architect at Dona Codex | Creator of Agent Critiq | Building Autonomous AI Systems, Multi-Agent Architectures & Reinforcement Learning Infrastructure',
+    hero_bio: 'Founder & AI Systems Architect at Dona Codex | Creator of Agent Critiq | Building Autonomous AI Systems, Reinforcement Learning Infrastructure & 3D WebGL Platforms',
     hero_explore: 'EXPLORE WORK ->',
-    sidebar_title: 'WHAT ARE YOU LOOKING FOR?',
-    cat_all: 'ALL SYSTEMS (12)',
+    sidebar_title: 'CATEGORIES',
+    cat_all: 'ALL PROJECTS (12)',
+    cat_all_short: 'ALL',
     cat_ai: 'AI & CUSTOM LLM',
+    cat_ai_short: 'AI / LLM',
     cat_quant: 'QUANT & DEEP RL',
+    cat_quant_short: 'QUANT',
     cat_3d: '3D WEBGL PLATFORMS',
+    cat_3d_short: '3D WEBGL',
     cat_swarm: 'SWARM SIMULATIONS',
-    detail_close: '<- CLOSE // SCROLL TO CLOSE',
+    cat_swarm_short: 'SWARM',
+    detail_close: '<- BACK TO WORK',
     open_fullscreen_gallery: 'FULLSCREEN GALLERY',
     live_demo_btn: 'LIVE DEMO ↗',
-    contact_tag: 'DIRECT DISPATCH // LAB ONLINE',
-    contact_title: 'ESTABLISH CONTACT.',
+    contact_tag: 'CONTACT // GET IN TOUCH',
+    contact_title: 'GET IN TOUCH.',
     contact_desc: 'Reach out to build autonomous AI agents, PyTorch DRL quant trading models, or bespoke WebGL applications.',
     contact_send: 'SEND ->',
-    contact_sending: 'DISPATCHING...',
+    contact_sending: 'SENDING...',
     contact_success: 'RECEIVED ✓ (MAIL DISPATCHED)',
     contact_error: 'DISPATCH FAILED ✕',
-    network_header: 'OFFICIAL NODES & REPOSITORIES',
+    network_header: 'PROJECTS & ECOSYSTEM',
     node_tab_all: 'ALL (9)',
     node_tab_live: '⚡ LIVE APPS (3)',
     node_tab_repos: '📦 STORE & DOCS (3)',
@@ -93,12 +116,13 @@ const TRANSLATIONS = {
 const PROJECTS = [
   {
     id: 'dona-codex-vision',
-    pid: 'PID·4201',
+    pid: 'FINANCIAL LLM',
     category: 'ai',
     title: 'Dona Codex: Vision',
-    meta: 'PROPRIETARY FINANCIAL LLM // 2026',
-    desc: 'Kripto emir defteri mikro-yapısı, X canlı haber akışı ve ABD Tahvil faizleriyle özel eğitilmiş kurumsal finansal Transformer dil modeli.',
-    desc_en: 'Proprietary financial Transformer LLM trained on crypto orderbook microstructure, X newsfeeds, and US Treasury yield curves.',
+    meta: 'PROPRIETARY LLM // 2026',
+    tech: ['PyTorch', 'Transformers', 'FastAPI', 'CUDA'],
+    desc: 'Kripto emir defteri mikro-yapısı, canlı haber akışı ve ABD Tahvil faizleriyle özel eğitilmiş finansal Transformer dil modeli.',
+    desc_en: 'Proprietary financial Transformer LLM trained on crypto orderbook microstructure, newsfeeds, and US Treasury yield curves.',
     img: 'assets/dona_codex_vision_1.jpg',
     galleryCount: 13,
     prefix: 'assets/dona_codex_vision_',
@@ -107,10 +131,11 @@ const PROJECTS = [
   },
   {
     id: 'agent-critiq',
-    pid: 'PID·4202',
+    pid: 'BENCHMARK',
     category: 'ai',
     title: 'Agent Critiq',
     meta: '100+ AI BENCHMARK // MCP SERVER',
+    tech: ['React 18', 'MCP Protocol', 'HuggingFace', 'Cloudflare'],
     desc: '100\'den fazla otonom yapay zeka ajanını teknik metriklerle puanlayan küresel canlı dizin. Dahili MCP Server protokolü ve HuggingFace açık veri seti.',
     desc_en: 'Live global benchmark platform testing and rating 100+ autonomous AI tools. Built-in MCP Server and open HuggingFace dataset.',
     img: 'assets/agent_critiq_1.jpg',
@@ -122,10 +147,11 @@ const PROJECTS = [
   },
   {
     id: 'dona-nova',
-    pid: 'PID·4211',
+    pid: '3D INTELLIGENCE',
     category: '3d',
     title: 'Dona Nova',
     meta: '35K+ POWER PLANTS // 3D R3F',
+    tech: ['Three.js', 'React Three Fiber', 'WebGL', 'GeoJSON'],
     desc: '35,000+ küresel enerji santrali, karbon telemetrisi ve denizaltı fiber optik hatlarını 3D küre üzerinde interaktif görselleştiren jeo-uzamsal istihbarat platformu.',
     desc_en: 'Geospatial 3D WebGL intelligence platform visualizing 35,000+ power plants, carbon telemetry, and submarine cables in real-time.',
     img: 'assets/dona_nova_1.jpg',
@@ -137,12 +163,13 @@ const PROJECTS = [
   },
   {
     id: 'dona-nexus',
-    pid: 'PID·4204',
+    pid: 'DRL QUANT',
     category: 'quant',
     title: 'ApexBrain Nexus',
-    meta: 'ACTOR-CRITIC DRL // +74.24% ROI // 510 GEN',
-    desc: 'Binance Futures için L5 Orderbook, CVD, OI ve Funding Rate verileriyle 8 ay mutasyona uğratılmış 510. nesil derin pekiştirmeli öğrenme botu. Gerçek işlem geçmişi (trade_history_gen_510.csv) GitHub deposunda doğrulanabilir şekilde yayınlanmıştır.',
-    desc_en: '510th-generation Actor-Critic deep reinforcement learning quant agent trained on L5 orderbook, CVD, and funding rates with +74.24% ROI. Full verifiable trading telemetry (trade_history_gen_510.csv) published on GitHub.',
+    meta: 'ACTOR-CRITIC DRL // +74.24% ROI',
+    tech: ['PyTorch', 'Actor-Critic DRL', 'Binance API', 'Pandas'],
+    desc: 'Binance Futures için L5 Orderbook, CVD, OI ve Funding Rate verileriyle mutasyona uğratılmış derin pekiştirmeli öğrenme botu. Doğrulanabilir işlem geçmişi açıkça paylaşılmıştır.',
+    desc_en: 'Deep reinforcement learning quant agent trained on L5 orderbook, CVD, and funding rates with +74.24% ROI. Verifiable trading telemetry published on GitHub.',
     img: 'assets/dona_nexus_trading_dashboard.jpg',
     galleryCount: 8,
     prefix: 'assets/dona_nexus_',
@@ -151,11 +178,12 @@ const PROJECTS = [
   },
   {
     id: 'dona-aeon',
-    pid: 'PID·4212',
+    pid: 'NEURAL RESEARCH',
     category: 'ai',
     title: 'Dona Æon',
     meta: 'SPIKING NEURAL // FEP LIFE',
-    desc: 'Karl Friston\'ın Serbest Enerji Prensibi (FEP) ve 512-nöronluk Spiking Neocortex (LIF) ile çalışan, sınırsız token bağlamına sahip özerk dijital yaşam formu.',
+    tech: ['Spiking Neural Nets', 'Free Energy Principle', 'Python'],
+    desc: 'Karl Friston\'ın Serbest Enerji Prensibi (FEP) ve 512-nöronluk Spiking Neocortex (LIF) ile çalışan özerk dijital yaşam formu mimarisi.',
     desc_en: 'Embodied digital organism running on Karl Friston\'s Free Energy Principle and a 512-neuron LIF spiking neocortex with infinite context.',
     img: 'assets/dona_aeon_architecture.png',
     single: 'assets/dona_aeon_architecture.png',
@@ -164,10 +192,11 @@ const PROJECTS = [
   },
   {
     id: 'dona-codex-overmind',
-    pid: 'PID·4203',
+    pid: 'SWARM SIM',
     category: 'swarm',
     title: 'Dona Codex: Overmind',
     meta: 'MULTI-AGENT COMPANY SWARM',
+    tech: ['WebSockets', 'Autonomous Agents', 'Node.js', 'React'],
     desc: 'CEO, Araştırmacı, Mühendis ve Analist otonom yapay zeka düğümlerinin WebSockets üzerinden haberleştiği sanal şirket simülasyonu.',
     desc_en: 'Autonomous AI company simulation where CEO, Researcher, Engineer, and Analyst nodes collaborate via WebSockets telemetry.',
     img: 'assets/dona_codex_overmind_1.jpg',
@@ -178,10 +207,11 @@ const PROJECTS = [
   },
   {
     id: 'dona-quantum',
-    pid: 'PID·4209',
+    pid: 'MULTI-AGENT QUANT',
     category: 'quant',
     title: 'Dona Quantum',
     meta: 'CREWAI MULTI-AGENT QUANT',
+    tech: ['CrewAI', 'LangChain', 'Technical Analysis', 'Python'],
     desc: 'Teknik analiz, haber duyarlılığı ve risk yönetimini 4 ayrı yapay zeka ajanının konsensüsüyle yürüten CrewAI quant istihbarat motoru.',
     desc_en: 'CrewAI multi-agent quant engine executing trades based on multi-agent consensus across technical analysis, news sentiment, and risk modeling.',
     img: 'assets/dona_quantum_1.jpg',
@@ -192,10 +222,11 @@ const PROJECTS = [
   },
   {
     id: 'dona-grid',
-    pid: 'PID·4208',
+    pid: 'QUANT BOT',
     category: 'quant',
     title: 'Dona Grid',
     meta: 'DYNAMIC VOLATILITY SPOT BOT',
+    tech: ['Python', 'CCXT', 'Algorithmic Trading', 'Asyncio'],
     desc: 'Volatiliteye göre dinamik aralık belirleyen ve 7/24 piyasa yapıcı emirlerle kâr toplayan Python tabanlı spot bot.',
     desc_en: 'Python dynamic spot grid bot capturing automated spread profits 24/7 with volatility-adaptive range adjustment.',
     img: 'assets/dona_grid_1.jpg',
@@ -206,10 +237,11 @@ const PROJECTS = [
   },
   {
     id: 'ai-prompt-builder',
-    pid: 'PID·4205',
+    pid: 'PROMPT STUDIO',
     category: 'ai',
     title: 'AI Prompt Builder',
     meta: 'PROMPT STUDIO // GEMINI API',
+    tech: ['Gemini API', 'TypeScript', 'Tailwind', 'Next.js'],
     desc: 'Gemini API ile güçlendirilmiş, sistem istemlerini ve meta-talimatları interaktif olarak oluşturan stüdyo.',
     desc_en: 'Conversational prompt engineering studio powered by Gemini API to build and optimize system-level instructions.',
     img: 'assets/ai_prompt_builder_1.jpg',
@@ -220,10 +252,11 @@ const PROJECTS = [
   },
   {
     id: 'ai-coin-empire',
-    pid: 'PID·4206',
+    pid: 'WEB GAME',
     category: '3d',
     title: 'AI Coin Empire',
     meta: 'MULTIPLAYER STRATEGY GAME',
+    tech: ['React 18', 'Firebase', 'Framer Motion', 'Canvas'],
     desc: 'React 18, Firebase ve Framer Motion ile sıfırdan geliştirilen gerçek zamanlı çok oyunculu simülasyon strateji oyunu.',
     desc_en: 'Real-time multiplayer strategic tycoon game built from scratch with React 18, Firebase live sync, and Framer Motion.',
     img: 'assets/ai_coin_empire_1.jpg',
@@ -235,10 +268,11 @@ const PROJECTS = [
   },
   {
     id: 'zamanin-bekcisi',
-    pid: 'PID·4210',
+    pid: 'TEXT ENGINE',
     category: '3d',
     title: 'Zamanın Bekçisi',
     meta: 'TEXT ADVENTURE ENGINE',
+    tech: ['JavaScript ES6', 'Web Audio API', 'Procedural Story'],
     desc: 'Zaman yolculuğu mekaniklerine sahip interaktif metin tabanlı macera motoru ve atmosferik ses tasarımı.',
     desc_en: 'Time-travel text adventure game engine with branching narrative paths and immersive audio design.',
     img: 'assets/zamanin_bekcisi_1.jpg',
@@ -267,8 +301,8 @@ let miniStartX = 0;
 let activeLightboxImages = [];
 let currentLightboxIndex = 0;
 
-/* Mobile 2D Grid / 3D Carousel view toggle state */
-let mobileViewMode = '3d'; // '3d' or 'grid'
+/* Mobile 2D Grid / 3D Carousel view toggle state - Default to 'grid' on mobile devices */
+let mobileViewMode = (window.innerWidth <= 768) ? 'grid' : '3d';
 
 function toggleMobileViewMode(mode) {
   if (mode) {
@@ -305,18 +339,19 @@ function buildMobileGrid() {
     card.className = 'at-project-grid-card';
 
     const descText = (currentLang === 'en' && proj.desc_en) ? proj.desc_en : proj.desc;
+    const techBadges = (proj.tech || []).map(t => `<span class="at-tech-pill">${t}</span>`).join(' ');
 
     card.innerHTML = `
       <div class="at-grid-card-img-wrap">
         <span class="at-grid-card-badge">${proj.pid}</span>
-        <img src="${proj.img}" class="at-grid-card-img" alt="${proj.title}" loading="lazy" />
+        <img src="${proj.img}" class="at-grid-card-img" alt="${proj.title}" loading="lazy" onerror="handleImgError(this, '${proj.title}')" />
       </div>
       <div class="at-grid-card-content">
         <div class="at-grid-card-header">
           <span class="at-grid-card-title">${proj.title}</span>
           <span class="at-grid-card-arrow">↗</span>
         </div>
-        <div class="at-grid-card-meta">${proj.meta}</div>
+        <div class="at-detail-tech-stack" style="margin: 4px 0;">${techBadges}</div>
         <div class="at-grid-card-desc">${descText}</div>
       </div>
     `;
@@ -340,7 +375,17 @@ document.addEventListener('DOMContentLoaded', () => {
   applyLanguage(currentLang);
   initMobileNavSync();
   triggerQuantumHeroIntro();
+  preloadProjectThumbnails();
 });
+
+function preloadProjectThumbnails() {
+  PROJECTS.forEach(proj => {
+    if (proj.img) {
+      const img = new Image();
+      img.src = proj.img;
+    }
+  });
+}
 
 function triggerQuantumHeroIntro() {
   const avatar = document.getElementById('hero-avatar-node');
@@ -369,53 +414,62 @@ function initWaterAndParticles() {
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
     particles = [];
-    const count = Math.min(80, Math.floor((width * height) / 18000));
+    const count = Math.min(110, Math.floor((width * height) / 14000));
     for (let i = 0; i < count; i++) {
-      particles.push(new UpwardParticle());
+      particles.push(new UpwardParticle(true));
     }
   }
 
   const colors = [
-    'rgba(0, 255, 255, 0.65)',
-    'rgba(156, 165, 255, 0.55)',
-    'rgba(255, 255, 255, 0.45)',
-    'rgba(255, 184, 0, 0.55)'
+    { fill: 'rgba(245, 238, 220, 0.85)', glow: 'rgba(245, 238, 220, 0.45)' },
+    { fill: 'rgba(238, 220, 178, 0.75)', glow: 'rgba(238, 220, 178, 0.35)' },
+    { fill: 'rgba(255, 250, 240, 0.9)',  glow: 'rgba(255, 250, 240, 0.5)' },
+    { fill: 'rgba(212, 175, 55, 0.65)',  glow: 'rgba(212, 175, 55, 0.3)' }
   ];
 
   class UpwardParticle {
-    constructor() {
-      this.reset(true);
+    constructor(initial = false) {
+      this.reset(initial);
     }
     reset(initial = false) {
       this.x = Math.random() * width;
-      this.y = initial ? Math.random() * height : height + Math.random() * 40;
-      this.vy = -(Math.random() * 0.7 + 0.25);
+      this.y = initial ? Math.random() * height : height + Math.random() * 30;
+      this.vy = -(Math.random() * 0.65 + 0.25);
       this.vx = (Math.random() - 0.5) * 0.25;
-      this.size = Math.random() * 1.8 + 0.8;
-      this.color = colors[Math.floor(Math.random() * colors.length)];
+      this.baseSize = Math.random() * 2.2 + 0.8;
+      this.size = this.baseSize;
+      this.phase = Math.random() * Math.PI * 2;
+      this.phaseSpeed = Math.random() * 0.03 + 0.015;
+      this.scheme = colors[Math.floor(Math.random() * colors.length)];
     }
     update() {
+      this.phase += this.phaseSpeed;
       this.y += this.vy;
-      this.x += this.vx;
+      this.x += this.vx + Math.sin(this.phase) * 0.3;
+      this.size = this.baseSize + Math.sin(this.phase) * 0.4;
 
       if (mouse.x !== null) {
         let dx = mouse.x - this.x;
         let dy = mouse.y - this.y;
         let dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 120) {
-          let force = (120 - dist) / 120;
-          this.x -= (dx / dist) * force * 3;
-          this.y -= (dy / dist) * force * 3;
+        if (dist < 130) {
+          let force = (130 - dist) / 130;
+          this.x -= (dx / dist) * force * 2.5;
+          this.y -= (dy / dist) * force * 2.5;
         }
       }
 
-      if (this.y < -20) this.reset();
+      if (this.y < -25) this.reset();
     }
     draw() {
+      ctx.save();
       ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fillStyle = this.color;
+      ctx.arc(this.x, this.y, Math.max(0.4, this.size), 0, Math.PI * 2);
+      ctx.fillStyle = this.scheme.fill;
+      ctx.shadowBlur = this.size * 5;
+      ctx.shadowColor = this.scheme.glow;
       ctx.fill();
+      ctx.restore();
     }
   }
 
@@ -424,22 +478,190 @@ function initWaterAndParticles() {
       this.x = x;
       this.y = y;
       this.r = 2;
-      this.maxR = Math.random() * 45 + 30;
-      this.opacity = 0.55;
+      this.maxR = Math.random() * 50 + 35;
+      this.opacity = 0.6;
     }
     update() {
-      this.r += 1.4;
-      this.opacity -= 0.016;
+      this.r += 1.3;
+      this.opacity -= 0.014;
     }
     draw() {
       if (this.opacity <= 0) return;
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-      ctx.strokeStyle = `rgba(0, 240, 255, ${this.opacity * 0.4})`;
-      ctx.lineWidth = 1.2;
+      ctx.strokeStyle = `rgba(245, 238, 220, ${this.opacity * 0.4})`;
+      ctx.lineWidth = 1;
       ctx.stroke();
     }
   }
+
+  /* --------------------------------------------------------------------------
+     3D SYNAPTIC NEURAL NETWORK LATTICE (ORGANIC MATHEMATICAL CORE)
+     -------------------------------------------------------------------------- */
+  class SynapticNetwork {
+    constructor() {
+      this.nodes = [];
+      this.pulses = [];
+      const nodeCount = 22;
+      const radius = 135;
+      for (let i = 0; i < nodeCount; i++) {
+        const theta = Math.acos(1 - 2 * (i + 0.5) / nodeCount);
+        const phi = Math.PI * (1 + Math.sqrt(5)) * (i + 0.5);
+        const r = radius * (0.65 + Math.random() * 0.35);
+        this.nodes.push({
+          x: r * Math.sin(theta) * Math.cos(phi),
+          y: r * Math.sin(theta) * Math.sin(phi) * 1.35,
+          z: r * Math.cos(theta),
+          origX: r * Math.sin(theta) * Math.cos(phi),
+          origY: r * Math.sin(theta) * Math.sin(phi) * 1.35,
+          origZ: r * Math.cos(theta),
+          baseSize: Math.random() * 2.2 + 1.8,
+          phase: Math.random() * Math.PI * 2,
+          speed: 0.012 + Math.random() * 0.014
+        });
+      }
+      this.autoAngle = 0;
+    }
+
+    update() {
+      this.autoAngle += 0.005;
+      this.nodes.forEach((n) => {
+        n.phase += n.speed;
+        const drift = Math.sin(n.phase) * 6;
+        n.x = n.origX + drift;
+        n.y = n.origY + Math.cos(n.phase * 0.8) * 6;
+        n.z = n.origZ + Math.sin(n.phase * 1.2) * 6;
+      });
+
+      if (Math.random() < 0.08 && this.pulses.length < 8) {
+        const a = Math.floor(Math.random() * this.nodes.length);
+        const b = Math.floor(Math.random() * this.nodes.length);
+        if (a !== b) {
+          this.pulses.push({ from: a, to: b, progress: 0, speed: 0.022 + Math.random() * 0.018 });
+        }
+      }
+
+      for (let i = this.pulses.length - 1; i >= 0; i--) {
+        this.pulses[i].progress += this.pulses[i].speed;
+        if (this.pulses[i].progress >= 1) {
+          this.pulses.splice(i, 1);
+        }
+      }
+    }
+
+    draw(ctx, width, height, currentRotDeg) {
+      const activePage = document.querySelector('.at-view-page.active');
+      const isWork = activePage && activePage.id === 'view-work';
+      if (!isWork) return;
+
+      const stageEl = document.getElementById('carousel-stage');
+      let cx = width * 0.58;
+      let cy = height * 0.5;
+
+      if (stageEl) {
+        const rect = stageEl.getBoundingClientRect();
+        if (rect.width > 0) {
+          cx = rect.left + rect.width * 0.5;
+          cy = rect.top + rect.height * 0.5;
+        }
+      }
+
+      if (window.innerWidth <= 768) {
+        cx = width * 0.5;
+        cy = height * 0.35;
+      }
+
+      const totalAngleY = (currentRotDeg * Math.PI / 180) + this.autoAngle;
+      const cosY = Math.cos(totalAngleY);
+      const sinY = Math.sin(totalAngleY);
+      const angleX = 0.22;
+      const cosX = Math.cos(angleX);
+      const sinX = Math.sin(angleX);
+
+      const fov = 450;
+      const projected = [];
+
+      this.nodes.forEach((n) => {
+        const rx = n.x * cosY + n.z * sinY;
+        const rz = -n.x * sinY + n.z * cosY;
+        const ry = n.y * cosX - rz * sinX;
+        const rz2 = n.y * sinX + rz * cosX;
+
+        const scale = fov / (fov + rz2 + 100);
+        const px = cx + rx * scale;
+        const py = cy + ry * scale;
+        projected.push({ x: px, y: py, z: rz2, scale, orig: n });
+      });
+
+      // Draw Axon Synapse Connection Lines
+      ctx.lineWidth = 1;
+      const maxDist = 145;
+      for (let i = 0; i < projected.length; i++) {
+        for (let j = i + 1; j < projected.length; j++) {
+          const p1 = projected[i];
+          const p2 = projected[j];
+          const o1 = p1.orig;
+          const o2 = p2.orig;
+          const dx3 = o1.x - o2.x;
+          const dy3 = o1.y - o2.y;
+          const dz3 = o1.z - o2.z;
+          const dist3 = Math.sqrt(dx3 * dx3 + dy3 * dy3 + dz3 * dz3);
+
+          if (dist3 < maxDist) {
+            const alpha = (1 - dist3 / maxDist) * 0.4 * Math.min(p1.scale, p2.scale);
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = `rgba(245, 238, 220, ${alpha})`;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw Action Potential Pulses
+      this.pulses.forEach((pulse) => {
+        const p1 = projected[pulse.from];
+        const p2 = projected[pulse.to];
+        if (p1 && p2) {
+          const curX = p1.x + (p2.x - p1.x) * pulse.progress;
+          const curY = p1.y + (p2.y - p1.y) * pulse.progress;
+          const sparkSize = 2.4 * ((p1.scale + p2.scale) * 0.5);
+
+          ctx.beginPath();
+          ctx.arc(curX, curY, sparkSize, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
+          ctx.shadowColor = 'rgba(245, 238, 220, 0.9)';
+          ctx.shadowBlur = 10;
+          ctx.fill();
+          ctx.shadowBlur = 0;
+        }
+      });
+
+      // Sort nodes by depth
+      const sorted = [...projected].sort((a, b) => a.z - b.z);
+
+      // Draw Synaptic Nodes
+      sorted.forEach((p) => {
+        const nodeSize = p.orig.baseSize * p.scale;
+        const alpha = Math.max(0.2, Math.min(1, p.scale));
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, nodeSize * 2.8, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(245, 238, 220, ${alpha * 0.16})`;
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, nodeSize, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(245, 238, 220, ${alpha * 0.95})`;
+        ctx.shadowColor = 'rgba(245, 238, 220, 0.8)';
+        ctx.shadowBlur = 8;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      });
+    }
+  }
+
+  const synapticNetwork = new SynapticNetwork();
 
   window.addEventListener('mousemove', (e) => {
     if (mouse.x !== null) {
@@ -452,63 +674,90 @@ function initWaterAndParticles() {
     mouse.y = e.clientY;
   });
 
+  window.addEventListener('touchmove', (e) => {
+    if (e.touches.length > 0) {
+      const t = e.touches[0];
+      if (ripples.length < 10) {
+        ripples.push(new WaterRipple(t.clientX, t.clientY));
+      }
+    }
+  }, { passive: true });
+
   window.addEventListener('mouseleave', () => {
     mouse.x = null;
     mouse.y = null;
   });
 
+  window.addEventListener('resize', resize);
+  resize();
+
   function render() {
     ctx.clearRect(0, 0, width, height);
 
-    for (let i = ripples.length - 1; i >= 0; i--) {
-      ripples[i].update();
-      ripples[i].draw();
-      if (ripples[i].opacity <= 0) ripples.splice(i, 1);
+    // Subtle champagne constellation links between floating stardust
+    ctx.lineWidth = 0.5;
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 65) {
+          const alpha = (1 - dist / 65) * 0.18;
+          ctx.strokeStyle = `rgba(245, 238, 220, ${alpha})`;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.stroke();
+        }
+      }
     }
 
-    particles.forEach(p => {
+    particles.forEach((p) => {
       p.update();
       p.draw();
     });
 
+    for (let i = ripples.length - 1; i >= 0; i--) {
+      const r = ripples[i];
+      r.update();
+      r.draw();
+      if (r.opacity <= 0) {
+        ripples.splice(i, 1);
+      }
+    }
+
+    synapticNetwork.update();
+    synapticNetwork.draw(ctx, width, height, currentRotation);
+
     requestAnimationFrame(render);
   }
-
-  // Debounced resize & visibility check to save GPU cycles
-  let resizeTimeout = null;
-  window.addEventListener('resize', () => {
-    if (resizeTimeout) clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(resize, 100);
-  }, { passive: true });
-
-  resize();
   render();
 }
 
 /* --------------------------------------------------------------------------
-   2. 3D CAROUSEL (CENTRAL ROTATION AROUND 3D NEURAL SPINE)
+   2. 3D CAROUSEL (CENTRAL ROTATION AROUND AMBIENT CORE)
    -------------------------------------------------------------------------- */
 function buildCarousel() {
   const rotator = document.getElementById('carousel-rotator');
   if (!rotator) return;
 
-  // Remove previous project cards but preserve the 3D Neural Spine Core in the center
-  const existingSpine = document.getElementById('neural-spine-core');
   rotator.querySelectorAll('.at-card-panel').forEach(c => c.remove());
 
   const count = filteredProjects.length;
   if (count === 0) return;
 
-  const radius = Math.max(380, count * 58);
+  const radius = Math.max(400, count * 55);
   const angleStep = 360 / count;
 
   filteredProjects.forEach((proj, idx) => {
     const angle = idx * angleStep;
     const card = document.createElement('div');
     card.className = 'at-card-panel';
-    card.dataset.angle = angle;          // store base angle for hit-testing
+    card.dataset.angle = angle;
     card.style.transform = `rotateY(${angle}deg) translateZ(${radius}px)`;
-    card.style.pointerEvents = 'none';   // disabled by default — enabled only when facing viewer
+    card.style.pointerEvents = 'none';
+
+    const techChip = (proj.tech && proj.tech[0]) ? proj.tech[0] : 'LIVE';
 
     card.innerHTML = `
       <div class="at-card-3d-box">
@@ -518,21 +767,15 @@ function buildCarousel() {
         <div class="at-card-side left"></div>
         <div class="at-card-side right"></div>
 
-        <!-- 3D Corner Neon Brackets -->
-        <div class="at-card-corner-bracket tl"></div>
-        <div class="at-card-corner-bracket tr"></div>
-        <div class="at-card-corner-bracket bl"></div>
-        <div class="at-card-corner-bracket br"></div>
-
-        <!-- 3D Front Glass Layer with High-Clarity Real Screenshot Preview -->
+        <!-- 3D Front Face Plate -->
         <div class="at-card-face-front">
           <div class="at-card-img-wrap">
-            <img src="${proj.img}" class="at-card-img" alt="${proj.title}" />
+            <img src="${proj.img}" class="at-card-img" alt="${proj.title}" onerror="handleImgError(this, '${proj.title}')" />
             
-            <!-- AI HUD System Header -->
+            <!-- Clean Header -->
             <div class="at-card-hud-header">
               <span class="at-card-badge">${proj.pid}</span>
-              <span class="at-card-live-node"><span class="at-node-dot"></span>SYS::ONLINE</span>
+              <span class="at-card-live-node"><span class="at-node-dot"></span>ACTIVE</span>
             </div>
           </div>
           <div class="at-card-info">
@@ -542,15 +785,15 @@ function buildCarousel() {
             </div>
             <div class="at-card-meta-row">
               <div class="at-card-meta">${proj.meta}</div>
-              <div class="at-card-chip">NEURAL_NET</div>
+              <div class="at-card-chip">${techChip}</div>
             </div>
           </div>
         </div>
 
-        <!-- 3D Back Chassis Plate with Circuit Grid -->
+        <!-- 3D Back Chassis Plate -->
         <div class="at-card-face-back">
           <div class="at-card-back-grid"></div>
-          <div class="at-card-back-logo">DONA//CODEX · QUANTUM OS</div>
+          <div class="at-card-back-logo">DONA CODEX // 2026</div>
         </div>
       </div>
     `;
@@ -558,12 +801,10 @@ function buildCarousel() {
     // Initialize 3D Mouse Gyro Tilt on this card
     initCard3DGyro(card);
 
-    // Direct project click: opens the exact clicked project with card shard explosion
+    // Direct project click: opens the exact clicked project
     card.addEventListener('click', (e) => {
-      if (!pointerMoved) {
-        e.stopPropagation();
-        openDetail(proj, card);
-      }
+      e.stopPropagation();
+      openDetail(proj, card, e);
     });
 
     rotator.appendChild(card);
@@ -818,48 +1059,105 @@ function switchView(viewName) {
  * Universal Shatter Transition Trigger for UI Elements (Avatar, Buttons, Tiles, Nav)
  * Triggers wide cinematic crystal shatter and transitions seamlessly to target page
  */
-function triggerElementShatterTransition(element, targetViewName, type = 'button') {
+function triggerElementShatterTransition(element, targetViewName, type = 'button', clickEvent = null) {
   if (element) {
     triggerLocalElementShatter(element, () => {
       switchView(targetViewName);
-    }, type);
+    }, type, clickEvent);
   } else {
     switchView(targetViewName);
   }
 }
 
-function openDetail(proj, cardElement) {
+function openDetail(proj, cardElement, clickEvent = null) {
   if (!proj) return;
   currentDetailProject = proj;
   activeDetailIndex = 0;
   currentDetailCount = proj.galleryCount || 1;
 
-  document.getElementById('detail-tag').textContent = `${proj.pid} // ${proj.meta}`;
-  document.getElementById('detail-title').textContent = proj.title;
-  document.getElementById('detail-desc').textContent = (currentLang === 'en' && proj.desc_en) ? proj.desc_en : proj.desc;
-  document.getElementById('detail-repo-link').href = proj.repo;
-
-  // Live Demo Link Setup
+  const tagEl = document.getElementById('detail-tag');
+  const titleEl = document.getElementById('detail-title');
+  const descEl = document.getElementById('detail-desc');
+  const repoEl = document.getElementById('detail-repo-link');
+  const techContainer = document.getElementById('detail-tech-stack');
   const liveLink = document.getElementById('detail-live-link');
-  if (proj.live) {
-    liveLink.href = proj.live;
-    liveLink.textContent = TRANSLATIONS[currentLang].live_demo_btn;
-    liveLink.style.display = 'inline-block';
-  } else {
-    liveLink.style.display = 'none';
+  const dockLiveDivider = document.getElementById('dock-live-divider');
+  const galleryBtn = document.getElementById('detail-gallery-btn');
+
+  if (tagEl) tagEl.textContent = `${proj.pid} // ${proj.meta}`;
+  if (titleEl) titleEl.textContent = proj.title;
+  if (descEl) descEl.textContent = (currentLang === 'en' && proj.desc_en) ? proj.desc_en : proj.desc;
+  if (repoEl) repoEl.href = proj.repo;
+
+  // Render Tech Stack Pills
+  if (techContainer) {
+    techContainer.innerHTML = (proj.tech || []).map(t => `<span class="at-tech-pill">${t}</span>`).join(' ');
   }
 
-  const galleryBtn = document.getElementById('detail-gallery-btn');
-  galleryBtn.onclick = () => openLightbox(proj.id);
-  galleryBtn.textContent = currentLang === 'en' ? `FULLSCREEN GALLERY (${currentDetailCount}) ↗` : `TAM EKRAN GALERİ (${currentDetailCount}) ↗`;
+  // Live Demo Link Setup
+  if (liveLink) {
+    if (proj.live) {
+      liveLink.href = proj.live;
+      liveLink.style.display = 'inline-flex';
+      if (dockLiveDivider) dockLiveDivider.style.display = 'block';
+    } else {
+      liveLink.style.display = 'none';
+      if (dockLiveDivider) dockLiveDivider.style.display = 'none';
+    }
+  }
+
+  if (galleryBtn) {
+    galleryBtn.onclick = () => openLightbox(proj.id);
+    galleryBtn.innerHTML = `<span class="at-dock-icon">◫</span><span class="at-dock-text">${currentLang === 'en' ? `GALLERY (${currentDetailCount})` : `GALERİ (${currentDetailCount})`}</span>`;
+  }
 
   // Build Luxury 3D Arc Deck Gallery
   buildMiniGallery(proj);
 
-  // Trigger Localized Card Shatter & Seamless Zoom Transition
-  triggerLocalElementShatter(cardElement, () => {
+  // Trigger Realistic 3D Crystal Shatter on Card and switch view seamlessly
+  if (cardElement) {
+    triggerLocalElementShatter(cardElement, () => {
+      switchView('detail');
+    }, 'card', clickEvent);
+  } else {
     switchView('detail');
-  }, 'card');
+  }
+}
+
+function buildMobileGrid() {
+  const grid = document.getElementById('projects-grid-mobile');
+  if (!grid) return;
+  grid.innerHTML = '';
+
+  filteredProjects.forEach((proj) => {
+    const card = document.createElement('div');
+    card.className = 'at-mobile-project-card';
+    const techChip = (proj.tech && proj.tech[0]) ? proj.tech[0] : 'LIVE';
+
+    card.innerHTML = `
+      <div class="at-mobile-card-img-wrap">
+        <img src="${proj.img}" alt="${proj.title}" onerror="handleImgError(this, '${proj.title}')" />
+        <span class="at-card-badge">${proj.pid}</span>
+      </div>
+      <div class="at-mobile-card-body">
+        <div class="at-card-title-row">
+          <h3 class="at-card-title">${proj.title}</h3>
+          <span class="at-card-arrow-icon">↗</span>
+        </div>
+        <div class="at-card-meta-row">
+          <span class="at-card-meta">${proj.meta}</span>
+          <span class="at-card-chip">${techChip}</span>
+        </div>
+      </div>
+    `;
+
+    card.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openDetail(proj, card, e);
+    });
+
+    grid.appendChild(card);
+  });
 }
 
 function buildMiniGallery(proj) {
@@ -876,7 +1174,7 @@ function buildMiniGallery(proj) {
     miniCard.className = 'at-mini-card';
     miniCard.dataset.index = i;
 
-    miniCard.innerHTML = `<img src="${imgSrc}" alt="${proj.title} Screenshot ${i + 1}" />`;
+    miniCard.innerHTML = `<img src="${imgSrc}" alt="${proj.title} Screenshot ${i + 1}" onerror="handleImgError(this, '${proj.title}')" />`;
 
     miniCard.addEventListener('click', () => {
       if (activeDetailIndex === i) {
@@ -950,6 +1248,102 @@ function update3DDeckPositions() {
 }
 
 /* --------------------------------------------------------------------------
+   3.5 FULLSCREEN LUXURY 3D GALLERY LIGHTBOX (WARM CREAM & CHAMPAGNE)
+   -------------------------------------------------------------------------- */
+let currentLightboxProj = null;
+currentLightboxIndex = 0;
+
+function openLightbox(projId) {
+  let proj = null;
+  if (typeof projId === 'object' && projId !== null) {
+    proj = projId;
+  } else if (typeof projId === 'string') {
+    proj = PROJECTS.find(p => p.id === projId);
+  }
+  if (!proj) proj = currentDetailProject || PROJECTS[0];
+  if (!proj) return;
+
+  currentLightboxProj = proj;
+  currentLightboxIndex = activeDetailIndex || 0;
+
+  const modal = document.getElementById('lightbox-modal');
+  const title = document.getElementById('lb-title');
+  if (title) title.textContent = `${proj.title} // GALERİ`;
+
+  renderLightboxThumbs();
+  updateLightboxView();
+
+  if (modal) {
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+  }
+}
+
+function closeLightbox() {
+  const modal = document.getElementById('lightbox-modal');
+  if (modal) {
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+  }
+}
+
+function stepLightbox(direction) {
+  if (!currentLightboxProj) return;
+  const count = currentLightboxProj.galleryCount || 1;
+  currentLightboxIndex = (currentLightboxIndex + direction + count) % count;
+  updateLightboxView();
+}
+
+function selectLightboxImage(index) {
+  currentLightboxIndex = index;
+  updateLightboxView();
+}
+
+function updateLightboxView() {
+  if (!currentLightboxProj) return;
+  const proj = currentLightboxProj;
+  const count = proj.galleryCount || 1;
+  const counter = document.getElementById('lb-counter');
+  const activeImg = document.getElementById('lb-active-img');
+
+  if (counter) counter.textContent = `${currentLightboxIndex + 1} / ${count}`;
+
+  const imgSrc = proj.single ? proj.single : `${proj.prefix}${currentLightboxIndex + 1}.${proj.ext}`;
+  if (activeImg) {
+    activeImg.src = imgSrc;
+    activeImg.alt = `${proj.title} Screenshot ${currentLightboxIndex + 1}`;
+  }
+
+  // Update thumb active states
+  document.querySelectorAll('.lb-thumb').forEach((thumb, idx) => {
+    if (idx === currentLightboxIndex) {
+      thumb.classList.add('active');
+      thumb.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    } else {
+      thumb.classList.remove('active');
+    }
+  });
+}
+
+function renderLightboxThumbs() {
+  const thumbsContainer = document.getElementById('lb-thumbs');
+  if (!thumbsContainer || !currentLightboxProj) return;
+  thumbsContainer.innerHTML = '';
+
+  const proj = currentLightboxProj;
+  const count = proj.galleryCount || 1;
+
+  for (let i = 0; i < count; i++) {
+    const imgSrc = proj.single ? proj.single : `${proj.prefix}${i + 1}.${proj.ext}`;
+    const thumb = document.createElement('div');
+    thumb.className = `lb-thumb ${i === currentLightboxIndex ? 'active' : ''}`;
+    thumb.innerHTML = `<img src="${imgSrc}" alt="Thumbnail ${i + 1}" onerror="handleImgError(this, '${proj.title}')" />`;
+    thumb.addEventListener('click', () => selectLightboxImage(i));
+    thumbsContainer.appendChild(thumb);
+  }
+}
+
+/* --------------------------------------------------------------------------
    4. TR / EN LOCALIZATION ENGINE
    -------------------------------------------------------------------------- */
 function applyLanguage(lang) {
@@ -1018,8 +1412,8 @@ async function handleContactSubmit(e) {
 
     if (res.ok) {
       btn.textContent = TRANSLATIONS[currentLang].contact_success;
-      btn.style.background = 'var(--accent-lime)';
-      btn.style.color = '#000';
+      btn.style.background = 'var(--accent-cream)';
+      btn.style.color = '#070709';
       document.getElementById('contact-form').reset();
     } else {
       throw new Error(`Worker status ${res.status}`);
@@ -1028,8 +1422,8 @@ async function handleContactSubmit(e) {
     console.warn('Cloudflare Worker fallback or CORS:', err);
     // Graceful success fallback UX
     btn.textContent = TRANSLATIONS[currentLang].contact_success;
-    btn.style.background = 'var(--accent-lime)';
-    btn.style.color = '#000';
+    btn.style.background = 'var(--accent-cream)';
+    btn.style.color = '#070709';
     document.getElementById('contact-form').reset();
   } finally {
     setTimeout(() => {
@@ -1090,6 +1484,7 @@ function openLightbox(key) {
       const thumb = document.createElement('img');
       thumb.src = src;
       thumb.className = `thumb-img ${idx === 0 ? 'active' : ''}`;
+      thumb.onerror = () => { thumb.src = generateFallbackSvg('Screenshot'); };
       thumb.onclick = () => {
         currentLightboxIndex = idx;
         updateLightboxImage();
@@ -1097,6 +1492,10 @@ function openLightbox(key) {
       lbThumbs.appendChild(thumb);
     });
   }
+
+  lbActiveImg.onerror = () => {
+    lbActiveImg.src = generateFallbackSvg(lbTitle.textContent);
+  };
 
   lbModal.classList.add('active');
   lbModal.setAttribute('aria-hidden', 'false');
@@ -1110,6 +1509,9 @@ function stepLightbox(direction) {
 
 function updateLightboxImage() {
   if (!activeLightboxImages.length) return;
+  lbActiveImg.onerror = () => {
+    lbActiveImg.src = generateFallbackSvg(lbTitle.textContent);
+  };
   lbActiveImg.src = activeLightboxImages[currentLightboxIndex];
 
   if (lbCounter) {
@@ -1505,7 +1907,7 @@ function initCardLiquidShader(cardElement) {
    - Organic Voronoi-like polygonal glass geometry with multi-angled facets
    - Natural physics: angular impulse, progressive alpha drag & chromatic laser rims
    -------------------------------------------------------------------------- */
-function triggerLocalElementShatter(element, onCompleteCallback, customType = 'card') {
+function triggerLocalElementShatter(element, onCompleteCallback, customType = 'card', clickEvent = null) {
   if (!element) {
     if (onCompleteCallback) onCompleteCallback();
     return;
@@ -1515,62 +1917,71 @@ function triggerLocalElementShatter(element, onCompleteCallback, customType = 'c
   const imgElement = element.querySelector('img') || (element.tagName === 'IMG' ? element : null);
   const imgSrc = imgElement ? imgElement.src : '';
 
-  // Create temporary container for local shards exactly over the clicked element
+  // Screen-space click origin coordinates
+  const globalClickX = (clickEvent && clickEvent.clientX) ? clickEvent.clientX : (rect.left + rect.width / 2);
+  const globalClickY = (clickEvent && clickEvent.clientY) ? clickEvent.clientY : (rect.top + rect.height / 2);
+
+  // Full-viewport 3D Shatter Stage
   const shatterBox = document.createElement('div');
-  shatterBox.className = 'at-local-shatter-container';
+  shatterBox.className = 'at-screen-shatter-container';
   shatterBox.style.cssText = `
     position: fixed;
-    left: ${rect.left}px;
-    top: ${rect.top}px;
-    width: ${rect.width}px;
-    height: ${rect.height}px;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
     pointer-events: none;
-    z-index: 99999;
-    perspective: 1000px;
+    z-index: 999999;
+    perspective: 1400px;
+    perspective-origin: ${globalClickX}px ${globalClickY}px;
     transform-style: preserve-3d;
+    overflow: hidden;
   `;
   document.body.appendChild(shatterBox);
 
-  // Hide the original element briefly during shatter
+  // Hide original element seamlessly
   element.style.opacity = '0';
 
-  // Generate 32 Organic Faceted Glass Shards (More scattered & cinematic)
+  // Generate 40 Large, Razor-Sharp Voronoi Glass Shards (Cam Kırıkları)
   const cols = 8;
-  const rows = 4;
+  const rows = 5;
   const shardW = rect.width / cols;
   const shardH = rect.height / rows;
+  const maxLocalDist = Math.hypot(rect.width, rect.height) || 300;
 
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < cols; c++) {
       const shard = document.createElement('div');
-      shard.className = 'at-local-card-shard';
+      shard.className = 'at-screen-glass-shard';
 
-      // Natural organic jagged clip-path for each crystal facet
+      const shardCenterX = rect.left + (c + 0.5) * shardW;
+      const shardCenterY = rect.top + (r + 0.5) * shardH;
+
+      // Realistic sharp triangular and polygonal glass cuts
       const p1x = (Math.random() * 25).toFixed(1);
       const p1y = (Math.random() * 25).toFixed(1);
       const p2x = (75 + Math.random() * 25).toFixed(1);
-      const p2y = (Math.random() * 25).toFixed(1);
-      const p3x = (75 + Math.random() * 25).toFixed(1);
-      const p3y = (75 + Math.random() * 25).toFixed(1);
-      const p4x = (Math.random() * 25).toFixed(1);
+      const p2y = (Math.random() * 30).toFixed(1);
+      const p3x = (70 + Math.random() * 30).toFixed(1);
+      const p3y = (70 + Math.random() * 30).toFixed(1);
+      const p4x = (Math.random() * 30).toFixed(1);
       const p4y = (75 + Math.random() * 25).toFixed(1);
       const clipPoly = `polygon(${p1x}% ${p1y}%, ${p2x}% ${p2y}%, ${p3x}% ${p3y}%, ${p4x}% ${p4y}%)`;
 
-      // Distance from center for wide circular wave explosion
-      const centerDistX = (c - (cols - 1) / 2);
-      const centerDistY = (r - (rows - 1) / 2);
-      const distFromCenter = Math.hypot(centerDistX, centerDistY);
-      const staggerDelay = distFromCenter * 0.055; // organic ripple stagger
+      // Calculate outward explosion trajectory from click position
+      const deltaX = shardCenterX - globalClickX;
+      const deltaY = shardCenterY - globalClickY;
+      const distFromClick = Math.hypot(deltaX, deltaY);
+      const angle = Math.atan2(deltaY, deltaX) + (Math.random() - 0.5) * 0.45;
+      const staggerDelay = (distFromClick / maxLocalDist) * 0.05;
 
-      // Broad, scattered 3D physics trajectory (2.2s+ epic dispersion)
-      const angle = Math.atan2(centerDistY, centerDistX) + (Math.random() - 0.5) * 0.8;
-      const speed = 220 + distFromCenter * 75 + Math.random() * 120; // Much wider scatter
-      const dirX = Math.cos(angle) * speed;
-      const dirY = Math.sin(angle) * speed + (Math.random() * 50); // natural gravity drift
-      const dirZ = 300 + Math.random() * 650; // Deep 3D pop towards viewer
-      const rotX = (Math.random() - 0.5) * 540;
-      const rotY = (Math.random() - 0.5) * 540;
-      const rotZ = (Math.random() - 0.5) * 360;
+      // Slow-motion screen-wide dispersion (Glass shards stay large and visible!)
+      const scatterSpeed = 380 + Math.random() * 480 + (1 - distFromClick / 400) * 250;
+      const dirX = Math.cos(angle) * scatterSpeed;
+      const dirY = Math.sin(angle) * scatterSpeed + 140 + Math.random() * 120; // Gravity drop
+      const dirZ = 400 + Math.random() * 700; // 3D depth pop towards screen
+      const rotX = (Math.random() - 0.5) * 720;
+      const rotY = (Math.random() - 0.5) * 720;
+      const rotZ = (Math.random() - 0.5) * 540;
 
       const isAvatar = customType === 'avatar';
       const isBtn = customType === 'button';
@@ -1582,51 +1993,52 @@ function triggerLocalElementShatter(element, onCompleteCallback, customType = 'c
           background-size: ${rect.width}px ${rect.height}px;
           background-position: -${c * shardW}px -${r * shardH}px;
         `;
-      } else if (isBtn) {
+      } else if (isBtn || isAvatar) {
         bgStyle = `
-          background: linear-gradient(135deg, rgba(0,255,255,0.95) 0%, rgba(13,17,29,0.98) 100%);
+          background: linear-gradient(135deg, #f5eedc 0%, #eedcb2 50%, #d4af37 100%);
         `;
       } else {
         bgStyle = `
-          background: #0e1017;
+          background: #282033;
         `;
       }
 
       shard.style.cssText = `
         position: absolute;
-        left: ${c * shardW}px;
-        top: ${r * shardH}px;
+        left: ${rect.left + c * shardW}px;
+        top: ${rect.top + r * shardH}px;
         width: ${shardW}px;
         height: ${shardH}px;
         ${bgStyle}
         clip-path: ${clipPoly};
-        border: 1.5px solid rgba(0, 255, 255, 0.95);
-        box-shadow: 0 0 25px rgba(0, 255, 255, 0.9), inset 0 0 12px rgba(255, 255, 255, 0.8);
-        transition: transform 2.4s cubic-bezier(0.06, 0.84, 0.15, 1) ${staggerDelay}s, opacity 2.3s ease ${staggerDelay}s;
+        border: 1.5px solid rgba(255, 255, 255, 0.95);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8), inset 0 0 12px rgba(255, 255, 255, 0.9);
+        transition: transform 2.6s cubic-bezier(0.1, 0.88, 0.18, 1) ${staggerDelay}s, opacity 2.4s cubic-bezier(0.4, 0, 0.2, 1) ${staggerDelay}s;
         transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1);
         opacity: 1;
+        will-change: transform, opacity;
       `;
 
       shatterBox.appendChild(shard);
 
-      // Trigger wide slow-motion physics explosion on next frame
+      // Trigger realistic 3D tumble expansion
       requestAnimationFrame(() => {
-        shard.style.transform = `translate3d(${dirX}px, ${dirY}px, ${dirZ}px) rotateX(${rotX}deg) rotateY(${rotY}deg) rotateZ(${rotZ}deg) scale(0.2)`;
+        shard.style.transform = `translate3d(${dirX}px, ${dirY}px, ${dirZ}px) rotateX(${rotX}deg) rotateY(${rotY}deg) rotateZ(${rotZ}deg) scale(0.85)`;
         shard.style.opacity = '0';
       });
     }
   }
 
-  // Cinematic midpoint transition to next view (after 680ms, so shards disperse in mid-air)
+  // Smooth cinematic view switch at 380ms
   setTimeout(() => {
     if (onCompleteCallback) onCompleteCallback();
-  }, 680);
+  }, 380);
 
-  // Clean up DOM and restore element (2.6s total)
+  // Clean up container and restore element after 2.7s
   setTimeout(() => {
     shatterBox.remove();
     element.style.opacity = '1';
-  }, 2600);
+  }, 2700);
 }
 
 /* --------------------------------------------------------------------------
@@ -1639,8 +2051,524 @@ function initCard3DGyro(cardElement) {
 }
 
 
+const PROJECT_ARCHITECTURES = {
+  'dona-codex-vision': {
+    title: 'DONA CODEX: VISION',
+    pid: 'PROPRIETARY LLM // PID·4201',
+    layers: [
+      {
+        id: 'KATMAN 01',
+        tag: 'CLIENT & LIVE TICKER HUD',
+        name: 'Reactive Financial Workspace & Tickers',
+        specs: ['React 18', 'TypeScript', 'Vite', 'Tailwind CSS', 'WebSockets'],
+        desc: 'Canlı kripto ticker çubuğu (BTC, ETH, SOL), işlem defteri (trading journal) ve piyasa duyarlılık radarı barındıran donanım hızlandırmalı terminal arayüzü.',
+        metrics: { throughput: '60 FPS', latency: '0.9ms', acceleration: 'GPU Composited' }
+      },
+      {
+        id: 'KATMAN 02',
+        tag: 'API GATEWAY & STREAMING',
+        name: 'Asynchronous Event Loop & WebSocket Mesh',
+        specs: ['FastAPI', 'Uvicorn', 'WebSockets', 'Redis Caching', 'Python 3.11'],
+        desc: 'Token-by-token yanıt akışı, Binance Futures veri toplayıcısı ve asenkron makro ekonomik haber akış boru hattı.',
+        metrics: { throughput: '14.5k req/s', latency: '1.2ms', acceleration: 'uvloop / epoll' }
+      },
+      {
+        id: 'KATMAN 03',
+        tag: 'TRANSFORMER CORE & REASONING',
+        name: 'Proprietary Financial Multi-Head Transformer',
+        specs: ['PyTorch', 'Transformers', 'CUDA 12.4', 'FlashAttention-2', 'FP16'],
+        desc: 'Kripto emir defteri mikroyapısı (CVD, OI), ABD 10 Yıllık Tahvil faizleri ve X (Twitter) haber akışıyla özel eğitilmiş finansal Transformer modeli.',
+        metrics: { throughput: '3.8k tokens/s', latency: '11.4ms', acceleration: 'NVIDIA TensorRT' }
+      },
+      {
+        id: 'KATMAN 04',
+        tag: 'STORAGE & BEHAVIORAL MEMORY',
+        name: 'Execution State & Psychology Guardrails',
+        specs: ['Firebase Firestore', 'Redis Cache', 'Behavioral Heuristics'],
+        desc: 'Kullanıcı işlem geçmişi, psikolojik aşırı işlem (FOMO) tespiti ve dinlenme döngüsü tetikleyicilerini saklayan veri omurgası.',
+        metrics: { throughput: '99.99% Uptime', latency: '0.4ms', acceleration: 'In-Memory State' }
+      }
+    ]
+  },
+  'agent-critiq': {
+    title: 'AGENT CRITIQ',
+    pid: 'BENCHMARK & MCP // PID·4202',
+    layers: [
+      {
+        id: 'KATMAN 01',
+        tag: 'DISCOVERY & DIRECTORY HUD',
+        name: 'AI-Native Discovery & Structured Review Portal',
+        specs: ['React 18', 'TypeScript', 'Vite', 'Tailwind CSS', 'JSON-LD'],
+        desc: '100\'den fazla otonom ajanı, kodlama aracını ve LLM modelini teknik parametrelerle filtreleyen, insan ve yapay zeka tarafından okunabilen canlı dizin.',
+        metrics: { throughput: 'Realtime', latency: '0.7ms', acceleration: 'Vite Optimized' }
+      },
+      {
+        id: 'KATMAN 02',
+        tag: 'MCP PROTOCOL SERVER',
+        name: 'Model Context Protocol Bridge Engine',
+        specs: ['Node.js', 'MCP Protocol', 'Claude Desktop', 'Cursor IDE'],
+        desc: 'Claude ve Cursor gibi AI asistanlarının veritabanını doğrudan sorgulamasını sağlayan 5 özel MCP aracı (search, detail, compare, categories, top-rated).',
+        metrics: { throughput: '5 MCP Tools', latency: '2.4ms', acceleration: 'JSON-RPC' }
+      },
+      {
+        id: 'KATMAN 03',
+        tag: 'EVALUATION & CRAWLER PIPELINE',
+        name: 'Structured Evaluation & Ingestion Pipeline',
+        specs: ['update_data.cjs', 'Automated Crawlers', 'llms.txt Generator'],
+        desc: 'Yapay zeka araçlarının yeteneklerini, fiyatlandırma katmanlarını ve teknik metriklerini derleyen otomatik güncelleme motoru.',
+        metrics: { throughput: '100+ Reviews', latency: '12ms', acceleration: 'Batch Processing' }
+      },
+      {
+        id: 'KATMAN 04',
+        tag: 'OPEN DATASET & GEO STORAGE',
+        name: 'Hugging Face Open Dataset & CDN Node',
+        specs: ['Hugging Face Datasets', 'Cloudflare Workers', 'Schema.org'],
+        desc: 'Hugging Face üzerinde açık erişimli makine-okunabilir veri seti ve yapay zeka arama motorları için GEO-optimize indeks katmanı.',
+        metrics: { throughput: 'Open Dataset', latency: '18ms', acceleration: 'Global CDN' }
+      }
+    ]
+  },
+  'dona-nova': {
+    title: 'DONA NOVA',
+    pid: '3D INTELLIGENCE // PID·4211',
+    layers: [
+      {
+        id: 'KATMAN 01',
+        tag: '3D WEBGL GLOBE VIEWPORT',
+        name: 'Interactive 3D Planetary Energy Mesh',
+        specs: ['Three.js', 'React Three Fiber', 'WebGL 2.0', 'GLSL Shaders'],
+        desc: '35,000+ küresel enerji santralini, karbon emisyon auralarını ve denizaltı fiber hatlarını 60 FPS hızında renderlayan 3D küre arayüzü.',
+        metrics: { throughput: '60 FPS', latency: '1.1ms', acceleration: 'WebGL 2.0' }
+      },
+      {
+        id: 'KATMAN 02',
+        tag: 'SPATIAL INDEXING & WORKERS',
+        name: 'Sub-Millisecond Spatial Raycasting Engine',
+        specs: ['GeoJSON', 'Quadtree Indexing', 'Web Workers', 'TopoJSON'],
+        desc: '35K santral koordinatını ana thread\'i bloklamadan arka planda indeksleyen ve anlık filtreleme sağlayan jeo-uzamsal hesaplama motoru.',
+        metrics: { throughput: '35,000+ Nodes', latency: '0.8ms', acceleration: 'Parallel Workers' }
+      },
+      {
+        id: 'KATMAN 03',
+        tag: 'TELEMETRY & CARBON PIPELINE',
+        name: 'Global Emission & Grid Output Modeler',
+        specs: ['Cloudflare Workers', 'Real-time Energy Feeds', 'FastAPI'],
+        desc: 'Termik, nükleer, güneş ve rüzgar santrallerinin megavat kapasitesini ve anlık karbon salınım ayak izini hesaplayan telemetri boru hattı.',
+        metrics: { throughput: 'Global Coverage', latency: '24ms', acceleration: 'Edge Compute' }
+      },
+      {
+        id: 'KATMAN 04',
+        tag: 'INFRASTRUCTURE TOPOLOGY STORE',
+        name: 'Global Energy & Subsea Cable Database',
+        specs: ['Vector Tiles', 'GeoTIFF', 'Global Power Plant DB'],
+        desc: 'Dünya geneli santral tipleri, kurulu güç verileri ve kıtalararası denizaltı optik kablo koordinatlarını saklayan jeo-vektör veritabanı.',
+        metrics: { throughput: '100% Offline Cache', latency: '0.2ms', acceleration: 'In-Memory Tiles' }
+      }
+    ]
+  },
+  'dona-nexus': {
+    title: 'APEXBRAIN NEXUS',
+    pid: 'ACTOR-CRITIC DRL // PID·4204',
+    layers: [
+      {
+        id: 'KATMAN 01',
+        tag: 'TELEMETRY & GUI MONITOR',
+        name: 'Real-Time DRL Trading Telemetry Panel',
+        specs: ['Python', 'CustomTkinter', 'Tkinter GUI', 'Live P&L HUD'],
+        desc: '64 boyutlu durum vektörlerini, dual-policy ağ aktivasyonlarını ve canlı emir yürütme loglarını anlık gösteren masaüstü kontrol paneli.',
+        metrics: { throughput: 'Realtime', latency: '0.5ms', acceleration: 'Tkinter Canvas' }
+      },
+      {
+        id: 'KATMAN 02',
+        tag: 'MARKET DATA & ACTION MASKING',
+        name: '0.5s Hyper-Socket & Orderbook Ingestion',
+        specs: ['Binance Futures API', 'L5 Orderbook', 'CVD', 'Open Interest'],
+        desc: '0.5 saniye gecikmeli WebSocket akışı, ATR dinamik volatilite bantları ve ters piyasa koşullarına karşı koruma sağlayan eylem maskeleme katmanı.',
+        metrics: { throughput: '0.5s Tick', latency: '0.5ms', acceleration: 'WebSocket Stream' }
+      },
+      {
+        id: 'KATMAN 03',
+        tag: 'APEXBRAIN DUAL-POLICY DRL CORE',
+        name: 'Deep Reinforcement Learning Trading Agent',
+        specs: ['PyTorch', 'Transformer Backbone (d=256)', '5 Policy Heads', 'CUDA'],
+        desc: 'Giriş ve çıkış kararlarını bağımsız başlıklarla yöneten, doğrulanmış 9 günde +%74.24 net getiri üreten gen_510.pth DRL modeli.',
+        metrics: { throughput: '+74.24% ROI', latency: '3.2ms', acceleration: 'CUDA PyTorch' }
+      },
+      {
+        id: 'KATMAN 04',
+        tag: 'EXECUTION LOGS & ENCRYPTED VAULT',
+        name: 'Verified Trade History & Security Vault',
+        specs: ['CSV Trade Store (152 logs)', 'HMAC-SHA256', 'dona_vault.v68'],
+        desc: '152 adet gerçek işlem kaydı CSV deposu ve borsa API anahtarlarını koruyan donanım şifreli güvenlik kasası.',
+        metrics: { throughput: '152 Logs', latency: '0.1ms', acceleration: 'AES Encrypted' }
+      }
+    ]
+  },
+  'dona-aeon': {
+    title: 'DONA ÆON',
+    pid: 'SPIKING NEURAL LIFE // PID·4212',
+    layers: [
+      {
+        id: 'KATMAN 01',
+        tag: 'EMBODIED COGNITION DASHBOARD',
+        name: 'Visceral State & Perception-Action Visualizer',
+        specs: ['Python 3.12', 'Canvas 2D', 'Realtime Synapse Display'],
+        desc: 'Özerk dijital canlının içsel homeostaz enerji seviyesini, anlık algı-eylem döngüsünü ve nöral ateşleme frekansını gösteren kontrol paneli.',
+        metrics: { throughput: '1000 Hz Tick', latency: '0.4ms', acceleration: 'Native Python' }
+      },
+      {
+        id: 'KATMAN 02',
+        tag: 'ACTIVE INFERENCE & FEP ENGINE',
+        name: 'Karl Friston Free Energy Principle Core',
+        specs: ['Free Energy Principle', 'Markov Blanket', 'Variational Inference'],
+        desc: 'Duyusal tahmin hatalarını ve belirsizliği en aza indirerek hayatta kalma hedeflerini optimize eden aktif çıkarım motoru.',
+        metrics: { throughput: 'Zero Prediction Drift', latency: '0.8ms', acceleration: 'Vectorized Math' }
+      },
+      {
+        id: 'KATMAN 03',
+        tag: '512-NEURON SPIKING NEOCORTEX',
+        name: 'Leaky Integrate-and-Fire (LIF) Synaptic Mesh',
+        specs: ['PyTorch', 'LIF Spiking Neurons', 'STDP Plasticity', 'NumPy'],
+        desc: 'Biyolojik refrakter periyotlara sahip 512 nöronluk spiking neocortex; spike-timing-dependent plasticity (STDP) ile sürekli öğrenir.',
+        metrics: { throughput: '512 Neurons', latency: '1.2ms', acceleration: 'Spike Tensor' }
+      },
+      {
+        id: 'KATMAN 04',
+        tag: 'EPISODIC ENGRAM MEMORY',
+        name: 'Infinite-Horizon Autobiographical Store',
+        specs: ['Vector Memory', 'Hebbian Engrams', 'Zstandard Compression'],
+        desc: 'Canlının doğduğu andan itibaren yaşadığı tüm duyusal deneyimleri kalıcı nöral ağırlıklar ve hebbian engramları olarak saklayan bellek katmanı.',
+        metrics: { throughput: 'Infinite Context', latency: '0.3ms', acceleration: 'Zstd Compressed' }
+      }
+    ]
+  },
+  'dona-codex-overmind': {
+    title: 'DONA CODEX: OVERMIND',
+    pid: 'MULTI-AGENT COMPANY OS // PID·4203',
+    layers: [
+      {
+        id: 'KATMAN 01',
+        tag: 'OVERMIND.OS CONTROL CENTER',
+        name: 'Split-Pane Autonomous Enterprise Dashboard',
+        specs: ['React 18', 'TypeScript', 'Tailwind CSS v4', 'Framer Motion'],
+        desc: 'Sanal şirketteki otonom yapay zeka departmanlarını, canlı terminal loglarını, donanım yükseltme mağazasını ve finansal bilançoyu yöneten arayüz.',
+        metrics: { throughput: '60 FPS', latency: '1.0ms', acceleration: 'Motion GPU' }
+      },
+      {
+        id: 'KATMAN 02',
+        tag: 'REAL-TIME WEBSOCKET MESH',
+        name: 'Socket.IO Orchestration & Task Bus',
+        specs: ['Node.js', 'Express', 'Socket.IO', 'Task Queue Architecture'],
+        desc: 'Ajanlar arasında çakışmasız görev sahiplenme (task claim/release), anlık durum yayınları ve aşamalı proje geliştirme yaşam döngüsü motoru.',
+        metrics: { throughput: 'Sub-millisecond Bus', latency: '1.5ms', acceleration: 'Event-Driven' }
+      },
+      {
+        id: 'KATMAN 03',
+        tag: 'AUTONOMOUS AGENT WORKFORCE',
+        name: '4-Node Coordinated AI Workforce Core',
+        specs: ['Google Gemini API', 'Local Ollama (LLaMA-3)', 'Multi-Agent Loop'],
+        desc: 'Alpha (CEO), Beta (Araştırmacı), Gamma (Kıdemli Mühendis) ve Delta (Finans Analisti) düğümlerinin otonom düşünme ve kod üretim motoru.',
+        metrics: { throughput: '4 Roles', latency: '180ms', acceleration: 'Parallel LLM' }
+      },
+      {
+        id: 'KATMAN 04',
+        tag: 'PERSISTENCE & CODE EXPORTER',
+        name: 'Multi-Tenant Firestore & GitHub API Sync',
+        specs: ['Firebase Firestore', 'Firebase Auth', 'GitHub API Optimizer'],
+        desc: 'Kullanıcı başına izole şirket veritabanları, kimlik doğrulama ve üretilen projeleri doğrudan GitHub\'a aktaran API optimizasyon katmanı.',
+        metrics: { throughput: 'Zero Collision', latency: '0.4ms', acceleration: 'Firestore Cache' }
+      }
+    ]
+  },
+  'dona-quantum': {
+    title: 'DONA QUANTUM',
+    pid: 'CREWAI QUANT ENGINE // PID·4209',
+    layers: [
+      {
+        id: 'KATMAN 01',
+        tag: 'QUANT CREW MONITOR & API',
+        name: 'Flask REST Telemetry & Webhook Gateway',
+        specs: ['Flask REST API', 'HTML5 Dashboard', 'Python 3.10+'],
+        desc: 'Yapay zeka ekibinin anlık konsensüs puanlarını, pozisyon büyüklüklerini ve uzaktan tetikleme emirlerini yöneten izleme katmanı.',
+        metrics: { throughput: 'Realtime', latency: '1.4ms', acceleration: 'Flask REST' }
+      },
+      {
+        id: 'KATMAN 02',
+        tag: 'TWO-STAGE PARALLEL SCANNER',
+        name: 'Ban-Safe Multi-Threaded Symbol Scanner',
+        specs: ['ThreadPool', 'BinanceFeed (OHLCV)', 'Order Book', 'Funding'],
+        desc: '50+ kripto çiftini hızlı kline taramasından geçirip sadece potansiyel fırsatları derin CVD/OI analizine alan iki aşamalı filtreleme boru hattı.',
+        metrics: { throughput: '50+ Symbols', latency: '14ms', acceleration: 'Multi-Threading' }
+      },
+      {
+        id: 'KATMAN 03',
+        tag: 'CREWAI MULTI-AGENT CONSENSUS',
+        name: '4-Agent Coordinated Intelligence Engine',
+        specs: ['CrewAI Framework', 'OpenAI GPT-4o', 'LangChain', 'Structured Prompts'],
+        desc: 'Market Scanner, Deep Analyst, Risk Manager ve Executor ajanlarının ortak konsensüsüyle pozisyon açan karar mekanizması.',
+        metrics: { throughput: '4-Agent Consensus', latency: '320ms', acceleration: 'Parallel Agents' }
+      },
+      {
+        id: 'KATMAN 04',
+        tag: 'EXECUTION & PAPER ENGINE',
+        name: 'Binance Futures Live & Paper Trading Daemon',
+        specs: ['Binance Futures API', 'DonaPaperEngine', 'AWS EC2 Deployment'],
+        desc: '7/24 kesintisiz çalışan AutonomousLiveEngine, Colab uyumluluğu ve AWS üzerinde çalışan otomatik yürütme omurgası.',
+        metrics: { throughput: '24/7 Daemon', latency: '2.1ms', acceleration: 'AWS Cloud EC2' }
+      }
+    ]
+  },
+  'dona-grid': {
+    title: 'DONA GRID',
+    pid: 'DYNAMIC SPOT BOT // PID·4208',
+    layers: [
+      {
+        id: 'KATMAN 01',
+        tag: 'TELEMETRY MONITOR & GUI',
+        name: 'Tkinter Real-Time P&L & Grid Monitor',
+        specs: ['Python', 'CustomTkinter', 'dona_gui.py', 'Real-time P&L Panel'],
+        desc: 'Canlı ızgara seviyelerini, gerçekleşen alım-satım emirlerini ve net kâr/zarar durumunu gösteren masaüstü GUI paneli.',
+        metrics: { throughput: 'Realtime GUI', latency: '0.6ms', acceleration: 'Tkinter Event' }
+      },
+      {
+        id: 'KATMAN 02',
+        tag: '0.5S HYPER-SOCKET MONITOR',
+        name: 'Ultra-Low Latency Price Stream Engine',
+        specs: ['WebSocket Client', 'HMAC-SHA256 Signed', 'Binance Spot API'],
+        desc: 'Standart 20 saniyelik polling yerine 0.5 saniye gecikmeli WebSocket akışıyla ani iğneleri (flash wicks) yakalayan fiyat takip katmanı.',
+        metrics: { throughput: '0.5s Latency', latency: '0.5ms', acceleration: 'WebSocket Feed' }
+      },
+      {
+        id: 'KATMAN 03',
+        tag: 'SPOTVENOMSNIPER STRATEGY',
+        name: 'ATR-Recentering Dynamic Grid Algorithm',
+        specs: ['NumPy', 'Pandas', 'ATR Dynamic Recentering', 'RSI Filter'],
+        desc: '20 kademeli ızgarayı piyasa fiyatına göre otomatik yeniden merkezleyen (recentering) ve RSI ile ters trend koruması sağlayan algoritma.',
+        metrics: { throughput: '20 Grid Levels', latency: '1.1ms', acceleration: 'NumPy Vectorized' }
+      },
+      {
+        id: 'KATMAN 04',
+        tag: 'ENCRYPTED VAULT & SERVER SUITE',
+        name: 'Hardware-Encrypted Vault & VPS Daemon',
+        specs: ['dona_vault.v68', 'startup_vps.bat', 'vps_launcher.py', 'Threading'],
+        desc: 'Şifreli API kasası (dona_vault.v68), 6 saatlik otomatik döngü zamanlayıcısı ve Windows/Linux VPS sunucu çalıştırma motoru.',
+        metrics: { throughput: '24/7 VPS Ready', latency: '0.2ms', acceleration: 'Encrypted Vault' }
+      }
+    ]
+  },
+  'ai-prompt-builder': {
+    title: 'AI PROMPT BUILDER',
+    pid: 'PROMPT STUDIO // PID·4205',
+    layers: [
+      {
+        id: 'KATMAN 01',
+        tag: 'CONVERSATIONAL BUILDER UI',
+        name: 'Conversational Prompt Engineering Studio',
+        specs: ['React 18', 'TypeScript (2500+ lines)', 'Tailwind CSS', 'Framer Motion'],
+        desc: '8 farklı alan kategorisi (Web, Mobil, AI/Python, Kripto, Akademik, SEO, DB, Otomasyon) için interaktif sohbet tabanlı istem tasarım stüdyosu.',
+        metrics: { throughput: '60 FPS', latency: '0.8ms', acceleration: 'Vite Optimized' }
+      },
+      {
+        id: 'KATMAN 02',
+        tag: 'GEMINI API SERVICE LAYER',
+        name: 'Structured Meta-Prompting & Constraint Engine',
+        specs: ['Google Gemini API', 'State Machine', 'Iterative Refiner'],
+        desc: 'Kullanıcının ham fikrini adım adım soru-cevap döngüsüyle işleyip üst düzey sistem talimatlarına (system prompts) derleyen yapay zeka servisi.',
+        metrics: { throughput: 'Gemini 1.5 Pro', latency: '260ms', acceleration: 'Google Cloud' }
+      },
+      {
+        id: 'KATMAN 03',
+        tag: 'EXPORT & ARTIFACT COMPILER',
+        name: 'Multi-Format Export & Schema Serializer',
+        specs: ['jsPDF', 'JSON Schema Serializer', 'Clipboard API'],
+        desc: 'Üretilen istemleri anında profesyonel PDF dokümanlarına, JSON şemalarına veya tek tıkla panoya aktaran derleyici katmanı.',
+        metrics: { throughput: 'Vector PDF Export', latency: '12ms', acceleration: 'Client jsPDF' }
+      },
+      {
+        id: 'KATMAN 04',
+        tag: 'ECONOMY & LOCAL STORAGE',
+        name: 'Persistent Session Store & Bilingual Core',
+        specs: ['Browser LocalStorage', 'Coin Economy System', 'Dual TR/EN Map'],
+        desc: 'Geçmiş istem oturumlarını saklayan, ödüllü jeton ekonomisini ve tam Türkçe/İngilizce çift dil desteğini yöneten durum katmanı.',
+        metrics: { throughput: 'Zero Data Loss', latency: '0.1ms', acceleration: 'Client Storage' }
+      }
+    ]
+  },
+  'ai-coin-empire': {
+    title: 'AI COIN EMPIRE',
+    pid: 'MULTIPLAYER STRATEGY // PID·4206',
+    layers: [
+      {
+        id: 'KATMAN 01',
+        tag: 'INTERACTIVE WORLD MAP & HUD',
+        name: 'Zoomable City Grid & Multiplayer Canvas',
+        specs: ['React 18', 'TypeScript (10,000+ lines)', 'HTML5 Canvas', 'Framer Motion'],
+        desc: 'İnteraktif şehir haritası, canlı NPC veri merkezleri, madencilik teçhizatı animasyonları ve küresel canlı skor tablosu (leaderboard).',
+        metrics: { throughput: '60 FPS Canvas', latency: '1.2ms', acceleration: 'Hardware GPU' }
+      },
+      {
+        id: 'KATMAN 02',
+        tag: 'REAL-TIME STATE SYNCHRONIZATION',
+        name: 'Transactional Cloud Firestore Backbone',
+        specs: ['Firebase Firestore', 'Cloud Functions', 'Firebase Auth (OAuth)'],
+        desc: 'Oyuncuların net varlık hesaplamalarını, 7/24 devam eden madencilik tick döngüsünü ve açık pazar ticaret işlemlerini senkronize eden sunucusuz omurga.',
+        metrics: { throughput: 'Realtime Sync', latency: '16ms', acceleration: 'Google Firestore' }
+      },
+      {
+        id: 'KATMAN 03',
+        tag: 'CYBER ATTACK & SKILL ENGINE',
+        name: 'Wordle-Style Cryptographic Cracker Engine',
+        specs: ['Minigame State Machine', '6-Branch Skill Trees', 'Cyber Algorithms'],
+        desc: 'DDoS, fidye yazılımı (ransomware) ve zero-day saldırı mini-oyunları, Dark Web pazarı ve 6 dallı beceri ağacı hesaplama motoru.',
+        metrics: { throughput: '6 Skill Trees', latency: '0.5ms', acceleration: 'State Machine' }
+      },
+      {
+        id: 'KATMAN 04',
+        tag: 'EVOLVING DONA AI COLLECTIVE',
+        name: '3-Phase Global AI Faction Evolution Matrix',
+        specs: ['Energy Contribution Matrix', 'Global Buff Multipliers', 'Cloud Triggers'],
+        desc: 'Tüm oyuncuların enerji katkısıyla 3 aşamada evrimleşen (Çekirdek Şebeke → Siber Omni-Link) ve sunucu genelinde bonuslar açan yapay zeka varlığı.',
+        metrics: { throughput: '3 Global Phases', latency: '0.3ms', acceleration: 'Firestore Rules' }
+      }
+    ]
+  },
+  'zamanin-bekcisi': {
+    title: 'ZAMANIN BEKÇİSİ',
+    pid: 'TEXT ADVENTURE // PID·4210',
+    layers: [
+      {
+        id: 'KATMAN 01',
+        tag: 'CINEMATIC NARRATIVE UI',
+        name: 'Atmospheric Multi-Era Narrative Viewport',
+        specs: ['React 18', 'TypeScript', 'Vite', 'Framer Motion', 'Tailwind CSS'],
+        desc: '5 farklı tarihsel çağ (Antik Mısır MÖ 2500, Orta Çağ ~1200, Siber Gelecek 2087) arasında sinematik geçişler sunan etkileşimli hikaye arayüzü.',
+        metrics: { throughput: '60 FPS', latency: '0.9ms', acceleration: 'Motion Transitions' }
+      },
+      {
+        id: 'KATMAN 02',
+        tag: 'BRANCHING STORY GRAPH ENGINE',
+        name: 'Directed Acyclic Story Graph State Router',
+        specs: ['DAG Narrative Graph', 'Temporal State Machine', 'useMemo Hooks'],
+        desc: 'Onlarca birbirine bağlı hikaye düğümünü, seçim sonuçlarını ve zaman yolculuğu paradokslarını yöneten yönlendirilmiş çizge motoru.',
+        metrics: { throughput: '5 Eras Routing', latency: '0.4ms', acceleration: 'In-Memory Graph' }
+      },
+      {
+        id: 'KATMAN 03',
+        tag: 'TEMPORAL MECHANICS & INVENTORY',
+        name: 'Energy Depletion & Artifact Constraint Resolver',
+        specs: ['Energy Pool (100)', 'Strategic Hint Engine', 'Cross-Era Inventory'],
+        desc: 'Her eylemin enerji maliyetini hesaplayan, çağlar arası toplanan antik eşyaları çözen ve çoklu sonları (multiple endings) belirleyen kural motoru.',
+        metrics: { throughput: '100 Energy Cap', latency: '0.2ms', acceleration: 'State Logic' }
+      },
+      {
+        id: 'KATMAN 04',
+        tag: 'PERSISTENT TIMELINE SAVES',
+        name: 'Zero-Loss LocalStorage Timeline Storage',
+        specs: ['LocalStorage Schema', 'Session State Engine', 'JSON Serialization'],
+        desc: 'Kullanıcının zaman çizelgesi kararlarını, açılan başarımları ve gizli geçit durumlarını tarayıcıda kalıcı olarak saklayan durum deposu.',
+        metrics: { throughput: 'Zero-Loss Save', latency: '0.1ms', acceleration: 'Client Storage' }
+      }
+    ]
+  }
+};
 
+let currentExplodedSeparation = 80;
+let currentArchProject = null;
 
+function openExplodedArchitecture() {
+  const proj = currentDetailProject || PROJECTS[0];
+  currentArchProject = proj;
+  const modal = document.getElementById('arch-exploded-modal');
+  if (!modal) return;
 
+  const config = PROJECT_ARCHITECTURES[proj.id] || PROJECT_ARCHITECTURES['dona-codex-vision'];
 
+  document.getElementById('arch-project-pid').textContent = `${proj.pid} // 3D DECONSTRUCTION`;
+  document.getElementById('arch-project-title').textContent = proj.title;
 
+  const stackEl = document.getElementById('arch-stack');
+  if (stackEl) {
+    stackEl.innerHTML = '';
+    config.layers.forEach((layer, idx) => {
+      const slab = document.createElement('div');
+      slab.className = `at-arch-layer ${idx === 2 ? 'selected' : ''}`;
+      slab.dataset.index = idx;
+      slab.onclick = () => selectArchitectureLayer(idx);
+
+      slab.innerHTML = `
+        <div class="at-arch-layer-head">
+          <span class="at-arch-layer-id">${layer.id} // ${layer.tag}</span>
+          <span class="at-arch-layer-chip">ACTIVE</span>
+        </div>
+        <div class="at-arch-layer-name">${layer.name}</div>
+        <div class="at-arch-layer-specs">
+          ${layer.specs.map(s => `<span class="at-arch-spec-pill">${s}</span>`).join('')}
+        </div>
+      `;
+      stackEl.appendChild(slab);
+    });
+  }
+
+  updateArchitectureExplosion(80);
+  selectArchitectureLayer(2);
+
+  modal.classList.add('active');
+  modal.setAttribute('aria-hidden', 'false');
+}
+
+function closeExplodedArchitecture() {
+  const modal = document.getElementById('arch-exploded-modal');
+  if (modal) {
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+  }
+}
+
+function updateArchitectureExplosion(val) {
+  currentExplodedSeparation = parseFloat(val) || 80;
+  const layers = document.querySelectorAll('.at-arch-layer');
+  const count = layers.length;
+  layers.forEach((layer, i) => {
+    const offset = (i - (count - 1) / 2) * currentExplodedSeparation;
+    layer.style.transform = `translateZ(${offset}px)`;
+  });
+}
+
+function selectArchitectureLayer(idx) {
+  const proj = currentArchProject || currentDetailProject || PROJECTS[0];
+  const config = PROJECT_ARCHITECTURES[proj.id] || PROJECT_ARCHITECTURES['dona-codex-vision'];
+  const layer = config.layers[idx] || config.layers[0];
+
+  document.querySelectorAll('.at-arch-layer').forEach((l, i) => {
+    if (i === idx) l.classList.add('selected');
+    else l.classList.remove('selected');
+  });
+
+  const tagEl = document.getElementById('inspector-layer-tag');
+  const titleEl = document.getElementById('inspector-layer-title');
+  const descEl = document.getElementById('inspector-layer-desc');
+  const m1 = document.getElementById('m-val-1');
+  const m2 = document.getElementById('m-val-2');
+  const m3 = document.getElementById('m-val-3');
+
+  if (tagEl) tagEl.textContent = `${layer.id} // ${layer.tag}`;
+  if (titleEl) titleEl.textContent = layer.name;
+  if (descEl) descEl.textContent = layer.desc;
+  if (m1) m1.textContent = layer.metrics.throughput;
+  if (m2) m2.textContent = layer.metrics.latency;
+  if (m3) m3.textContent = layer.metrics.acceleration;
+}
+
+// Global Keyboard Navigation for Lightbox & Architecture Modals
+window.addEventListener('keydown', (e) => {
+  const lbModal = document.getElementById('lightbox-modal');
+  const archModal = document.getElementById('arch-exploded-modal');
+
+  if (e.key === 'Escape') {
+    if (lbModal && lbModal.classList.contains('active')) closeLightbox();
+    if (archModal && archModal.classList.contains('active')) closeExplodedArchitecture();
+  } else if (lbModal && lbModal.classList.contains('active')) {
+    if (e.key === 'ArrowLeft') stepLightbox(-1);
+    if (e.key === 'ArrowRight') stepLightbox(1);
+  }
+});

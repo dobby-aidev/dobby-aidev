@@ -15,35 +15,35 @@
 
   <link rel="icon" type="image/png" href="profile.png" />
 
-  <!-- Active Theory Monospace & Architectural Typographic Stack -->
+  <!-- Modern Editorial & Engineering Typographic Stack -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet" />
 
-  <link rel="stylesheet" href="style.css?v=quantum_clean_v13" />
+  <link rel="stylesheet" href="style.css?v=crisp_compact_cards_v22" />
 </head>
 
 <body>
 
-  <!-- Film Grain / Texture Overlay -->
+  <!-- Subtle Film Grain / Organic Texture Overlay -->
   <div class="noise-overlay"></div>
 
-  <!-- 3D Canvas Water Ripples & Upward Particles -->
+  <!-- Ambient Light & Particle Background Canvas -->
   <canvas id="canvas-3d"></canvas>
 
-  <!-- Fullscreen WebGL Glass Shatter & Liquid Vortex Transition Layer -->
+  <!-- Fullscreen Glass Transition Layer -->
   <canvas id="canvas-shatter-transition"></canvas>
 
   <!-- Top-Left Architectural Logo with Profile Avatar -->
   <a href="javascript:void(0)" onclick="switchView('home')" class="at-logo-top" title="Home">
     <div class="at-logo-avatar-wrap">
-      <img src="profile.png" class="at-logo-avatar" alt="Dobby B" />
+      <img src="profile.png" class="at-logo-avatar" alt="Dobby B" onerror="this.style.display='none'" />
     </div>
     <span class="at-logo-text">Dobby B</span>
   </a>
 
-  <!-- Top-Right HUD: ONLY PILL [ ANA SAYFA ── PROJELER ── İLETİŞİM ] (Desktop) -->
+  <!-- Top-Right HUD Navigation: [ ANA SAYFA ── PROJELER ── İLETİŞİM ] (Desktop) -->
   <header class="at-hud-top">
     <nav class="at-nav-pill">
       <a href="javascript:void(0)" onclick="switchView('home')" class="at-nav-item active" id="nav-home"
@@ -137,27 +137,29 @@
   <main class="at-view-container">
 
     <!-- ══════════════════════════════════════════════════════════════ -->
-    <!-- VIEW 1: HOME (DUAL LOCALIZATION BIO + 3D HOLOGRAM PROFILE)     -->
+    <!-- ══════════════════════════════════════════════════════════════ -->
+    <!-- VIEW 1: HOME (EDITORIAL PROFILE & BIO)                         -->
     <!-- ══════════════════════════════════════════════════════════════ -->
     <section class="at-view-page at-home-hero active" id="view-home">
-      <div class="at-hero-symbol-3d" id="hero-avatar-node" onclick="triggerElementShatterTransition(this, 'work', 'avatar')" style="cursor:pointer;" title="Explore Projects">
+      <div class="at-hero-symbol-3d" id="hero-avatar-node" onclick="triggerElementShatterTransition(this, 'work', 'avatar', event)" style="cursor:pointer;" title="Explore Projects">
         <div class="at-ring-outer"></div>
         <div class="at-ring-inner"></div>
         <div class="at-ring-core-avatar-wrap">
-          <img src="profile.png" class="at-ring-core-avatar" alt="Dobby B Profile" />
+          <img src="profile.png" class="at-ring-core-avatar" alt="Dobby B Profile" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\' viewBox=\'0 0 100 100\'><rect fill=\'%2312151c\' width=\'100\' height=\'100\'/><text fill=\'%2310b981\' font-family=\'sans-serif\' font-size=\'36\' font-weight=\'bold\' x=\'50%25\' y=\'55%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'>DB</text></svg>'" />
         </div>
       </div>
+      <div class="at-hero-role-badge">AI SYSTEMS ARCHITECT & FOUNDER</div>
       <div class="at-hero-bio" id="hero-bio-text" data-i18n="hero_bio">
-        Dona Codex Kurucusu &amp; Yapay Zeka Sistem Mimarı | Agent Critiq Yaratıcısı | Otonom Yapay Zeka Sistemleri,
-        Çoklu-Ajan Mimarileri &amp; Pekiştirmeli Öğrenme Altyapıları Geliştiricisi
+        Dona Codex Kurucusu &amp; Sistem Mimarı | Agent Critiq Geliştiricisi | Otonom Ajan Sistemleri,
+        PyTorch Pekiştirmeli Öğrenme &amp; 3D WebGL Platformları Geliştiricisi
       </div>
-      <button class="at-hero-explore-btn" id="hero-explore-btn" onclick="triggerElementShatterTransition(this, 'work', 'button')" data-i18n="hero_explore">
+      <button class="at-hero-explore-btn" id="hero-explore-btn" onclick="triggerElementShatterTransition(this, 'work', 'button', event)" data-i18n="hero_explore">
         PROJELERİ KEŞFET ->
       </button>
     </section>
 
     <!-- ══════════════════════════════════════════════════════════════ -->
-    <!-- VIEW 2: WORK (RAINBOW WATERFALL + 3D CAROUSEL)                 -->
+    <!-- VIEW 2: WORK (PROJECT SHOWCASE & 3D GALLERY)                   -->
     <!-- ══════════════════════════════════════════════════════════════ -->
     <section class="at-view-page at-work-page" id="view-work">
       <!-- Mobile Pill Filter Bar (visible only on mobile ≤768px) -->
@@ -170,56 +172,33 @@
         <button class="at-mobile-view-toggle-pill" id="mobile-view-mode-btn" onclick="toggleMobileViewMode()" data-i18n="toggle_view_mode">📱 GRID VIEW</button>
       </div>
 
-      <!-- Left Category Filter Menu (Isolated Safe Sidebar — Desktop) -->
+      <!-- Left Category Filter Menu (Desktop) -->
       <div class="at-work-left-sidebar">
-        <div class="at-sidebar-title" data-i18n="sidebar_title">NE ARIYORSUNUZ?</div>
+        <div class="at-sidebar-title" data-i18n="sidebar_title">KATEGORİLER</div>
         <div class="at-sidebar-list">
           <button class="at-category-btn active" onclick="filterCategory('all', this)">
-            -> <span class="cat-name" data-i18n="cat_all">TÜM SİSTEMLER (12)</span>
+            <span class="cat-dot"></span> <span class="cat-name" data-i18n="cat_all">TÜM PROJELER (12)</span>
           </button>
           <button class="at-category-btn" onclick="filterCategory('ai', this)">
-            -> <span class="cat-name" data-i18n="cat_ai">AI &amp; CUSTOM LLM</span>
+            <span class="cat-dot"></span> <span class="cat-name" data-i18n="cat_ai">AI &amp; CUSTOM LLM</span>
           </button>
           <button class="at-category-btn" onclick="filterCategory('quant', this)">
-            -> <span class="cat-name" data-i18n="cat_quant">QUANT &amp; DEEP RL</span>
+            <span class="cat-dot"></span> <span class="cat-name" data-i18n="cat_quant">QUANT &amp; DEEP RL</span>
           </button>
           <button class="at-category-btn" onclick="filterCategory('3d', this)">
-            -> <span class="cat-name" data-i18n="cat_3d">3D WEBGL PLATFORMLARI</span>
+            <span class="cat-dot"></span> <span class="cat-name" data-i18n="cat_3d">3D WEBGL PLATFORMLARI</span>
           </button>
           <button class="at-category-btn" onclick="filterCategory('swarm', this)">
-            -> <span class="cat-name" data-i18n="cat_swarm">SWARM SİMÜLASYONLARI</span>
+            <span class="cat-dot"></span> <span class="cat-name" data-i18n="cat_swarm">SWARM SİMÜLASYONLARI</span>
           </button>
         </div>
       </div>
 
-      <!-- Center-Right 3D Carousel Stage with Rainbow Waterfall -->
+      <!-- Center-Right 3D Carousel Stage -->
       <div class="at-carousel-stage" id="carousel-stage">
         <div class="at-carousel-rotator" id="carousel-rotator">
-          <!-- Central Cybernetic Neural Spine (Digital Mind Axis) -->
-          <div class="at-neural-spine-core" id="neural-spine-core">
-            <div class="at-brain-cortex-node">
-              <div class="at-cortex-pulse"></div>
-              <div class="at-cortex-label">NEURAL//CORE</div>
-            </div>
-            <div class="at-spine-vertebrae-chain">
-              <div class="at-vertebra v-1"><span class="v-body-3d"><span class="face front"></span><span class="face back"></span><span class="face left"></span><span class="face right"></span><span class="face top"></span></span><span class="v-wing left"></span><span class="v-wing right"></span><span class="v-rib anterior"></span><span class="v-rib posterior"></span><span class="v-axon left"></span><span class="v-axon right"></span></div>
-              <div class="at-vertebra v-2"><span class="v-body-3d"><span class="face front"></span><span class="face back"></span><span class="face left"></span><span class="face right"></span><span class="face top"></span></span><span class="v-wing left"></span><span class="v-wing right"></span><span class="v-rib anterior"></span><span class="v-rib posterior"></span><span class="v-axon left"></span><span class="v-axon right"></span></div>
-              <div class="at-vertebra v-3"><span class="v-body-3d"><span class="face front"></span><span class="face back"></span><span class="face left"></span><span class="face right"></span><span class="face top"></span></span><span class="v-wing left"></span><span class="v-wing right"></span><span class="v-rib anterior"></span><span class="v-rib posterior"></span><span class="v-axon left"></span><span class="v-axon right"></span></div>
-              <div class="at-vertebra v-4"><span class="v-body-3d"><span class="face front"></span><span class="face back"></span><span class="face left"></span><span class="face right"></span><span class="face top"></span></span><span class="v-wing left"></span><span class="v-wing right"></span><span class="v-rib anterior"></span><span class="v-rib posterior"></span><span class="v-axon left"></span><span class="v-axon right"></span></div>
-              <div class="at-vertebra v-5"><span class="v-body-3d"><span class="face front"></span><span class="face back"></span><span class="face left"></span><span class="face right"></span><span class="face top"></span></span><span class="v-wing left"></span><span class="v-wing right"></span><span class="v-rib anterior"></span><span class="v-rib posterior"></span><span class="v-axon left"></span><span class="v-axon right"></span></div>
-              <div class="at-vertebra v-6"><span class="v-body-3d"><span class="face front"></span><span class="face back"></span><span class="face left"></span><span class="face right"></span><span class="face top"></span></span><span class="v-wing left"></span><span class="v-wing right"></span><span class="v-rib anterior"></span><span class="v-rib posterior"></span><span class="v-axon left"></span><span class="v-axon right"></span></div>
-              <div class="at-vertebra v-7"><span class="v-body-3d"><span class="face front"></span><span class="face back"></span><span class="face left"></span><span class="face right"></span><span class="face top"></span></span><span class="v-wing left"></span><span class="v-wing right"></span><span class="v-rib anterior"></span><span class="v-rib posterior"></span><span class="v-axon left"></span><span class="v-axon right"></span></div>
-              <div class="at-vertebra v-8"><span class="v-body-3d"><span class="face front"></span><span class="face back"></span><span class="face left"></span><span class="face right"></span><span class="face top"></span></span><span class="v-wing left"></span><span class="v-wing right"></span><span class="v-rib anterior"></span><span class="v-rib posterior"></span><span class="v-axon left"></span><span class="v-axon right"></span></div>
-              <div class="at-vertebra v-9"><span class="v-body-3d"><span class="face front"></span><span class="face back"></span><span class="face left"></span><span class="face right"></span><span class="face top"></span></span><span class="v-wing left"></span><span class="v-wing right"></span><span class="v-rib anterior"></span><span class="v-rib posterior"></span><span class="v-axon left"></span><span class="v-axon right"></span></div>
-              <div class="at-vertebra v-10"><span class="v-body-3d"><span class="face front"></span><span class="face back"></span><span class="face left"></span><span class="face right"></span><span class="face top"></span></span><span class="v-wing left"></span><span class="v-wing right"></span><span class="v-rib anterior"></span><span class="v-rib posterior"></span><span class="v-axon left"></span><span class="v-axon right"></span></div>
-            </div>
-            <div class="at-spinal-cord-beam"></div>
-            <div class="at-energy-rings">
-              <div class="at-pulse-ring ring-1"></div>
-              <div class="at-pulse-ring ring-2"></div>
-              <div class="at-pulse-ring ring-3"></div>
-            </div>
-          </div>
+          <!-- 3D Synaptic Neural Lattice Center Node -->
+          <div class="at-synaptic-lattice-core" id="synaptic-lattice-core"></div>
           <!-- Dynamically populated 3D Project Cards -->
         </div>
       </div>
@@ -229,34 +208,45 @@
     </section>
 
     <!-- ══════════════════════════════════════════════════════════════ -->
-    <!-- VIEW 3: CASE STUDY DETAIL VIEW (SPACIOUS 3D ARC DECK)          -->
+    <!-- VIEW 3: CASE STUDY DETAIL VIEW                                 -->
     <!-- ══════════════════════════════════════════════════════════════ -->
     <section class="at-view-page at-detail-page" id="view-detail">
       <div class="at-detail-inner">
         <div class="at-detail-left">
-          <div class="at-detail-tag" id="detail-tag">PID·4201 // PROPRIETARY LLM</div>
+          <div class="at-detail-tag" id="detail-tag">PROPRIETARY LLM // 2026</div>
           <h1 class="at-detail-title" id="detail-title">DONA CODEX: VISION</h1>
+          <div class="at-detail-tech-stack" id="detail-tech-stack"></div>
           <p class="at-detail-desc" id="detail-desc">
-            Kripto emir defteri mikro-yapısı, X canlı haber akışı ve ABD Tahvil faizleriyle özel eğitilmiş kurumsal
-            finansal Transformer dil modeli.
+            Kripto emir defteri mikro-yapısı, canlı haber akışı ve faiz oranlarıyla özel eğitilmiş finansal Transformer modeli.
           </p>
-          <div class="at-detail-actions">
-            <button class="at-hero-explore-btn" id="detail-gallery-btn" data-i18n="open_fullscreen_gallery">TAM EKRAN
-              GALERİ ↗</button>
-            <a href="#" id="detail-live-link" target="_blank" class="at-live-pill-btn" style="display:none;">CANLI
-              UYGULAMA ↗</a>
-            <a href="#" id="detail-repo-link" target="_blank" class="at-nav-item"
-              style="color:#fff; border-bottom:1px solid #fff; padding-bottom:2px;">GITHUB REPO →</a>
+          <!-- Integrated Precision Action Dock (Unified Command Bar) -->
+          <div class="at-detail-actions-dock" id="detail-actions-dock">
+            <button class="at-dock-btn at-dock-primary" id="detail-arch-btn" onclick="openExplodedArchitecture()">
+              <span class="at-dock-icon">◈</span>
+              <span class="at-dock-text">3D MİMARİ KATMANLAR</span>
+            </button>
+            <button class="at-dock-btn" id="detail-gallery-btn" data-i18n="open_fullscreen_gallery">
+              <span class="at-dock-icon">◫</span>
+              <span class="at-dock-text">GALERİ</span>
+            </button>
+            <a href="#" id="detail-live-link" target="_blank" class="at-dock-btn at-dock-live" style="display:none;">
+              <span class="at-dock-icon">⚡</span>
+              <span class="at-dock-text">CANLI DEMO</span>
+            </a>
+            <a href="#" id="detail-repo-link" target="_blank" class="at-dock-btn at-dock-repo">
+              <span class="at-dock-icon">↗</span>
+              <span class="at-dock-text">GITHUB</span>
+            </a>
           </div>
           <div class="at-detail-close-hint" onclick="switchView('work')" data-i18n="detail_close">
-            &lt;- GERİ DÖN // SCROLL İLE KAPAT
+            &larr; PROJELERE GERİ DÖN
           </div>
         </div>
 
         <!-- Right 3D Arc-Deck Gallery -->
         <div class="at-mini-gallery-stage" id="mini-gallery-stage">
           <div class="at-mini-gallery-rotator" id="mini-gallery-rotator">
-            <!-- Dynamically populated screenshots in luxury 3D depth arc -->
+            <!-- Dynamically populated screenshots -->
           </div>
         </div>
       </div>
@@ -446,7 +436,41 @@
     </div>
   </div>
 
-  <script src="script.js?v=quantum_live_v15"></script>
+  <!-- 3D Exploded Architecture Deconstruction Modal -->
+  <div class="at-arch-modal" id="arch-exploded-modal" aria-hidden="true">
+    <div class="at-arch-header">
+      <div class="at-arch-header-left">
+        <div class="at-arch-sub" id="arch-project-pid">SYSTEM ARCHITECTURE // 3D DECONSTRUCTION</div>
+        <h2 class="at-arch-title" id="arch-project-title">DONA CODEX: VISION</h2>
+      </div>
+      <div class="at-arch-controls">
+        <div class="at-arch-slider-wrap">
+          <span class="at-arch-slider-label">KATMAN AYRIŞTIRMA (EXPLODE)</span>
+          <input type="range" id="arch-explode-slider" min="20" max="140" value="80" oninput="updateArchitectureExplosion(this.value)" />
+        </div>
+        <button class="lightbox-close" onclick="closeExplodedArchitecture()">✕</button>
+      </div>
+    </div>
+    <div class="at-arch-body">
+      <div class="at-arch-3d-stage" id="arch-3d-stage">
+        <div class="at-arch-stack" id="arch-stack">
+          <!-- Dynamically populated 4 3D glass isometric layers -->
+        </div>
+      </div>
+      <div class="at-arch-inspector" id="arch-inspector">
+        <div class="at-inspector-tag" id="inspector-layer-tag">KATMAN 03 // TENSOR CORE</div>
+        <h3 class="at-inspector-title" id="inspector-layer-title">Transformer Attention Pipeline</h3>
+        <p class="at-inspector-desc" id="inspector-layer-desc">Finansal zaman serisi verilerini mikro-saniye gecikmeyle işleyen özel PyTorch Multi-Head Self-Attention modülü.</p>
+        <div class="at-inspector-metrics" id="inspector-layer-metrics">
+          <div class="at-metric-item"><span class="m-label">THROUGHPUT</span><span class="m-val" id="m-val-1">14.2k req/s</span></div>
+          <div class="at-metric-item"><span class="m-label">LATENCY</span><span class="m-val" id="m-val-2">1.2ms</span></div>
+          <div class="at-metric-item"><span class="m-label">ACCELERATION</span><span class="m-val" id="m-val-3">CUDA 12.4</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js?v=crisp_compact_cards_v22"></script>
 </body>
 
 </html>
