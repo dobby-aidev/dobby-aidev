@@ -21,7 +21,7 @@
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet" />
 
-  <link rel="stylesheet" href="style.css?v=verified_links_preloaded_v23" />
+  <link rel="stylesheet" href="style.css?v=angled_cards_v25" />
 </head>
 
 <body>
@@ -54,10 +54,6 @@
       <div class="at-nav-divider"></div>
       <a href="javascript:void(0)" onclick="switchView('contact')" class="at-nav-item" id="nav-contact"
         data-i18n="nav_contact">İLETİŞİM</a>
-      <div class="at-nav-divider"></div>
-      <a href="https://donacodex.com" target="_blank" rel="noopener noreferrer" class="at-nav-item at-nav-company-link" title="Dona Codex Official Company">
-        <span class="at-nav-company-dot"></span>DONA CODEX <span class="at-nav-arrow">↗</span>
-      </a>
     </nav>
   </header>
 
@@ -180,7 +176,6 @@
         <button class="at-mobile-filter-pill" onclick="filterCategoryMobile('quant', this)" data-i18n="cat_quant_short">QUANT</button>
         <button class="at-mobile-filter-pill" onclick="filterCategoryMobile('3d', this)" data-i18n="cat_3d_short">3D WEBGL</button>
         <button class="at-mobile-filter-pill" onclick="filterCategoryMobile('swarm', this)" data-i18n="cat_swarm_short">SWARM</button>
-        <button class="at-mobile-view-toggle-pill" id="mobile-view-mode-btn" onclick="toggleMobileViewMode()" data-i18n="toggle_view_mode">📱 GRID VIEW</button>
       </div>
 
       <!-- Left Category Filter Menu (Desktop) -->
@@ -203,6 +198,7 @@
             <span class="cat-dot"></span> <span class="cat-name" data-i18n="cat_swarm">SWARM SİMÜLASYONLARI</span>
           </button>
         </div>
+
       </div>
 
       <!-- Center-Right 3D Carousel Stage -->
@@ -242,7 +238,7 @@
             </button>
             <a href="#" id="detail-live-link" target="_blank" class="at-dock-btn at-dock-live" style="display:none;">
               <span class="at-dock-icon">⚡</span>
-              <span class="at-dock-text">CANLI DEMO</span>
+              <span class="at-dock-text" data-i18n="live_demo_btn">CANLI YAYIN</span>
             </a>
             <a href="#" id="detail-repo-link" target="_blank" class="at-dock-btn at-dock-repo">
               <span class="at-dock-icon">↗</span>

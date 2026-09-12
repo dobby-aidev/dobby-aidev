@@ -64,7 +64,7 @@ const TRANSLATIONS = {
     cat_swarm_short: 'SWARM',
     detail_close: '<- PROJELERE GERİ DÖN',
     open_fullscreen_gallery: 'TAM EKRAN GALERİ',
-    live_demo_btn: 'CANLI UYGULAMA ↗',
+    live_demo_btn: 'CANLI YAYIN ↗',
     contact_tag: 'İLETİŞİM // GET IN TOUCH',
     contact_title: 'BAĞLANTI KURUN.',
     contact_desc: 'Otonom yapay zeka ajanları, PyTorch DRL quant modelleri ve özel web uygulamaları geliştirmek için iletişime geçin.',
@@ -102,7 +102,7 @@ const TRANSLATIONS = {
     cat_swarm_short: 'SWARM',
     detail_close: '<- BACK TO WORK',
     open_fullscreen_gallery: 'FULLSCREEN GALLERY',
-    live_demo_btn: 'LIVE DEMO ↗',
+    live_demo_btn: 'LIVE PLATFORM ↗',
     contact_tag: 'CONTACT // GET IN TOUCH',
     contact_title: 'GET IN TOUCH.',
     contact_desc: 'Reach out to build autonomous AI agents, PyTorch DRL quant trading models, or bespoke WebGL applications.',
@@ -311,69 +311,27 @@ let miniStartX = 0;
 let activeLightboxImages = [];
 let currentLightboxIndex = 0;
 
-/* Mobile 2D Grid / 3D Carousel view toggle state - Default to 'grid' on mobile devices */
-let mobileViewMode = (window.innerWidth <= 768) ? 'grid' : '3d';
 
-function toggleMobileViewMode(mode) {
-  if (mode) {
-    mobileViewMode = mode;
-  } else {
-    mobileViewMode = (mobileViewMode === '3d') ? 'grid' : '3d';
-  }
+/* ── MOBILE CARD STREAM CONTROLLER ─────────────────────────────────────── */
 
+function checkMobileLayout() {
+  const isMobile = window.innerWidth <= 768;
   const stage = document.getElementById('carousel-stage');
   const grid = document.getElementById('projects-grid-mobile');
-  const btn = document.getElementById('mobile-view-mode-btn');
 
-  if (mobileViewMode === 'grid') {
-    if (stage) stage.style.display = 'none';
+  if (isMobile) {
+    if (stage) stage.style.setProperty('display', 'none', 'important');
     if (grid) {
-      grid.style.display = 'flex';
+      grid.style.setProperty('display', 'flex', 'important');
       buildMobileGrid();
     }
-    if (btn) btn.textContent = (TRANSLATIONS[currentLang] && TRANSLATIONS[currentLang].toggle_view_mode_3d) ? TRANSLATIONS[currentLang].toggle_view_mode_3d : '🌌 3D CAROUSEL';
   } else {
     if (stage) stage.style.display = 'flex';
     if (grid) grid.style.display = 'none';
-    if (btn) btn.textContent = (TRANSLATIONS[currentLang] && TRANSLATIONS[currentLang].toggle_view_mode_grid) ? TRANSLATIONS[currentLang].toggle_view_mode_grid : '📱 GRID VIEW';
   }
 }
 
-function buildMobileGrid() {
-  const grid = document.getElementById('projects-grid-mobile');
-  if (!grid) return;
-  grid.innerHTML = '';
-
-  filteredProjects.forEach(proj => {
-    const card = document.createElement('div');
-    card.className = 'at-project-grid-card';
-
-    const descText = (currentLang === 'en' && proj.desc_en) ? proj.desc_en : proj.desc;
-    const techBadges = (proj.tech || []).map(t => `<span class="at-tech-pill">${t}</span>`).join(' ');
-
-    card.innerHTML = `
-      <div class="at-grid-card-img-wrap">
-        <span class="at-grid-card-badge">${proj.pid}</span>
-        <img src="${proj.img}" class="at-grid-card-img" alt="${proj.title}" loading="lazy" onerror="handleImgError(this, '${proj.title}')" />
-      </div>
-      <div class="at-grid-card-content">
-        <div class="at-grid-card-header">
-          <span class="at-grid-card-title">${proj.title}</span>
-          <span class="at-grid-card-arrow">↗</span>
-        </div>
-        <div class="at-detail-tech-stack" style="margin: 4px 0;">${techBadges}</div>
-        <div class="at-grid-card-desc">${descText}</div>
-      </div>
-    `;
-
-    card.addEventListener('click', (e) => {
-      e.stopPropagation();
-      openDetail(proj, card);
-    });
-
-    grid.appendChild(card);
-  });
-}
+window.addEventListener('resize', checkMobileLayout, { passive: true });
 
 document.addEventListener('DOMContentLoaded', () => {
   'use strict';
@@ -386,6 +344,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileNavSync();
   triggerQuantumHeroIntro();
   preloadProjectThumbnails();
+  // Auto-apply mobile grid layout on initial load
+  checkMobileLayout();
 });
 
 function preloadProjectThumbnails() {
@@ -770,6 +730,7 @@ function buildCarousel() {
     const card = document.createElement('div');
     card.className = 'at-card-panel';
     card.dataset.angle = angle;
+    card.dataset.category = proj.category || 'ai';
     card.style.transform = `rotateY(${angle}deg) translateZ(${radius}px)`;
     card.style.pointerEvents = 'none';
 
@@ -784,7 +745,10 @@ function buildCarousel() {
         <div class="at-card-side right"></div>
 
         <!-- 3D Front Face Plate -->
-        <div class="at-card-face-front">
+        <div class="at-card-face-front" data-cat="${proj.category || 'ai'}">
+          <!-- Category accent stripe (left border) -->
+          <div class="at-card-cat-stripe"></div>
+
           <div class="at-card-img-wrap">
             <img src="${proj.img}" class="at-card-img" alt="${proj.title}" onerror="handleImgError(this, '${proj.title}')" />
             
@@ -793,6 +757,9 @@ function buildCarousel() {
               <span class="at-card-badge">${proj.pid}</span>
               <span class="at-card-live-node"><span class="at-node-dot"></span>ACTIVE</span>
             </div>
+
+            <!-- Diagonal cut corner marker -->
+            <div class="at-card-corner-cut"></div>
           </div>
           <div class="at-card-info">
             <div class="at-card-title-row">
@@ -803,6 +770,8 @@ function buildCarousel() {
               <div class="at-card-meta">${proj.meta}</div>
               <div class="at-card-chip">${techChip}</div>
             </div>
+            <!-- Bottom accent line (category color) -->
+            <div class="at-card-accent-line"></div>
           </div>
         </div>
 
@@ -1067,6 +1036,7 @@ function switchView(viewName) {
 
   // Trigger carousel pointer check if opening work view
   if (viewName === 'work') {
+    checkMobileLayout();
     setTimeout(updateCarouselPointerEvents, 50);
   }
 }
@@ -1148,22 +1118,34 @@ function buildMobileGrid() {
   filteredProjects.forEach((proj) => {
     const card = document.createElement('div');
     card.className = 'at-mobile-project-card';
-    const techChip = (proj.tech && proj.tech[0]) ? proj.tech[0] : 'LIVE';
+    card.dataset.category = proj.category || 'ai';
+    const descText = (currentLang === 'en' && proj.desc_en) ? proj.desc_en : proj.desc;
+    const techTags = (proj.tech || []).slice(0, 3).map(t => `<span class="at-mobile-tag">${t}</span>`).join('');
 
     card.innerHTML = `
+      <!-- Category left accent stripe -->
+      <div class="at-mobile-cat-stripe" data-cat="${proj.category || 'ai'}"></div>
       <div class="at-mobile-card-img-wrap">
-        <img src="${proj.img}" alt="${proj.title}" onerror="handleImgError(this, '${proj.title}')" />
-        <span class="at-card-badge">${proj.pid}</span>
+        <img src="${proj.img}" alt="${proj.title}" loading="lazy" onerror="handleImgError(this, '${proj.title}')" />
+        <div class="at-mobile-card-gradient"></div>
+        <div class="at-mobile-card-badge-row">
+          <span class="at-card-badge">${proj.pid}</span>
+          <span class="at-mobile-status-dot"><span class="dot-pulse"></span>ACTIVE</span>
+        </div>
+        <!-- Corner cut notch -->
+        <div class="at-mobile-corner-cut" data-cat="${proj.category || 'ai'}"></div>
       </div>
       <div class="at-mobile-card-body">
-        <div class="at-card-title-row">
-          <h3 class="at-card-title">${proj.title}</h3>
-          <span class="at-card-arrow-icon">↗</span>
+        <div class="at-mobile-title-row">
+          <h3 class="at-mobile-card-title">${proj.title}</h3>
+          <span class="at-mobile-arrow-btn">İNCELE ↗</span>
         </div>
-        <div class="at-card-meta-row">
-          <span class="at-card-meta">${proj.meta}</span>
-          <span class="at-card-chip">${techChip}</span>
+        <div class="at-mobile-tech-tags">
+          ${techTags}
         </div>
+        <p class="at-mobile-card-desc">${descText}</p>
+        <!-- Bottom accent line -->
+        <div class="at-mobile-accent-line" data-cat="${proj.category || 'ai'}"></div>
       </div>
     `;
 
