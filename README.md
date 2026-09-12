@@ -4,7 +4,9 @@
 
 <br/>
 
-[![Portfolio Site](https://img.shields.io/badge/🌐%20Live%20Portfolio-dobby--aidev-6366f1?style=for-the-badge&logo=google-chrome&logoColor=white)](https://dobby-aidev.github.io/dobby-aidev/)
+[![Portfolio Site](https://img.shields.io/badge/🌐%20Live%20Portfolio-dobby.donacodex.com-6366f1?style=for-the-badge&logo=google-chrome&logoColor=white)](https://dobby.donacodex.com)
+[![GitHub Stars](https://img.shields.io/github/stars/dobby-aidev/dobby-aidev?style=for-the-badge&logo=github&color=f59e0b&label=⭐%20Star%20Repo)](https://github.com/dobby-aidev/dobby-aidev/stargazers)
+[![GitHub Followers](https://img.shields.io/github/followers/dobby-aidev?style=for-the-badge&logo=github&color=3b82f6&label=👤%20Follow%20%40dobby--aidev)](https://github.com/dobby-aidev)
 [![Whop Store](https://img.shields.io/badge/🛍️%20Whop%20Store-dona--ai-FFB800?style=for-the-badge)](https://whop.com/dona-ai)
 [![Agent Critiq](https://img.shields.io/badge/Agent%20Critiq-agentcritiq.com-10b981?style=for-the-badge&logo=globe&logoColor=white)](https://agentcritiq.com)
 [![Dona Nova](https://img.shields.io/badge/🌐%20Dona%20Nova-Live%20Platform-00C7B7?style=for-the-badge&logo=cloudflare&logoColor=white)](https://donanova.donacodex.workers.dev)
@@ -28,7 +30,7 @@
 
 ## 🌐 Live Portfolio Website
 
-👉 **[https://dobby-aidev.github.io/dobby-aidev/](https://dobby-aidev.github.io/dobby-aidev/)**
+👉 **[https://dobby.donacodex.com](https://dobby.donacodex.com)**
 
 This repository contains my personal developer portfolio site built as a futuristic **Neural Operating System (Neural OS v2.0)** using vanilla Javascript, HTML5, custom CSS styling, and Three.js WebGL rendering.
 
@@ -47,6 +49,16 @@ The site has been engineered to showcase high-end creative coding and premium UI
 - **🔍 Apple-style Glassmorphic Spotlights:** Bento grid project cards utilizing dynamic CSS radial gradients that track mouse coordinates for a premium glassmorphic glow.
 - **🖥️ Cyberpunk Boot Simulation:** A custom terminals-like BIOS loading screens simulation with interactive skips and progress updates.
 - **🇹🇷 Double Language Support:** Client-side localization engine handling active transitions between TR and EN languages smoothly.
+
+---
+
+## ⭐ Star & Support the Architecture
+
+If you find this 3D Neural OS portfolio, the WebGL GLSL shaders, or any of the autonomous agent engines inspiring:
+
+- **⭐ Star this Repository:** Give a star to support open-source creative coding and bookmark it for inspiration.
+- **👤 Follow [@dobby-aidev](https://github.com/dobby-aidev):** Follow on GitHub for real-time releases of multi-agent OS tools and quant trading frameworks.
+- **🛍️ Whop Store ([whop.com/dona-ai](https://whop.com/dona-ai)):** Get access to private trading prompts, turn-key agent architectures, and direct support.
 
 ---
 
