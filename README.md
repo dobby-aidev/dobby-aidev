@@ -4,7 +4,8 @@
 
 <br/>
 
-[![Portfolio Site](https://img.shields.io/badge/🌐%20Live%20Portfolio-dobby.donacodex.com-6366f1?style=for-the-badge&logo=google-chrome&logoColor=white)](https://dobby.donacodex.com)
+[![Official Portfolio](https://img.shields.io/badge/🌐%20Official%20Portfolio-dobby.donacodex.com-6366f1?style=for-the-badge&logo=google-chrome&logoColor=white)](https://dobby.donacodex.com)
+[![Official Company](https://img.shields.io/badge/🏢%20Official%20Company-donacodex.com-0f172a?style=for-the-badge&logo=cloudflare&logoColor=white)](https://donacodex.com)
 [![GitHub Stars](https://img.shields.io/github/stars/dobby-aidev/dobby-aidev?style=for-the-badge&logo=github&color=f59e0b&label=⭐%20Star%20Repo)](https://github.com/dobby-aidev/dobby-aidev/stargazers)
 [![GitHub Followers](https://img.shields.io/github/followers/dobby-aidev?style=for-the-badge&logo=github&color=3b82f6&label=👤%20Follow%20%40dobby--aidev)](https://github.com/dobby-aidev)
 [![Whop Store](https://img.shields.io/badge/🛍️%20Whop%20Store-dona--ai-FFB800?style=for-the-badge)](https://whop.com/dona-ai)
@@ -64,8 +65,10 @@ If you find this 3D Neural OS portfolio, the WebGL GLSL shaders, or any of the a
 
 ## 👤 About Me
 
-Hi! I'm **Dobby B (@dobby-aidev)** — AI Dev. I build autonomous AI agents, proprietary Transformer LLM models, deep reinforcement learning quantitative trading bots, and full-stack web platforms.
+Hi! I'm **Dobby B (@dobby-aidev)** — AI Systems Architect & Founder at **Dona Codex**. I design and build autonomous multi-agent operating systems, custom Transformer LLMs, deep reinforcement learning quantitative trading bots, and full-stack spatial WebGL experiences.
 
+- 🏢 **Resmi Şirket Sitemiz (Official Company):** [donacodex.com](https://donacodex.com)
+- 🌐 **Resmi Portfolyo Sitemiz (Official Portfolio):** [dobby.donacodex.com](https://dobby.donacodex.com)
 - 🛍️ **Whop Store:** [whop.com/dona-ai](https://whop.com/dona-ai)
 - 🌐 **Platform:** [agentcritiq.com](https://agentcritiq.com)
 - 💻 **GitHub:** [github.com/dobby-aidev](https://github.com/dobby-aidev)
