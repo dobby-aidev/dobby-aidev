@@ -28,7 +28,17 @@ function generateFallbackSvg(title) {
 }
 
 function handleImgError(imgEl, title) {
-  if (imgEl && !imgEl.dataset.hasFailed) {
+  if (!imgEl) return;
+  const currentRetry = parseInt(imgEl.dataset.retryCount || '0', 10);
+  if (currentRetry < 2) {
+    imgEl.dataset.retryCount = (currentRetry + 1).toString();
+    const rawSrc = imgEl.src.split('?retry=')[0];
+    setTimeout(() => {
+      imgEl.src = `${rawSrc}?retry=${currentRetry + 1}`;
+    }, 450);
+    return;
+  }
+  if (!imgEl.dataset.hasFailed) {
     imgEl.dataset.hasFailed = 'true';
     imgEl.src = generateFallbackSvg(title);
   }

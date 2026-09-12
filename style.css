@@ -395,6 +395,95 @@ body {
   }
 }
 
+/* ── DONA CODEX INSTITUTIONAL BRAND BADGE ────────────────────────────── */
+.at-hero-company-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(245, 238, 220, 0.04);
+  border: 1px solid rgba(245, 238, 220, 0.22);
+  padding: 5px 14px;
+  border-radius: 999px;
+  margin-bottom: 0.85rem;
+  text-decoration: none;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), inset 0 0 12px rgba(245, 238, 220, 0.04);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.at-hero-company-badge:hover {
+  background: rgba(245, 238, 220, 0.1);
+  border-color: rgba(245, 238, 220, 0.5);
+  box-shadow: 0 0 24px rgba(245, 238, 220, 0.25), inset 0 0 16px rgba(245, 238, 220, 0.08);
+  transform: translateY(-2px);
+}
+
+.at-company-badge-pulse,
+.at-nav-company-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+  animation: pulseBeacon 2s infinite;
+}
+
+@keyframes pulseBeacon {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.35); opacity: 0.6; }
+}
+
+.at-company-badge-name {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--text-cream);
+}
+
+.at-company-badge-sep {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--border-cream);
+  opacity: 0.7;
+}
+
+.at-company-badge-txt {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--accent-champagne);
+}
+
+.at-nav-company-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 10px;
+  background: rgba(245, 238, 220, 0.05);
+  border: 1px solid rgba(245, 238, 220, 0.2);
+  border-radius: 999px;
+  color: var(--accent-champagne) !important;
+  font-family: var(--font-mono) !important;
+  letter-spacing: 0.14em !important;
+  transition: all 0.25s ease;
+}
+
+.at-nav-company-link:hover {
+  background: rgba(245, 238, 220, 0.15);
+  border-color: var(--accent-champagne);
+  box-shadow: 0 0 16px rgba(245, 238, 220, 0.3);
+}
+
+.mobile-nav-company {
+  color: var(--accent-champagne) !important;
+  font-family: var(--font-mono) !important;
+  border-left: 2px solid var(--accent-champagne);
+  padding-left: 12px;
+}
+
 .at-hero-role-badge {
   font-family: var(--font-mono);
   font-size: 0.72rem;
