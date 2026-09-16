@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hüseyin Alkan KINSIZ | AI Systems Architect</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #070709;
+      --bg-panel: #111114;
+      --fg: #e5e0d8;
+      --fg-muted: #8b8a87;
+      --accent-primary: #10b981; /* Emerald */
+      --accent-secondary: #06b6d4; /* Cyan */
+      --border: rgba(255, 255, 255, 0.1);
+      --font-sans: 'Inter', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      background-color: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding: 3rem 1rem;
+    }
+
+    a {
+      color: var(--accent-primary);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    
+    a:hover {
+      color: var(--accent-secondary);
+    }
+
+    /* CV CONTAINER (Two Column Grid) */
+    .resume-wrapper {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      overflow: hidden;
+    }
+
+    /* --- SIDEBAR (LEFT) --- */
+    .sidebar {
+      background: rgba(255,255,255,0.02);
+      border-right: 1px solid var(--border);
+      padding: 3rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .profile-header h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+      color: #fff;
+      letter-spacing: -0.03em;
+    }
+
+    .profile-header h2 {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--accent-secondary);
+      font-family: var(--font-mono);
+      letter-spacing: -0.02em;
+    }
+
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      font-size: 0.9rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--fg-muted);
+    }
+
+    .sidebar-section-title {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #fff;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .skills-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .skill-category h3 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--fg);
+      margin-bottom: 0.4rem;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .skill-tag {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      color: var(--fg-muted);
+    }
+
+    .cert-item h4 {
+      font-size: 0.95rem;
+      color: #fff;
+      margin-bottom: 0.2rem;
+    }
+    .cert-item p {
+      font-size: 0.85rem;
+      color: var(--fg-muted);
+      margin-bottom: 0.4rem;
+    }
+    .cert-link {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+    }
+
+    /* --- MAIN CONTENT (RIGHT) --- */
+    .main-content {
+      padding: 3rem 4rem;
+    }
+
+    .main-section {
+      margin-bottom: 3.5rem;
+    }
+
+    .main-section-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .main-section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .about-text {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--fg);
+    }
+
+    .about-text strong {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    /* Projects styling */
+    .project-item {
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .project-role {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--accent-primary);
+      margin-top: 0.2rem;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 0.8rem;
+    }
+
+    .project-link-btn {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      padding: 0.3rem 0.6rem;
+      border: 1px solid var(--accent-primary);
+      border-radius: 4px;
+      color: var(--accent-primary);
+    }
+    .project-link-btn:hover {
+      background: rgba(16, 185, 129, 0.1);
+    }
+
+    .project-desc {
+      font-size: 0.95rem;
+      color: var(--fg-muted);
+      margin-bottom: 0.8rem;
+    }
+
+    .project-bullets {
+      list-style-type: none;
+    }
+    .project-bullets li {
+      position: relative;
+      padding-left: 1rem;
+      margin-bottom: 0.4rem;
+      font-size: 0.9rem;
+      color: var(--fg);
+    }
+    .project-bullets li::before {
+      content: '▹';
+      position: absolute;
+      left: 0;
+      color: var(--accent-secondary);
+    }
+
+    /* Print styling & Buttons */
+    .print-btn {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: #fff;
+      color: #000;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      font-weight: 700;
+      border-radius: 4px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255,255,255,0.2);
+      transition: transform 0.2s;
+      z-index: 100;
+    }
+    .print-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    @media print {
+      body { background: #fff; color: #000; padding: 0; }
+      .resume-wrapper {
+        border: none;
+        box-shadow: none;
+        max-width: 100%;
+        background: #fff;
+        grid-template-columns: 280px 1fr;
+      }
+      .sidebar { background: #f9f9f9; border-right: 1px solid #ddd; }
+      .sidebar-section-title { color: #000; border-bottom-color: #ddd; }
+      .profile-header h1 { color: #000; }
+      .main-section-title { color: #000; }
+      .main-section-title::after { background: #ddd; }
+      .project-title, .about-text strong, .skill-category h3 { color: #000; }
+      .project-desc, .project-bullets li, .contact-item, .skill-tag { color: #333; }
+      .skill-tag { border-color: #ccc; }
+      .print-btn { display: none; }
+      a, .project-role, .project-link-btn { color: #000; border-color: #000; }
+      .project-bullets li::before { color: #000; }
+    }
+
+    @media (max-width: 900px) {
+      .resume-wrapper { grid-template-columns: 1fr; }
+      .sidebar { border-right: none; border-bottom: 1px solid var(--border); padding: 2.5rem; }
+      .main-content { padding: 2.5rem; }
+      .project-header { flex-direction: column; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="print-btn" onclick="window.print()">PRINT / SAVE PDF</button>
+
+  <div class="resume-wrapper">
+    
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar">
+      <div class="profile-header">
+        <h1>Hüseyin Alkan KINSIZ</h1>
+        <h2>AI SYSTEMS ARCHITECT</h2>
+      </div>
+
+      <div class="contact-list">
+        <div class="contact-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <a href="mailto:info@donacodex.com">info@donacodex.com</a>
+        </div>
+        <div class="contact-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+          <a href="https://donacodex.com" target="_blank">donacodex.com</a>
+        </div>
+        <div class="contact-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+          <a href="https://github.com/dobby-aidev" target="_blank">github.com/dobby-aidev</a>
+        </div>
+        <div class="contact-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          <a href="https://www.linkedin.com/in/dobbyb-aidev/" target="_blank">linkedin.com/in/dobbyb-aidev</a>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <h3 class="sidebar-section-title">Core Technologies</h3>
+        <div class="skills-list">
+          <div class="skill-category">
+            <h3>Machine Learning & AI</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">PyTorch</span>
+              <span class="skill-tag">TensorFlow</span>
+              <span class="skill-tag">Actor-Critic DRL</span>
+              <span class="skill-tag">LLM Orchestration</span>
+              <span class="skill-tag">HuggingFace</span>
+            </div>
+          </div>
+          <div class="skill-category">
+            <h3>Web3D & Spatial</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">Three.js</span>
+              <span class="skill-tag">React Three Fiber</span>
+              <span class="skill-tag">WebGL</span>
+              <span class="skill-tag">GLSL Shaders</span>
+            </div>
+          </div>
+          <div class="skill-category">
+            <h3>Engineering & Systems</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">TypeScript</span>
+              <span class="skill-tag">React 18</span>
+              <span class="skill-tag">Vector Databases</span>
+              <span class="skill-tag">Cloudflare Workers</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <h3 class="sidebar-section-title">Certifications</h3>
+        <div class="cert-item">
+          <h4>Machine Learning with Python</h4>
+          <p>Issued by IBM (2024)</p>
+          <a href="https://coursera.org/share/deb792b19739e807ee06ccc96fded4c3" target="_blank" class="cert-link">VERIFY CREDENTIAL ↗</a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- RIGHT MAIN CONTENT -->
+    <main class="main-content">
+      
+      <section class="main-section">
+        <h2 class="main-section-title">Executive Profile</h2>
+        <p class="about-text">
+          Founder and Lead Architect at <strong>Dona Codex</strong>, an independent Artificial Intelligence company specializing in autonomous agent frameworks, spatial computing (WebGL), and quantitative deep reinforcement learning systems. Proven track record in designing scalable infrastructures, orchestrating multi-agent networks, and deploying high-performance trading models.
+        </p>
+      </section>
+
+      <section class="main-section">
+        <h2 class="main-section-title">Dona Codex Projects & Products</h2>
+        
+        <!-- Project 1 -->
+        <div class="project-item">
+          <div class="project-header">
+            <div>
+              <h3 class="project-title">Agent Critiq</h3>
+              <div class="project-role">Autonomous Benchmark Framework & MCP Server</div>
+            </div>
+            <div class="project-links">
+              <a href="https://agentcritiq.com" target="_blank" class="project-link-btn">LIVE SITE ↗</a>
+              <a href="https://github.com/dobby-aidev/agent-critiq-showcase" target="_blank" class="project-link-btn">GITHUB ↗</a>
+            </div>
+          </div>
+          <p class="project-desc">A highly scalable evaluation system designed to benchmark and stress-test over 100+ AI models concurrently.</p>
+          <ul class="project-bullets">
+            <li>Engineered the core logic using <strong>React 18</strong> and integrated directly with <strong>HuggingFace</strong> APIs.</li>
+            <li>Implemented the <strong>Model Context Protocol (MCP)</strong> to provide autonomous agents with context-aware tool access.</li>
+            <li>Deployed serverless orchestration layers via <strong>Cloudflare Workers</strong> for zero-latency cross-region requests.</li>
+          </ul>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-item">
+          <div class="project-header">
+            <div>
+              <h3 class="project-title">ApexBrain Nexus</h3>
+              <div class="project-role">Quantitative DRL Trading Model</div>
+            </div>
+          </div>
+          <p class="project-desc">A deep reinforcement learning infrastructure engineered for autonomous, dynamic volatility spot trading.</p>
+          <ul class="project-bullets">
+            <li>Architected advanced <strong>Actor-Critic (PPO)</strong> models using <strong>PyTorch</strong> to navigate non-stationary market conditions.</li>
+            <li>Developed sub-millisecond execution algorithms and high-frequency data ingestion pipelines.</li>
+            <li>Achieved a verified <strong>+74.24% ROI</strong> during rigorous backtesting and live simulation phases.</li>
+          </ul>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-item">
+          <div class="project-header">
+            <div>
+              <h3 class="project-title">Dona Nova</h3>
+              <div class="project-role">3D Spatial Intelligence Platform</div>
+            </div>
+            <div class="project-links">
+              <a href="https://donanova.donacodex.workers.dev" target="_blank" class="project-link-btn">LIVE DEMO ↗</a>
+              <a href="https://github.com/dobby-aidev/dona-nova-showcase" target="_blank" class="project-link-btn">GITHUB ↗</a>
+            </div>
+          </div>
+          <p class="project-desc">An immersive 3D WebGL data visualization platform rendering large-scale geographic and industrial data.</p>
+          <ul class="project-bullets">
+            <li>Rendered and processed <strong>35,000+ global power plants</strong> seamlessly in-browser utilizing <strong>GeoJSON</strong> data structures.</li>
+            <li>Optimized heavy rendering pipelines using <strong>Three.js</strong> and <strong>React Three Fiber</strong> instancing, achieving stable 60 FPS.</li>
+          </ul>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-item">
+          <div class="project-header">
+            <div>
+              <h3 class="project-title">AI Coin Empire</h3>
+              <div class="project-role">Real-Time Multiplayer Strategy Game</div>
+            </div>
+            <div class="project-links">
+              <a href="https://aicoinempire.donacodex.com" target="_blank" class="project-link-btn">LIVE GAME ↗</a>
+              <a href="https://github.com/dobby-aidev/ai-coin-empire-showcase" target="_blank" class="project-link-btn">GITHUB ↗</a>
+            </div>
+          </div>
+          <p class="project-desc">A complex web-based multiplayer ecosystem built for high concurrency and immediate state synchronization.</p>
+          <ul class="project-bullets">
+            <li>Architected real-time client-server communication using <strong>Firebase</strong> and <strong>WebSockets</strong>.</li>
+            <li>Developed custom rendering engines leveraging <strong>HTML5 Canvas</strong> and <strong>Framer Motion</strong> for fluid UI interactions.</li>
+          </ul>
+        </div>
+        
+        <!-- Project 5 -->
+        <div class="project-item">
+          <div class="project-header">
+            <div>
+              <h3 class="project-title">Dona Codex: Overmind</h3>
+              <div class="project-role">Multi-Agent Company Swarm Simulation</div>
+            </div>
+          </div>
+          <p class="project-desc">An experimental R&D initiative simulating an entire company run by interconnected AI agents.</p>
+          <ul class="project-bullets">
+            <li>Utilized <strong>CrewAI</strong> and <strong>Vector Databases</strong> to manage memory, role delegation, and cross-agent communication.</li>
+          </ul>
+        </div>
+
+      </section>
+
+    </main>
+  </div>
+
+</body>
+</html>

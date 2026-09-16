@@ -48,20 +48,16 @@ const TRANSLATIONS = {
   tr: {
     nav_home: 'ANA SAYFA',
     nav_work: 'PROJELER',
-    nav_contact: 'İLETİŞİM',
+    nav_contact: 'HAKKINDA',
     hero_bio: 'Dona Codex Kurucusu & Sistem Mimarı | Agent Critiq Geliştiricisi | Otonom Ajan Sistemleri, PyTorch Pekiştirmeli Öğrenme & 3D WebGL Platformları Geliştiricisi',
     hero_explore: 'PROJELERİ KEŞFET ->',
-    sidebar_title: 'KATEGORİLER',
-    cat_all: 'TÜM PROJELER (12)',
-    cat_all_short: 'TÜMÜ',
-    cat_ai: 'AI & CUSTOM LLM',
-    cat_ai_short: 'AI / LLM',
-    cat_quant: 'QUANT & DEEP RL',
-    cat_quant_short: 'QUANT',
-    cat_3d: '3D WEBGL PLATFORMLARI',
-    cat_3d_short: '3D WEBGL',
-    cat_swarm: 'SWARM SİMÜLASYONLARI',
-    cat_swarm_short: 'SWARM',
+    cat_all: 'TÜMÜ',
+    cat_live: 'CANLI',
+    cat_intelligence: 'ZEKA',
+    cat_systems: 'SİSTEMLER',
+    cat_simulations: 'SİMÜLASYONLAR',
+    cat_research: 'ARAŞTIRMA',
+    cat_experiments: 'DENEYLER',
     detail_close: '<- PROJELERE GERİ DÖN',
     open_fullscreen_gallery: 'TAM EKRAN GALERİ',
     live_demo_btn: 'CANLI YAYIN ↗',
@@ -76,30 +72,31 @@ const TRANSLATIONS = {
     node_tab_all: 'TÜMÜ (9)',
     node_tab_live: '⚡ CANLI (3)',
     node_tab_repos: '📦 DOKÜMAN & MAĞAZA (3)',
+    node_tab_certs: '🎓 SERTİFİKALAR (1)',
     node_tab_social: '🌐 NETWORK (3)',
     cv_download: 'ÖZGEÇMİŞ (CV / RESUME)',
     toggle_view_mode: '📱 IZGARA GÖRÜNÜMÜ',
     toggle_view_mode_grid: '📱 IZGARA GÖRÜNÜMÜ',
     toggle_view_mode_3d: '🌌 3D KORİDOR',
-    footer_rights: '© 2026 Dona Codex. All rights reserved.'
+    footer_rights: '© 2026 Dona Codex. All rights reserved.',
+    swipe_hint: 'KAYDIRARAK İNCELEYİN',
+    arch_system_tag: 'SİSTEM MİMARİSİ // 3D DEKONSTRÜKSİYON',
+    arch_explode: 'KATMAN AYRIŞTIRMA (EXPLODE)',
+    gallery_title: 'PROJE GALERİSİ'
   },
   en: {
     nav_home: 'HOME',
     nav_work: 'WORK',
-    nav_contact: 'CONTACT',
+    nav_contact: 'ABOUT',
     hero_bio: 'Founder & AI Systems Architect at Dona Codex | Creator of Agent Critiq | Building Autonomous AI Systems, Reinforcement Learning Infrastructure & 3D WebGL Platforms',
     hero_explore: 'EXPLORE WORK ->',
-    sidebar_title: 'CATEGORIES',
-    cat_all: 'ALL PROJECTS (12)',
-    cat_all_short: 'ALL',
-    cat_ai: 'AI & CUSTOM LLM',
-    cat_ai_short: 'AI / LLM',
-    cat_quant: 'QUANT & DEEP RL',
-    cat_quant_short: 'QUANT',
-    cat_3d: '3D WEBGL PLATFORMS',
-    cat_3d_short: '3D WEBGL',
-    cat_swarm: 'SWARM SIMULATIONS',
-    cat_swarm_short: 'SWARM',
+    cat_all: 'ALL',
+    cat_live: 'LIVE',
+    cat_intelligence: 'INTELLIGENCE',
+    cat_systems: 'SYSTEMS',
+    cat_simulations: 'SIMULATIONS',
+    cat_research: 'RESEARCH',
+    cat_experiments: 'EXPERIMENTS',
     detail_close: '<- BACK TO WORK',
     open_fullscreen_gallery: 'FULLSCREEN GALLERY',
     live_demo_btn: 'LIVE PLATFORM ↗',
@@ -114,12 +111,17 @@ const TRANSLATIONS = {
     node_tab_all: 'ALL (9)',
     node_tab_live: '⚡ LIVE APPS (3)',
     node_tab_repos: '📦 STORE & DOCS (3)',
+    node_tab_certs: '🎓 CERTIFICATES (1)',
     node_tab_social: '🌐 NETWORK (3)',
     cv_download: 'CURRICULUM VITAE (RESUME)',
     toggle_view_mode: '📱 GRID VIEW',
     toggle_view_mode_grid: '📱 GRID VIEW',
     toggle_view_mode_3d: '🌌 3D CAROUSEL',
-    footer_rights: '© 2026 Dona Codex. All rights reserved.'
+    footer_rights: '© 2026 Dona Codex. All rights reserved.',
+    swipe_hint: 'SWIPE / DRAG TO BROWSE',
+    arch_system_tag: 'SYSTEM ARCHITECTURE // 3D DECONSTRUCTION',
+    arch_explode: 'LAYER EXPLOSION (EXPLODE)',
+    gallery_title: 'PROJECT GALLERY'
   }
 };
 
@@ -127,7 +129,7 @@ const PROJECTS = [
   {
     id: 'dona-codex-vision',
     pid: 'FINANCIAL LLM',
-    category: 'ai',
+    category: 'intelligence',
     title: 'Dona Codex: Vision',
     meta: 'PROPRIETARY LLM // 2026',
     tech: ['PyTorch', 'Transformers', 'FastAPI', 'CUDA'],
@@ -142,7 +144,7 @@ const PROJECTS = [
   {
     id: 'agent-critiq',
     pid: 'BENCHMARK',
-    category: 'ai',
+    category: 'live',
     title: 'Agent Critiq',
     meta: '100+ AI BENCHMARK // MCP SERVER',
     tech: ['React 18', 'MCP Protocol', 'HuggingFace', 'Cloudflare'],
@@ -158,7 +160,7 @@ const PROJECTS = [
   {
     id: 'dona-nova',
     pid: '3D INTELLIGENCE',
-    category: '3d',
+    category: 'live',
     title: 'Dona Nova',
     meta: '35K+ POWER PLANTS // 3D R3F',
     tech: ['Three.js', 'React Three Fiber', 'WebGL', 'GeoJSON'],
@@ -174,7 +176,7 @@ const PROJECTS = [
   {
     id: 'dona-nexus',
     pid: 'DRL QUANT',
-    category: 'quant',
+    category: 'systems',
     title: 'ApexBrain Nexus',
     meta: 'ACTOR-CRITIC DRL // +74.24% ROI',
     tech: ['PyTorch', 'Actor-Critic DRL', 'Binance API', 'Pandas'],
@@ -189,7 +191,7 @@ const PROJECTS = [
   {
     id: 'dona-aeon',
     pid: 'NEURAL RESEARCH',
-    category: 'ai',
+    category: 'research',
     title: 'Dona Æon',
     meta: 'SPIKING NEURAL // FEP LIFE',
     tech: ['Spiking Neural Nets', 'Free Energy Principle', 'Python'],
@@ -203,7 +205,7 @@ const PROJECTS = [
   {
     id: 'dona-codex-overmind',
     pid: 'SWARM SIM',
-    category: 'swarm',
+    category: 'simulations',
     title: 'Dona Codex: Overmind',
     meta: 'MULTI-AGENT COMPANY SWARM',
     tech: ['WebSockets', 'Autonomous Agents', 'Node.js', 'React'],
@@ -218,7 +220,7 @@ const PROJECTS = [
   {
     id: 'dona-quantum',
     pid: 'MULTI-AGENT QUANT',
-    category: 'quant',
+    category: 'systems',
     title: 'Dona Quantum',
     meta: 'CREWAI MULTI-AGENT QUANT',
     tech: ['CrewAI', 'LangChain', 'Technical Analysis', 'Python'],
@@ -233,7 +235,7 @@ const PROJECTS = [
   {
     id: 'dona-grid',
     pid: 'QUANT BOT',
-    category: 'quant',
+    category: 'systems',
     title: 'Dona Grid',
     meta: 'DYNAMIC VOLATILITY SPOT BOT',
     tech: ['Python', 'CCXT', 'Algorithmic Trading', 'Asyncio'],
@@ -248,7 +250,7 @@ const PROJECTS = [
   {
     id: 'ai-prompt-builder',
     pid: 'PROMPT STUDIO',
-    category: 'ai',
+    category: 'intelligence',
     title: 'AI Prompt Builder',
     meta: 'PROMPT STUDIO // GEMINI API',
     tech: ['Gemini API', 'TypeScript', 'Tailwind', 'Next.js'],
@@ -263,7 +265,7 @@ const PROJECTS = [
   {
     id: 'ai-coin-empire',
     pid: 'WEB GAME',
-    category: '3d',
+    category: 'live',
     title: 'AI Coin Empire',
     meta: 'MULTIPLAYER STRATEGY GAME',
     tech: ['React 18', 'Firebase', 'Framer Motion', 'Canvas'],
@@ -273,13 +275,13 @@ const PROJECTS = [
     galleryCount: 21,
     prefix: 'assets/ai_coin_empire_',
     ext: 'jpg',
-    live: 'https://aicoinempire.donacodex.workers.dev',
+    live: 'https://aicoinempire.donacodex.com',
     repo: 'https://github.com/dobby-aidev/ai-coin-empire-showcase'
   },
   {
     id: 'zamanin-bekcisi',
     pid: 'TEXT ENGINE',
-    category: '3d',
+    category: 'experiments',
     title: 'Zamanın Bekçisi',
     meta: 'TEXT ADVENTURE ENGINE',
     tech: ['JavaScript ES6', 'Web Audio API', 'Procedural Story'],
@@ -315,20 +317,7 @@ let currentLightboxIndex = 0;
 /* ── MOBILE CARD STREAM CONTROLLER ─────────────────────────────────────── */
 
 function checkMobileLayout() {
-  const isMobile = window.innerWidth <= 768;
-  const stage = document.getElementById('carousel-stage');
-  const grid = document.getElementById('projects-grid-mobile');
-
-  if (isMobile) {
-    if (stage) stage.style.setProperty('display', 'none', 'important');
-    if (grid) {
-      grid.style.setProperty('display', 'flex', 'important');
-      buildMobileGrid();
-    }
-  } else {
-    if (stage) stage.style.display = 'flex';
-    if (grid) grid.style.display = 'none';
-  }
+  // Mobile check mostly handled via CSS now, but keeping dummy for safety
 }
 
 window.addEventListener('resize', checkMobileLayout, { passive: true });
@@ -337,15 +326,13 @@ document.addEventListener('DOMContentLoaded', () => {
   'use strict';
 
   initWaterAndParticles();
-  buildCarousel();
-  initCarouselGestures();
+  buildCodexTablets();
+  initTabletGestures();
   initLightboxGestures();
   applyLanguage(currentLang);
   initMobileNavSync();
   triggerQuantumHeroIntro();
   preloadProjectThumbnails();
-  // Auto-apply mobile grid layout on initial load
-  checkMobileLayout();
 });
 
 function preloadProjectThumbnails() {
@@ -399,8 +386,8 @@ function initWaterAndParticles() {
   const colors = [
     { fill: 'rgba(245, 238, 220, 0.85)', glow: 'rgba(245, 238, 220, 0.45)' },
     { fill: 'rgba(238, 220, 178, 0.75)', glow: 'rgba(238, 220, 178, 0.35)' },
-    { fill: 'rgba(255, 250, 240, 0.9)',  glow: 'rgba(255, 250, 240, 0.5)' },
-    { fill: 'rgba(212, 175, 55, 0.65)',  glow: 'rgba(212, 175, 55, 0.3)' }
+    { fill: 'rgba(255, 250, 240, 0.9)', glow: 'rgba(255, 250, 240, 0.5)' },
+    { fill: 'rgba(212, 175, 55, 0.65)', glow: 'rgba(212, 175, 55, 0.3)' }
   ];
 
   class UpwardParticle {
@@ -710,251 +697,218 @@ function initWaterAndParticles() {
   render();
 }
 
-/* --------------------------------------------------------------------------
-   2. 3D CAROUSEL (CENTRAL ROTATION AROUND AMBIENT CORE)
-   -------------------------------------------------------------------------- */
-function buildCarousel() {
-  const rotator = document.getElementById('carousel-rotator');
-  if (!rotator) return;
+let activeTabletIndex = 0;
 
-  rotator.querySelectorAll('.at-card-panel').forEach(c => c.remove());
+/* --------------------------------------------------------------------------
+   2. CODEX TABLETS: 1D SLIDER ENGINE
+   -------------------------------------------------------------------------- */
+function buildCodexTablets() {
+  const track = document.getElementById('codex-tablet-track');
+  if (!track) return;
+  track.innerHTML = '';
 
   const count = filteredProjects.length;
   if (count === 0) return;
 
-  const radius = Math.max(400, count * 55);
-  const angleStep = 360 / count;
+  if (activeTabletIndex >= count) {
+    activeTabletIndex = 0;
+  }
 
   filteredProjects.forEach((proj, idx) => {
-    const angle = idx * angleStep;
-    const card = document.createElement('div');
-    card.className = 'at-card-panel';
-    card.dataset.angle = angle;
-    card.dataset.category = proj.category || 'ai';
-    card.style.transform = `rotateY(${angle}deg) translateZ(${radius}px)`;
-    card.style.pointerEvents = 'none';
+    const tablet = document.createElement('div');
+    tablet.className = 'codex-tablet-slab';
+    tablet.dataset.index = idx;
+    tablet.dataset.category = proj.category;
 
     const techChip = (proj.tech && proj.tech[0]) ? proj.tech[0] : 'LIVE';
 
-    card.innerHTML = `
-      <div class="at-card-3d-box">
-        <!-- 3D Extrusion Side Bevel Walls -->
-        <div class="at-card-side top"></div>
-        <div class="at-card-side bottom"></div>
-        <div class="at-card-side left"></div>
-        <div class="at-card-side right"></div>
+    tablet.innerHTML = `
+      <div class="cdx-tablet-glass">
+        <!-- Background Image with minimal illumination -->
+        <img src="${proj.img}" class="cdx-tablet-bg" alt="${proj.title}" onerror="handleImgError(this, '${proj.title}')" />
+        <div class="cdx-tablet-overlay"></div>
+        <div class="cdx-tablet-engraved-edge"></div>
+        <div class="cdx-tablet-corner-cut"></div>
 
-        <!-- 3D Front Face Plate -->
-        <div class="at-card-face-front" data-cat="${proj.category || 'ai'}">
-          <!-- Category accent stripe (left border) -->
-          <div class="at-card-cat-stripe"></div>
-
-          <div class="at-card-img-wrap">
-            <img src="${proj.img}" class="at-card-img" alt="${proj.title}" onerror="handleImgError(this, '${proj.title}')" />
-            
-            <!-- Clean Header -->
-            <div class="at-card-hud-header">
-              <span class="at-card-badge">${proj.pid}</span>
-              <span class="at-card-live-node"><span class="at-node-dot"></span>ACTIVE</span>
-            </div>
-
-            <!-- Diagonal cut corner marker -->
-            <div class="at-card-corner-cut"></div>
+        <div class="cdx-tablet-content">
+          <div class="cdx-tablet-header">
+            <span class="cdx-tablet-pid">${proj.title}</span>
+            <span class="cdx-tablet-status">STATUS<br>ACTIVE</span>
           </div>
-          <div class="at-card-info">
-            <div class="at-card-title-row">
-              <div class="at-card-title">${proj.title}</div>
-              <span class="at-card-arrow-icon">↗</span>
-            </div>
-            <div class="at-card-meta-row">
-              <div class="at-card-meta">${proj.meta}</div>
-              <div class="at-card-chip">${techChip}</div>
-            </div>
-            <!-- Bottom accent line (category color) -->
-            <div class="at-card-accent-line"></div>
-          </div>
-        </div>
 
-        <!-- 3D Back Chassis Plate -->
-        <div class="at-card-face-back">
-          <div class="at-card-back-grid"></div>
-          <div class="at-card-back-logo">DONA CODEX // 2026</div>
+          <div class="cdx-tablet-center">
+             <div class="cdx-tablet-title">${proj.pid}</div>
+             <div class="cdx-tablet-tech">${proj.meta}</div>
+             <div class="cdx-tablet-year">2026</div>
+          </div>
+
+          <div class="cdx-tablet-footer">
+            <div class="cdx-tablet-metrics">ARCHITECTURE / LANGUAGE / MEMORY / EXPERIENCE</div>
+            <button class="cdx-open-btn" onclick="event.stopPropagation(); openDetailIndex(${idx})">OPEN CODEX →</button>
+          </div>
         </div>
       </div>
     `;
 
-    // Initialize 3D Mouse Gyro Tilt on this card
-    initCard3DGyro(card);
-
-    // Direct project click: opens the exact clicked project
-    card.addEventListener('click', (e) => {
+    tablet.addEventListener('click', (e) => {
       e.stopPropagation();
-      openDetail(proj, card, e);
+      if (activeTabletIndex === idx) {
+        openDetail(proj, tablet, e);
+      } else {
+        activeTabletIndex = idx;
+        updateCodexTablets();
+      }
     });
 
-    rotator.appendChild(card);
+    track.appendChild(tablet);
   });
 
-  currentRotation = 0;
-  rotator.style.transform = `rotateY(0deg)`;
-  updateCarouselPointerEvents();
-  buildMobileGrid();
+  updateCodexTablets();
 }
 
-/**
- * Check whether a specific card is facing the front hemisphere (visible to user)
- */
-function isCardFacingViewer(card) {
-  const baseAngle = parseFloat(card.dataset.angle) || 0;
-  let eff = ((baseAngle + currentRotation) % 360 + 360) % 360;
-  if (eff > 180) eff -= 360;
-
-  // If card is in the front 180-degree view arc, it is visible and interactable
-  return Math.abs(eff) < 85;
+function openDetailIndex(idx) {
+  if (filteredProjects[idx]) {
+    const proj = filteredProjects[idx];
+    const tablet = document.querySelector(`.codex-tablet-slab[data-index="${idx}"]`);
+    openDetail(proj, tablet);
+  }
 }
 
-/**
- * Calculate dynamic depth of field (DoF) and enable pointer-events on front-facing cards
- * Front-most active card: Crystal clear (card-focused)
- * Side cards: Optical depth blur (card-blurred)
- * Rear cards: Deep background blur (card-deep-blurred)
- */
-function updateCarouselPointerEvents() {
-  const cards = document.querySelectorAll('#carousel-rotator .at-card-panel');
-  if (!cards.length) return;
+function updateCodexTablets() {
+  const tablets = document.querySelectorAll('.codex-tablet-slab');
+  if (!tablets.length) return;
 
-  const count = cards.length;
-  const angleStep = 360 / count;
+  const count = tablets.length;
+  const isMobile = window.innerWidth <= 768;
 
-  cards.forEach((card) => {
-    const baseAngle = parseFloat(card.dataset.angle) || 0;
-    let eff = ((baseAngle + currentRotation) % 360 + 360) % 360;
-    if (eff > 180) eff -= 360;
-    const absEff = Math.abs(eff);
+  tablets.forEach((tablet) => {
+    const idx = parseInt(tablet.dataset.index, 10);
+    let diff = idx - activeTabletIndex;
+    
+    // Smooth infinite wrapping logic for 1D array
+    if (diff > count / 2) diff -= count;
+    if (diff < -count / 2) diff += count;
 
-    // Reset classes
-    card.classList.remove('card-focused', 'card-blurred', 'card-deep-blurred');
+    tablet.classList.remove('cdx-active', 'cdx-prev', 'cdx-next', 'cdx-hidden');
 
-    if (absEff <= angleStep * 0.6) {
-      // Primary Focused Card (Facing Viewer)
-      card.classList.add('card-focused');
-      card.style.pointerEvents = 'auto';
-      card.style.cursor = 'pointer';
-    } else if (absEff <= 85) {
-      // Side visible cards (Soft Optical Blur)
-      card.classList.add('card-blurred');
-      card.style.pointerEvents = 'auto';
-      card.style.cursor = 'pointer';
+    if (diff === 0) {
+      tablet.classList.add('cdx-active');
+      tablet.style.transform = isMobile 
+        ? `translateY(0px) translateZ(0px) scale(1)` 
+        : `translateX(0px) translateZ(0px) scale(1)`;
+      tablet.style.opacity = '1';
+      tablet.style.zIndex = '10';
+      tablet.style.pointerEvents = 'auto';
+    } else if (diff === -1) {
+      tablet.classList.add('cdx-prev');
+      tablet.style.transform = isMobile
+        ? `translateY(-110%) translateZ(-50px) scale(0.95)`
+        : `translateX(-110%) translateZ(-100px) scale(0.92)`;
+      tablet.style.opacity = '0.4';
+      tablet.style.zIndex = '5';
+      tablet.style.pointerEvents = 'auto';
+    } else if (diff === 1) {
+      tablet.classList.add('cdx-next');
+      tablet.style.transform = isMobile
+        ? `translateY(110%) translateZ(-50px) scale(0.95)`
+        : `translateX(110%) translateZ(-100px) scale(0.92)`;
+      tablet.style.opacity = '0.4';
+      tablet.style.zIndex = '5';
+      tablet.style.pointerEvents = 'auto';
     } else {
-      // Rear/Distant cards (Deep Blur & Dim)
-      card.classList.add('card-deep-blurred');
-      card.style.pointerEvents = 'none';
-      card.style.cursor = 'default';
+      tablet.classList.add('cdx-hidden');
+      tablet.style.transform = isMobile
+        ? `translateY(${diff < 0 ? -150 : 150}%) translateZ(-100px) scale(0.85)`
+        : `translateX(${diff < 0 ? -150 : 150}%) translateZ(-200px) scale(0.8)`;
+      tablet.style.opacity = '0';
+      tablet.style.zIndex = '1';
+      tablet.style.pointerEvents = 'none';
     }
   });
 }
 
+function initTabletGestures() {
+  const matrix = document.getElementById('codex-tablet-matrix');
+  if (!matrix) return;
 
-function initCarouselGestures() {
-  const stage = document.getElementById('carousel-stage');
-  const rotator = document.getElementById('carousel-rotator');
-  const miniStage = document.getElementById('mini-gallery-stage');
+  let dragStartX = 0;
+  let dragStartY = 0;
+  let isSwiping = false;
 
-  window.addEventListener('wheel', (e) => {
-    if (document.getElementById('view-work').classList.contains('active') && rotator) {
-      currentRotation -= e.deltaY * 0.08;
-      rotator.style.transform = `rotateY(${currentRotation}deg)`;
-      updateCarouselPointerEvents();
-    } else if (document.getElementById('view-detail').classList.contains('active')) {
-      if (e.deltaY > 30) {
-        stepDetailGallery(1);
-      } else if (e.deltaY < -30) {
-        stepDetailGallery(-1);
+  matrix.addEventListener('pointerdown', (e) => {
+    // Only drag on the main track to avoid interfering with detail views or nav
+    if (e.target.closest('.codex-work-header') || e.target.closest('.cdx-open-btn')) return;
+    
+    isSwiping = true;
+    dragStartX = e.clientX;
+    dragStartY = e.clientY;
+  });
+
+  window.addEventListener('pointerup', (e) => {
+    if (isSwiping) {
+      isSwiping = false;
+      const dx = e.clientX - dragStartX;
+      const dy = e.clientY - dragStartY;
+      const count = filteredProjects.length;
+      if (count <= 1) return;
+
+      const isMobile = window.innerWidth <= 768;
+      
+      if (isMobile) {
+        if (dy > 40) {
+          activeTabletIndex = (activeTabletIndex - 1 + count) % count;
+          updateCodexTablets();
+        } else if (dy < -40) {
+          activeTabletIndex = (activeTabletIndex + 1) % count;
+          updateCodexTablets();
+        }
+      } else {
+        if (dx > 50) {
+          activeTabletIndex = (activeTabletIndex - 1 + count) % count;
+          updateCodexTablets();
+        } else if (dx < -50) {
+          activeTabletIndex = (activeTabletIndex + 1) % count;
+          updateCodexTablets();
+        }
       }
     }
-  }, { passive: true });
+  });
 
-  if (stage && rotator) {
-    stage.addEventListener('pointerdown', (e) => {
-      isDragging = true;
-      pointerMoved = false;
-      startX = e.clientX;
-      startY = e.clientY;
-      dragRotationStart = currentRotation;
-    });
+  // Mouse wheel logic
+  matrix.addEventListener('wheel', (e) => {
+    if (!document.getElementById('view-work').classList.contains('active')) return;
+    
+    // Prevent default scrolling to keep view locked
+    e.preventDefault();
 
-    window.addEventListener('pointermove', (e) => {
-      if (isDragging) {
-        const dx = e.clientX - startX;
-        const dy = e.clientY - startY;
-        const dragThreshold = (e.pointerType === 'touch') ? 12 : 5;
-        if (Math.hypot(dx, dy) > dragThreshold) {
-          pointerMoved = true;
-        }
-        currentRotation = dragRotationStart + dx * 0.25;
-        rotator.style.transform = `rotateY(${currentRotation}deg)`;
-        updateCarouselPointerEvents();
-      }
+    // debounce wheel
+    if (matrix.dataset.wheelLocked === 'true') return;
+    
+    const count = filteredProjects.length;
+    if (count <= 1) return;
 
-      // Interactive 3D Parallax & Spatial Orientation on Neural Spine
-      const spine = document.getElementById('neural-spine-core');
-      if (spine && document.getElementById('view-work').classList.contains('active')) {
-        const rect = stage.getBoundingClientRect();
-        const mouseRelX = (e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
-        const mouseRelY = (e.clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
-        const tiltX = -mouseRelY * 20;
-        const tiltY = mouseRelX * 28;
-        spine.style.transform = `translate(-50%, -50%) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateZ(${Math.abs(mouseRelX) * 15}px)`;
-      }
-    });
+    if (e.deltaY > 20) {
+      activeTabletIndex = (activeTabletIndex + 1) % count;
+      updateCodexTablets();
+      lockWheel(matrix);
+    } else if (e.deltaY < -20) {
+      activeTabletIndex = (activeTabletIndex - 1 + count) % count;
+      updateCodexTablets();
+      lockWheel(matrix);
+    }
+  }, { passive: false });
+}
 
-    window.addEventListener('pointerup', () => {
-      isDragging = false;
-      updateCarouselPointerEvents();
-      const spine = document.getElementById('neural-spine-core');
-      if (spine) {
-        spine.style.transform = `translate(-50%, -50%) rotateX(0deg) rotateY(0deg) translateZ(0px)`;
-      }
-    });
-  }
-
-  if (miniStage) {
-    let miniTouchStartX = 0;
-
-    miniStage.addEventListener('pointerdown', (e) => {
-      isMiniDragging = true;
-      miniStartX = e.clientX;
-    });
-
-    window.addEventListener('pointerup', (e) => {
-      if (isMiniDragging) {
-        const dx = e.clientX - miniStartX;
-        if (dx > 35) stepDetailGallery(-1);
-        if (dx < -35) stepDetailGallery(1);
-        isMiniDragging = false;
-      }
-    });
-
-    // Touch events fallback for mobile touchscreens
-    miniStage.addEventListener('touchstart', (e) => {
-      if (e.touches && e.touches.length > 0) {
-        miniTouchStartX = e.touches[0].clientX;
-      }
-    }, { passive: true });
-
-    miniStage.addEventListener('touchend', (e) => {
-      if (e.changedTouches && e.changedTouches.length > 0) {
-        const dx = e.changedTouches[0].clientX - miniTouchStartX;
-        if (dx > 35) stepDetailGallery(-1);
-        if (dx < -35) stepDetailGallery(1);
-      }
-    }, { passive: true });
-  }
+function lockWheel(el) {
+  el.dataset.wheelLocked = 'true';
+  setTimeout(() => {
+    el.dataset.wheelLocked = 'false';
+  }, 350); // debounce duration for slider
 }
 
 function filterCategory(cat, btnElement) {
   if (btnElement) {
-    document.querySelectorAll('.at-category-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.codex-filter-btn').forEach(b => b.classList.remove('active'));
     btnElement.classList.add('active');
   }
 
@@ -964,61 +918,17 @@ function filterCategory(cat, btnElement) {
     filteredProjects = PROJECTS.filter(p => p.category === cat);
   }
 
-  buildCarousel();
+  activeTabletIndex = 0;
+  buildCodexTablets();
 }
 
-/* Mobile pill filter — syncs with desktop sidebar and rebuilds carousel */
 function filterCategoryMobile(cat, btnElement) {
-  if (btnElement) {
-    document.querySelectorAll('.at-mobile-filter-pill').forEach(b => b.classList.remove('active'));
-    btnElement.classList.add('active');
-  }
-  // Also sync desktop sidebar if visible
-  document.querySelectorAll('.at-category-btn').forEach(b => {
-    b.classList.remove('active');
-    const onclick = b.getAttribute('onclick') || '';
-    if (onclick.includes(`'${cat}'`)) b.classList.add('active');
-  });
-
-  if (cat === 'all') {
-    filteredProjects = [...PROJECTS];
-  } else {
-    filteredProjects = PROJECTS.filter(p => p.category === cat);
-  }
-
-  buildCarousel();
+  // Merged into unified filterCategory logic as we use the same header in mobile now.
+  filterCategory(cat, btnElement);
 }
-
-/**
- * Filter Official Nodes & Repositories on the Contact Page
- */
-function filterContactNodes(category, btnElement) {
-  document.querySelectorAll('.at-node-filter-pill').forEach(btn => btn.classList.remove('active'));
-  if (btnElement) btnElement.classList.add('active');
-
-  const tiles = document.querySelectorAll('#contact-nodes-grid .at-network-tile');
-  let visibleCount = 0;
-
-  tiles.forEach((tile) => {
-    const tileCat = tile.getAttribute('data-cat');
-    if (category === 'all' || tileCat === category) {
-      tile.style.display = 'flex';
-      tile.style.opacity = '1';
-      visibleCount++;
-    } else {
-      tile.style.display = 'none';
-    }
-  });
-
-  const countBadge = document.getElementById('node-count-badge');
-  if (countBadge) {
-    countBadge.textContent = `${visibleCount} NODES`;
-  }
-}
-
 
 /* --------------------------------------------------------------------------
-   3. SEAMLESS PAGE VIEW SWITCHING & LUXURY 3D GALLERY ARC STACK
+   3. SEAMLESS PAGE VIEW SWITCHING
    -------------------------------------------------------------------------- */
 function switchView(viewName) {
   document.querySelectorAll('.at-view-page').forEach(page => page.classList.remove('active'));
@@ -1033,12 +943,6 @@ function switchView(viewName) {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }
   if (targetNav) targetNav.classList.add('active');
-
-  // Trigger carousel pointer check if opening work view
-  if (viewName === 'work') {
-    checkMobileLayout();
-    setTimeout(updateCarouselPointerEvents, 50);
-  }
 }
 
 /**
@@ -1110,54 +1014,6 @@ function openDetail(proj, cardElement, clickEvent = null) {
   }
 }
 
-function buildMobileGrid() {
-  const grid = document.getElementById('projects-grid-mobile');
-  if (!grid) return;
-  grid.innerHTML = '';
-
-  filteredProjects.forEach((proj) => {
-    const card = document.createElement('div');
-    card.className = 'at-mobile-project-card';
-    card.dataset.category = proj.category || 'ai';
-    const descText = (currentLang === 'en' && proj.desc_en) ? proj.desc_en : proj.desc;
-    const techTags = (proj.tech || []).slice(0, 3).map(t => `<span class="at-mobile-tag">${t}</span>`).join('');
-
-    card.innerHTML = `
-      <!-- Category left accent stripe -->
-      <div class="at-mobile-cat-stripe" data-cat="${proj.category || 'ai'}"></div>
-      <div class="at-mobile-card-img-wrap">
-        <img src="${proj.img}" alt="${proj.title}" loading="lazy" onerror="handleImgError(this, '${proj.title}')" />
-        <div class="at-mobile-card-gradient"></div>
-        <div class="at-mobile-card-badge-row">
-          <span class="at-card-badge">${proj.pid}</span>
-          <span class="at-mobile-status-dot"><span class="dot-pulse"></span>ACTIVE</span>
-        </div>
-        <!-- Corner cut notch -->
-        <div class="at-mobile-corner-cut" data-cat="${proj.category || 'ai'}"></div>
-      </div>
-      <div class="at-mobile-card-body">
-        <div class="at-mobile-title-row">
-          <h3 class="at-mobile-card-title">${proj.title}</h3>
-          <span class="at-mobile-arrow-btn">İNCELE ↗</span>
-        </div>
-        <div class="at-mobile-tech-tags">
-          ${techTags}
-        </div>
-        <p class="at-mobile-card-desc">${descText}</p>
-        <!-- Bottom accent line -->
-        <div class="at-mobile-accent-line" data-cat="${proj.category || 'ai'}"></div>
-      </div>
-    `;
-
-    card.addEventListener('click', (e) => {
-      e.stopPropagation();
-      openDetail(proj, card, e);
-    });
-
-    grid.appendChild(card);
-  });
-}
-
 function buildMiniGallery(proj) {
   const miniRotator = document.getElementById('mini-gallery-rotator');
   if (!miniRotator) return;
@@ -1185,6 +1041,16 @@ function buildMiniGallery(proj) {
 
     miniRotator.appendChild(miniCard);
   }
+
+  // Add mouse wheel support
+  miniRotator.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    if (e.deltaY > 0) {
+      stepDetailGallery(1); // Scroll down -> next
+    } else {
+      stepDetailGallery(-1); // Scroll up -> prev
+    }
+  }, { passive: false });
 
   update3DDeckPositions();
 }
@@ -1939,9 +1805,9 @@ function triggerLocalElementShatter(element, onCompleteCallback, customType = 'c
   // Hide original element seamlessly
   element.style.opacity = '0';
 
-  // Generate 40 Large, Razor-Sharp Voronoi Glass Shards (Cam Kırıkları)
-  const cols = 8;
-  const rows = 5;
+  // Generate 96 Medium-Sized Codex Artifact Shards (Digital Fragment Kırıkları)
+  const cols = 12;
+  const rows = 8;
   const shardW = rect.width / cols;
   const shardH = rect.height / rows;
   const maxLocalDist = Math.hypot(rect.width, rect.height) || 300;
@@ -1969,17 +1835,17 @@ function triggerLocalElementShatter(element, onCompleteCallback, customType = 'c
       const deltaX = shardCenterX - globalClickX;
       const deltaY = shardCenterY - globalClickY;
       const distFromClick = Math.hypot(deltaX, deltaY);
-      const angle = Math.atan2(deltaY, deltaX) + (Math.random() - 0.5) * 0.45;
-      const staggerDelay = (distFromClick / maxLocalDist) * 0.05;
+      const angle = Math.atan2(deltaY, deltaX) + (Math.random() - 0.5) * 0.25;
+      const staggerDelay = (distFromClick / maxLocalDist) * 0.1;
 
-      // Slow-motion screen-wide dispersion (Glass shards stay large and visible!)
-      const scatterSpeed = 380 + Math.random() * 480 + (1 - distFromClick / 400) * 250;
+      // Slow-motion cinematic dispersion
+      const scatterSpeed = 150 + Math.random() * 200 + (1 - distFromClick / 400) * 120;
       const dirX = Math.cos(angle) * scatterSpeed;
-      const dirY = Math.sin(angle) * scatterSpeed + 140 + Math.random() * 120; // Gravity drop
-      const dirZ = 400 + Math.random() * 700; // 3D depth pop towards screen
-      const rotX = (Math.random() - 0.5) * 720;
-      const rotY = (Math.random() - 0.5) * 720;
-      const rotZ = (Math.random() - 0.5) * 540;
+      const dirY = Math.sin(angle) * scatterSpeed + 30 + Math.random() * 50; // Slight gravity
+      const dirZ = 150 + Math.random() * 400; // 3D depth pop towards screen
+      const rotX = (Math.random() - 0.5) * 360;
+      const rotY = (Math.random() - 0.5) * 360;
+      const rotZ = (Math.random() - 0.5) * 270;
 
       const isAvatar = customType === 'avatar';
       const isBtn = customType === 'button';
@@ -1990,14 +1856,15 @@ function triggerLocalElementShatter(element, onCompleteCallback, customType = 'c
           background-image: url('${imgSrc}');
           background-size: ${rect.width}px ${rect.height}px;
           background-position: -${c * shardW}px -${r * shardH}px;
+          filter: grayscale(80%) brightness(0.6);
         `;
       } else if (isBtn || isAvatar) {
         bgStyle = `
-          background: linear-gradient(135deg, #f5eedc 0%, #eedcb2 50%, #d4af37 100%);
+          background: linear-gradient(135deg, #110f14 0%, #1e1a26 100%);
         `;
       } else {
         bgStyle = `
-          background: #282033;
+          background: #110f14;
         `;
       }
 
@@ -2009,9 +1876,9 @@ function triggerLocalElementShatter(element, onCompleteCallback, customType = 'c
         height: ${shardH}px;
         ${bgStyle}
         clip-path: ${clipPoly};
-        border: 1.5px solid rgba(255, 255, 255, 0.95);
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8), inset 0 0 12px rgba(255, 255, 255, 0.9);
-        transition: transform 2.6s cubic-bezier(0.1, 0.88, 0.18, 1) ${staggerDelay}s, opacity 2.4s cubic-bezier(0.4, 0, 0.2, 1) ${staggerDelay}s;
+        border: 1px solid rgba(245, 238, 220, 0.2);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.9), inset 0 0 8px rgba(245, 238, 220, 0.15);
+        transition: transform 5.6s cubic-bezier(0.1, 0.88, 0.18, 1) ${staggerDelay}s, opacity 4.2s cubic-bezier(0.4, 0, 0.2, 1) ${staggerDelay}s;
         transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1);
         opacity: 1;
         will-change: transform, opacity;
@@ -2027,16 +1894,16 @@ function triggerLocalElementShatter(element, onCompleteCallback, customType = 'c
     }
   }
 
-  // Smooth cinematic view switch at 380ms
+  // Smooth cinematic view switch at 800ms
   setTimeout(() => {
     if (onCompleteCallback) onCompleteCallback();
-  }, 380);
+  }, 800);
 
-  // Clean up container and restore element after 2.7s
+  // Clean up container and restore element after 5.8s
   setTimeout(() => {
     shatterBox.remove();
     element.style.opacity = '1';
-  }, 2700);
+  }, 5800);
 }
 
 /* --------------------------------------------------------------------------
@@ -2570,3 +2437,23 @@ window.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowRight') stepLightbox(1);
   }
 });
+
+// --------------------------------------------------------------------------
+// 6. CONTACT NODES FILTER (NEW)
+// --------------------------------------------------------------------------
+function filterContactNodes(category, btn) {
+  // Update active pill state
+  const pills = document.querySelectorAll('.at-node-filter-pill');
+  pills.forEach(p => p.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+
+  // Filter nodes
+  const nodes = document.querySelectorAll('#contact-nodes-grid .at-network-tile');
+  nodes.forEach(node => {
+    if (category === 'all' || node.dataset.cat === category) {
+      node.style.display = 'flex';
+    } else {
+      node.style.display = 'none';
+    }
+  });
+}

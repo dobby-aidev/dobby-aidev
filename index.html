@@ -8,7 +8,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Dobby B - AI Systems Architect</title>
   <meta name="description"
     content="Dobby B (@dobby-aidev) — Founder & AI Systems Architect at Dona Codex | Creator of Agent Critiq." />
@@ -18,7 +18,8 @@
   <!-- Modern Editorial & Engineering Typographic Stack -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet" />
 
   <link rel="stylesheet" href="style.css?v=angled_cards_v25" />
@@ -53,7 +54,7 @@
         data-i18n="nav_work">PROJELER</a>
       <div class="at-nav-divider"></div>
       <a href="javascript:void(0)" onclick="switchView('contact')" class="at-nav-item" id="nav-contact"
-        data-i18n="nav_contact">İLETİŞİM</a>
+        data-i18n="nav_contact">HAKKINDA</a>
     </nav>
   </header>
 
@@ -68,13 +69,49 @@
   <div class="mobile-nav-overlay" id="mobile-nav-overlay">
     <button class="mobile-nav-close" onclick="toggleMobileMenu()" aria-label="Menüyü Kapat">✕</button>
     <nav class="mobile-nav-links">
-      <a href="javascript:void(0)" onclick="switchView('home'); toggleMobileMenu()" class="mobile-nav-link" data-i18n="nav_home">ANA SAYFA</a>
-      <a href="javascript:void(0)" onclick="switchView('work'); toggleMobileMenu()" class="mobile-nav-link" data-i18n="nav_work">PROJELER</a>
-      <a href="javascript:void(0)" onclick="switchView('contact'); toggleMobileMenu()" class="mobile-nav-link" data-i18n="nav_contact">İLETİŞİM</a>
-      <a href="https://donacodex.com" target="_blank" rel="noopener noreferrer" class="mobile-nav-link mobile-nav-company" onclick="toggleMobileMenu()">🏢 DONA CODEX ↗</a>
+      <a href="javascript:void(0)" onclick="switchView('home'); toggleMobileMenu()" class="mobile-nav-link"
+        data-i18n="nav_home">ANA SAYFA</a>
+      <a href="javascript:void(0)" onclick="switchView('work'); toggleMobileMenu()" class="mobile-nav-link"
+        data-i18n="nav_work">PROJELER</a>
+      <a href="javascript:void(0)" onclick="switchView('contact'); toggleMobileMenu()" class="mobile-nav-link"
+        data-i18n="nav_contact">HAKKINDA</a>
+      <a href="https://donacodex.com" target="_blank" rel="noopener noreferrer"
+        class="mobile-nav-link mobile-nav-company" onclick="toggleMobileMenu()">🏢 DONA CODEX ↗</a>
     </nav>
     <div class="mobile-nav-footer">
-      <button class="at-circle-btn at-lang-switch-btn" onclick="toggleLanguage()" title="Switch Language">EN</button>
+      <div class="mobile-nav-socials">
+        <button class="at-circle-btn at-lang-switch-btn" onclick="toggleLanguage()" title="Switch Language">EN</button>
+        <a href="https://github.com/dobby-aidev" target="_blank" rel="noopener noreferrer" class="at-circle-btn"
+          title="GitHub">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+            <path
+              d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/dobbyb-aidev" target="_blank" rel="noopener noreferrer"
+          class="at-circle-btn" title="LinkedIn">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor">
+            <path
+              d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+          </svg>
+        </a>
+        <a href="https://x.com/dobbyb_ai" target="_blank" rel="noopener noreferrer" class="at-circle-btn"
+          title="X (Twitter)">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor">
+            <path
+              d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+          </svg>
+        </a>
+        <a href="https://instagram.com/dobby.aidev" target="_blank" rel="noopener noreferrer" class="at-circle-btn"
+          title="Instagram">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+            <path
+              d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+          </svg>
+        </a>
+      </div>
+      <a href="https://whop.com/dona-ai" target="_blank" rel="noopener noreferrer"
+        class="at-store-pill-btn mobile-nav-store">WHOP STORE ↗</a>
     </div>
   </div>
 
@@ -142,14 +179,18 @@
     <!-- VIEW 1: HOME (EDITORIAL PROFILE & BIO)                         -->
     <!-- ══════════════════════════════════════════════════════════════ -->
     <section class="at-view-page at-home-hero active" id="view-home">
-      <div class="at-hero-symbol-3d" id="hero-avatar-node" onclick="triggerElementShatterTransition(this, 'work', 'avatar', event)" style="cursor:pointer;" title="Explore Projects">
+      <div class="at-hero-symbol-3d" id="hero-avatar-node"
+        onclick="triggerElementShatterTransition(this, 'work', 'avatar', event)" style="cursor:pointer;"
+        title="Explore Projects">
         <div class="at-ring-outer"></div>
         <div class="at-ring-inner"></div>
         <div class="at-ring-core-avatar-wrap">
-          <img src="profile.png" class="at-ring-core-avatar" alt="Dobby B Profile" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\' viewBox=\'0 0 100 100\'><rect fill=\'%2312151c\' width=\'100\' height=\'100\'/><text fill=\'%2310b981\' font-family=\'sans-serif\' font-size=\'36\' font-weight=\'bold\' x=\'50%25\' y=\'55%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'>DB</text></svg>'" />
+          <img src="profile.png" class="at-ring-core-avatar" alt="Dobby B Profile"
+            onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\' viewBox=\'0 0 100 100\'><rect fill=\'%2312151c\' width=\'100\' height=\'100\'/><text fill=\'%2310b981\' font-family=\'sans-serif\' font-size=\'36\' font-weight=\'bold\' x=\'50%25\' y=\'55%25\' text-anchor=\'middle\' dominant-baseline=\'middle\'>DB</text></svg>'" />
         </div>
       </div>
-      <a href="https://donacodex.com" target="_blank" rel="noopener noreferrer" class="at-hero-company-badge" title="Visit Official Company: donacodex.com">
+      <a href="https://donacodex.com" target="_blank" rel="noopener noreferrer" class="at-hero-company-badge"
+        title="Visit Official Company: donacodex.com">
         <span class="at-company-badge-pulse"></span>
         <span class="at-company-badge-name">DONA CODEX</span>
         <span class="at-company-badge-sep">//</span>
@@ -160,7 +201,8 @@
         Dona Codex Kurucusu &amp; Sistem Mimarı | Agent Critiq Geliştiricisi | Otonom Ajan Sistemleri,
         PyTorch Pekiştirmeli Öğrenme &amp; 3D WebGL Platformları Geliştiricisi
       </div>
-      <button class="at-hero-explore-btn" id="hero-explore-btn" onclick="triggerElementShatterTransition(this, 'work', 'button', event)" data-i18n="hero_explore">
+      <button class="at-hero-explore-btn" id="hero-explore-btn"
+        onclick="triggerElementShatterTransition(this, 'work', 'button', event)" data-i18n="hero_explore">
         PROJELERİ KEŞFET ->
       </button>
     </section>
@@ -169,49 +211,25 @@
     <!-- VIEW 2: WORK (PROJECT SHOWCASE & 3D GALLERY)                   -->
     <!-- ══════════════════════════════════════════════════════════════ -->
     <section class="at-view-page at-work-page" id="view-work">
-      <!-- Mobile Pill Filter Bar (visible only on mobile ≤768px) -->
-      <div class="at-mobile-filter-bar" id="mobile-filter-bar">
-        <button class="at-mobile-filter-pill active" onclick="filterCategoryMobile('all', this)" data-i18n="cat_all_short">TÜMÜ</button>
-        <button class="at-mobile-filter-pill" onclick="filterCategoryMobile('ai', this)" data-i18n="cat_ai_short">AI / LLM</button>
-        <button class="at-mobile-filter-pill" onclick="filterCategoryMobile('quant', this)" data-i18n="cat_quant_short">QUANT</button>
-        <button class="at-mobile-filter-pill" onclick="filterCategoryMobile('3d', this)" data-i18n="cat_3d_short">3D WEBGL</button>
-        <button class="at-mobile-filter-pill" onclick="filterCategoryMobile('swarm', this)" data-i18n="cat_swarm_short">SWARM</button>
-      </div>
-
-      <!-- Left Category Filter Menu (Desktop) -->
-      <div class="at-work-left-sidebar">
-        <div class="at-sidebar-title" data-i18n="sidebar_title">KATEGORİLER</div>
-        <div class="at-sidebar-list">
-          <button class="at-category-btn active" onclick="filterCategory('all', this)">
-            <span class="cat-dot"></span> <span class="cat-name" data-i18n="cat_all">TÜM PROJELER (12)</span>
-          </button>
-          <button class="at-category-btn" onclick="filterCategory('ai', this)">
-            <span class="cat-dot"></span> <span class="cat-name" data-i18n="cat_ai">AI &amp; CUSTOM LLM</span>
-          </button>
-          <button class="at-category-btn" onclick="filterCategory('quant', this)">
-            <span class="cat-dot"></span> <span class="cat-name" data-i18n="cat_quant">QUANT &amp; DEEP RL</span>
-          </button>
-          <button class="at-category-btn" onclick="filterCategory('3d', this)">
-            <span class="cat-dot"></span> <span class="cat-name" data-i18n="cat_3d">3D WEBGL PLATFORMLARI</span>
-          </button>
-          <button class="at-category-btn" onclick="filterCategory('swarm', this)">
-            <span class="cat-dot"></span> <span class="cat-name" data-i18n="cat_swarm">SWARM SİMÜLASYONLARI</span>
-          </button>
-        </div>
-
-      </div>
-
-      <!-- Center-Right 3D Carousel Stage -->
-      <div class="at-carousel-stage" id="carousel-stage">
-        <div class="at-carousel-rotator" id="carousel-rotator">
-          <!-- 3D Synaptic Neural Lattice Center Node -->
-          <div class="at-synaptic-lattice-core" id="synaptic-lattice-core"></div>
-          <!-- Dynamically populated 3D Project Cards -->
+      <div class="codex-work-header">
+        <div class="codex-work-title">CODEX / PROJECTS</div>
+        <div class="codex-nav-filters" id="codex-filters">
+          <button class="codex-filter-btn active" onclick="filterCategory('all', this)" data-i18n="cat_all">ALL</button>
+          <button class="codex-filter-btn" style="color:var(--accent-emerald);" onclick="filterCategory('live', this)" data-i18n="cat_live">LIVE</button>
+          <button class="codex-filter-btn" onclick="filterCategory('intelligence', this)" data-i18n="cat_intelligence">INTELLIGENCE</button>
+          <button class="codex-filter-btn" onclick="filterCategory('systems', this)" data-i18n="cat_systems">SYSTEMS</button>
+          <button class="codex-filter-btn" onclick="filterCategory('simulations', this)" data-i18n="cat_simulations">SIMULATIONS</button>
+          <button class="codex-filter-btn" onclick="filterCategory('research', this)" data-i18n="cat_research">RESEARCH</button>
+          <button class="codex-filter-btn" onclick="filterCategory('experiments', this)" data-i18n="cat_experiments">EXPERIMENTS</button>
         </div>
       </div>
 
-      <!-- Dynamically populated 2D Mobile Project Cards Grid -->
-      <div class="at-projects-grid-mobile" id="projects-grid-mobile"></div>
+      <div class="codex-tablet-matrix" id="codex-tablet-matrix">
+        <div class="codex-swipe-hint" data-i18n="swipe_hint">SWIPE / DRAG TO BROWSE</div>
+        <div class="codex-tablet-track" id="codex-tablet-track">
+          <!-- Dynamically populated Tablets -->
+        </div>
+      </div>
     </section>
 
     <!-- ══════════════════════════════════════════════════════════════ -->
@@ -224,7 +242,8 @@
           <h1 class="at-detail-title" id="detail-title">DONA CODEX: VISION</h1>
           <div class="at-detail-tech-stack" id="detail-tech-stack"></div>
           <p class="at-detail-desc" id="detail-desc">
-            Kripto emir defteri mikro-yapısı, canlı haber akışı ve faiz oranlarıyla özel eğitilmiş finansal Transformer modeli.
+            Kripto emir defteri mikro-yapısı, canlı haber akışı ve faiz oranlarıyla özel eğitilmiş finansal Transformer
+            modeli.
           </p>
           <!-- Integrated Precision Action Dock (Unified Command Bar) -->
           <div class="at-detail-actions-dock" id="detail-actions-dock">
@@ -281,8 +300,8 @@
             <input type="text" class="at-underline-input" placeholder="İSİM VEYA KURUM // NAME" required id="c-name" />
             <input type="text" class="at-underline-input" placeholder="E-POSTA VEYA @HANDLE // CONTACT" required
               id="c-contact" />
-            <input type="text" class="at-underline-input" placeholder="PROJE TANIMI // MISSION DETAILS" required
-              id="c-msg" />
+            <textarea class="at-underline-input at-underline-textarea" rows="3"
+              placeholder="PROJE TANIMI // MISSION DETAILS" required id="c-msg"></textarea>
             <button type="submit" class="at-contact-submit-pill" id="c-submit-btn" data-i18n="contact_send">
               GÖNDER ->
             </button>
@@ -301,40 +320,49 @@
 
           <!-- Architectural Filter Tab Pills -->
           <div class="at-node-filter-bar" id="contact-filter-bar">
-            <button class="at-node-filter-pill active" onclick="filterContactNodes('all', this)" data-i18n="node_tab_all">TÜMÜ (9)</button>
-            <button class="at-node-filter-pill" onclick="filterContactNodes('live', this)" data-i18n="node_tab_live">⚡ CANLI (3)</button>
-            <button class="at-node-filter-pill" onclick="filterContactNodes('repo', this)" data-i18n="node_tab_repos">📦 DOKÜMAN &amp; MAĞAZA (3)</button>
-            <button class="at-node-filter-pill" onclick="filterContactNodes('social', this)" data-i18n="node_tab_social">🌐 NETWORK (3)</button>
+            <button class="at-node-filter-pill active" onclick="filterContactNodes('all', this)"
+              data-i18n="node_tab_all">TÜMÜ (9)</button>
+            <button class="at-node-filter-pill" onclick="filterContactNodes('live', this)" data-i18n="node_tab_live">⚡
+              CANLI (3)</button>
+            <button class="at-node-filter-pill" onclick="filterContactNodes('repo', this)" data-i18n="node_tab_repos">📦
+              DOKÜMAN &amp; MAĞAZA (3)</button>
+            <button class="at-node-filter-pill" onclick="filterContactNodes('certs', this)"
+              data-i18n="node_tab_certs">🎓 SERTİFİKALAR (1)</button>
+            <button class="at-node-filter-pill" onclick="filterContactNodes('social', this)"
+              data-i18n="node_tab_social">🌐 NETWORK (3)</button>
           </div>
 
           <!-- Filterable Architectural Node Grid -->
           <div class="at-network-grid" id="contact-nodes-grid">
             <!-- CV -->
-            <a href="Dobby_B_AI_Systems_Architect_CV.pdf" target="_blank" download="Dobby_B_AI_Systems_Architect_CV.pdf" class="at-network-tile at-cv-download-tile" data-cat="repo">
+            <a href="resume.html" target="_blank"
+              class="at-network-tile at-cv-download-tile" data-cat="doc">
               <div class="at-node-left">
-                <span class="at-node-badge pdf">PDF</span>
+                <span class="at-node-badge doc">CV</span>
                 <div class="at-node-info">
                   <span class="at-node-title" data-i18n="cv_download">ÖZGEÇMİŞ (CV / RESUME)</span>
-                  <span class="at-node-sub">OFFICIAL ARCHITECT CV</span>
+                  <span class="at-node-sub">WEB VERSION & PDF EXPORT</span>
                 </div>
               </div>
-              <span class="at-network-arrow" style="color:var(--accent-cyan);">DOWNLOAD ↗</span>
+              <span class="at-network-arrow" style="color:var(--accent-cyan);">VIEW ↗</span>
             </a>
 
             <!-- AI Coin Empire -->
-            <a href="https://aicoinempire.donacodex.workers.dev" target="_blank" rel="noopener noreferrer" class="at-network-tile at-live-node-tile" data-cat="live">
+            <a href="https://aicoinempire.donacodex.com" target="_blank" rel="noopener noreferrer"
+              class="at-network-tile at-live-node-tile" data-cat="live">
               <div class="at-node-left">
                 <span class="at-node-badge live">GAME</span>
                 <div class="at-node-info">
                   <span class="at-node-title">AI COIN EMPIRE</span>
-                  <span class="at-node-sub">aicoinempire.workers.dev</span>
+                  <span class="at-node-sub">aicoinempire.donacodex.com</span>
                 </div>
               </div>
               <span class="at-network-arrow" style="color:var(--accent-lime);">ONLINE ↗</span>
             </a>
 
             <!-- Dona Nova 3D -->
-            <a href="https://donanova.donacodex.workers.dev" target="_blank" rel="noopener noreferrer" class="at-network-tile at-live-node-tile" data-cat="live">
+            <a href="https://donanova.donacodex.workers.dev" target="_blank" rel="noopener noreferrer"
+              class="at-network-tile at-live-node-tile" data-cat="live">
               <div class="at-node-left">
                 <span class="at-node-badge live">3D GLOBE</span>
                 <div class="at-node-info">
@@ -345,8 +373,22 @@
               <span class="at-network-arrow" style="color:var(--accent-cyan);">ONLINE ↗</span>
             </a>
 
+            <!-- IBM Machine Learning Certificate -->
+            <a href="https://coursera.org/share/deb792b19739e807ee06ccc96fded4c3" target="_blank" rel="noopener noreferrer"
+              class="at-network-tile" data-cat="certs">
+              <div class="at-node-left">
+                <span class="at-node-badge" style="background:rgba(255, 184, 0, 0.1); color:#FFB800; border-color:rgba(255, 184, 0, 0.3);">CERT</span>
+                <div class="at-node-info">
+                  <span class="at-node-title">Machine Learning with Python</span>
+                  <span class="at-node-sub">IBM / Coursera (Eyl 2026)</span>
+                </div>
+              </div>
+              <span class="at-network-arrow" style="color:#FFB800;">VERIFY ↗</span>
+            </a>
+
             <!-- Agent Critiq -->
-            <a href="https://agentcritiq.com" target="_blank" rel="noopener noreferrer" class="at-network-tile at-live-node-tile" data-cat="live">
+            <a href="https://agentcritiq.com" target="_blank" rel="noopener noreferrer"
+              class="at-network-tile at-live-node-tile" data-cat="live">
               <div class="at-node-left">
                 <span class="at-node-badge live">MCP BENCH</span>
                 <div class="at-node-info">
@@ -358,7 +400,8 @@
             </a>
 
             <!-- GitHub -->
-            <a href="https://github.com/dobby-aidev" target="_blank" rel="noopener noreferrer" class="at-network-tile" data-cat="repo">
+            <a href="https://github.com/dobby-aidev" target="_blank" rel="noopener noreferrer" class="at-network-tile"
+              data-cat="social">
               <div class="at-node-left">
                 <span class="at-node-badge repo">REPO</span>
                 <div class="at-node-info">
@@ -370,7 +413,8 @@
             </a>
 
             <!-- Whop Store -->
-            <a href="https://whop.com/dona-ai" target="_blank" rel="noopener noreferrer" class="at-network-tile" data-cat="repo">
+            <a href="https://whop.com/dona-ai" target="_blank" rel="noopener noreferrer" class="at-network-tile"
+              data-cat="repo">
               <div class="at-node-left">
                 <span class="at-node-badge store">STORE</span>
                 <div class="at-node-info">
@@ -382,7 +426,8 @@
             </a>
 
             <!-- LinkedIn -->
-            <a href="https://www.linkedin.com/in/dobbyb-aidev" target="_blank" rel="noopener noreferrer" class="at-network-tile" data-cat="social">
+            <a href="https://www.linkedin.com/in/dobbyb-aidev" target="_blank" rel="noopener noreferrer"
+              class="at-network-tile" data-cat="social">
               <div class="at-node-left">
                 <span class="at-node-badge social">NETWORK</span>
                 <div class="at-node-info">
@@ -394,7 +439,8 @@
             </a>
 
             <!-- X Twitter -->
-            <a href="https://x.com/dobbyb_ai" target="_blank" rel="noopener noreferrer" class="at-network-tile" data-cat="social">
+            <a href="https://x.com/dobbyb_ai" target="_blank" rel="noopener noreferrer" class="at-network-tile"
+              data-cat="social">
               <div class="at-node-left">
                 <span class="at-node-badge social">INTEL</span>
                 <div class="at-node-info">
@@ -406,7 +452,8 @@
             </a>
 
             <!-- Instagram -->
-            <a href="https://instagram.com/dobby.aidev" target="_blank" rel="noopener noreferrer" class="at-network-tile" data-cat="social">
+            <a href="https://instagram.com/dobby.aidev" target="_blank" rel="noopener noreferrer"
+              class="at-network-tile" data-cat="social">
               <div class="at-node-left">
                 <span class="at-node-badge social">MEDIA</span>
                 <div class="at-node-info">
@@ -427,7 +474,7 @@
   <!-- Fullscreen Modal Lightbox (With Keyboard Arrow & Mouse Wheel Support) -->
   <div class="lightbox-modal" id="lightbox-modal" aria-hidden="true">
     <div class="lightbox-header">
-      <h3 class="lightbox-title" id="lb-title">PROJECT GALLERY</h3>
+      <h3 class="lightbox-title" id="lb-title" data-i18n="gallery_title">PROJECT GALLERY</h3>
       <div class="lightbox-controls">
         <span class="lightbox-counter" id="lb-counter">1 / 1</span>
         <button class="lightbox-close" id="lb-close" onclick="closeLightbox()">✕</button>
@@ -447,13 +494,14 @@
   <div class="at-arch-modal" id="arch-exploded-modal" aria-hidden="true">
     <div class="at-arch-header">
       <div class="at-arch-header-left">
-        <div class="at-arch-sub" id="arch-project-pid">SYSTEM ARCHITECTURE // 3D DECONSTRUCTION</div>
+        <div class="at-arch-sub" id="arch-project-pid" data-i18n="arch_system_tag">SYSTEM ARCHITECTURE // 3D DECONSTRUCTION</div>
         <h2 class="at-arch-title" id="arch-project-title">DONA CODEX: VISION</h2>
       </div>
       <div class="at-arch-controls">
         <div class="at-arch-slider-wrap">
-          <span class="at-arch-slider-label">KATMAN AYRIŞTIRMA (EXPLODE)</span>
-          <input type="range" id="arch-explode-slider" min="20" max="140" value="80" oninput="updateArchitectureExplosion(this.value)" />
+          <span class="at-arch-slider-label" data-i18n="arch_explode">KATMAN AYRIŞTIRMA (EXPLODE)</span>
+          <input type="range" id="arch-explode-slider" min="20" max="140" value="80"
+            oninput="updateArchitectureExplosion(this.value)" />
         </div>
         <button class="lightbox-close" onclick="closeExplodedArchitecture()">✕</button>
       </div>
@@ -467,11 +515,15 @@
       <div class="at-arch-inspector" id="arch-inspector">
         <div class="at-inspector-tag" id="inspector-layer-tag">KATMAN 03 // TENSOR CORE</div>
         <h3 class="at-inspector-title" id="inspector-layer-title">Transformer Attention Pipeline</h3>
-        <p class="at-inspector-desc" id="inspector-layer-desc">Finansal zaman serisi verilerini mikro-saniye gecikmeyle işleyen özel PyTorch Multi-Head Self-Attention modülü.</p>
+        <p class="at-inspector-desc" id="inspector-layer-desc">Finansal zaman serisi verilerini mikro-saniye gecikmeyle
+          işleyen özel PyTorch Multi-Head Self-Attention modülü.</p>
         <div class="at-inspector-metrics" id="inspector-layer-metrics">
-          <div class="at-metric-item"><span class="m-label">THROUGHPUT</span><span class="m-val" id="m-val-1">14.2k req/s</span></div>
-          <div class="at-metric-item"><span class="m-label">LATENCY</span><span class="m-val" id="m-val-2">1.2ms</span></div>
-          <div class="at-metric-item"><span class="m-label">ACCELERATION</span><span class="m-val" id="m-val-3">CUDA 12.4</span></div>
+          <div class="at-metric-item"><span class="m-label">THROUGHPUT</span><span class="m-val" id="m-val-1">14.2k
+              req/s</span></div>
+          <div class="at-metric-item"><span class="m-label">LATENCY</span><span class="m-val" id="m-val-2">1.2ms</span>
+          </div>
+          <div class="at-metric-item"><span class="m-label">ACCELERATION</span><span class="m-val" id="m-val-3">CUDA
+              12.4</span></div>
         </div>
       </div>
     </div>
