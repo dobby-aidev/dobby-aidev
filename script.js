@@ -855,12 +855,23 @@ function initTabletGestures() {
       const isMobile = window.innerWidth <= 768;
       
       if (isMobile) {
-        if (dy > 40) {
-          activeTabletIndex = (activeTabletIndex - 1 + count) % count;
-          updateCodexTablets();
-        } else if (dy < -40) {
-          activeTabletIndex = (activeTabletIndex + 1) % count;
-          updateCodexTablets();
+        // Support both horizontal swipe (left/right) and vertical swipe (up/down)
+        if (Math.abs(dx) > Math.abs(dy)) {
+          if (dx < -35) {
+            activeTabletIndex = (activeTabletIndex + 1) % count;
+            updateCodexTablets();
+          } else if (dx > 35) {
+            activeTabletIndex = (activeTabletIndex - 1 + count) % count;
+            updateCodexTablets();
+          }
+        } else {
+          if (dy < -35) {
+            activeTabletIndex = (activeTabletIndex + 1) % count;
+            updateCodexTablets();
+          } else if (dy > 35) {
+            activeTabletIndex = (activeTabletIndex - 1 + count) % count;
+            updateCodexTablets();
+          }
         }
       } else {
         if (dx > 50) {
