@@ -46,6 +46,11 @@ function handleImgError(imgEl, title) {
 
 const TRANSLATIONS = {
   tr: {
+    hero_cert_title: 'SERTİFİKALI YAPAY ZEKA MÜHENDİSİ',
+    hero_cert_verify: 'DOĞRULA ↗',
+    cert_title: 'IBM AI Engineering Professional',
+    cert_sub: 'Resmi Uzmanlık Diploması (13 Ders Tamamlandı)',
+    cert_verify: 'ONAYLI ↗',
     nav_home: 'ANA SAYFA',
     nav_work: 'PROJELER',
     nav_contact: 'HAKKINDA',
@@ -85,6 +90,11 @@ const TRANSLATIONS = {
     gallery_title: 'PROJE GALERİSİ'
   },
   en: {
+    hero_cert_title: 'CERTIFIED AI ENGINEER',
+    hero_cert_verify: 'VERIFY ↗',
+    cert_title: 'IBM AI Engineering Professional',
+    cert_sub: 'Master Specialization Credential (13 Courses Certified)',
+    cert_verify: 'VERIFIED ↗',
     nav_home: 'HOME',
     nav_work: 'WORK',
     nav_contact: 'ABOUT',

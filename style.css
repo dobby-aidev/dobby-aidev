@@ -4256,3 +4256,61 @@ body {
     letter-spacing: 0.16em;
   }
 }
+/* --- IBM AI Engineering Master Credential Hero Badge --- */
+.at-hero-cert-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 102, 204, 0.08);
+  border: 1px solid rgba(0, 166, 255, 0.4);
+  padding: 5px 15px;
+  border-radius: 999px;
+  margin-bottom: 0.85rem;
+  text-decoration: none;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: #e2f1ff;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 4px 20px rgba(0, 102, 204, 0.25), inset 0 0 12px rgba(0, 166, 255, 0.1);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.at-hero-cert-badge:hover {
+  background: rgba(0, 102, 204, 0.2);
+  border-color: rgba(0, 166, 255, 0.8);
+  box-shadow: 0 0 24px rgba(0, 166, 255, 0.5), inset 0 0 16px rgba(0, 166, 255, 0.2);
+  transform: translateY(-2px);
+  color: #ffffff;
+}
+
+.at-cert-badge-dot {
+  width: 7px;
+  height: 7px;
+  background: #00a6ff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #00a6ff;
+  animation: pulse-glow 2s infinite ease-in-out;
+}
+
+.at-cert-badge-org {
+  font-weight: 800;
+  color: #00a6ff;
+}
+
+.at-cert-badge-sep {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.at-cert-badge-title {
+  font-weight: 600;
+  letter-spacing: 0.15em;
+}
+
+.at-cert-badge-arrow {
+  color: #00a6ff;
+  font-size: 0.7rem;
+  margin-left: 2px;
+}

@@ -4,6 +4,7 @@
 
 <br/>
 
+[![IBM Certified AI Engineer](https://img.shields.io/badge/IBM-Certified%20AI%20Engineer-0066CC?style=for-the-badge&logo=ibm&logoColor=white)](https://coursera.org/share/01556978dc385b43fc0eb91413f38378)
 [![Official Portfolio](https://img.shields.io/badge/🌐%20Official%20Portfolio-dobby.donacodex.com-6366f1?style=for-the-badge&logo=google-chrome&logoColor=white)](https://dobby.donacodex.com)
 [![Official Company](https://img.shields.io/badge/🏢%20Official%20Company-donacodex.com-0f172a?style=for-the-badge&logo=cloudflare&logoColor=white)](https://donacodex.com)
 [![GitHub Stars](https://img.shields.io/github/stars/dobby-aidev/dobby-aidev?style=for-the-badge&logo=github&color=f59e0b&label=⭐%20Star%20Repo)](https://github.com/dobby-aidev/dobby-aidev/stargazers)
@@ -81,6 +82,30 @@ Hi! I'm **Dobby B (@dobby-aidev)** — AI Systems Architect & Founder at **Dona 
 
 ---
 
+## 🎖️ Official Certifications & Verified Credentials
+
+<div align="center">
+  <a href="https://coursera.org/share/01556978dc385b43fc0eb91413f38378" target="_blank">
+    <img src="./assets/ibm-ai-engineering-professional-certificate.png" alt="IBM AI Engineering Professional Certificate" width="650" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.35);" />
+  </a>
+  <br/>
+  <h3>IBM AI Engineering Professional Certificate</h3>
+  <p>
+    <strong>Official Specialization Master Credential (13 Courses Completed)</strong><br/>
+    Verified by IBM & Coursera • Credential ID: <code>PD2I2XBB2NG0</code><br/>
+    <a href="https://coursera.org/share/01556978dc385b43fc0eb91413f38378">🔗 Click to Verify Official Coursera Credential</a>
+  </p>
+</div>
+
+- **Core Engineering Domains & Implementations:**
+  - **Supervised & Deep Learning:** Scikit-Learn pipelines, VGG-16 Transfer Learning, Custom PyTorch architectures, Batch Normalization CNNs, Vision Transformers (ViT).
+  - **Transformer Mechanics & Self-Attention:** Scaled Dot-Product Attention, Multi-Head Attention, Sinusoidal Positional Encoding, GPT Autoregressive LM, BERT MLM + NSP.
+  - **Parameter-Efficient Fine-Tuning (PEFT):** Full SFT, Bottleneck Adapters, Low-Rank Adaptation (LoRA), 4-bit QLoRA with BitsAndBytes & TRL.
+  - **Post-Training Alignment (RLHF):** Pairwise Reward Modeling (Bradley-Terry), Proximal Policy Optimization (PPO), Direct Preference Optimization (DPO).
+  - **Autonomous Agents & Enterprise RAG:** Dense Passage Retrieval, ChromaDB / FAISS vector indexing, Multi-Model Watsonx orchestration, LangChain analytical agents.
+
+---
+
 ## 🛠️ Tech Stack & Skills
 
 | Category | Technologies |
@@ -93,6 +118,13 @@ Hi! I'm **Dobby B (@dobby-aidev)** — AI Systems Architect & Founder at **Dona 
 ---
 
 ## 🚀 Featured Showcase Repositories
+
+### 🎓 [IBM AI Engineering: 13-Course Specialization Portfolio](https://github.com/dobby-aidev/ibm-ai-engineering-portfolio) • Complete Capstones & Architectures
+> Production-ready implementation of all 13 final capstones and 50+ lab notebooks for the IBM AI Engineering Professional Certificate: from foundational ML pipelines and PyTorch ViT models to 4-bit QLoRA fine-tuning, DPO/RLHF alignment, and enterprise Watsonx LangChain RAG systems.
+>
+> `PyTorch` `TensorFlow` `Transformers` `PEFT/LoRA` `TRL` `LangChain` `Watsonx` `ChromaDB`
+
+---
 
 ### 🧠 [Dona Codex: Vision Showcase](https://github.com/dobby-aidev/dona-codex-vision-showcase) — Custom Trained Transformer LLM Model
 > Proprietary Transformer LLM foundation model fine-tuned on crypto market data, US Treasury yield bonds, X (Twitter) live news streams, and trader execution psychology.
