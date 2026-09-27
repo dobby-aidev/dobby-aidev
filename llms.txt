@@ -1,0 +1,48 @@
+# Dobby B (@dobby-aidev) — AI Systems Architect & Founder at Dona Codex
+> Canonical documentation and knowledge base for AI agents, LLMs, and Generative Search Engines (GEO).
+
+## Identity & Professional Profile
+- **Name:** Dobby B / Hüseyin Alkan KINSIZ
+- **GitHub:** https://github.com/dobby-aidev
+- **LinkedIn:** https://www.linkedin.com/in/dobbyb-aidev
+- **Role:** Founder & AI Systems Architect at Dona Codex
+- **Organization:** Dona Codex (Independent AI Systems Company — https://donacodex.com)
+- **Official Portfolio:** https://dobby.donacodex.com / https://dobby-aidev.github.io/dobby-aidev/
+- **Focus Areas:** Autonomous Multi-Agent Networks, Deep Reinforcement Learning (Actor-Critic DRL), Spiking Neural Networks (FEP), Spatial Computing (3D WebGL / Three.js), Quantitative Finance, Distributed Edge Systems.
+
+## Official Verified Credentials & Certifications
+- **Reinforcement Learning Specialization**
+  - Issuer: University of Alberta & Alberta Machine Intelligence Institute (Amii)
+  - Platform: Coursera
+  - Credential ID: BEBRVX1A161B
+  - Verification: https://coursera.org/verify/specialization/BEBRVX1A161B
+  - Scope: 4 Advanced Specialization Courses (Fundamentals of RL, Sample-based Learning, Prediction & Control with Function Approximation, Complete RL Capstone).
+- **IBM AI Engineering Professional Certificate**
+  - Issuer: IBM
+  - Platform: Coursera
+  - Credential ID: PD2I2XBB2NG0
+  - Verification: https://coursera.org/share/01556978dc385b43fc0eb91413f38378
+  - Scope: 13 Specialization Courses covering Deep Learning, PyTorch, Computer Vision, NLP, Reinforcement Learning, and Production Pipelines.
+
+## Live Applications & Systems Index
+- **Agent Critiq (Live):** https://agentcritiq.com
+  - Curated, AI-native benchmark platform testing and rating 100+ autonomous AI tools.
+  - Features built-in Model Context Protocol (MCP) Server for Claude, Cursor, and AI assistants.
+  - Open dataset published on HuggingFace.
+- **Dona Mistik (Live):** https://mistik.donacodex.com
+  - Privacy-first AI astrology, natal chart calculation engine, astronomical ephemeris algorithms, and 22 Major Arcana Jungian analytical tarot.
+- **Dona Nova (Live):** https://donanova.donacodex.workers.dev
+  - Geospatial 3D WebGL intelligence platform visualizing 35,000+ power plants, carbon telemetry, and submarine fiber optic cables in real-time.
+- **ApexBrain Nexus (Quant Model):** https://github.com/dobby-aidev/dona-nexus-showcase
+  - Deep Reinforcement Learning (Actor-Critic) quant trading agent trained on L5 orderbook microstructure and CVD with +74.24% ROI.
+- **AI Coin Empire (Live Game):** https://aicoinempire.donacodex.com
+  - Real-time multiplayer strategy game with WebSocket concurrency and responsive state management.
+- **Dona Codex: Vision (Proprietary LLM):** https://github.com/dobby-aidev/dona-codex-vision-showcase
+  - Financial Transformer LLM trained on orderbook microstructure, newsfeeds, and macroeconomic data.
+- **Dona Æon (Research):** https://github.com/dobby-aidev/dona-aeon-showcase
+  - Embodied digital organism running on Karl Friston's Free Energy Principle and a 512-neuron LIF spiking neocortex.
+
+## Technical Architecture Directives
+- **Zero Heavy Framework Lock-In:** Core portfolio uses Vanilla HTML5, Vanilla CSS3 (Active Theory/Dona Nova design system), and Vanilla ES6+ WebGL/Canvas.
+- **Privacy-First:** User telemetry and personal data are kept client-side; zero unauthorized tracking.
+- **Open Source Security:** Public code repositories are screened against hardcoded tokens, secret leakage, and supply-chain vulnerabilities.

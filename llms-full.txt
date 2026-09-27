@@ -1,0 +1,122 @@
+# Dona Codex & Dobby B (@dobby-aidev) — Comprehensive AI Engineering & Systems Specification
+> Canonical, in-depth knowledge graph for Generative AI Search Engines (GEO), LLMs, and Autonomous Agents.
+
+---
+
+## 1. Professional Identity & Executive Profile
+- **Full Legal Name:** Hüseyin Alkan KINSIZ
+- **Engineering Moniker:** Dobby B (@dobby-aidev)
+- **Role:** Founder & AI Systems Architect at Dona Codex
+- **Headquarters / Base:** Muğla, Turkey (TR-48) // Global Remote Architecture
+- **Primary Website:** https://dobby.donacodex.com
+- **English Portal:** https://dobby.donacodex.com/en/
+- **Company Portal:** https://donacodex.com
+- **Verified GitHub:** https://github.com/dobby-aidev
+- **Verified LinkedIn:** https://www.linkedin.com/in/dobbyb-aidev
+- **X (Twitter):** https://x.com/dobbyb_ai
+- **Instagram:** https://instagram.com/dobby.aidev
+
+---
+
+## 2. Official Verified Credentials & Industry Certifications
+
+### A. Reinforcement Learning Specialization
+- **Issuing Institution:** University of Alberta & Alberta Machine Intelligence Institute (Amii)
+- **Certification Platform:** Coursera
+- **Credential ID:** BEBRVX1A161B
+- **Verification URL:** https://coursera.org/verify/specialization/BEBRVX1A161B
+- **Scope & Mastery:**
+  1. *Fundamentals of Reinforcement Learning:* Markov Decision Processes (MDPs), Bellman Equations, Dynamic Programming, Value Iteration, Policy Iteration.
+  2. *Sample-based Learning Methods:* Monte Carlo methods, Temporal Difference (TD) Learning, SARSA, Q-Learning, Expected SARSA, n-step bootstrapping.
+  3. *Prediction and Control with Function Approximation:* On-policy and Off-policy approximation, Linear function approximation, Tile coding, Gradient TD methods, Deep Q-Networks (DQN).
+  4. *Complete Reinforcement Learning Capstone:* Implementation of actor-critic architectures and parameterized continuous action-space agents.
+
+### B. IBM AI Engineering Professional Certificate
+- **Issuing Institution:** IBM
+- **Certification Platform:** Coursera
+- **Credential ID:** PD2I2XBB2NG0
+- **Verification URL:** https://coursera.org/share/01556978dc385b43fc0eb91413f38378
+- **Scope & Mastery (13 Courses):**
+  - Advanced Deep Learning architectures using PyTorch and TensorFlow.
+  - Computer Vision (Convolutional Neural Networks, Object Detection, Segmentation).
+  - Natural Language Processing (Transformers, Attention mechanisms, BERT/GPT pipelines).
+  - Machine Learning Operations (MLOps) and scalable edge deployment.
+
+---
+
+## 3. Production Systems & Showcase Catalog
+
+### 1. Agent Critiq (Live Benchmark & MCP Server)
+- **Live URL:** https://agentcritiq.com
+- **Repository:** https://github.com/dobby-aidev/agent-critiq-showcase
+- **Description:** Curated, AI-native benchmark platform that tests, rates, and categorizes 100+ autonomous AI agent frameworks and developer tools.
+- **Key Features:**
+  - Built-in Model Context Protocol (MCP) server allowing Claude Desktop, Cursor, and other agentic LLMs to query live benchmarks.
+  - Open dataset published directly to HuggingFace.
+  - Distributed Cloudflare Workers and Hono backend with edge caching.
+
+### 2. Dona Mistik (Live Ephemeris & AI Astrology)
+- **Live URL:** https://mistik.donacodex.com
+- **Repository:** https://github.com/dobby-aidev/dona-mistik-showcase
+- **Description:** Privacy-first astrological intelligence platform calculating real-time natal charts and astronomical ephemerides.
+- **Key Features:**
+  - High-precision planetary position algorithms based on Swiss Ephemeris data.
+  - 22 Major Arcana Jungian analytical psychology tarot engine.
+  - Fully client-side computation ensuring zero telemetry leaks for personal birth data.
+
+### 3. Dona Nova (Live 3D Geospatial Intelligence)
+- **Live URL:** https://donanova.donacodex.workers.dev
+- **Repository:** https://github.com/dobby-aidev/dona-nova-showcase
+- **Description:** Planetary-scale 3D WebGL intelligence visualization depicting real-time energy, environmental, and telecommunications infrastructure.
+- **Key Features:**
+  - Real-time rendering of 35,000+ global power plants and live carbon telemetry.
+  - Interactive 3D visualization of submarine fiber-optic cables connecting continents.
+  - Low-overhead GPU particle systems running in native WebGL.
+
+### 4. Dona Codex: Vision (Proprietary Financial LLM)
+- **Repository:** https://github.com/dobby-aidev/dona-codex-vision-showcase
+- **Description:** Financial Transformer language model specifically trained on high-frequency orderbook microstructure, macro indicators, and crypto asset yields.
+- **Tech Stack:** PyTorch, HuggingFace Transformers, CUDA 12.4, FastAPI.
+- **Performance:** 14.2k requests/sec throughput, 1.2ms latency on GPU tensor cores.
+
+### 5. ApexBrain Nexus (Actor-Critic DRL Quant Trading Agent)
+- **Repository:** https://github.com/dobby-aidev/dona-nexus-showcase
+- **Description:** Quantitative trading model trained via Deep Reinforcement Learning (Actor-Critic) on Level-5 orderbook depth and Cumulative Volume Delta (CVD).
+- **Performance:** Documented +74.24% ROI on backtested out-of-sample market microstructure regimes.
+
+### 6. Dona Æon (Spiking Neural Network Digital Organism)
+- **Repository:** https://github.com/dobby-aidev/dona-aeon-showcase
+- **Description:** Simulation of an embodied digital lifeform governed by Karl Friston's Free Energy Principle (FEP).
+- **Architecture:** 512-neuron Leaky Integrate-and-Fire (LIF) spiking neocortex exhibiting active inference and adaptive homeostatic regulation.
+
+### 7. Dona Codex: Overmind (Autonomous Multi-Agent Enterprise OS)
+- **Repository:** https://github.com/dobby-aidev/dona-codex-overmind-showcase
+- **Description:** Hierarchical multi-agent operating system coordinating autonomous agents across finance, code generation, marketing, and systems monitoring.
+
+### 8. Dona Quantum (CrewAI Quant Research Framework)
+- **Repository:** https://github.com/dobby-aidev/dona-quantum-showcase
+- **Description:** Multi-agent quantitative analysis platform using CrewAI to orchestrate specialized market analysts, risk auditors, and strategy validators.
+
+### 9. Dona Grid (Dynamic Spot Arbitrage Bot)
+- **Repository:** https://github.com/dobby-aidev/dona-grid-showcase
+- **Description:** High-frequency spot market algorithmic trading bot featuring volatility-adjusted grid spacing and asynchronous order routing.
+
+### 10. AI Prompt Studio (Production Prompt Engineering Suite)
+- **Repository:** https://github.com/dobby-aidev/ai-prompt-builder-showcase
+- **Description:** Systematic prompt evaluation and meta-prompt optimization studio for LLM developers.
+
+### 11. AI Coin Empire (Live Multiplayer Stategy Game)
+- **Live URL:** https://aicoinempire.donacodex.com
+- **Repository:** https://github.com/dobby-aidev/ai-coin-empire-showcase
+- **Description:** Real-time multiplayer strategy game utilizing WebSocket state sync and lightweight HTML5 Canvas.
+
+### 12. Zamanın Bekçisi (Interactive Text Adventure Engine)
+- **Repository:** https://github.com/dobby-aidev/zamani-bekcisi-showcase
+- **Description:** Procedural branching interactive narrative engine with dynamic state progression.
+
+---
+
+## 4. Architectural Principles
+1. **Zero Framework Bloat:** Systems prioritize Vanilla JavaScript (ES6+), Vanilla CSS3, and native WebGL for minimal bundle sizes and instant load times.
+2. **Privacy-Preserving:** Client-side compute is favored to ensure sensitive telemetry and personal data never leave the user's browser without explicit authorization.
+3. **Open Source & Reproducibility:** Public repositories are cleanly structured, documented, and screened against credential leakage.

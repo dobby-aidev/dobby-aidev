@@ -5,14 +5,16 @@
 <br/>
 
 [![IBM Certified AI Engineer](https://img.shields.io/badge/IBM-Certified%20AI%20Engineer-0066CC?style=for-the-badge&logo=ibm&logoColor=white)](https://coursera.org/share/01556978dc385b43fc0eb91413f38378)
+[![Alberta Reinforcement Learning Specialist](https://img.shields.io/badge/Alberta-Reinforcement%20Learning%20Specialist-007A3D?style=for-the-badge&logo=coursera&logoColor=white)](https://coursera.org/verify/specialization/BEBRVX1A161B)
 [![Official Portfolio](https://img.shields.io/badge/🌐%20Official%20Portfolio-dobby.donacodex.com-6366f1?style=for-the-badge&logo=google-chrome&logoColor=white)](https://dobby.donacodex.com)
 [![Official Company](https://img.shields.io/badge/🏢%20Official%20Company-donacodex.com-0f172a?style=for-the-badge&logo=cloudflare&logoColor=white)](https://donacodex.com)
 [![GitHub Stars](https://img.shields.io/github/stars/dobby-aidev/dobby-aidev?style=for-the-badge&logo=github&color=f59e0b&label=⭐%20Star%20Repo)](https://github.com/dobby-aidev/dobby-aidev/stargazers)
 [![GitHub Followers](https://img.shields.io/github/followers/dobby-aidev?style=for-the-badge&logo=github&color=3b82f6&label=👤%20Follow%20%40dobby--aidev)](https://github.com/dobby-aidev)
 [![Whop Store](https://img.shields.io/badge/🛍️%20Whop%20Store-dona--ai-FFB800?style=for-the-badge)](https://whop.com/dona-ai)
 [![Agent Critiq](https://img.shields.io/badge/Agent%20Critiq-agentcritiq.com-10b981?style=for-the-badge&logo=globe&logoColor=white)](https://agentcritiq.com)
+[![Dona Mistik](https://img.shields.io/badge/🔮%20Dona%20Mistik-Live%20AI%20Astrology-D4AF37?style=for-the-badge&logo=cloudflare&logoColor=white)](https://mistik.donacodex.com)
 [![Dona Nova](https://img.shields.io/badge/🌐%20Dona%20Nova-Live%20Platform-00C7B7?style=for-the-badge&logo=cloudflare&logoColor=white)](https://donanova.donacodex.workers.dev)
-[![AI Coin Empire](https://img.shields.io/badge/🪙%20AI%20Coin%20Empire-Live%20Game-F59E0B?style=for-the-badge&logo=cloudflare&logoColor=white)](https://aicoinempire.donacodex.workers.dev)
+[![AI Coin Empire](https://img.shields.io/badge/🪙%20AI%20Coin%20Empire-Live%20Game-F59E0B?style=for-the-badge&logo=cloudflare&logoColor=white)](https://aicoinempire.donacodex.com)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/dobbyb-aidev)
 [![X / Twitter](https://img.shields.io/badge/X%20(Twitter)-dobbyb__ai-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/dobbyb_ai)
 [![Instagram](https://img.shields.io/badge/Instagram-dobby.aidev-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/dobby.aidev)
@@ -32,25 +34,24 @@
 
 ## 🌐 Live Portfolio Website
 
-👉 **[https://dobby.donacodex.com](https://dobby.donacodex.com)**
+👉 **[https://dobby.donacodex.com](https://dobby.donacodex.com)** • **[GitHub Pages Mirror](https://dobby-aidev.github.io/dobby-aidev/)**
 
-This repository contains my personal developer portfolio site built as a futuristic **Neural Operating System (Neural OS v2.0)** using vanilla Javascript, HTML5, custom CSS styling, and Three.js WebGL rendering.
+This repository contains my personal developer portfolio site built as a futuristic **Neural Operating System (Neural OS v2.0)** deployed via **Cloudflare Pages** and **GitHub Actions**, featuring native WebP visual streaming, client-side 3D transforms, and an adaptive performance control engine.
 
 ---
 
-## 🎨 Neural OS v2.0 Portfolio Features
+## ⚡ Architecture & Performance Engine
 
-The site has been engineered to showcase high-end creative coding and premium UI elements:
+The site has been engineered to showcase high-end creative coding, maximum fluidity, and minimal resource footprints:
 
-- **🌊 WebGL Liquid Aurora Background:** Advanced Three.js Fragment Shader utilizing Multi-Octave Fractal Brownian Motion (FBM) for a dynamic fluid-metal background reacting to scroll momentum.
-- **🧲 Magnetic UI Interactions:** Interactive buttons and links that organically pull towards the cursor using physics-based spring logic for a tactile, physical feel.
-- **🌌 3D Parallax Hero Illusion:** Multi-layered spatial depth tracking on the main hero section, creating a responsive optical illusion based on mouse position.
-- **⭕ Dynamic Cursor Progress Ring:** A custom zero-latency lerp cursor wrapped in an SVG ring that tracks global scroll percentage, replacing standard scrollbars.
-- **🏎️ Spatial Kinetic Marquee:** A massive background typography track that dynamically skews and accelerates in 3D space based on the user's scroll velocity.
-- **💧 Fluid Mobile Menu Overlay:** An ink-drop SVG clip-path expansion menu with staggered cascading link reveals for premium mobile UX.
-- **🔍 Apple-style Glassmorphic Spotlights:** Bento grid project cards utilizing dynamic CSS radial gradients that track mouse coordinates for a premium glassmorphic glow.
-- **🖥️ Cyberpunk Boot Simulation:** A custom terminals-like BIOS loading screens simulation with interactive skips and progress updates.
-- **🇹🇷 Double Language Support:** Client-side localization engine handling active transitions between TR and EN languages smoothly.
+- **🚀 Cloudflare Pages & Edge Distribution:** Zero-latency global delivery with automatic edge compression and DNS routing.
+- **🖼️ Native WebP Asset Pipeline:** 100% of project screenshots, architectural diagrams, and credentials converted to high-fidelity WebP (-69% bandwidth savings, 4.7 MB total asset size).
+- **🛡️ Dona Performance Engine:** Client-side real-time FPS watchdog, Page Visibility background throttling, and automated VRAM bitmap garbage collection.
+- **🌊 Upward Ambient Canvas Physics:** Optimized stardust particle physics with distance-squared constellation calculations and view-aware CPU throttling.
+- **💎 Zero-Latency 3D Arc-Deck:** Instantaneous 0ms project view switches with uncropped viewport framing (`object-fit: contain`) for vertical and horizontal mobile/desktop interfaces.
+- **🧭 Hybrid Multi-Page Canonical Routing:** Clean static entrypoints (`index.html`, `work.html`, `about.html`, `en/`, `resume.html`) paired with seamless in-memory 3D SPA view switching and HTML5 History / URL hash deep-linking (`#work`, `#contact`, `#detail?p=...`).
+- **🇹🇷 Bidirectional TR / EN Localization:** Dedicated `/en/` root and subpages with synchronized `hreflang` tags, English metadata, and instant in-place language switching.
+- **🤖 Ultra SEO & GEO (Generative Engine Optimization):** First-class discoverability for Google, Perplexity, ClaudeBot, and GPTBot with `llms.txt`, `llms-full.txt`, semantic crawlable `<article>` tags, and full Schema.org graph (`Person`, `Organization`, `ItemList`, `SoftwareApplication`, `EducationalOccupationalCredential`).
 
 ---
 
@@ -97,12 +98,33 @@ Hi! I'm **Dobby B (@dobby-aidev)** — AI Systems Architect & Founder at **Dona 
   </p>
 </div>
 
-- **Core Engineering Domains & Implementations:**
+- **Core Engineering Domains & Implementations (IBM AI):**
   - **Supervised & Deep Learning:** Scikit-Learn pipelines, VGG-16 Transfer Learning, Custom PyTorch architectures, Batch Normalization CNNs, Vision Transformers (ViT).
   - **Transformer Mechanics & Self-Attention:** Scaled Dot-Product Attention, Multi-Head Attention, Sinusoidal Positional Encoding, GPT Autoregressive LM, BERT MLM + NSP.
   - **Parameter-Efficient Fine-Tuning (PEFT):** Full SFT, Bottleneck Adapters, Low-Rank Adaptation (LoRA), 4-bit QLoRA with BitsAndBytes & TRL.
   - **Post-Training Alignment (RLHF):** Pairwise Reward Modeling (Bradley-Terry), Proximal Policy Optimization (PPO), Direct Preference Optimization (DPO).
   - **Autonomous Agents & Enterprise RAG:** Dense Passage Retrieval, ChromaDB / FAISS vector indexing, Multi-Model Watsonx orchestration, LangChain analytical agents.
+
+<br/>
+
+<div align="center">
+  <a href="https://coursera.org/verify/specialization/BEBRVX1A161B" target="_blank">
+    <img src="./assets/reinforcement-learning-specialization.png" alt="Reinforcement Learning Specialization Certificate" width="650" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.35);" />
+  </a>
+  <br/>
+  <h3>Reinforcement Learning Specialization</h3>
+  <p>
+    <strong>University of Alberta & Alberta Machine Intelligence Institute (Amii)</strong><br/>
+    Verified by Coursera • Credential ID: <code>BEBRVX1A161B</code><br/>
+    <a href="https://coursera.org/verify/specialization/BEBRVX1A161B">🔗 Click to Verify Official Coursera Credential</a>
+  </p>
+</div>
+
+- **Core Reinforcement Learning Theory & Applications (Alberta & Amii):**
+  - **Markov Decision Processes (MDP):** Dynamic programming, Bellman optimality equations, value iteration, policy iteration.
+  - **Sample-Based Learning Methods:** Monte Carlo prediction/control, Temporal-Difference learning (TD(0), TD(λ)), Sarsa, Q-Learning, Expected Sarsa.
+  - **Function Approximation & Deep RL:** Linear function approximation, Tile coding, Deep Q-Networks (DQN), Experience Replay, Target Networks.
+  - **Policy Gradient & Actor-Critic Systems:** REINFORCE with baseline, continuous action spaces, Actor-Critic architectures applied to autonomous quantitative trading systems.
 
 ---
 
@@ -144,6 +166,13 @@ Hi! I'm **Dobby B (@dobby-aidev)** — AI Systems Architect & Founder at **Dona 
 > **[Live Platform](https://donanova.donacodex.workers.dev)** — The World's Infrastructure Intelligence Digital Planet. Visualizes global power grids, 35,000+ power plants, carbon intensity telemetry, and IXPs in 3D WebGL via verified real-time APIs (EIA, ENTSO-E, Electricity Maps, WRI).
 >
 > `Next.js 16` `Three.js / R3F` `TypeScript` `Cloudflare Workers` `Tailwind CSS v4`
+
+---
+
+### 🔮 [Dona Mistik](https://mistik.donacodex.com) — AI Natal Chart & Ephemeris Intelligence Platform
+> **[Live Platform](https://mistik.donacodex.com)** — AI-powered personal natal chart engine, ephemeris planetary mechanics, 22 Major Arcana Jungian analytical tarot layouts, and deep coffee reading telemetry. Built with a strict Privacy-First architecture.
+>
+> `React 18` `Ephemeris Math Engine` `Jungian Archetypes` `Cloudflare Pages` `Privacy-First`
 
 ---
 

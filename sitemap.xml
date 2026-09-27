@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Home Page (Turkish & English) -->
+  <url>
+    <loc>https://dobby.donacodex.com/</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://dobby.donacodex.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://dobby.donacodex.com/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dobby.donacodex.com/" />
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://dobby.donacodex.com/en/</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://dobby.donacodex.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://dobby.donacodex.com/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dobby.donacodex.com/" />
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- Projects Page (Turkish & English) -->
+  <url>
+    <loc>https://dobby.donacodex.com/work.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://dobby.donacodex.com/work.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://dobby.donacodex.com/en/work.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dobby.donacodex.com/work.html" />
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://dobby.donacodex.com/en/work.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://dobby.donacodex.com/work.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://dobby.donacodex.com/en/work.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dobby.donacodex.com/work.html" />
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <!-- About & Verified Credentials (Turkish & English) -->
+  <url>
+    <loc>https://dobby.donacodex.com/about.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://dobby.donacodex.com/about.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://dobby.donacodex.com/en/about.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dobby.donacodex.com/about.html" />
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://dobby.donacodex.com/en/about.html</loc>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://dobby.donacodex.com/about.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://dobby.donacodex.com/en/about.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dobby.donacodex.com/about.html" />
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Static CV / Resume -->
+  <url>
+    <loc>https://dobby.donacodex.com/resume.html</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <!-- LLM & GEO Knowledge Endpoints -->
+  <url>
+    <loc>https://dobby.donacodex.com/llms.txt</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://dobby.donacodex.com/llms-full.txt</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Live Ecosystem Platforms -->
+  <url>
+    <loc>https://agentcritiq.com</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://mistik.donacodex.com</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://donanova.donacodex.workers.dev</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+</urlset>

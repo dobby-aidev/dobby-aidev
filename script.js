@@ -47,9 +47,13 @@ function handleImgError(imgEl, title) {
 const TRANSLATIONS = {
   tr: {
     hero_cert_title: 'SERTİFİKALI YAPAY ZEKA MÜHENDİSİ',
+    hero_cert_title: 'SERTİFİKALI YAPAY ZEKA MÜHENDİSİ',
+    hero_cert_rl_title: 'PEKİŞTİRMELİ ÖĞRENME UZMANI',
     hero_cert_verify: 'DOĞRULA ↗',
     cert_title: 'IBM AI Engineering Professional',
     cert_sub: 'Resmi Uzmanlık Diploması (13 Ders Tamamlandı)',
+    cert_rl_title: 'Reinforcement Learning Specialization',
+    cert_rl_sub: 'Univ. of Alberta & AMII (4 İleri Seviye Ders)',
     cert_verify: 'ONAYLI ↗',
     nav_home: 'ANA SAYFA',
     nav_work: 'PROJELER',
@@ -74,10 +78,10 @@ const TRANSLATIONS = {
     contact_success: 'İSTEK ALINDI ✓ (MAİL İLETİLDİ)',
     contact_error: 'GÖNDERİM BAŞARISIZ ✕',
     network_header: 'PROJELER & BAĞLANTILAR',
-    node_tab_all: 'TÜMÜ (9)',
-    node_tab_live: '⚡ CANLI (3)',
+    node_tab_all: 'TÜMÜ (11)',
+    node_tab_live: '⚡ CANLI (4)',
     node_tab_repos: '📦 DOKÜMAN & MAĞAZA (3)',
-    node_tab_certs: '🎓 SERTİFİKALAR (1)',
+    node_tab_certs: '🎓 SERTİFİKALAR (2)',
     node_tab_social: '🌐 NETWORK (3)',
     cv_download: 'ÖZGEÇMİŞ (CV / RESUME)',
     toggle_view_mode: '📱 IZGARA GÖRÜNÜMÜ',
@@ -91,9 +95,12 @@ const TRANSLATIONS = {
   },
   en: {
     hero_cert_title: 'CERTIFIED AI ENGINEER',
+    hero_cert_rl_title: 'REINFORCEMENT LEARNING SPECIALIST',
     hero_cert_verify: 'VERIFY ↗',
     cert_title: 'IBM AI Engineering Professional',
     cert_sub: 'Master Specialization Credential (13 Courses Certified)',
+    cert_rl_title: 'Reinforcement Learning Specialization',
+    cert_rl_sub: 'Univ. of Alberta & AMII (4 Advanced Courses Certified)',
     cert_verify: 'VERIFIED ↗',
     nav_home: 'HOME',
     nav_work: 'WORK',
@@ -118,10 +125,10 @@ const TRANSLATIONS = {
     contact_success: 'RECEIVED ✓ (MAIL DISPATCHED)',
     contact_error: 'DISPATCH FAILED ✕',
     network_header: 'PROJECTS & ECOSYSTEM',
-    node_tab_all: 'ALL (9)',
-    node_tab_live: '⚡ LIVE APPS (3)',
+    node_tab_all: 'ALL (11)',
+    node_tab_live: '⚡ LIVE APPS (4)',
     node_tab_repos: '📦 STORE & DOCS (3)',
-    node_tab_certs: '🎓 CERTIFICATES (1)',
+    node_tab_certs: '🎓 CERTIFICATES (2)',
     node_tab_social: '🌐 NETWORK (3)',
     cv_download: 'CURRICULUM VITAE (RESUME)',
     toggle_view_mode: '📱 GRID VIEW',
@@ -145,10 +152,10 @@ const PROJECTS = [
     tech: ['PyTorch', 'Transformers', 'FastAPI', 'CUDA'],
     desc: 'Kripto emir defteri mikro-yapısı, canlı haber akışı ve ABD Tahvil faizleriyle özel eğitilmiş finansal Transformer dil modeli.',
     desc_en: 'Proprietary financial Transformer LLM trained on crypto orderbook microstructure, newsfeeds, and US Treasury yield curves.',
-    img: 'assets/dona_codex_vision_1.jpg',
+    img: 'assets/dona_codex_vision_1.webp',
     galleryCount: 13,
     prefix: 'assets/dona_codex_vision_',
-    ext: 'jpg',
+    ext: 'webp',
     repo: 'https://github.com/dobby-aidev/dona-codex-vision-showcase'
   },
   {
@@ -160,10 +167,10 @@ const PROJECTS = [
     tech: ['React 18', 'MCP Protocol', 'HuggingFace', 'Cloudflare'],
     desc: '100\'den fazla otonom yapay zeka ajanını teknik metriklerle puanlayan küresel canlı dizin. Dahili MCP Server protokolü ve HuggingFace açık veri seti.',
     desc_en: 'Live global benchmark platform testing and rating 100+ autonomous AI tools. Built-in MCP Server and open HuggingFace dataset.',
-    img: 'assets/agent_critiq_1.jpg',
+    img: 'assets/agent_critiq_1.webp',
     galleryCount: 7,
     prefix: 'assets/agent_critiq_',
-    ext: 'jpg',
+    ext: 'webp',
     live: 'https://agentcritiq.com',
     repo: 'https://github.com/dobby-aidev/agent-critiq-showcase'
   },
@@ -176,12 +183,28 @@ const PROJECTS = [
     tech: ['Three.js', 'React Three Fiber', 'WebGL', 'GeoJSON'],
     desc: '35,000+ küresel enerji santrali, karbon telemetrisi ve denizaltı fiber optik hatlarını 3D küre üzerinde interaktif görselleştiren jeo-uzamsal istihbarat platformu.',
     desc_en: 'Geospatial 3D WebGL intelligence platform visualizing 35,000+ power plants, carbon telemetry, and submarine cables in real-time.',
-    img: 'assets/dona_nova_1.jpg',
+    img: 'assets/dona_nova_1.webp',
     galleryCount: 2,
     prefix: 'assets/dona_nova_',
-    ext: 'jpg',
+    ext: 'webp',
     live: 'https://donanova.donacodex.workers.dev',
     repo: 'https://github.com/dobby-aidev/dona-nova-showcase'
+  },
+  {
+    id: 'dona-mistik',
+    pid: 'EPHEMERIS AI',
+    category: 'live',
+    title: 'Dona Mistik',
+    meta: 'AI ASTROLOGY // NATAL CHART & TAROT',
+    tech: ['React 18', 'Ephemeris Engine', 'Jungian Tarot', 'Cloudflare Pages'],
+    desc: 'Kişiselleştirilmiş doğum haritası, efemeris gezegen hesaplamaları, 22 Büyük Arkana Jungien analitik tarot açılımları ve telve analizi sunan canlı mistik yapay zeka platformu.',
+    desc_en: 'AI-powered personal natal chart engine, ephemeris planetary mechanics, 22 Major Arcana Jungian analytical tarot layouts, and deep coffee reading telemetry.',
+    img: 'assets/dona_mistik_1.webp',
+    galleryCount: 6,
+    prefix: 'assets/dona_mistik_',
+    ext: 'webp',
+    live: 'https://mistik.donacodex.com',
+    repo: 'https://github.com/dobby-aidev'
   },
   {
     id: 'dona-nexus',
@@ -189,13 +212,13 @@ const PROJECTS = [
     category: 'systems',
     title: 'ApexBrain Nexus',
     meta: 'ACTOR-CRITIC DRL // +74.24% ROI',
-    tech: ['PyTorch', 'Actor-Critic DRL', 'Binance API', 'Pandas'],
-    desc: 'Binance Futures için L5 Orderbook, CVD, OI ve Funding Rate verileriyle mutasyona uğratılmış derin pekiştirmeli öğrenme botu. Doğrulanabilir işlem geçmişi açıkça paylaşılmıştır.',
-    desc_en: 'Deep reinforcement learning quant agent trained on L5 orderbook, CVD, and funding rates with +74.24% ROI. Verifiable trading telemetry published on GitHub.',
-    img: 'assets/dona_nexus_trading_dashboard.jpg',
+    tech: ['PyTorch', 'Actor-Critic DRL', 'Alberta DRL Spec.', 'Binance API'],
+    desc: 'Binance Futures için L5 Orderbook, CVD, OI ve Funding Rate verileriyle mutasyona uğratılmış derin pekiştirmeli öğrenme botu (Alberta DRL Sertifikalı). Doğrulanabilir işlem geçmişi açıkça paylaşılmıştır.',
+    desc_en: 'Deep reinforcement learning quant agent trained on L5 orderbook, CVD, and funding rates with +74.24% ROI (Alberta DRL Certified). Verifiable trading telemetry published on GitHub.',
+    img: 'assets/dona_nexus_trading_dashboard.webp',
     galleryCount: 8,
     prefix: 'assets/dona_nexus_',
-    ext: 'jpg',
+    ext: 'webp',
     repo: 'https://github.com/dobby-aidev/dona-nexus-showcase'
   },
   {
@@ -207,8 +230,8 @@ const PROJECTS = [
     tech: ['Spiking Neural Nets', 'Free Energy Principle', 'Python'],
     desc: 'Karl Friston\'ın Serbest Enerji Prensibi (FEP) ve 512-nöronluk Spiking Neocortex (LIF) ile çalışan özerk dijital yaşam formu mimarisi.',
     desc_en: 'Embodied digital organism running on Karl Friston\'s Free Energy Principle and a 512-neuron LIF spiking neocortex with infinite context.',
-    img: 'assets/dona_aeon_architecture.png',
-    single: 'assets/dona_aeon_architecture.png',
+    img: 'assets/dona_aeon_architecture.webp',
+    single: 'assets/dona_aeon_architecture.webp',
     galleryCount: 1,
     repo: 'https://github.com/dobby-aidev/dona-aeon-showcase'
   },
@@ -221,10 +244,10 @@ const PROJECTS = [
     tech: ['WebSockets', 'Autonomous Agents', 'Node.js', 'React'],
     desc: 'CEO, Araştırmacı, Mühendis ve Analist otonom yapay zeka düğümlerinin WebSockets üzerinden haberleştiği sanal şirket simülasyonu.',
     desc_en: 'Autonomous AI company simulation where CEO, Researcher, Engineer, and Analyst nodes collaborate via WebSockets telemetry.',
-    img: 'assets/dona_codex_overmind_1.jpg',
+    img: 'assets/dona_codex_overmind_1.webp',
     galleryCount: 19,
     prefix: 'assets/dona_codex_overmind_',
-    ext: 'jpg',
+    ext: 'webp',
     repo: 'https://github.com/dobby-aidev/dona-codex-overmind-showcase'
   },
   {
@@ -236,10 +259,10 @@ const PROJECTS = [
     tech: ['CrewAI', 'LangChain', 'Technical Analysis', 'Python'],
     desc: 'Teknik analiz, haber duyarlılığı ve risk yönetimini 4 ayrı yapay zeka ajanının konsensüsüyle yürüten CrewAI quant istihbarat motoru.',
     desc_en: 'CrewAI multi-agent quant engine executing trades based on multi-agent consensus across technical analysis, news sentiment, and risk modeling.',
-    img: 'assets/dona_quantum_1.jpg',
+    img: 'assets/dona_quantum_1.webp',
     galleryCount: 8,
     prefix: 'assets/dona_quantum_',
-    ext: 'jpg',
+    ext: 'webp',
     repo: 'https://github.com/dobby-aidev/dona-quantum-showcase'
   },
   {
@@ -251,10 +274,10 @@ const PROJECTS = [
     tech: ['Python', 'CCXT', 'Algorithmic Trading', 'Asyncio'],
     desc: 'Volatiliteye göre dinamik aralık belirleyen ve 7/24 piyasa yapıcı emirlerle kâr toplayan Python tabanlı spot bot.',
     desc_en: 'Python dynamic spot grid bot capturing automated spread profits 24/7 with volatility-adaptive range adjustment.',
-    img: 'assets/dona_grid_1.jpg',
+    img: 'assets/dona_grid_1.webp',
     galleryCount: 5,
     prefix: 'assets/dona_grid_',
-    ext: 'jpg',
+    ext: 'webp',
     repo: 'https://github.com/dobby-aidev/dona-grid-showcase'
   },
   {
@@ -266,10 +289,10 @@ const PROJECTS = [
     tech: ['Gemini API', 'TypeScript', 'Tailwind', 'Next.js'],
     desc: 'Gemini API ile güçlendirilmiş, sistem istemlerini ve meta-talimatları interaktif olarak oluşturan stüdyo.',
     desc_en: 'Conversational prompt engineering studio powered by Gemini API to build and optimize system-level instructions.',
-    img: 'assets/ai_prompt_builder_1.jpg',
+    img: 'assets/ai_prompt_builder_1.webp',
     galleryCount: 10,
     prefix: 'assets/ai_prompt_builder_',
-    ext: 'jpg',
+    ext: 'webp',
     repo: 'https://github.com/dobby-aidev/ai-prompt-builder-showcase'
   },
   {
@@ -281,10 +304,10 @@ const PROJECTS = [
     tech: ['React 18', 'Firebase', 'Framer Motion', 'Canvas'],
     desc: 'React 18, Firebase ve Framer Motion ile sıfırdan geliştirilen gerçek zamanlı çok oyunculu simülasyon strateji oyunu.',
     desc_en: 'Real-time multiplayer strategic tycoon game built from scratch with React 18, Firebase live sync, and Framer Motion.',
-    img: 'assets/ai_coin_empire_1.jpg',
+    img: 'assets/ai_coin_empire_1.webp',
     galleryCount: 21,
     prefix: 'assets/ai_coin_empire_',
-    ext: 'jpg',
+    ext: 'webp',
     live: 'https://aicoinempire.donacodex.com',
     repo: 'https://github.com/dobby-aidev/ai-coin-empire-showcase'
   },
@@ -297,10 +320,10 @@ const PROJECTS = [
     tech: ['JavaScript ES6', 'Web Audio API', 'Procedural Story'],
     desc: 'Zaman yolculuğu mekaniklerine sahip interaktif metin tabanlı macera motoru ve atmosferik ses tasarımı.',
     desc_en: 'Time-travel text adventure game engine with branching narrative paths and immersive audio design.',
-    img: 'assets/zamanin_bekcisi_1.jpg',
+    img: 'assets/zamanin_bekcisi_1.webp',
     galleryCount: 9,
     prefix: 'assets/zamanin_bekcisi_',
-    ext: 'jpg',
+    ext: 'webp',
     repo: 'https://github.com/dobby-aidev/zamanin-bekcisi-showcase'
   }
 ];
@@ -335,6 +358,12 @@ window.addEventListener('resize', checkMobileLayout, { passive: true });
 document.addEventListener('DOMContentLoaded', () => {
   'use strict';
 
+  // 1. Language detection: if html lang is 'en' or URL has /en/, default to 'en'
+  const isEnPage = document.documentElement.lang === 'en' || window.location.pathname.includes('/en/');
+  if (isEnPage) {
+    currentLang = 'en';
+  }
+
   initWaterAndParticles();
   buildCodexTablets();
   initTabletGestures();
@@ -343,22 +372,74 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileNavSync();
   triggerQuantumHeroIntro();
   preloadProjectThumbnails();
-});
 
-function preloadProjectThumbnails() {
-  PROJECTS.forEach(proj => {
-    if (proj.img) {
-      const img = new Image();
-      img.src = proj.img;
+  // 2. Initial View / Hash Route Resolution
+  const rawHash = window.location.hash.replace('#', '').trim();
+  const initialView = document.body.dataset.initialView || rawHash || 'home';
+
+  if (initialView && initialView !== 'home') {
+    if (initialView.startsWith('detail')) {
+      const urlParams = new URLSearchParams(window.location.hash.split('?')[1] || '');
+      const pId = urlParams.get('p') || urlParams.get('project');
+      const found = PROJECTS.find(p => p.id === pId);
+      if (found) {
+        openDetail(found, null, null, false);
+      } else {
+        switchView('work', false);
+      }
+    } else {
+      switchView(initialView, false);
     }
-    if (proj.prefix && proj.ext && proj.galleryCount) {
-      for (let i = 1; i <= Math.min(3, proj.galleryCount); i++) {
-        const gImg = new Image();
-        gImg.src = `${proj.prefix}${i}.${proj.ext}`;
+  }
+
+  // 3. Browser Back / Forward & Hash Listener
+  window.addEventListener('hashchange', () => {
+    const newHash = window.location.hash.replace('#', '').trim();
+    if (!newHash || newHash === 'home') {
+      switchView('home', false);
+    } else if (newHash === 'work' || newHash === 'contact' || newHash === 'about') {
+      switchView(newHash === 'about' ? 'contact' : newHash, false);
+    } else if (newHash.startsWith('detail')) {
+      const urlParams = new URLSearchParams(window.location.hash.split('?')[1] || '');
+      const pId = urlParams.get('p') || urlParams.get('project');
+      const found = PROJECTS.find(p => p.id === pId);
+      if (found) {
+        openDetail(found, null, null, false);
       }
     }
   });
+});
+
+function preloadProjectThumbnails() {
+  // Eager: sadece ilk 3 proje thumbnail'i (kritik LCP yolu)
+  PROJECTS.slice(0, 3).forEach(proj => {
+    if (proj.img) {
+      const img = new Image();
+      img.fetchPriority = 'high';
+      img.src = proj.img;
+    }
+  });
+  // Lazy: geri kalan thumbnail'ler + ilk 3 gallery frame (500ms defer)
+  setTimeout(() => {
+    PROJECTS.slice(3).forEach(proj => {
+      if (proj.img) {
+        const img = new Image();
+        img.loading = 'lazy';
+        img.src = proj.img;
+      }
+    });
+    PROJECTS.forEach(proj => {
+      if (proj.prefix && proj.ext && proj.galleryCount) {
+        for (let i = 1; i <= Math.min(2, proj.galleryCount); i++) {
+          const gImg = new Image();
+          gImg.loading = 'lazy';
+          gImg.src = `${proj.prefix}${i}.${proj.ext}`;
+        }
+      }
+    });
+  }, 500);
 }
+
 
 function triggerQuantumHeroIntro() {
   const avatar = document.getElementById('hero-avatar-node');
@@ -387,7 +468,10 @@ function initWaterAndParticles() {
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
     particles = [];
-    const count = Math.min(110, Math.floor((width * height) / 14000));
+    const isMobile = window.innerWidth <= 768;
+    const count = isMobile
+      ? Math.min(20, Math.max(12, Math.floor((width * height) / 38000)))
+      : Math.min(45, Math.max(25, Math.floor((width * height) / 30000)));
     for (let i = 0; i < count; i++) {
       particles.push(new UpwardParticle(true));
     }
@@ -664,47 +748,74 @@ function initWaterAndParticles() {
   window.addEventListener('resize', resize);
   resize();
 
+  let isCanvasPaused = false;
+  let canvasRafId = null;
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      isCanvasPaused = true;
+      if (canvasRafId) cancelAnimationFrame(canvasRafId);
+    } else {
+      isCanvasPaused = false;
+      canvasRafId = requestAnimationFrame(render);
+    }
+  });
+
   function render() {
+    if (isCanvasPaused) return;
+
+    // View-Aware RAM/CPU Throttle: Detail & Contact pages cover canvas completely
+    const activePage = document.querySelector('.at-view-page.active');
+    const isHomeOrWork = activePage && (activePage.id === 'view-home' || activePage.id === 'view-work');
+
     ctx.clearRect(0, 0, width, height);
 
-    // Subtle champagne constellation links between floating stardust
-    ctx.lineWidth = 0.5;
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 65) {
-          const alpha = (1 - dist / 65) * 0.18;
-          ctx.strokeStyle = `rgba(245, 238, 220, ${alpha})`;
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.stroke();
+    if (isHomeOrWork) {
+      // Champagne constellation links with distance-squared check (avoids Math.sqrt on 95% of checks)
+      ctx.lineWidth = 0.5;
+      const maxDist = 65;
+      const maxDistSq = 4225; // 65 * 65
+
+      for (let i = 0; i < particles.length; i++) {
+        const p1 = particles[i];
+        for (let j = i + 1; j < particles.length; j++) {
+          const p2 = particles[j];
+          const dx = p1.x - p2.x;
+          const dy = p1.y - p2.y;
+          const distSq = dx * dx + dy * dy;
+          if (distSq < maxDistSq) {
+            const dist = Math.sqrt(distSq);
+            const alpha = (1 - dist / maxDist) * 0.18;
+            ctx.strokeStyle = `rgba(245, 238, 220, ${alpha})`;
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.stroke();
+          }
         }
       }
-    }
 
-    particles.forEach((p) => {
-      p.update();
-      p.draw();
-    });
+      particles.forEach((p) => {
+        p.update();
+        p.draw();
+      });
 
-    for (let i = ripples.length - 1; i >= 0; i--) {
-      const r = ripples[i];
-      r.update();
-      r.draw();
-      if (r.opacity <= 0) {
-        ripples.splice(i, 1);
+      for (let i = ripples.length - 1; i >= 0; i--) {
+        const r = ripples[i];
+        r.update();
+        r.draw();
+        if (r.opacity <= 0) {
+          ripples.splice(i, 1);
+        }
       }
+
+      synapticNetwork.update();
+      synapticNetwork.draw(ctx, width, height, currentRotation);
     }
 
-    synapticNetwork.update();
-    synapticNetwork.draw(ctx, width, height, currentRotation);
-
-    requestAnimationFrame(render);
+    canvasRafId = requestAnimationFrame(render);
   }
-  render();
+  canvasRafId = requestAnimationFrame(render);
 }
 
 let activeTabletIndex = 0;
@@ -735,7 +846,7 @@ function buildCodexTablets() {
     tablet.innerHTML = `
       <div class="cdx-tablet-glass">
         <!-- Background Image with minimal illumination -->
-        <img src="${proj.img}" class="cdx-tablet-bg" alt="${proj.title}" onerror="handleImgError(this, '${proj.title}')" />
+        <img src="${proj.img}" class="cdx-tablet-bg" alt="${proj.title} — Dona Codex AI System" loading="${idx <= 1 ? 'eager' : 'lazy'}" decoding="async" ${idx === 0 ? 'fetchpriority="high"' : ''} onerror="handleImgError(this, '${proj.title}')" />
         <div class="cdx-tablet-overlay"></div>
         <div class="cdx-tablet-engraved-edge"></div>
         <div class="cdx-tablet-corner-cut"></div>
@@ -951,7 +1062,9 @@ function filterCategoryMobile(cat, btnElement) {
 /* --------------------------------------------------------------------------
    3. SEAMLESS PAGE VIEW SWITCHING
    -------------------------------------------------------------------------- */
-function switchView(viewName) {
+function switchView(viewName, updateUrl = true) {
+  if (viewName === 'about') viewName = 'contact';
+
   document.querySelectorAll('.at-view-page').forEach(page => page.classList.remove('active'));
   document.querySelectorAll('.at-nav-item').forEach(item => item.classList.remove('active'));
 
@@ -964,6 +1077,11 @@ function switchView(viewName) {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }
   if (targetNav) targetNav.classList.add('active');
+
+  if (updateUrl && window.history && history.replaceState) {
+    const hash = viewName === 'home' ? '' : `#${viewName}`;
+    history.replaceState(null, '', window.location.pathname + hash);
+  }
 }
 
 /**
@@ -980,7 +1098,7 @@ function triggerElementShatterTransition(element, targetViewName, type = 'button
   }
 }
 
-function openDetail(proj, cardElement, clickEvent = null) {
+function openDetail(proj, cardElement, clickEvent = null, updateUrl = true) {
   if (!proj) return;
   currentDetailProject = proj;
   activeDetailIndex = 0;
@@ -1022,22 +1140,26 @@ function openDetail(proj, cardElement, clickEvent = null) {
     galleryBtn.innerHTML = `<span class="at-dock-icon">◫</span><span class="at-dock-text">${currentLang === 'en' ? `GALLERY (${currentDetailCount})` : `GALERİ (${currentDetailCount})`}</span>`;
   }
 
-  // Build Luxury 3D Arc Deck Gallery
+  // Build Luxury 3D Arc Deck Gallery with RAM recycling
   buildMiniGallery(proj);
 
-  // Trigger Realistic 3D Crystal Shatter on Card and switch view seamlessly
-  if (cardElement) {
-    triggerLocalElementShatter(cardElement, () => {
-      switchView('detail');
-    }, 'card', clickEvent);
-  } else {
-    switchView('detail');
+  // Instant zero-latency fluid transition to Case Study view
+  switchView('detail', false);
+
+  if (updateUrl && window.history && history.replaceState) {
+    history.replaceState(null, '', `${window.location.pathname}#detail?p=${proj.id}`);
   }
 }
 
 function buildMiniGallery(proj) {
   const miniRotator = document.getElementById('mini-gallery-rotator');
   if (!miniRotator) return;
+
+  // RAM Optimization: Release previous GPU image bitmaps before clearing DOM
+  const existingImgs = miniRotator.querySelectorAll('img');
+  existingImgs.forEach(img => {
+    img.src = '';
+  });
   miniRotator.innerHTML = '';
 
   const count = proj.galleryCount || 1;
@@ -1049,7 +1171,8 @@ function buildMiniGallery(proj) {
     miniCard.className = 'at-mini-card';
     miniCard.dataset.index = i;
 
-    miniCard.innerHTML = `<img src="${imgSrc}" alt="${proj.title} Screenshot ${i + 1}" onerror="handleImgError(this, '${proj.title}')" />`;
+    // Use asynchronous decoding and lazy loading to prevent main-thread freeze
+    miniCard.innerHTML = `<img src="${imgSrc}" alt="${proj.title} Screenshot ${i + 1}" loading="${i <= 1 ? 'eager' : 'lazy'}" decoding="async" onerror="handleImgError(this, '${proj.title}')" />`;
 
     miniCard.addEventListener('click', () => {
       if (activeDetailIndex === i) {
@@ -1234,6 +1357,9 @@ function renderLightboxThumbs() {
 function applyLanguage(lang) {
   currentLang = lang;
   localStorage.setItem('dobby_lang', lang);
+  if (document.documentElement) {
+    document.documentElement.lang = lang;
+  }
 
   const t = TRANSLATIONS[lang];
   document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -1243,8 +1369,9 @@ function applyLanguage(lang) {
     }
   });
 
-  const langBtn = document.getElementById('lang-btn');
-  if (langBtn) langBtn.textContent = lang === 'tr' ? 'EN' : 'TR';
+  document.querySelectorAll('.at-lang-switch-btn').forEach(btn => {
+    btn.textContent = lang === 'tr' ? 'EN' : 'TR';
+  });
 
   // Update view mode toggle button text if present
   const viewToggleBtn = document.getElementById('mobile-view-mode-btn');
@@ -1256,12 +1383,29 @@ function applyLanguage(lang) {
 
   // Update Detail view dynamically if active
   if (currentDetailProject && document.getElementById('view-detail').classList.contains('active')) {
-    openDetail(currentDetailProject);
+    openDetail(currentDetailProject, null, null, false);
   }
 }
 
 function toggleLanguage() {
-  applyLanguage(currentLang === 'tr' ? 'en' : 'tr');
+  const nextLang = currentLang === 'tr' ? 'en' : 'tr';
+  applyLanguage(nextLang);
+
+  // If on /en/ subpath and toggling to TR, navigate to root equivalent
+  if (nextLang === 'tr' && window.location.pathname.includes('/en/')) {
+    const target = window.location.pathname.replace('/en/', '/') + window.location.hash;
+    window.location.href = target.replace('//', '/');
+  } else if (nextLang === 'en' && !window.location.pathname.includes('/en/')) {
+    // If user prefers explicit English URL
+    const path = window.location.pathname;
+    let target = '/en/';
+    if (path.endsWith('work.html')) target = '/en/work.html';
+    else if (path.endsWith('about.html')) target = '/en/about.html';
+    // Only redirect if files exist on server
+    if (window.location.protocol.startsWith('http')) {
+      window.location.href = target + window.location.hash;
+    }
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -1330,17 +1474,18 @@ const lbThumbs = document.getElementById('lb-thumbs');
 const lbCounter = document.getElementById('lb-counter');
 
 const galleries = {
-  'dona-codex-vision': { title: 'Dona Codex: Vision (13 Görsel)', prefix: 'assets/dona_codex_vision_', count: 13, ext: 'jpg' },
-  'agent-critiq': { title: 'Agent Critiq Platform (7 Görsel)', prefix: 'assets/agent_critiq_', count: 7, ext: 'jpg' },
-  'dona-nova': { title: 'Dona Nova 3D WebGL (2 Görsel)', prefix: 'assets/dona_nova_', count: 2, ext: 'jpg' },
-  'dona-codex-overmind': { title: 'Dona Codex: Overmind (19 Görsel)', prefix: 'assets/dona_codex_overmind_', count: 19, ext: 'jpg' },
-  'dona-aeon': { title: 'Dona Æon — Spiking Neural Whitepaper', single: 'assets/dona_aeon_architecture.png' },
-  'dona-nexus': { title: 'ApexBrain DRL Quant (8 Görsel)', prefix: 'assets/dona_nexus_', count: 8, ext: 'jpg' },
-  'ai-prompt-builder': { title: 'AI Prompt Builder (10 Görsel)', prefix: 'assets/ai_prompt_builder_', count: 10, ext: 'jpg' },
-  'ai-coin-empire': { title: 'AI Coin Empire Multiplayer (21 Görsel)', prefix: 'assets/ai_coin_empire_', count: 21, ext: 'jpg' },
-  'dona-grid': { title: 'Dona Grid Spot Bot (5 Görsel)', prefix: 'assets/dona_grid_', count: 5, ext: 'jpg' },
-  'dona-quantum': { title: 'Dona Quantum CrewAI (8 Görsel)', prefix: 'assets/dona_quantum_', count: 8, ext: 'jpg' },
-  'zamanin-bekcisi': { title: 'Zamanın Bekçisi Engine (9 Görsel)', prefix: 'assets/zamanin_bekcisi_', count: 9, ext: 'jpg' },
+  'dona-codex-vision': { title: 'Dona Codex: Vision (13 Görsel)', prefix: 'assets/dona_codex_vision_', count: 13, ext: 'webp' },
+  'agent-critiq': { title: 'Agent Critiq Platform (7 Görsel)', prefix: 'assets/agent_critiq_', count: 7, ext: 'webp' },
+  'dona-nova': { title: 'Dona Nova 3D WebGL (2 Görsel)', prefix: 'assets/dona_nova_', count: 2, ext: 'webp' },
+  'dona-mistik': { title: 'Dona Mistik Platform (6 Görsel)', prefix: 'assets/dona_mistik_', count: 6, ext: 'webp' },
+  'dona-codex-overmind': { title: 'Dona Codex: Overmind (19 Görsel)', prefix: 'assets/dona_codex_overmind_', count: 19, ext: 'webp' },
+  'dona-aeon': { title: 'Dona Æon — Spiking Neural Whitepaper', single: 'assets/dona_aeon_architecture.webp' },
+  'dona-nexus': { title: 'ApexBrain DRL Quant (8 Görsel)', prefix: 'assets/dona_nexus_', count: 8, ext: 'webp' },
+  'ai-prompt-builder': { title: 'AI Prompt Builder (10 Görsel)', prefix: 'assets/ai_prompt_builder_', count: 10, ext: 'webp' },
+  'ai-coin-empire': { title: 'AI Coin Empire Multiplayer (21 Görsel)', prefix: 'assets/ai_coin_empire_', count: 21, ext: 'webp' },
+  'dona-grid': { title: 'Dona Grid Spot Bot (5 Görsel)', prefix: 'assets/dona_grid_', count: 5, ext: 'webp' },
+  'dona-quantum': { title: 'Dona Quantum CrewAI (8 Görsel)', prefix: 'assets/dona_quantum_', count: 8, ext: 'webp' },
+  'zamanin-bekcisi': { title: 'Zamanın Bekçisi Engine (9 Görsel)', prefix: 'assets/zamanin_bekcisi_', count: 9, ext: 'webp' },
 };
 
 function openLightbox(key) {
@@ -1826,9 +1971,9 @@ function triggerLocalElementShatter(element, onCompleteCallback, customType = 'c
   // Hide original element seamlessly
   element.style.opacity = '0';
 
-  // Generate 96 Medium-Sized Codex Artifact Shards (Digital Fragment Kırıkları)
-  const cols = 12;
-  const rows = 8;
+  // Generate 12 Lightweight Codex Crystal Shards (Fast GPU Compositing, Zero RAM Freeze)
+  const cols = 4;
+  const rows = 3;
   const shardW = rect.width / cols;
   const shardH = rect.height / rows;
   const maxLocalDist = Math.hypot(rect.width, rect.height) || 300;
@@ -1841,35 +1986,23 @@ function triggerLocalElementShatter(element, onCompleteCallback, customType = 'c
       const shardCenterX = rect.left + (c + 0.5) * shardW;
       const shardCenterY = rect.top + (r + 0.5) * shardH;
 
-      // Realistic sharp triangular and polygonal glass cuts
-      const p1x = (Math.random() * 25).toFixed(1);
-      const p1y = (Math.random() * 25).toFixed(1);
-      const p2x = (75 + Math.random() * 25).toFixed(1);
-      const p2y = (Math.random() * 30).toFixed(1);
-      const p3x = (70 + Math.random() * 30).toFixed(1);
-      const p3y = (70 + Math.random() * 30).toFixed(1);
-      const p4x = (Math.random() * 30).toFixed(1);
-      const p4y = (75 + Math.random() * 25).toFixed(1);
-      const clipPoly = `polygon(${p1x}% ${p1y}%, ${p2x}% ${p2y}%, ${p3x}% ${p3y}%, ${p4x}% ${p4y}%)`;
+      // Clean polygon facets
+      const clipPoly = `polygon(0% 0%, 100% 15%, 85% 100%, 0% 85%)`;
 
       // Calculate outward explosion trajectory from click position
       const deltaX = shardCenterX - globalClickX;
       const deltaY = shardCenterY - globalClickY;
       const distFromClick = Math.hypot(deltaX, deltaY);
-      const angle = Math.atan2(deltaY, deltaX) + (Math.random() - 0.5) * 0.25;
-      const staggerDelay = (distFromClick / maxLocalDist) * 0.1;
+      const angle = Math.atan2(deltaY, deltaX);
+      const staggerDelay = (distFromClick / maxLocalDist) * 0.05;
 
-      // Slow-motion cinematic dispersion
-      const scatterSpeed = 150 + Math.random() * 200 + (1 - distFromClick / 400) * 120;
+      const scatterSpeed = 120 + Math.random() * 100;
       const dirX = Math.cos(angle) * scatterSpeed;
-      const dirY = Math.sin(angle) * scatterSpeed + 30 + Math.random() * 50; // Slight gravity
-      const dirZ = 150 + Math.random() * 400; // 3D depth pop towards screen
-      const rotX = (Math.random() - 0.5) * 360;
-      const rotY = (Math.random() - 0.5) * 360;
-      const rotZ = (Math.random() - 0.5) * 270;
-
-      const isAvatar = customType === 'avatar';
-      const isBtn = customType === 'button';
+      const dirY = Math.sin(angle) * scatterSpeed + 20;
+      const dirZ = 80 + Math.random() * 150;
+      const rotX = (Math.random() - 0.5) * 180;
+      const rotY = (Math.random() - 0.5) * 180;
+      const rotZ = (Math.random() - 0.5) * 120;
 
       let bgStyle = '';
       if (imgSrc) {
@@ -1877,15 +2010,11 @@ function triggerLocalElementShatter(element, onCompleteCallback, customType = 'c
           background-image: url('${imgSrc}');
           background-size: ${rect.width}px ${rect.height}px;
           background-position: -${c * shardW}px -${r * shardH}px;
-          filter: grayscale(80%) brightness(0.6);
-        `;
-      } else if (isBtn || isAvatar) {
-        bgStyle = `
-          background: linear-gradient(135deg, #110f14 0%, #1e1a26 100%);
+          filter: brightness(0.7);
         `;
       } else {
         bgStyle = `
-          background: #110f14;
+          background: linear-gradient(135deg, rgba(245, 238, 220, 0.25) 0%, rgba(18, 15, 24, 0.85) 100%);
         `;
       }
 
@@ -1897,34 +2026,32 @@ function triggerLocalElementShatter(element, onCompleteCallback, customType = 'c
         height: ${shardH}px;
         ${bgStyle}
         clip-path: ${clipPoly};
-        border: 1px solid rgba(245, 238, 220, 0.2);
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.9), inset 0 0 8px rgba(245, 238, 220, 0.15);
-        transition: transform 5.6s cubic-bezier(0.1, 0.88, 0.18, 1) ${staggerDelay}s, opacity 4.2s cubic-bezier(0.4, 0, 0.2, 1) ${staggerDelay}s;
-        transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1);
+        border: 1px solid rgba(245, 238, 220, 0.25);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+        transition: transform 0.45s cubic-bezier(0.1, 0.88, 0.18, 1) ${staggerDelay}s, opacity 0.35s ease ${staggerDelay}s;
+        transform: translate3d(0, 0, 0);
         opacity: 1;
-        will-change: transform, opacity;
       `;
 
       shatterBox.appendChild(shard);
 
-      // Trigger realistic 3D tumble expansion
       requestAnimationFrame(() => {
-        shard.style.transform = `translate3d(${dirX}px, ${dirY}px, ${dirZ}px) rotateX(${rotX}deg) rotateY(${rotY}deg) rotateZ(${rotZ}deg) scale(0.85)`;
+        shard.style.transform = `translate3d(${dirX}px, ${dirY}px, ${dirZ}px) rotateX(${rotX}deg) rotateY(${rotY}deg) rotateZ(${rotZ}deg) scale(0.9)`;
         shard.style.opacity = '0';
       });
     }
   }
 
-  // Smooth cinematic view switch at 800ms
+  // Snappy responsive callback at 70ms
   setTimeout(() => {
     if (onCompleteCallback) onCompleteCallback();
-  }, 800);
+  }, 70);
 
-  // Clean up container and restore element after 5.8s
+  // Fast cleanup: Release GPU layer and reclaim memory in 450ms
   setTimeout(() => {
     shatterBox.remove();
     element.style.opacity = '1';
-  }, 5800);
+  }, 450);
 }
 
 /* --------------------------------------------------------------------------
@@ -2049,6 +2176,44 @@ const PROJECT_ARCHITECTURES = {
         specs: ['Vector Tiles', 'GeoTIFF', 'Global Power Plant DB'],
         desc: 'Dünya geneli santral tipleri, kurulu güç verileri ve kıtalararası denizaltı optik kablo koordinatlarını saklayan jeo-vektör veritabanı.',
         metrics: { throughput: '100% Offline Cache', latency: '0.2ms', acceleration: 'In-Memory Tiles' }
+      }
+    ]
+  },
+  'dona-mistik': {
+    title: 'DONA MİSTİK',
+    pid: 'EPHEMERIS AI // PID·4212',
+    layers: [
+      {
+        id: 'KATMAN 01',
+        tag: 'ASTROLOGICAL NATAL WHEEL',
+        name: 'High-Precision Planetary Ephemeris Engine',
+        specs: ['React 18', 'Ephemeris Math', 'SVG Canvas', 'Tailwind CSS'],
+        desc: '81 il ve dünya koordinatlarına göre doğum saati, yükselen burç ve gezegen evlerini anlık matematiksel efemeris ile hesaplayan interaktif natal çark.',
+        metrics: { throughput: 'Realtime Chart', latency: '0.4ms', acceleration: 'Vector SVG' }
+      },
+      {
+        id: 'KATMAN 02',
+        tag: 'COGNITIVE ARCHETYPES',
+        name: '22 Major Arcana Jungian Tarot Core',
+        specs: ['Jungian Psychology', 'Archetype Vectors', 'Analytical Tarot'],
+        desc: 'Bilinçdışı arketipleri, gölge entegrasyonunu ve bireyleşme süreçlerini derin dil modelleriyle sentezleyen bilişsel tarot analizörü.',
+        metrics: { throughput: '22 Archetypes', latency: '1.2ms', acceleration: 'Vector Embeddings' }
+      },
+      {
+        id: 'KATMAN 03',
+        tag: 'IMAGE RECOGNITION & TELVE',
+        name: 'Neural Vision Turkish Coffee Grounds Reader',
+        specs: ['Multimodal Vision AI', 'Edge Inference', 'Shape Classification'],
+        desc: 'Fincan içi sembol ve telve formasyonlarını ayırt eden, kadim sembolizm ontolojisiyle yorumlayan görsel sinir ağı boru hattı.',
+        metrics: { throughput: 'Sub-second', latency: '180ms', acceleration: 'Edge Vision' }
+      },
+      {
+        id: 'KATMAN 04',
+        tag: 'PRIVACY-FIRST STORAGE',
+        name: 'Client-Side Ephemeral Security State',
+        specs: ['LocalStorage', 'IndexedDB', 'Zero Server Leakage'],
+        desc: 'Doğum ve profil verilerini uzak sunucularda asla saklamayan, 100% istemci tarafı çalışan gizlilik odaklı mimari omurga.',
+        metrics: { throughput: 'Zero Server Logs', latency: '0.0ms', acceleration: 'Local Cache' }
       }
     ]
   },
@@ -2478,3 +2643,74 @@ function filterContactNodes(category, btn) {
     }
   });
 }
+
+/* ==========================================================================
+   DONA PERFORMANCE & RAM CONTROL ENGINE (SELF-TUNING ADAPTIVE SUPERVISOR)
+   - Real-time frame budget monitoring (FPS tracking)
+   - Automated memory cleanup (DOM pruning & VRAM bitmap disposal)
+   - Dynamic tiering (Ultra, Balanced, Eco)
+   ========================================================================== */
+window.DonaPerformanceEngine = (() => {
+  let frameCount = 0;
+  let lastTime = performance.now();
+  let currentFps = 60;
+  let tier = 'ultra'; // 'ultra' | 'balanced' | 'eco'
+  let lowFpsStreak = 0;
+
+  function monitorLoop() {
+    frameCount++;
+    const now = performance.now();
+    const elapsed = now - lastTime;
+
+    if (elapsed >= 1000) {
+      currentFps = Math.round((frameCount * 1000) / elapsed);
+      frameCount = 0;
+      lastTime = now;
+
+      // Adaptive Performance Control
+      if (currentFps < 42) {
+        lowFpsStreak++;
+        if (lowFpsStreak >= 2 && tier !== 'eco') {
+          tier = 'eco';
+          document.body.classList.add('dona-perf-eco');
+        }
+      } else {
+        lowFpsStreak = Math.max(0, lowFpsStreak - 1);
+        if (lowFpsStreak === 0 && currentFps >= 55 && tier === 'eco') {
+          tier = 'ultra';
+          document.body.classList.remove('dona-perf-eco');
+        }
+      }
+    }
+    requestAnimationFrame(monitorLoop);
+  }
+
+  function gcDisposal() {
+    // Prune detached shatter or temporary DOM artifacts
+    document.querySelectorAll('.at-screen-shatter-container').forEach(el => el.remove());
+
+    // Flush unused lightbox thumbnails if closed
+    const lbModal = document.getElementById('lightbox-modal');
+    if (lbModal && !lbModal.classList.contains('active')) {
+      const thumbs = document.getElementById('lb-thumbs');
+      if (thumbs && thumbs.children.length > 25) {
+        thumbs.innerHTML = '';
+      }
+    }
+  }
+
+  window.addEventListener('blur', gcDisposal);
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) gcDisposal();
+  });
+
+  requestAnimationFrame(monitorLoop);
+
+  return {
+    getFps: () => currentFps,
+    getTier: () => tier,
+    gc: gcDisposal,
+    status: () => ({ fps: currentFps, tier: tier, memoryTier: (navigator.deviceMemory ? navigator.deviceMemory + 'GB' : 'standard') })
+  };
+})();
+
