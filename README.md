@@ -34,7 +34,7 @@
 
 ## 🌐 Live Portfolio Website
 
-👉 **[https://dobby.donacodex.com](https://dobby.donacodex.com)** • **[GitHub Pages Mirror](https://dobby-aidev.github.io/dobby-aidev/)**
+👉 **[https://dobby.donacodex.com](https://dobby.donacodex.com)**
 
 This repository contains my personal developer portfolio site built as a futuristic **Neural Operating System (Neural OS v2.0)** deployed via **Cloudflare Pages** and **GitHub Actions**, featuring native WebP visual streaming, client-side 3D transforms, and an adaptive performance control engine.
 
