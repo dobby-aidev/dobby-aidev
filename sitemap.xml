@@ -7,7 +7,7 @@
     <xhtml:link rel="alternate" hreflang="tr" href="https://dobby.donacodex.com/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://dobby.donacodex.com/en/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dobby.donacodex.com/" />
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -16,7 +16,7 @@
     <xhtml:link rel="alternate" hreflang="tr" href="https://dobby.donacodex.com/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://dobby.donacodex.com/en/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dobby.donacodex.com/" />
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
@@ -27,7 +27,7 @@
     <xhtml:link rel="alternate" hreflang="tr" href="https://dobby.donacodex.com/work.html" />
     <xhtml:link rel="alternate" hreflang="en" href="https://dobby.donacodex.com/en/work.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dobby.donacodex.com/work.html" />
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
@@ -36,7 +36,7 @@
     <xhtml:link rel="alternate" hreflang="tr" href="https://dobby.donacodex.com/work.html" />
     <xhtml:link rel="alternate" hreflang="en" href="https://dobby.donacodex.com/en/work.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dobby.donacodex.com/work.html" />
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
@@ -47,7 +47,7 @@
     <xhtml:link rel="alternate" hreflang="tr" href="https://dobby.donacodex.com/about.html" />
     <xhtml:link rel="alternate" hreflang="en" href="https://dobby.donacodex.com/en/about.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dobby.donacodex.com/about.html" />
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.90</priority>
   </url>
@@ -56,7 +56,7 @@
     <xhtml:link rel="alternate" hreflang="tr" href="https://dobby.donacodex.com/about.html" />
     <xhtml:link rel="alternate" hreflang="en" href="https://dobby.donacodex.com/en/about.html" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://dobby.donacodex.com/about.html" />
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
@@ -64,7 +64,7 @@
   <!-- Static CV / Resume -->
   <url>
     <loc>https://dobby.donacodex.com/resume.html</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.90</priority>
   </url>
@@ -72,13 +72,13 @@
   <!-- LLM & GEO Knowledge Endpoints -->
   <url>
     <loc>https://dobby.donacodex.com/llms.txt</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://dobby.donacodex.com/llms-full.txt</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
@@ -86,13 +86,13 @@
   <!-- Live Ecosystem Platforms -->
   <url>
     <loc>https://agentcritiq.com</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://mistik.donacodex.com</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-10-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>

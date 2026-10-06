@@ -78,9 +78,9 @@ const TRANSLATIONS = {
     contact_success: 'İSTEK ALINDI ✓ (MAİL İLETİLDİ)',
     contact_error: 'GÖNDERİM BAŞARISIZ ✕',
     network_header: 'PROJELER & BAĞLANTILAR',
-    node_tab_all: 'TÜMÜ (11)',
+    node_tab_all: 'TÜMÜ (12)',
     node_tab_live: '⚡ CANLI (4)',
-    node_tab_repos: '📦 DOKÜMAN & MAĞAZA (3)',
+    node_tab_repos: '📦 DOKÜMAN, MAĞAZA & BİONLUK (4)',
     node_tab_certs: '🎓 SERTİFİKALAR (2)',
     node_tab_social: '🌐 NETWORK (3)',
     cv_download: 'ÖZGEÇMİŞ (CV / RESUME)',
@@ -125,9 +125,9 @@ const TRANSLATIONS = {
     contact_success: 'RECEIVED ✓ (MAIL DISPATCHED)',
     contact_error: 'DISPATCH FAILED ✕',
     network_header: 'PROJECTS & ECOSYSTEM',
-    node_tab_all: 'ALL (11)',
+    node_tab_all: 'ALL (12)',
     node_tab_live: '⚡ LIVE APPS (4)',
-    node_tab_repos: '📦 STORE & DOCS (3)',
+    node_tab_repos: '📦 STORE, DOCS & BIONLUK (4)',
     node_tab_certs: '🎓 CERTIFICATES (2)',
     node_tab_social: '🌐 NETWORK (3)',
     cv_download: 'CURRICULUM VITAE (RESUME)',
@@ -963,11 +963,23 @@ function initTabletGestures() {
     isSwiping = true;
     dragStartX = e.clientX;
     dragStartY = e.clientY;
+
+    try {
+      if (matrix.setPointerCapture) {
+        matrix.setPointerCapture(e.pointerId);
+      }
+    } catch (_) {}
   });
 
-  window.addEventListener('pointerup', (e) => {
+  const handlePointerEnd = (e) => {
     if (isSwiping) {
       isSwiping = false;
+      try {
+        if (matrix.releasePointerCapture && matrix.hasPointerCapture && matrix.hasPointerCapture(e.pointerId)) {
+          matrix.releasePointerCapture(e.pointerId);
+        }
+      } catch (_) {}
+
       const dx = e.clientX - dragStartX;
       const dy = e.clientY - dragStartY;
       const count = filteredProjects.length;
@@ -978,33 +990,36 @@ function initTabletGestures() {
       if (isMobile) {
         // Support both horizontal swipe (left/right) and vertical swipe (up/down)
         if (Math.abs(dx) > Math.abs(dy)) {
-          if (dx < -35) {
+          if (dx < -30) {
             activeTabletIndex = (activeTabletIndex + 1) % count;
             updateCodexTablets();
-          } else if (dx > 35) {
+          } else if (dx > 30) {
             activeTabletIndex = (activeTabletIndex - 1 + count) % count;
             updateCodexTablets();
           }
         } else {
-          if (dy < -35) {
+          if (dy < -30) {
             activeTabletIndex = (activeTabletIndex + 1) % count;
             updateCodexTablets();
-          } else if (dy > 35) {
+          } else if (dy > 30) {
             activeTabletIndex = (activeTabletIndex - 1 + count) % count;
             updateCodexTablets();
           }
         }
       } else {
-        if (dx > 50) {
+        if (dx > 45) {
           activeTabletIndex = (activeTabletIndex - 1 + count) % count;
           updateCodexTablets();
-        } else if (dx < -50) {
+        } else if (dx < -45) {
           activeTabletIndex = (activeTabletIndex + 1) % count;
           updateCodexTablets();
         }
       }
     }
-  });
+  };
+
+  window.addEventListener('pointerup', handlePointerEnd);
+  window.addEventListener('pointercancel', handlePointerEnd);
 
   // Mouse wheel logic
   matrix.addEventListener('wheel', (e) => {
@@ -1074,7 +1089,10 @@ function switchView(viewName, updateUrl = true) {
   if (targetPage) {
     targetPage.classList.add('active');
     // Scroll smoothly to top on mobile/desktop switch
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    if (document.documentElement) document.documentElement.scrollTop = 0;
+    if (document.body) document.body.scrollTop = 0;
+    targetPage.scrollTop = 0;
   }
   if (targetNav) targetNav.classList.add('active');
 

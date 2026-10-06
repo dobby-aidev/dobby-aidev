@@ -5,10 +5,13 @@
 - **Name:** Dobby B / Hüseyin Alkan KINSIZ
 - **GitHub:** https://github.com/dobby-aidev
 - **LinkedIn:** https://www.linkedin.com/in/dobbyb-aidev
+- **Bionluk (Verified Freelance & Consulting):** https://bionluk.com/dobbyb
+- **Whop Store (Digital Assets & AI Prompts):** https://whop.com/dona-ai
 - **Role:** Founder & AI Systems Architect at Dona Codex
 - **Organization:** Dona Codex (Independent AI Systems Company — https://donacodex.com)
 - **Official Portfolio:** https://dobby.donacodex.com / https://dobby-aidev.github.io/dobby-aidev/
-- **Focus Areas:** Autonomous Multi-Agent Networks, Deep Reinforcement Learning (Actor-Critic DRL), Spiking Neural Networks (FEP), Spatial Computing (3D WebGL / Three.js), Quantitative Finance, Distributed Edge Systems.
+- **Location & GEO:** Muğla, Turkey (TR-48) // Global Remote & Distributed Systems
+- **Focus Areas:** Autonomous Multi-Agent Networks, Deep Reinforcement Learning (Actor-Critic DRL), Spiking Neural Networks (FEP), Spatial Computing (3D WebGL / Three.js), Quantitative Finance, Distributed Edge Systems, Model Context Protocol (MCP), LLM System Prompt Engineering.
 
 ## Official Verified Credentials & Certifications
 - **Reinforcement Learning Specialization**
