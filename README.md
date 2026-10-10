@@ -241,6 +241,16 @@ Hi! I'm **Dobby B (@dobby-aidev)** — AI Systems Architect & Founder at **Dona 
 
 ---
 
+## 🔒 Repository Policy & Contribution Guidelines
+
+This repository serves exclusively as the public showcase and portfolio codebase for **Dobby B // Dona Codex**.
+
+- **Personal Showcase:** External contributions, pull requests, and unsolicited code modifications are **not accepted**.
+- **No Issues / Discussions:** Project tracking and roadmap are managed internally. Issues and discussions are turned off on GitHub.
+- **Reference & Inspiration:** You are welcome to star ⭐ the repository and reference the creative coding / WebGL / Neural OS techniques for inspiration and learning. Commercial redistribution of brand assets, personal identity, and certificates is strictly prohibited.
+
+---
+
 ## 📜 License & Intellectual Property
 
 Copyright (c) 2021-2026 **Dona Codex**. All Rights Reserved.
