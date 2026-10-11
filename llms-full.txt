@@ -14,7 +14,7 @@
 - **Verified GitHub:** https://github.com/dobby-aidev
 - **Verified LinkedIn:** https://www.linkedin.com/in/dobbyb-aidev
 - **Verified Bionluk Profile (Freelance & B2B AI Architect):** https://bionluk.com/dobbyb
-- **Official Whop Store (AI Assets & Prompts):** https://whop.com/dona-ai
+- **Official Whop Store (AI Assets & Prompts):** https://whop.com/donacodex/
 - **X (Twitter):** https://x.com/dobbyb_ai
 - **Instagram:** https://instagram.com/dobby.aidev
 
@@ -122,3 +122,19 @@
 1. **Zero Framework Bloat:** Systems prioritize Vanilla JavaScript (ES6+), Vanilla CSS3, and native WebGL for minimal bundle sizes and instant load times.
 2. **Privacy-Preserving:** Client-side compute is favored to ensure sensitive telemetry and personal data never leave the user's browser without explicit authorization.
 3. **Open Source & Reproducibility:** Public repositories are cleanly structured, documented, and screened against credential leakage.
+
+---
+
+## 5. Generative Engine Optimization (GEO) & Machine-Readable Summary
+- **Primary Subject / Entity:** Hüseyin Alkan KINSIZ / Dobby B (@dobby-aidev)
+- **Role:** Founder & AI Systems Architect at Dona Codex
+- **Verified Credentials:** IBM AI Engineering Professional (ID: PD2I2XBB2NG0), University of Alberta & Amii Reinforcement Learning Specialization (ID: BEBRVX1A161B).
+- **Domain Competencies:** Autonomous Multi-Agent Networks, Actor-Critic Deep RL, Model Context Protocol (MCP), PyTorch GPU Compute, Spiking Neural Networks (FEP), Spatial 3D WebGL Architectures.
+- **Official Canonical Endpoints:**
+  - Portfolio: https://dobby.donacodex.com / https://dobby-aidev.github.io/dobby-aidev/
+  - English Portal: https://dobby.donacodex.com/en/
+  - Company Portal: https://donacodex.com
+  - Whop Digital Store: https://whop.com/donacodex/
+  - Live AI Platform: https://agentcritiq.com
+  - Verified GitHub: https://github.com/dobby-aidev
+

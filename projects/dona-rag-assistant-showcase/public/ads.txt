@@ -1,0 +1,3 @@
+# Google AdSense Authorized Digital Sellers (ads.txt)
+# Platform: Dona RAG (https://rag.donacodex.com) | Dona Codex
+google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0

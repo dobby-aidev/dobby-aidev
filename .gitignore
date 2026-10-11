@@ -1,0 +1,45 @@
+# ==============================================================================
+# DONA CODEX // PRODUCTION GITIGNORE (ZERO LEAKAGE HARDENING)
+# ==============================================================================
+
+# 1. Personal & Internal Directories (LOCAL ONLY - NEVER PUSH)
+kisisel_dosyalar/
+_kisisel_medya_arsiv/
+Sertifikalar/
+personal/
+private/
+
+# 2. Local Agent & IDE Scratch Environments
+.agents/
+.impeccable/
+.gemini/
+scratch/
+chrome_temp/
+
+# 3. Security, Keys & Sensitive Files
+.env
+.env.*
+*.pem
+*.key
+*.cert
+*secret*
+*credential*
+
+# 4. OS & File System Artifacts
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+*.log
+*.bak
+*.draft.*
+
+# 5. Heavy Media & Video Renders (Local Archives)
+*.mp4
+*.mov
+
+# 6. Node & Build Caches
+node_modules/
+dist/
+build/
+.cache/

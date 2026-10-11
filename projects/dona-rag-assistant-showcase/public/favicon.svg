@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <defs>
+    <linearGradient id="favBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="rgba(255, 255, 255, 0.35)"/>
+      <stop offset="50%" stop-color="rgba(99, 102, 241, 0.4)"/>
+      <stop offset="100%" stop-color="rgba(255, 255, 255, 0.1)"/>
+    </linearGradient>
+    <linearGradient id="favCore" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="60%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#4f46e5"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Deep Obsidian Squircle Canvas -->
+  <rect width="32" height="32" rx="7.5" fill="#08090c"/>
+  <rect x="0.5" y="0.5" width="31" height="31" rx="7" fill="none" stroke="url(#favBorder)" stroke-width="1"/>
+
+  <!-- Iconic Dona Vector Prism: Geometric Hexagonal Document Vault & Spark -->
+  <!-- Outer Monolithic Shield Fold -->
+  <path d="M7 8.5C7 7.12 8.12 6 9.5 6H17L25 14V23.5C25 24.88 23.88 26 22.5 26H9.5C8.12 26 7 24.88 7 23.5V8.5Z" 
+        fill="#0e121a" stroke="#ffffff" stroke-width="1.3" stroke-linejoin="round"/>
+  
+  <!-- Precision Corner Flap -->
+  <path d="M17 6V14H25" fill="#141824" stroke="#ffffff" stroke-width="1.3" stroke-linejoin="round"/>
+
+  <!-- Neural Prism Diamond & Core Flare -->
+  <path d="M16 11L19.5 16L16 21L12.5 16Z" fill="url(#favCore)"/>
+  <circle cx="16" cy="16" r="1.3" fill="#ffffff"/>
+</svg>

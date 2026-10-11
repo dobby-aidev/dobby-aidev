@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dona RAG — Sıfır Veri Sızıntılı Kurumsal Doküman Zekâsı</title>
+
+  <meta name="description"
+    content="Kurumsal sözleşme ve teknik raporlar için %100 tarayıcı RAM belleğinde çalışan, sıfır sunucu depolamalı, Llama 3.3 70B destekli doküman zekâsı.">
+  <meta name="keywords"
+    content="Kurumsal RAG, Doküman Analizi, Sözleşme İnceleme, Sıfır Veri Sızıntısı, Web RAG, Dona Codex">
+  <meta name="theme-color" content="#08090c">
+  <link rel="canonical" href="https://rag.donacodex.com/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rag.donacodex.com/">
+  <meta property="og:title" content="Dona RAG — Kurumsal İstemci İçi Doküman Zekâsı">
+  <meta property="og:description"
+    content="Dokümanlarınızı harici buluta yüklemeden, tarayıcınızın RAM belleğinde doğrudan yapay zekâ ile sorgulayın.">
+  <meta property="og:image" content="https://rag.donacodex.com/logo.svg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Dona RAG — Kurumsal İstemci İçi Doküman Zekâsı">
+  <meta name="twitter:description"
+    content="Sözleşmelerinizi sıfır veri sızıntısıyla tarayıcınızda saniyeler içinde analiz edin.">
+  <meta name="twitter:image" content="https://rag.donacodex.com/logo.svg">
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Dona RAG",
+    "url": "https://rag.donacodex.com/",
+    "operatingSystem": "All modern browsers",
+    "applicationCategory": "BusinessApplication",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Dona Codex",
+      "url": "https://donacodex.com"
+    },
+    "description": "Kurumsal sözleşmeler ve teknik raporlar için %100 istemci içi WebAssembly destekli sıfır sızıntılı doküman zekâsı."
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="site-body">
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-group" title="Dona RAG Ana Sayfa">
+        <img src="logo.svg" alt="Dona RAG Logo" width="24" height="24" class="brand-logo-img">
+        <span class="brand-name">DONA RAG</span>
+      </a>
+
+      <nav class="nav-menu">
+        <a href="#mimari" class="nav-link">Mimari</a>
+        <a href="#tasarruf" class="nav-link">ROI Modeli</a>
+        <a href="#beta" class="nav-link">Beta</a>
+        <a href="fiyatlandirma.html" class="nav-link">Fiyatlandırma</a>
+        <a href="mimari.html" class="nav-link">Güvenlik Raporu</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="app.html" class="btn-primary">
+          Web Studio'yu Aç →
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-container">
+      <div class="hero-telemetry-badge">
+        <span class="status-dot"></span> %100 Tarayıcı RAM İzolasyonu • Sıfır Sunucu Depolaması
+      </div>
+
+      <h1 class="hero-headline">
+        Sözleşmelerinizi ve Raporlarınızı Buluta Yüklemeden,<br>
+        Doğrudan Tarayıcınızda Sorgulayın.
+      </h1>
+
+      <p class="hero-subhead">
+        WebAssembly mimarisiyle dokümanlarınız sunucuya yüklenmez ve diske yazılmaz. Tarayıcınızın RAM belleğinde ayrıştırılır, Llama 3.3 70B modeliyle saniyenin altında doğrulanmış alıntılarla yanıtlanır.
+      </p>
+
+      <div class="hero-cta-group">
+        <a href="app.html" class="btn-hero-main">✨ Web Studio'yu Başlat →</a>
+        <a href="#mimari" class="btn-hero-outline">Teknik Mimari ↓</a>
+      </div>
+
+      <!-- Hero Studio Action Dock (Direct Launch to app.html) -->
+      <div class="hero-action-dock" aria-label="Web Studio Hızlı Başlatma Kartı">
+        <a href="app.html" class="hero-dock-left" title="Web Studio'da Doküman Açın">
+          <svg class="hero-dock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="17 8 12 3 7 8"></polyline>
+            <line x1="12" y1="3" x2="12" y2="15"></line>
+          </svg>
+          <div class="hero-dock-text">
+            <strong>Dokümanınızı Sürükleyin veya Studio'da Açın</strong>
+            <span>PDF, DOCX ve TXT dosyaları doğrudan tarayıcı RAM belleğinde açılır.</span>
+          </div>
+        </a>
+
+        <div class="hero-dock-right">
+          <div class="dock-telemetry-item">
+            <span class="dock-tel-label">WASM Runtime:</span>
+            <span class="dock-tel-val">0 ms Cold-Start</span>
+          </div>
+          <div class="dock-telemetry-item">
+            <span class="dock-tel-label">Vektör Dizini:</span>
+            <span class="dock-tel-val">İstemci RAM</span>
+          </div>
+          <div class="dock-telemetry-item">
+            <span class="dock-tel-label">Sunucu Deposu:</span>
+            <span class="dock-tel-val emerald">0 Bayt (Engellendi)</span>
+          </div>
+          <a href="app.html" class="btn-dock-launch">Studio'da Başlat ↗</a>
+        </div>
+      </div>
+
+      <!-- Trust Grid Strip -->
+      <div class="trust-grid">
+        <div class="trust-item">
+          <strong>%100 İstemci İçi RAM</strong>
+          <span>Belgeleriniz cihazınızdan ayrılmaz; WebAssembly ile doğrudan tarayıcınızda ayrıştırılır.</span>
+        </div>
+        <div class="trust-item">
+          <strong>Sıfır Sunucu Depolaması</strong>
+          <span>Hiçbir veritabanında saklanmaz. Sekmeyi kapattığınız an tüm bellek temizlenir.</span>
+        </div>
+        <div class="trust-item">
+          <strong>Sub-Second Groq LPU</strong>
+          <span>Llama 3.3 70B modeliyle saniyenin altında akıcı ve deterministik çıkarım.</span>
+        </div>
+        <div class="trust-item">
+          <strong>Sayfa & Paragraf Kanıtı</strong>
+          <span>Her çıkarım için orijinal belgeden sayfa ve paragraf referansı sunar.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Architecture Showcase -->
+  <section id="mimari" class="demo-section">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">Sıfır Sızıntılı Tarayıcı İçi Pipeline</h2>
+        <p class="section-desc">Dokümanlarınızın sunucuya kaydedilmeden, doğrudan tarayıcınızın RAM belleğinde nasıl işlendiğini inceleyin.</p>
+      </div>
+
+      <div class="pipeline-3d-grid">
+        <div class="pipe-node-card active">
+          <div class="pipe-node-badge">ADIM 1</div>
+          <div class="pipe-node-title">Tarayıcı İçi WASM Parser</div>
+          <div class="pipe-node-sub">PDF.js & Mammoth</div>
+          <div class="pipe-node-status">0 B Sunucu Trafiği</div>
+        </div>
+        <div class="pipe-node-connector"><span>→</span></div>
+
+        <div class="pipe-node-card">
+          <div class="pipe-node-badge">ADIM 2</div>
+          <div class="pipe-node-title">Bellek İçi Parçalama</div>
+          <div class="pipe-node-sub">512 Karakter Pencereler</div>
+          <div class="pipe-node-status">Tarayıcı RAM</div>
+        </div>
+        <div class="pipe-node-connector"><span>→</span></div>
+
+        <div class="pipe-node-card">
+          <div class="pipe-node-badge">ADIM 3</div>
+          <div class="pipe-node-title">TF-IDF & Cosine Vektör</div>
+          <div class="pipe-node-sub">&lt; 15ms Anlamsal Eşleme</div>
+          <div class="pipe-node-status">Yerel İstemci</div>
+        </div>
+        <div class="pipe-node-connector"><span>→</span></div>
+
+        <div class="pipe-node-card">
+          <div class="pipe-node-badge">ADIM 4</div>
+          <div class="pipe-node-title">Groq LPU Çıkarım</div>
+          <div class="pipe-node-sub">Llama 3.3 70B Streaming</div>
+          <div class="pipe-node-status">Sayfa Kanıtlı</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Minimal & Advanced ROI Modeling Matrix Section -->
+  <section id="tasarruf" class="roi-section">
+    <div class="roi-container">
+      <div class="section-header">
+        <h2 class="section-title">Kurumsal Zaman ve Maliyet Tasarrufu Modeli</h2>
+        <p class="section-desc">Hukuk, ihale ve operasyon ekiplerinin doküman inceleme iş yükünü ve geri kazanım potansiyelini simüle edin.</p>
+      </div>
+
+      <!-- Preset Segment Selector -->
+      <div class="roi-preset-nav" id="roiPresets">
+        <button type="button" class="roi-preset-btn active" data-docs="80" data-pages="20">Butik Hukuk / Danışmanlık</button>
+        <button type="button" class="roi-preset-btn" data-docs="250" data-pages="35">Kurumsal Hukuk & Risk</button>
+        <button type="button" class="roi-preset-btn" data-docs="750" data-pages="50">Holding / M&A Denetimi</button>
+      </div>
+
+      <div class="roi-matrix-box">
+        <!-- Left: Precision Dual Sliders -->
+        <div class="roi-sliders-pane">
+          <div class="roi-slider-unit">
+            <label>
+              <span>Aylık İncelenen Doküman Hacmi:</span>
+              <span class="val" id="docCountVal">80 Doküman</span>
+            </label>
+            <input type="range" id="docCountSlider" class="roi-range-input" min="20" max="1000" step="10" value="80" aria-label="Aylık Doküman Hacmi">
+          </div>
+
+          <div class="roi-slider-unit">
+            <label>
+              <span>Doküman Başına Ortalama Sayfa:</span>
+              <span class="val" id="pageCountVal">20 Sayfa</span>
+            </label>
+            <input type="range" id="pageCountSlider" class="roi-range-input" min="5" max="150" step="5" value="20" aria-label="Doküman Başına Sayfa Sayısı">
+          </div>
+
+          <p style="font-size:12px; color:var(--text-muted); line-height:1.5;">
+            * Model, bir uzmanın saatlik sözleşme risk tarama süresini sektör ortalaması 120 TL/saat birim maliyeti üzerinden hesaplar.
+          </p>
+
+          <a href="app.html" class="btn-primary" style="justify-content:center; padding:10px;">
+            Bu Verimle Web Studio'da Başla →
+          </a>
+        </div>
+
+        <!-- Right: 4-KPI High-Density Readout -->
+        <div class="roi-kpi-grid">
+          <div class="roi-kpi-card">
+            <span class="kpi-val" id="hoursSavedStat">160 Saat</span>
+            <span class="kpi-lbl">Aylık Kazanılan Uzman Zamanı</span>
+            <div class="kpi-sub">~%88 İşgücü Tasarrufu</div>
+          </div>
+
+          <div class="roi-kpi-card">
+            <span class="kpi-val" style="color:var(--accent-emerald);" id="moneySavedStat">₺19.200</span>
+            <span class="kpi-lbl">Aylık Operasyonel Geri Kazanım</span>
+            <div class="kpi-sub" id="annualMoneyStat">₺230.400 / Yıl</div>
+          </div>
+
+          <div class="roi-kpi-card">
+            <span class="kpi-val">45x</span>
+            <span class="kpi-lbl">Sözleşme Tarama Hızı</span>
+            <div class="kpi-sub">Saniyeler içinde risk tespiti</div>
+          </div>
+
+          <div class="roi-kpi-card">
+            <span class="kpi-val emerald">0 B</span>
+            <span class="kpi-lbl">Bulut Depolama İzi</span>
+            <div class="kpi-sub">%100 RAM İzolasyonu</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Capabilities Grid -->
+  <section class="features-section">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">Mimari Standartlar</h2>
+        <p class="section-desc">Hassas dokümanlarınızı şirket dışı sunucu havuzlarında depolamak yerine istemci içi sıfır sızıntılı mimariyi seçin.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <h3>Tarayıcı RAM Belleği</h3>
+          <p>Belgeleriniz WebAssembly ile doğrudan tarayıcınızda ayrıştırılır. Hiçbir harici bulut sunucusuna dosya yüklenmez.</p>
+        </div>
+
+        <div class="feature-card">
+          <h3>Sub-Second LPU Akışı</h3>
+          <p>Groq LPU donanım ivmelendirmesi ile Llama 3.3 70B modeli saniyenin altında yanıt üretmeye başlar.</p>
+        </div>
+
+        <div class="feature-card">
+          <h3>Sayfa ve Madde Kanıtı</h3>
+          <p>Her iddia için orijinal belgeden sayfa ve paragraf alıntısı sunar; halüsinasyon riskini ortadan kaldırır.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Use Cases Section -->
+  <section class="use-cases-section">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 class="section-title">Kullanım Alanları</h2>
+      </div>
+
+      <div class="use-cases-grid">
+        <div class="use-case-card">
+          <span class="uc-badge">HUKUK & SÖZLEŞMELER</span>
+          <h3>Sözleşme & Protokol Analizi</h3>
+          <p>Yüzlerce sayfalık anlaşmalardaki gizli cezai şartları, tazminat maddelerini ve fesih risklerini saniyeler içinde tespit edin.</p>
+        </div>
+
+        <div class="use-case-card">
+          <span class="uc-badge">AKADEMİ & ARAŞTIRMA</span>
+          <h3>Rapor & Makale İnceleme</h3>
+          <p>Akademik PDF kaynaklarından ve karmaşık raporlardan anında yönetici özeti, çalışma kılavuzu ve doğrulanmış analizler üretin.</p>
+        </div>
+
+        <div class="use-case-card">
+          <span class="uc-badge">İHALE & TEKNİK RAPORLAR</span>
+          <h3>Şartname ve İhale Denetimi</h3>
+          <p>Kurumsal teknik şartnamelerdeki gereksinimleri, teslim kısıtlamalarını ve performans parametrelerini hızla karşılaştırın.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Advanced Beta Section (#beta) -->
+  <section id="beta" class="beta-section">
+    <div class="beta-container">
+      <div class="beta-portal-card">
+        <div class="beta-head-strip">
+          <div>
+            <h2 class="beta-title">Dona RAG Desktop — Air-Gapped Kurumsal Beta</h2>
+            <div style="font-size:12px; color:var(--text-muted); margin-top:3px;">İnternete hiç bağlanmayan bağımsız masaüstü yazılım motoru</div>
+          </div>
+          <div class="beta-badge">
+            <span class="status-dot"></span> KAPALI BETA PROGRAMI
+          </div>
+        </div>
+
+        <p class="beta-desc">
+          Savunma sanayii, bankacılık ve regülasyona tabi kurumlar için tasarlanan yerel masaüstü sürümümüz; internet bağlantısı tamamen kesilmiş ortamlarda yerel GPU ve CPU donanımınızla doğrudan çalışır.
+        </p>
+
+        <!-- Platform Matrix -->
+        <div class="beta-os-matrix">
+          <div class="beta-os-item">
+            <strong>Windows 11 / 10 (x64)</strong>
+            <span>DirectX 12 & CUDA Hızlandırma • AVX2</span>
+          </div>
+          <div class="beta-os-item">
+            <strong>macOS (Apple Silicon)</strong>
+            <span>Metal API & Unified Memory (M1–M4)</span>
+          </div>
+          <div class="beta-os-item">
+            <strong>Linux (x86_64 / ARM64)</strong>
+            <span>Air-Gapped Binary & Yerel SQLite / LanceDB</span>
+          </div>
+        </div>
+
+        <!-- Priority Waitlist Form -->
+        <form id="betaWaitlistForm" class="beta-form-grid">
+          <input type="email" id="betaEmail" class="beta-input" placeholder="Kurumsal e-posta adresiniz..." required>
+          <input type="text" id="betaCompany" class="beta-input" placeholder="Kurum / Şirket unvanı..." required>
+          <button type="submit" class="beta-submit-btn">Beta Sırasına Katıl →</button>
+        </form>
+
+        <div id="betaTicketBadge" class="beta-ticket-badge">
+          ✓ Başvurunuz alındı! <strong id="betaQueueNum">Sıradaki #143. Kurum</strong> • Doğrulama Kodunuz: <span id="betaTokenCode" style="font-family:var(--font-mono); font-weight:600;"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <!-- Centered Minimalist Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="brand-line">DONA RAG</div>
+      <p class="brand-desc">Kurumsal İstemci İçi Doküman Zekâsı Platformu</p>
+
+      <div class="footer-legal-bar">
+        <a href="kvkk.html">KVKK & Gizlilik</a>
+        <span class="sep">•</span>
+        <a href="kullanim-sartlari.html">Şartlar</a>
+        <span class="sep">•</span>
+        <a href="mimari.html">Mimari</a>
+        <span class="sep">•</span>
+        <a href="fiyatlandirma.html">Fiyatlandırma</a>
+        <span class="sep">•</span>
+        <a href="https://donacodex.com" target="_blank" rel="noopener">Dona Codex ↗</a>
+      </div>
+
+      <div class="footer-copyright-centered">
+        <p>© 2026 Dona Codex • Tüm hakları saklıdır.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive Logic & Dynamic Tab -->
+  <script>
+    // Dynamic Browser Tab Title Behavior
+    const defaultTitle = "Dona RAG — Sıfır Veri Sızıntılı Kurumsal Doküman Zekâsı";
+    const awayTitle = "✦ Dona RAG — Beklemedeyiz...";
+
+    window.addEventListener("blur", () => {
+      document.title = awayTitle;
+    });
+
+    window.addEventListener("focus", () => {
+      document.title = defaultTitle;
+    });
+
+    // ROI Modeling Matrix Logic
+    const docSlider = document.getElementById('docCountSlider');
+    const pageSlider = document.getElementById('pageCountSlider');
+    const docVal = document.getElementById('docCountVal');
+    const pageVal = document.getElementById('pageCountVal');
+    const hoursSaved = document.getElementById('hoursSavedStat');
+    const moneySaved = document.getElementById('moneySavedStat');
+    const annualMoney = document.getElementById('annualMoneyStat');
+
+    function updateROI() {
+      if (!docSlider || !pageSlider) return;
+      const docs = parseInt(docSlider.value, 10);
+      const pages = parseInt(pageSlider.value, 10);
+
+      docVal.textContent = docs + " Doküman";
+      pageVal.textContent = pages + " Sayfa";
+
+      const hours = Math.round(docs * pages * 0.1);
+      const monthlyMoney = Math.round(hours * 120);
+      const yearlyMoney = monthlyMoney * 12;
+
+      hoursSaved.textContent = hours.toLocaleString('tr-TR') + " Saat";
+      moneySaved.textContent = "₺" + monthlyMoney.toLocaleString('tr-TR');
+      annualMoney.textContent = "₺" + yearlyMoney.toLocaleString('tr-TR') + " / Yıl";
+    }
+
+    if (docSlider && pageSlider) {
+      docSlider.addEventListener('input', updateROI);
+      pageSlider.addEventListener('input', updateROI);
+      updateROI();
+    }
+
+    // ROI Presets
+    const presetBtns = document.querySelectorAll('.roi-preset-btn');
+    presetBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        presetBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const docs = parseInt(btn.dataset.docs, 10);
+        const pages = parseInt(btn.dataset.pages, 10);
+        if (docSlider && pageSlider) {
+          docSlider.value = docs;
+          pageSlider.value = pages;
+          updateROI();
+        }
+      });
+    });
+
+    // Beta Portal Form Logic
+    const betaForm = document.getElementById('betaWaitlistForm');
+    const betaEmail = document.getElementById('betaEmail');
+    const betaCompany = document.getElementById('betaCompany');
+    const betaTicketBadge = document.getElementById('betaTicketBadge');
+    const betaQueueNum = document.getElementById('betaQueueNum');
+    const betaTokenCode = document.getElementById('betaTokenCode');
+
+    if (betaForm) {
+      betaForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = betaEmail.value.trim();
+        const company = betaCompany.value.trim();
+        if (!email || !company) return;
+
+        let queue = 142;
+        try {
+          const stored = JSON.parse(localStorage.getItem('dona_rag_beta_list') || '[]');
+          queue += stored.length + 1;
+          const token = 'DRG-BETA-' + Math.floor(1000 + Math.random() * 9000);
+          stored.push({ email, company, queue, token, date: new Date().toISOString() });
+          localStorage.setItem('dona_rag_beta_list', JSON.stringify(stored));
+
+          betaQueueNum.textContent = `Sıradaki #${queue}. Kurum`;
+          betaTokenCode.textContent = token;
+        } catch(err) {
+          betaQueueNum.textContent = 'Sıradaki #143. Kurum';
+          betaTokenCode.textContent = 'DRG-BETA-7821';
+        }
+
+        betaEmail.value = '';
+        betaCompany.value = '';
+        betaTicketBadge.style.display = 'block';
+      });
+    }
+  </script>
+
+</body>
+</html>

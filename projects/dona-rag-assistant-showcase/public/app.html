@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dona RAG Studio — Kurumsal Doküman Analiz Çalışma Alanı</title>
+  
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Document Parsers (In-browser memory only) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.8.0/mammoth.browser.min.js"></script>
+
+  <style>
+    /* ==========================================================================
+       DONA RAG STUDIO — OBSIDIAN TITANIUM MONOCHROMATIC WORKSPACE
+       Brand & Architecture: Dona Codex (https://donacodex.com)
+       ========================================================================== */
+    html, body { 
+      height: 100%; 
+      margin: 0; 
+      overflow: hidden; 
+      background: #08090c; 
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .studio-app-shell { 
+      display: flex; 
+      flex-direction: column; 
+      height: 100vh; 
+      width: 100vw; 
+      position: relative; 
+      overflow: hidden;
+      background: 
+        radial-gradient(circle 900px at 50% -150px, rgba(99, 102, 241, 0.06), transparent 70%),
+        #08090c;
+    }
+    
+    /* Topbar */
+    .studio-header { 
+      height: 58px; 
+      border-bottom: 1px solid var(--border-subtle); 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between; 
+      padding: 0 20px; 
+      background: rgba(11, 14, 22, 0.94); 
+      backdrop-filter: blur(16px); 
+      flex-shrink: 0; 
+      z-index: 40;
+    }
+
+    .header-left { 
+      display: flex; 
+      align-items: center; 
+      gap: 14px; 
+    }
+
+    .btn-exit { 
+      font-size: 12px; 
+      color: var(--text-muted); 
+      text-decoration: none; 
+      padding: 6px 12px; 
+      background: var(--bg-surface); 
+      border: 1px solid var(--border-subtle); 
+      border-radius: var(--radius-sm); 
+      transition: all 0.15s ease; 
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 500;
+    }
+
+    .btn-exit:hover { 
+      color: var(--text-main); 
+      border-color: var(--border-active); 
+      background: var(--bg-surface-elevated);
+    }
+
+    .studio-brand-badge { 
+      font-size: 13.5px; 
+      font-weight: 700; 
+      letter-spacing: 0.5px;
+      display: flex; 
+      align-items: center; 
+      gap: 10px; 
+      color: var(--text-main);
+    }
+
+    .studio-brand-crest {
+      width: 26px;
+      height: 26px;
+      border-radius: 7px;
+      background: #10141f;
+      border: 1px solid var(--border-active);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .engine-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      padding: 3px 9px;
+      border-radius: 12px;
+    }
+
+    .engine-pulse-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-emerald);
+    }
+
+    .header-right { 
+      display: flex; 
+      align-items: center; 
+      gap: 8px; 
+    }
+
+    .btn-tool { 
+      background: var(--bg-surface); 
+      border: 1px solid var(--border-subtle); 
+      color: var(--text-muted); 
+      font-size: 12px; 
+      font-weight: 500;
+      padding: 6px 12px; 
+      border-radius: var(--radius-sm); 
+      cursor: pointer; 
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+
+    .btn-tool:hover { 
+      color: var(--text-main); 
+      border-color: var(--border-active); 
+      background: var(--bg-surface-elevated);
+    }
+
+    .btn-tool.btn-highlight {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--border-active);
+      color: var(--text-main);
+    }
+
+    .btn-tool.btn-highlight:hover {
+      background: rgba(255, 255, 255, 0.14);
+      border-color: rgba(255, 255, 255, 0.28);
+    }
+
+    /* Main Workspace Layout */
+    .studio-body-layout {
+      flex: 1;
+      display: flex;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Left Drawer: Fully Integrated & Scrollable Document Inspector */
+    .doc-inspector-drawer {
+      width: 340px;
+      background: #0b0e16;
+      border-right: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      flex-shrink: 0;
+      transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 30;
+      overflow: hidden;
+    }
+
+    .doc-inspector-drawer.collapsed {
+      width: 0;
+      transform: translateX(-100%);
+      border-right: none;
+    }
+
+    .drawer-head {
+      padding: 16px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: var(--text-main);
+      background: #08090c;
+      flex-shrink: 0;
+    }
+
+    .drawer-head-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-icon {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      border-radius: 4px;
+      transition: all 0.15s ease;
+    }
+
+    .btn-icon:hover {
+      color: var(--text-main);
+      background: var(--bg-surface-elevated);
+    }
+
+    .drawer-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .stat-metric-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      transition: border-color 0.15s ease;
+    }
+
+    .stat-metric-card:hover {
+      border-color: var(--border-active);
+    }
+
+    .stat-metric-label {
+      font-size: 12px;
+      font-family: var(--font-mono);
+      color: var(--text-sub);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .stat-metric-value {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+      word-break: break-all;
+    }
+
+    .drawer-download-card {
+      margin: 4px 0;
+    }
+
+    .btn-drawer-download {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      text-align: center;
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-active);
+      border-radius: var(--radius-sm);
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      transition: all 0.15s ease;
+    }
+
+    .btn-drawer-download:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .chunks-list-title {
+      font-size: 12px;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 4px;
+    }
+
+    .chunks-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .chunk-item-pill {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      font-size: 12px;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      line-height: 1.5;
+    }
+
+    .chunk-item-pill:hover {
+      border-color: var(--border-active);
+      color: var(--text-main);
+      background: var(--bg-surface-elevated);
+    }
+
+    /* Conversation Stream Area */
+    .stream-viewport { 
+      flex: 1; 
+      overflow-y: auto; 
+      padding: 28px 24px 180px; 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      position: relative;
+    }
+
+    .stream-content { 
+      width: 100%; 
+      max-width: 860px; 
+      display: flex; 
+      flex-direction: column; 
+      gap: 24px; 
+    }
+
+    /* Welcoming Empty State */
+    .empty-welcome-shell { 
+      text-align: center; 
+      margin: 6vh auto 0; 
+      max-width: 680px; 
+      display: flex;
+      flex-direction: column;
+      align-items: center; 
+      animation: fadeIn 0.3s ease;
+    }
+
+    .empty-welcome-title { 
+      font-size: 26px; 
+      font-weight: 800; 
+      letter-spacing: -0.6px; 
+      margin-bottom: 10px; 
+      color: var(--text-main); 
+    }
+
+    .empty-welcome-desc { 
+      font-size: 14px; 
+      color: var(--text-sub); 
+      line-height: 1.65; 
+      margin-bottom: 32px; 
+      max-width: 580px;
+    }
+
+    .quick-start-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      width: 100%;
+    }
+
+    .starter-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 18px 16px;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .starter-card:hover {
+      border-color: rgba(255, 255, 255, 0.28);
+      background: var(--bg-surface-elevated);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .starter-card-icon-wrap {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-main);
+      margin-bottom: 2px;
+    }
+
+    .starter-card-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .starter-card-desc {
+      font-size: 12px;
+      color: var(--text-sub);
+      line-height: 1.5;
+    }
+
+    /* Chat Messages */
+    .chat-msg-row { 
+      display: flex; 
+      gap: 14px; 
+      width: 100%; 
+      animation: fadeIn 0.25s ease; 
+    }
+
+    .chat-msg-row.user { 
+      justify-content: flex-end; 
+    }
+
+    .chat-avatar { 
+      width: 32px; 
+      height: 32px; 
+      border-radius: 8px; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      font-size: 12px; 
+      font-family: var(--font-mono); 
+      font-weight: 700; 
+      flex-shrink: 0; 
+    }
+
+    .chat-msg-row.bot .chat-avatar { 
+      background: #10141f; 
+      color: var(--text-main); 
+      border: 1px solid var(--border-active); 
+    }
+
+    .chat-msg-row.user .chat-avatar { 
+      background: rgba(255, 255, 255, 0.08); 
+      color: var(--text-main); 
+      border: 1px solid var(--border-subtle);
+    }
+    
+    .chat-bubble { 
+      max-width: 760px; 
+      background: var(--bg-surface); 
+      border: 1px solid var(--border-subtle); 
+      border-radius: var(--radius-lg); 
+      padding: 18px 22px; 
+      font-size: 14px; 
+      line-height: 1.7; 
+      color: var(--text-main); 
+      box-shadow: var(--shadow-sm);
+    }
+
+    .chat-msg-row.user .chat-bubble { 
+      background: #141824; 
+      border-color: var(--border-active); 
+    }
+
+    .chat-bubble strong {
+      color: #ffffff;
+    }
+
+    .chat-bubble ul, .chat-bubble ol {
+      margin: 10px 0 10px 20px;
+    }
+
+    .chat-bubble li {
+      margin-bottom: 6px;
+    }
+
+    .chat-bubble p {
+      margin-bottom: 10px;
+    }
+
+    .chat-bubble p:last-child {
+      margin-bottom: 0;
+    }
+    
+    /* Evidence Citations */
+    .evidence-citations { 
+      margin-top: 14px; 
+      padding-top: 12px; 
+      border-top: 1px solid var(--border-subtle); 
+      display: flex; 
+      flex-wrap: wrap; 
+      gap: 8px; 
+    }
+
+    .citation-btn { 
+      background: var(--bg-surface-elevated); 
+      border: 1px solid var(--border-active); 
+      color: var(--text-muted); 
+      font-size: 12px; 
+      font-family: var(--font-mono); 
+      padding: 5px 12px; 
+      border-radius: var(--radius-xs); 
+      cursor: pointer; 
+      transition: all 0.15s ease; 
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .citation-btn:hover { 
+      background: rgba(255, 255, 255, 0.1); 
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-1px);
+    }
+
+    /* Message Action Toolbar */
+    .msg-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 12px;
+      color: var(--text-sub);
+      font-family: var(--font-mono);
+    }
+
+    .btn-msg-action {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 12px;
+      transition: color 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .btn-msg-action:hover {
+      color: var(--text-main);
+    }
+
+    /* Floating Fixed Bottom Composer */
+    .composer-dock-container { 
+      position: absolute; 
+      bottom: 0; 
+      left: 0; 
+      width: 100%; 
+      padding: 0 20px 24px; 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      background: linear-gradient(180deg, transparent 0%, rgba(8, 9, 12, 0.88) 32%, #08090c 100%); 
+      pointer-events: none; 
+      z-index: 35;
+    }
+
+    .composer-dock-inner { 
+      width: 100%; 
+      max-width: 860px; 
+      pointer-events: auto; 
+    }
+    
+    /* Document Attachment Pill & Prompt Chips Bar */
+    .composer-pills-bar { 
+      display: flex; 
+      align-items: center; 
+      gap: 8px; 
+      margin-bottom: 10px; 
+      flex-wrap: wrap; 
+    }
+
+    .attached-file-pill { 
+      display: inline-flex; 
+      align-items: center; 
+      gap: 8px; 
+      background: #121624; 
+      border: 1px solid var(--border-active); 
+      padding: 6px 14px; 
+      border-radius: 20px; 
+      font-size: 12px; 
+      font-family: var(--font-mono); 
+      color: var(--text-main); 
+      animation: slideUp 0.2s ease; 
+    }
+
+    .attached-file-pill.hidden {
+      display: none !important;
+    }
+
+    .btn-remove-doc { 
+      background: none; 
+      border: none; 
+      color: var(--text-muted); 
+      cursor: pointer; 
+      font-size: 13px; 
+      line-height: 1; 
+      margin-left: 4px; 
+      padding: 2px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: color 0.15s ease;
+    }
+
+    .btn-remove-doc:hover { 
+      color: var(--accent-rose); 
+    }
+    
+    .quick-prompt-chips { 
+      display: flex; 
+      gap: 6px; 
+      flex-wrap: wrap;
+    }
+
+    .prompt-chip { 
+      background: rgba(255, 255, 255, 0.04); 
+      border: 1px solid var(--border-subtle); 
+      color: var(--text-muted); 
+      font-size: 12px; 
+      padding: 5px 12px; 
+      border-radius: 16px; 
+      cursor: pointer; 
+      transition: all 0.15s ease; 
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .prompt-chip:hover { 
+      color: var(--text-main); 
+      border-color: var(--border-active); 
+      background: rgba(255, 255, 255, 0.08); 
+    }
+
+    /* Composer Shell */
+    .composer-shell { 
+      background: #0e121a; 
+      border: 1px solid var(--border-active); 
+      border-radius: var(--radius-xl); 
+      padding: 10px 14px; 
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7); 
+      display: flex; 
+      flex-direction: column; 
+      gap: 6px; 
+      transition: border-color 0.15s ease, box-shadow 0.15s ease; 
+    }
+
+    .composer-shell:focus-within { 
+      border-color: rgba(255, 255, 255, 0.35); 
+      box-shadow: 0 16px 44px rgba(0, 0, 0, 0.85);
+    }
+    
+    .composer-input-row { 
+      display: flex; 
+      align-items: flex-end; 
+      gap: 10px; 
+    }
+    
+    .btn-attach-clip { 
+      width: 36px; 
+      height: 36px; 
+      border-radius: 8px; 
+      background: rgba(255, 255, 255, 0.05); 
+      border: 1px solid var(--border-subtle); 
+      color: var(--text-muted); 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      cursor: pointer; 
+      transition: all 0.15s ease; 
+      flex-shrink: 0; 
+    }
+
+    .btn-attach-clip:hover { 
+      color: var(--text-main); 
+      border-color: var(--border-active); 
+      background: rgba(255, 255, 255, 0.1); 
+    }
+
+    .composer-textarea { 
+      flex: 1; 
+      background: transparent; 
+      border: none; 
+      outline: none; 
+      color: var(--text-main); 
+      font-family: var(--font-sans); 
+      font-size: 14px; 
+      line-height: 1.5; 
+      resize: none; 
+      min-height: 24px; 
+      max-height: 160px; 
+      padding: 6px 0; 
+    }
+
+    .composer-textarea::placeholder { 
+      color: var(--text-sub); 
+    }
+
+    .btn-submit-send { 
+      width: 36px; 
+      height: 36px; 
+      border-radius: 8px; 
+      background: var(--accent-primary); 
+      color: #08090c; 
+      border: none; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      cursor: pointer; 
+      transition: all 0.15s ease; 
+      flex-shrink: 0; 
+    }
+
+    .btn-submit-send:hover { 
+      background: #e2e8f0;
+      transform: translateY(-1px);
+    }
+
+    .composer-meta-footnote { 
+      display: flex; 
+      justify-content: space-between; 
+      font-size: 12px; 
+      color: var(--text-sub); 
+      margin-top: 8px; 
+      padding: 0 8px; 
+      font-family: var(--font-mono); 
+    }
+
+    /* Drag Overlay */
+    .drag-overlay { 
+      position: absolute; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%; 
+      background: rgba(8, 9, 12, 0.94); 
+      z-index: 50; 
+      display: none; 
+      align-items: center; 
+      justify-content: center; 
+      flex-direction: column; 
+      gap: 16px; 
+      border: 2px dashed rgba(255, 255, 255, 0.35); 
+    }
+
+    .drag-overlay.active { 
+      display: flex; 
+    }
+
+    .drag-overlay-icon { 
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-active);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-main);
+    }
+
+    .drag-overlay-text { 
+      font-size: 18px; 
+      font-weight: 700; 
+      color: var(--text-main);
+    }
+
+    /* Modals */
+    .evidence-modal,
+    .paywall-modal { 
+      margin: auto; 
+      border: none; 
+      background: transparent; 
+      padding: 0; 
+    }
+
+    .evidence-modal::backdrop,
+    .paywall-modal::backdrop { 
+      background: rgba(0, 0, 0, 0.82); 
+      backdrop-filter: blur(8px); 
+    }
+
+    .evidence-window { 
+      background: var(--bg-surface); 
+      border: 1px solid var(--border-active); 
+      border-radius: var(--radius-lg); 
+      width: 640px; 
+      max-width: 92vw; 
+      padding: 24px; 
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.8); 
+    }
+
+    .evidence-head { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      margin-bottom: 16px; 
+    }
+
+    .evidence-head h3 { 
+      font-size: 15px; 
+      font-weight: 700; 
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .evidence-body { 
+      font-size: 13px; 
+      color: var(--text-muted); 
+      line-height: 1.65; 
+      max-height: 380px; 
+      overflow-y: auto; 
+      background: #08090c; 
+      padding: 16px; 
+      border-radius: var(--radius-sm); 
+      border: 1px solid var(--border-subtle); 
+      font-family: var(--font-mono); 
+      white-space: pre-wrap;
+    }
+
+    /* Paywall Window */
+    .paywall-window {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-active);
+      border-radius: var(--radius-lg);
+      width: 580px;
+      max-width: 92vw;
+      padding: 28px;
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.85);
+      text-align: left;
+    }
+
+    .paywall-badge {
+      display: inline-block;
+      font-size: 12px;
+      font-family: var(--font-mono);
+      color: var(--text-sub);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .paywall-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 10px;
+    }
+
+    .paywall-desc {
+      font-size: 13.5px;
+      color: var(--text-sub);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .paywall-features-box {
+      background: #08090c;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 12.5px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .paywall-features-box .check {
+      color: var(--accent-emerald);
+      font-weight: 700;
+      margin-right: 6px;
+    }
+
+    .paywall-btn-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-paywall-primary {
+      background: var(--accent-primary);
+      color: #08090c;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      transition: background 0.15s ease;
+    }
+
+    .btn-paywall-primary:hover {
+      background: #e2e8f0;
+    }
+
+    .btn-paywall-close {
+      background: var(--bg-surface-elevated);
+      color: var(--text-muted);
+      border: 1px solid var(--border-subtle);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 16px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+
+    .btn-paywall-close:hover {
+      color: var(--text-main);
+      border-color: var(--border-active);
+    }
+
+    @media (max-width: 768px) {
+      .quick-start-cards-grid {
+        grid-template-columns: 1fr;
+      }
+      .doc-inspector-drawer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+      }
+      .composer-meta-footnote {
+        flex-direction: column;
+        gap: 4px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hidden File Input for Paperclip Trigger -->
+  <input type="file" id="fileInput" accept=".pdf,.docx,.txt,.md" style="display:none;">
+
+  <div class="studio-app-shell" id="dropArea">
+    
+    <!-- Topbar -->
+    <header class="studio-header">
+      <div class="header-left">
+        <a href="index.html" class="btn-exit" title="Ana Sayfaya Dön">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          <span>Ana Sayfa</span>
+        </a>
+        <div class="studio-brand-badge">
+          <img src="logo.svg" alt="Dona RAG Logo" width="24" height="24" class="brand-logo-img">
+          <span>DONA RAG STUDIO</span>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <button id="btnToggleDrawer" class="btn-tool" title="Doküman Bilgilerini Göster / Gizle">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+          <span>Doküman Bilgisi</span>
+        </button>
+        <button id="btnHeaderSample" class="btn-tool btn-highlight" title="Örnek Sözleşmeyi Belleğe Yükle">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          <span>Demo Yükle</span>
+        </button>
+        <a href="Dona_RAG_Masaustu_Teknik_Dokumantasyon.pdf" download="Dona_RAG_Masaustu_Teknik_Dokumantasyon.pdf" class="btn-tool" title="Gerçek 25 Sayfalık Kurumsal Şartname Dokümanını İndir (1.2 MB)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span>Şartname (.pdf)</span>
+        </a>
+        <button id="btnClearChat" class="btn-tool" title="Sohbet Akışını Temizle">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+          <span>Temizle</span>
+        </button>
+        <a href="fiyatlandirma.html" class="btn-tool" title="Lisans ve Kurumsal Planlar">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          <span>Planlar</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- Workspace Body -->
+    <div class="studio-body-layout">
+
+      <!-- Left Drawer: Fully Integrated & Scrollable Document Inspector -->
+      <aside class="doc-inspector-drawer collapsed" id="inspectorDrawer">
+        <div class="drawer-head">
+          <div class="drawer-head-title">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span>DOKÜMAN BİLGİLERİ</span>
+          </div>
+          <button id="btnCloseDrawer" class="btn-icon" title="Kapat">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <div class="drawer-body">
+          <div class="stat-metric-card">
+            <div class="stat-metric-label">Aktif Doküman</div>
+            <div class="stat-metric-value" id="drawerDocName">Henüz Yüklenmedi</div>
+          </div>
+          
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+            <div class="stat-metric-card">
+              <div class="stat-metric-label">Bölümler</div>
+              <div class="stat-metric-value" id="drawerPageCount">0</div>
+            </div>
+            <div class="stat-metric-card">
+              <div class="stat-metric-label">Vektörler</div>
+              <div class="stat-metric-value" id="drawerChunkCount">0</div>
+            </div>
+          </div>
+          
+          <div class="drawer-download-card">
+            <a href="Dona_RAG_Masaustu_Teknik_Dokumantasyon.pdf" download="Dona_RAG_Masaustu_Teknik_Dokumantasyon.pdf" class="btn-drawer-download" title="Orijinal 25 Sayfalık Kurumsal Şartname Dokümanını İndir">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Örnek Şartnameyi İndir (PDF)</span>
+            </a>
+          </div>
+
+          <div style="position:relative; margin-top:4px;">
+            <input type="text" id="chunkSearchInput" placeholder="İndeks parçalarında ara..." style="width:100%; background:var(--bg-input); border:1px solid var(--border-subtle); border-radius:var(--radius-sm); padding:8px 12px; font-size:12px; color:var(--text-main); font-family:var(--font-sans); outline:none;">
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:2px;">
+            <div class="chunks-list-title">İndeks Parçaları (Chunks)</div>
+            <span id="chunksFilterCount" style="font-size:12px; font-family:var(--font-mono); color:var(--text-sub);">0</span>
+          </div>
+
+          <div class="chunks-list" id="drawerChunksList">
+            <div style="font-size:12px; color:var(--text-sub);">Doküman yüklendiğinde indeks parçaları burada listelenecektir.</div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Center Conversation Viewport -->
+      <main class="stream-viewport" id="streamContainer">
+        <div class="stream-content" id="chatContainer">
+          
+          <!-- Welcoming Starter Greeting -->
+          <div class="empty-welcome-shell" id="emptyWelcome">
+            <h2 class="empty-welcome-title">Kurumsal Doküman Analiz Çalışma Alanı</h2>
+            <p class="empty-welcome-desc">
+              Sözleşme, şartname ve teknik şartnamelerinizi ekleyin; sıfır sunucu sızıntısıyla tarayıcınızın geçici RAM belleğinde anında denetleyin.
+            </p>
+
+            <div class="quick-start-cards-grid">
+              <div class="starter-card" id="btnCardSample">
+                <div class="starter-card-icon-wrap">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                </div>
+                <span class="starter-card-title">Örnek Şartnameyi Başlat</span>
+                <span class="starter-card-desc">500.000$ cezai şart, %99.98 SLA ve fesih maddelerini canlı test edin.</span>
+              </div>
+              <div class="starter-card" id="btnCardUpload">
+                <div class="starter-card-icon-wrap">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                </div>
+                <span class="starter-card-title">Kendi Dosyanızı Ekleyin</span>
+                <span class="starter-card-desc">PDF, Word (.docx), TXT veya Markdown formatlarını doğrudan sürükleyin.</span>
+              </div>
+              <div class="starter-card" id="btnCardSummary">
+                <div class="starter-card-icon-wrap">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                </div>
+                <span class="starter-card-title">Yönetici Özeti Alın</span>
+                <span class="starter-card-desc">Sözleşme maddelerini, cezai şartları ve yükümlülükleri tek bakışta analiz edin.</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </main>
+
+    </div>
+
+    <!-- Fixed Bottom Floating Composer -->
+    <div class="composer-dock-container">
+      <div class="composer-dock-inner">
+        
+        <!-- Attached Document Pill & Prompt Chips -->
+        <div class="composer-pills-bar" id="docPillBar">
+          <div id="activeDocPill" class="attached-file-pill hidden">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span id="attachedFileName">dosya.pdf</span>
+            <span id="attachedStats" style="color:var(--text-sub); font-size:12px;">(0 Vektör)</span>
+            <button id="btnRemoveDoc" class="btn-remove-doc" title="Dokümanı Bellekten Kaldır">✕</button>
+          </div>
+
+          <div id="smartActionPills" class="quick-prompt-chips">
+            <button class="prompt-chip" data-action="summary">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <span>Yönetici Özeti</span>
+            </button>
+            <button class="prompt-chip" data-action="risk">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              <span>500k$ Cezai Şart</span>
+            </button>
+            <button class="prompt-chip" data-action="sla">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              <span>%99.98 Uptime & SLA</span>
+            </button>
+            <button class="prompt-chip" data-action="quiz">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+              <span>5 Kritik Soru</span>
+            </button>
+            <button class="prompt-chip" data-action="glossary">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <span>Terimler Sözlüğü</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Composer Shell -->
+        <form id="qaForm" class="composer-shell">
+          <div class="composer-input-row">
+            <button type="button" id="btnAttach" class="btn-attach-clip" title="Doküman Ekle (.pdf, .docx, .txt, .md)">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+            </button>
+            
+            <textarea 
+              id="queryInput" 
+              class="composer-textarea" 
+              placeholder="Doküman hakkında bir soru sorun veya analiz isteyin... (Shift+Enter yeni satır)" 
+              rows="1" 
+              required
+            ></textarea>
+            
+            <button type="submit" id="btnSubmit" class="btn-submit-send" title="Gönder">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+          </div>
+        </form>
+
+        <div class="composer-meta-footnote">
+          <span>🔒 6698 KVKK & GDPR Uyumlu • %100 İstemci Belleğinde İzolasyon • Sıfır Sunucu İzi</span>
+          <span id="benchmarkTime">Hazır</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Drag & Drop Overlay -->
+    <div class="drag-overlay" id="dragOverlay">
+      <div class="drag-overlay-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+      </div>
+      <div class="drag-overlay-text">Dokümanı Bırakın (PDF, Word, TXT, MD)</div>
+    </div>
+
+  </div>
+
+  <!-- Evidence Inspector Modal -->
+  <dialog id="evidenceModal" class="evidence-modal">
+    <div class="evidence-window">
+      <div class="evidence-head">
+        <h3 id="evidenceModalTitle">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Kaynak Kanıt #1
+        </h3>
+        <button id="btnCloseEvidence" class="btn-icon" title="Kapat">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="evidence-body" id="evidenceModalText">
+        Kanıt içeriği...
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Document Limit Information Modal -->
+  <dialog id="paywallModal" class="paywall-modal">
+    <div class="paywall-window">
+      <div class="paywall-badge">OTURUM SINIRI (1 DOKÜMAN)</div>
+      <h3 class="paywall-title">Aktif Doküman Sınırı</h3>
+      <p class="paywall-desc">
+        Web Studio tarayıcı sürümünde RAM bellek izolasyonu gereği aynı anda <strong>1 adet aktif doküman</strong> üzerinde çalışılmaktadır. Çoklu doküman havuzları, kurum içi özel LLM entegrasyonu ve internetsiz Air-Gapped masaüstü erişimi için kurumsal planlarımızı inceleyin.
+      </p>
+
+      <div class="paywall-features-box">
+        <div><span class="check">✓</span> <strong>Sıfır Sunucu İzi:</strong> Dokümanlarınız yalnızca tarayıcınızın geçici RAM'inde yaşar</div>
+        <div><span class="check">✓</span> <strong>Llama 3.3 70B:</strong> Groq LPU altyapısıyla anlık akıcı çıkarım</div>
+        <div><span class="check">✓</span> <strong>Kurumsal Dedicated API:</strong> Şirket içi modeller ve özel doküman havuzları</div>
+        <div><span class="check">✓</span> <strong>Air-Gapped Masaüstü (Beta):</strong> %100 çevrimdışı yerel donanım desteği</div>
+      </div>
+
+      <div class="paywall-btn-row">
+        <a href="fiyatlandirma.html" class="btn-paywall-primary">
+          Kurumsal Planları İncele →
+        </a>
+        <a href="index.html#beta" class="btn-paywall-close" style="display:inline-flex; align-items:center; justify-content:center;">
+          Beta Sırasına Katıl ↗
+        </a>
+        <button id="btnClosePaywall" class="btn-paywall-close">
+          Kapat
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+  <script>
+    // Tab Focus Switcher
+    window.addEventListener('blur', () => {
+      document.title = '⚡ Dona RAG Studio — Oturum Beklemede';
+    });
+    window.addEventListener('focus', () => {
+      document.title = 'Dona RAG Studio — Kurumsal Doküman Analiz Çalışma Alanı';
+    });
+  </script>
+  <script src="app.js"></script>
+</body>
+</html>

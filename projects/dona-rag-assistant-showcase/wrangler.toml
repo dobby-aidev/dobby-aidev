@@ -1,0 +1,6 @@
+name = "dona-rag-assistant"
+compatibility_date = "2024-09-23"
+pages_build_output_dir = "public"
+
+[vars]
+# GROQ_API_KEY can be encrypted via `wrangler secret put GROQ_API_KEY`

@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <!-- Background Canvas Radiance -->
+    <radialGradient id="donaBgGlow" cx="50%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#141826"/>
+      <stop offset="60%" stop-color="#0b0e16"/>
+      <stop offset="100%" stop-color="#08090c"/>
+    </radialGradient>
+
+    <!-- Bezel Perimeter Sheen -->
+    <linearGradient id="donaBezel" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="rgba(255, 255, 255, 0.4)"/>
+      <stop offset="35%" stop-color="rgba(99, 102, 241, 0.5)"/>
+      <stop offset="70%" stop-color="rgba(255, 255, 255, 0.15)"/>
+      <stop offset="100%" stop-color="rgba(56, 189, 248, 0.3)"/>
+    </linearGradient>
+
+    <!-- Neural Prism Core Gradient -->
+    <linearGradient id="donaCore" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="45%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#4f46e5"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Outer Architectural Squircle Bezel -->
+  <rect x="4" y="4" width="120" height="120" rx="30" fill="url(#donaBgGlow)" stroke="url(#donaBezel)" stroke-width="2"/>
+
+  <!-- Subtle Blueprint Calibration Grid Lines -->
+  <circle cx="64" cy="64" r="46" fill="none" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1" stroke-dasharray="3 4"/>
+  <circle cx="64" cy="64" r="34" fill="none" stroke="rgba(99, 102, 241, 0.12)" stroke-width="1"/>
+
+  <!-- Monolithic Vault Document Frame -->
+  <g id="dona-monolith">
+    <!-- Primary Vault Body -->
+    <path d="M34 33 C34 27.5 38.5 23 44 23 L68 23 L94 49 L94 95 C94 100.5 89.5 105 84 105 L44 105 C38.5 105 34 100.5 34 95 Z" 
+          fill="#0e121b" 
+          stroke="#ffffff" 
+          stroke-width="2.6" 
+          stroke-linejoin="round"/>
+    
+    <!-- Precision Chamfered Flap -->
+    <path d="M68 23 L68 49 L94 49" 
+          fill="#141824" 
+          stroke="#ffffff" 
+          stroke-width="2.6" 
+          stroke-linejoin="round"/>
+
+    <!-- Neural Vector Facet Cut Lines -->
+    <line x1="44" y1="62" x2="56" y2="62" stroke="rgba(255, 255, 255, 0.25)" stroke-width="2" stroke-linecap="round"/>
+    <line x1="44" y1="74" x2="54" y2="74" stroke="rgba(255, 255, 255, 0.25)" stroke-width="2" stroke-linecap="round"/>
+    <line x1="44" y1="86" x2="50" y2="86" stroke="rgba(255, 255, 255, 0.25)" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- Central Dona Neural Prism Star -->
+    <path d="M68 53 L78.5 68 L68 83 L57.5 68 Z" 
+          fill="url(#donaCore)"/>
+    
+    <!-- Focal Spark Core -->
+    <circle cx="68" cy="68" r="3.2" fill="#ffffff"/>
+  </g>
+</svg>

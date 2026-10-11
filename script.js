@@ -47,7 +47,6 @@ function handleImgError(imgEl, title) {
 const TRANSLATIONS = {
   tr: {
     hero_cert_title: 'SERTİFİKALI YAPAY ZEKA MÜHENDİSİ',
-    hero_cert_title: 'SERTİFİKALI YAPAY ZEKA MÜHENDİSİ',
     hero_cert_rl_title: 'PEKİŞTİRMELİ ÖĞRENME UZMANI',
     hero_cert_verify: 'DOĞRULA ↗',
     cert_title: 'IBM AI Engineering Professional',
@@ -77,6 +76,8 @@ const TRANSLATIONS = {
     contact_sending: 'GÖNDERİLİYOR...',
     contact_success: 'İSTEK ALINDI ✓ (MAİL İLETİLDİ)',
     contact_error: 'GÖNDERİM BAŞARISIZ ✕',
+    contact_val_required: '⚠ TÜM ALANLARI DOLDURUN',
+    contact_val_invalid: '⚠ GEÇERLİ E-POSTA VEYA @HANDLE GİRİN',
     network_header: 'PROJELER & BAĞLANTILAR',
     node_tab_all: 'TÜMÜ (12)',
     node_tab_live: '⚡ CANLI (4)',
@@ -124,6 +125,8 @@ const TRANSLATIONS = {
     contact_sending: 'SENDING...',
     contact_success: 'RECEIVED ✓ (MAIL DISPATCHED)',
     contact_error: 'DISPATCH FAILED ✕',
+    contact_val_required: '⚠ FILL IN ALL FIELDS',
+    contact_val_invalid: '⚠ ENTER VALID EMAIL OR @HANDLE',
     network_header: 'PROJECTS & ECOSYSTEM',
     node_tab_all: 'ALL (12)',
     node_tab_live: '⚡ LIVE APPS (4)',
@@ -157,6 +160,20 @@ const PROJECTS = [
     prefix: 'assets/dona_codex_vision_',
     ext: 'webp',
     repo: 'https://github.com/dobby-aidev/dona-codex-vision-showcase'
+  },
+  {
+    id: 'dona-rag',
+    pid: 'ENTERPRISE RAG // PID·4213',
+    category: 'intelligence',
+    title: 'Dona RAG Assistant',
+    meta: 'ZERO-RETENTION IN-MEMORY DOCUMENT INTELLIGENCE',
+    tech: ['Groq LPU', 'Llama-3.3-70B', 'PDF.js', 'Cloudflare Workers', 'Cosine Similarity', 'WebAssembly'],
+    desc: 'Hassas PDF, DOCX ve kod dosyalarını sunucuya kaydetmeden tamamen tarayıcı hafızasında (in-memory) ayrıştıran, vektörize eden ve Groq LPU Llama-3.3-70B ile saniyede 310 token hızında yanıtlayan sıfır-izli (zero-retention) kurumsal RAG asistanı.',
+    desc_en: 'Enterprise zero-retention in-memory document intelligence engine that parses, chunks, and vectorizes local PDFs entirely in browser RAM with zero disk I/O, streaming Llama-3.3-70B answers at 310 tok/sec via Groq LPU.',
+    img: 'assets/dona_rag_1.webp',
+    single: 'assets/dona_rag_1.webp',
+    galleryCount: 1,
+    repo: 'https://github.com/dobby-aidev/dona-rag-assistant-showcase'
   },
   {
     id: 'agent-critiq',
@@ -815,8 +832,10 @@ function initWaterAndParticles() {
 
     canvasRafId = requestAnimationFrame(render);
   }
+  /* Single kickoff — the render fn reschedules itself each frame */
   canvasRafId = requestAnimationFrame(render);
 }
+
 
 let activeTabletIndex = 0;
 
@@ -905,7 +924,7 @@ function updateCodexTablets() {
   tablets.forEach((tablet) => {
     const idx = parseInt(tablet.dataset.index, 10);
     let diff = idx - activeTabletIndex;
-    
+
     // Smooth infinite wrapping logic for 1D array
     if (diff > count / 2) diff -= count;
     if (diff < -count / 2) diff += count;
@@ -914,8 +933,8 @@ function updateCodexTablets() {
 
     if (diff === 0) {
       tablet.classList.add('cdx-active');
-      tablet.style.transform = isMobile 
-        ? `translateY(0px) translateZ(0px) scale(1)` 
+      tablet.style.transform = isMobile
+        ? `translateY(0px) translateZ(0px) scale(1)`
         : `translateX(0px) translateZ(0px) scale(1)`;
       tablet.style.opacity = '1';
       tablet.style.zIndex = '10';
@@ -959,7 +978,7 @@ function initTabletGestures() {
   matrix.addEventListener('pointerdown', (e) => {
     // Only drag on the main track to avoid interfering with detail views or nav
     if (e.target.closest('.codex-work-header') || e.target.closest('.cdx-open-btn')) return;
-    
+
     isSwiping = true;
     dragStartX = e.clientX;
     dragStartY = e.clientY;
@@ -968,7 +987,7 @@ function initTabletGestures() {
       if (matrix.setPointerCapture) {
         matrix.setPointerCapture(e.pointerId);
       }
-    } catch (_) {}
+    } catch (_) { }
   });
 
   const handlePointerEnd = (e) => {
@@ -978,7 +997,7 @@ function initTabletGestures() {
         if (matrix.releasePointerCapture && matrix.hasPointerCapture && matrix.hasPointerCapture(e.pointerId)) {
           matrix.releasePointerCapture(e.pointerId);
         }
-      } catch (_) {}
+      } catch (_) { }
 
       const dx = e.clientX - dragStartX;
       const dy = e.clientY - dragStartY;
@@ -986,7 +1005,7 @@ function initTabletGestures() {
       if (count <= 1) return;
 
       const isMobile = window.innerWidth <= 768;
-      
+
       if (isMobile) {
         // Support both horizontal swipe (left/right) and vertical swipe (up/down)
         if (Math.abs(dx) > Math.abs(dy)) {
@@ -1024,13 +1043,13 @@ function initTabletGestures() {
   // Mouse wheel logic
   matrix.addEventListener('wheel', (e) => {
     if (!document.getElementById('view-work').classList.contains('active')) return;
-    
+
     // Prevent default scrolling to keep view locked
     e.preventDefault();
 
     // debounce wheel
     if (matrix.dataset.wheelLocked === 'true') return;
-    
+
     const count = filteredProjects.length;
     if (count <= 1) return;
 
@@ -1077,10 +1096,64 @@ function filterCategoryMobile(cat, btnElement) {
 /* --------------------------------------------------------------------------
    3. SEAMLESS PAGE VIEW SWITCHING
    -------------------------------------------------------------------------- */
+function triggerCameraFlyThroughWarp(cardElement, clickEvent) {
+  let warpTunnel = document.getElementById('at-warp-portal-tunnel');
+  if (!warpTunnel) {
+    warpTunnel = document.createElement('div');
+    warpTunnel.id = 'at-warp-portal-tunnel';
+    warpTunnel.className = 'at-warp-portal-tunnel';
+    document.body.appendChild(warpTunnel);
+  }
+
+  let originX = '50%';
+  let originY = '50%';
+  if (cardElement) {
+    const r = cardElement.getBoundingClientRect();
+    originX = `${((r.left + r.width / 2) / window.innerWidth * 100).toFixed(1)}%`;
+    originY = `${((r.top + r.height / 2) / window.innerHeight * 100).toFixed(1)}%`;
+  } else if (clickEvent) {
+    originX = `${(clickEvent.clientX / window.innerWidth * 100).toFixed(1)}%`;
+    originY = `${(clickEvent.clientY / window.innerHeight * 100).toFixed(1)}%`;
+  }
+
+  warpTunnel.style.setProperty('--warp-x', originX);
+  warpTunnel.style.setProperty('--warp-y', originY);
+  warpTunnel.classList.add('active');
+
+  const workPage = document.getElementById('view-work');
+  const detailPage = document.getElementById('view-detail');
+
+  if (workPage) workPage.classList.add('warp-out-fly');
+  if (detailPage) detailPage.classList.add('warp-in-fly');
+
+  switchView('detail', false);
+
+  setTimeout(() => {
+    warpTunnel.classList.remove('active');
+    if (workPage) workPage.classList.remove('warp-out-fly');
+    if (detailPage) detailPage.classList.remove('warp-in-fly');
+  }, 500);
+}
+
 function switchView(viewName, updateUrl = true) {
   if (viewName === 'about') viewName = 'contact';
 
-  document.querySelectorAll('.at-view-page').forEach(page => page.classList.remove('active'));
+  const currentActivePage = document.querySelector('.at-view-page.active');
+  const isLeavingDetail = currentActivePage && currentActivePage.id === 'view-detail' && viewName !== 'detail';
+
+  if (isLeavingDetail) {
+    currentActivePage.classList.add('warp-reverse-exit');
+    setTimeout(() => {
+      currentActivePage.classList.remove('warp-reverse-exit');
+      currentActivePage.classList.remove('active');
+    }, 380);
+  }
+
+  document.querySelectorAll('.at-view-page').forEach(page => {
+    if (!isLeavingDetail || page.id !== 'view-detail') {
+      page.classList.remove('active');
+    }
+  });
   document.querySelectorAll('.at-nav-item').forEach(item => item.classList.remove('active'));
 
   const targetPage = document.getElementById(`view-${viewName}`);
@@ -1088,7 +1161,6 @@ function switchView(viewName, updateUrl = true) {
 
   if (targetPage) {
     targetPage.classList.add('active');
-    // Scroll smoothly to top on mobile/desktop switch
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     if (document.documentElement) document.documentElement.scrollTop = 0;
     if (document.body) document.body.scrollTop = 0;
@@ -1161,8 +1233,8 @@ function openDetail(proj, cardElement, clickEvent = null, updateUrl = true) {
   // Build Luxury 3D Arc Deck Gallery with RAM recycling
   buildMiniGallery(proj);
 
-  // Instant zero-latency fluid transition to Case Study view
-  switchView('detail', false);
+  // Spatial Camera Fly-Through & Warp Transition
+  triggerCameraFlyThroughWarp(cardElement, clickEvent);
 
   if (updateUrl && window.history && history.replaceState) {
     history.replaceState(null, '', `${window.location.pathname}#detail?p=${proj.id}`);
@@ -1273,105 +1345,8 @@ function update3DDeckPositions() {
   });
 }
 
-/* --------------------------------------------------------------------------
-   3.5 FULLSCREEN LUXURY 3D GALLERY LIGHTBOX (WARM CREAM & CHAMPAGNE)
-   -------------------------------------------------------------------------- */
-let currentLightboxProj = null;
-currentLightboxIndex = 0;
 
-function openLightbox(projId) {
-  let proj = null;
-  if (typeof projId === 'object' && projId !== null) {
-    proj = projId;
-  } else if (typeof projId === 'string') {
-    proj = PROJECTS.find(p => p.id === projId);
-  }
-  if (!proj) proj = currentDetailProject || PROJECTS[0];
-  if (!proj) return;
 
-  currentLightboxProj = proj;
-  currentLightboxIndex = activeDetailIndex || 0;
-
-  const modal = document.getElementById('lightbox-modal');
-  const title = document.getElementById('lb-title');
-  if (title) title.textContent = `${proj.title} // GALERİ`;
-
-  renderLightboxThumbs();
-  updateLightboxView();
-
-  if (modal) {
-    modal.classList.add('active');
-    modal.setAttribute('aria-hidden', 'false');
-  }
-}
-
-function closeLightbox() {
-  const modal = document.getElementById('lightbox-modal');
-  if (modal) {
-    modal.classList.remove('active');
-    modal.setAttribute('aria-hidden', 'true');
-  }
-}
-
-function stepLightbox(direction) {
-  if (!currentLightboxProj) return;
-  const count = currentLightboxProj.galleryCount || 1;
-  currentLightboxIndex = (currentLightboxIndex + direction + count) % count;
-  updateLightboxView();
-}
-
-function selectLightboxImage(index) {
-  currentLightboxIndex = index;
-  updateLightboxView();
-}
-
-function updateLightboxView() {
-  if (!currentLightboxProj) return;
-  const proj = currentLightboxProj;
-  const count = proj.galleryCount || 1;
-  const counter = document.getElementById('lb-counter');
-  const activeImg = document.getElementById('lb-active-img');
-
-  if (counter) counter.textContent = `${currentLightboxIndex + 1} / ${count}`;
-
-  const imgSrc = proj.single ? proj.single : `${proj.prefix}${currentLightboxIndex + 1}.${proj.ext}`;
-  if (activeImg) {
-    activeImg.src = imgSrc;
-    activeImg.alt = `${proj.title} Screenshot ${currentLightboxIndex + 1}`;
-  }
-
-  // Update thumb active states
-  document.querySelectorAll('.lb-thumb').forEach((thumb, idx) => {
-    if (idx === currentLightboxIndex) {
-      thumb.classList.add('active');
-      thumb.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-    } else {
-      thumb.classList.remove('active');
-    }
-  });
-}
-
-function renderLightboxThumbs() {
-  const thumbsContainer = document.getElementById('lb-thumbs');
-  if (!thumbsContainer || !currentLightboxProj) return;
-  thumbsContainer.innerHTML = '';
-
-  const proj = currentLightboxProj;
-  const count = proj.galleryCount || 1;
-
-  for (let i = 0; i < count; i++) {
-    const imgSrc = proj.single ? proj.single : `${proj.prefix}${i + 1}.${proj.ext}`;
-    const thumb = document.createElement('div');
-    thumb.className = `lb-thumb ${i === currentLightboxIndex ? 'active' : ''}`;
-    thumb.innerHTML = `<img src="${imgSrc}" alt="Thumbnail ${i + 1}" onerror="handleImgError(this, '${proj.title}')" />`;
-    thumb.addEventListener('click', () => selectLightboxImage(i));
-    thumbsContainer.appendChild(thumb);
-  }
-}
-
-/* --------------------------------------------------------------------------
-   4. TR / EN LOCALIZATION ENGINE
-   -------------------------------------------------------------------------- */
 function applyLanguage(lang) {
   currentLang = lang;
   localStorage.setItem('dobby_lang', lang);
@@ -1435,15 +1410,34 @@ async function handleContactSubmit(e) {
   const nameInput = document.getElementById('c-name');
   const contactInput = document.getElementById('c-contact');
   const msgInput = document.getElementById('c-msg');
+  const t = TRANSLATIONS[currentLang];
+
+  const name = nameInput.value.trim();
+  const contact = contactInput.value.trim();
+  const message = msgInput.value.trim();
+
+  /* ── Client-side validation ───────────────────────────────────── */
+  if (!name || !contact || !message) {
+    btn.textContent = t.contact_val_required || '⚠ TÜM ALANLARI DOLDURUN';
+    setTimeout(() => { btn.textContent = t.contact_send; }, 2500);
+    return;
+  }
+  const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact);
+  const isHandle = /^@\S+$/.test(contact);
+  if (!isEmail && !isHandle) {
+    btn.textContent = t.contact_val_invalid || '⚠ GEÇERLİ E-POSTA VEYA @HANDLE GİRİN';
+    setTimeout(() => { btn.textContent = t.contact_send; }, 2500);
+    return;
+  }
 
   const originalText = btn.textContent;
-  btn.textContent = TRANSLATIONS[currentLang].contact_sending;
+  btn.textContent = t.contact_sending;
   btn.disabled = true;
 
   const payload = {
-    name: nameInput.value.trim(),
-    contact: contactInput.value.trim(),
-    message: msgInput.value.trim(),
+    name,
+    contact,
+    message,
     timestamp: new Date().toISOString(),
     source: 'Dobby B Portfolio Active Theory Lab'
   };
@@ -1451,14 +1445,12 @@ async function handleContactSubmit(e) {
   try {
     const res = await fetch('https://dobby-contact-form.donacodex.workers.dev/', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     });
 
     if (res.ok) {
-      btn.textContent = TRANSLATIONS[currentLang].contact_success;
+      btn.textContent = t.contact_success;
       btn.style.background = 'var(--accent-cream)';
       btn.style.color = '#070709';
       document.getElementById('contact-form').reset();
@@ -1466,12 +1458,10 @@ async function handleContactSubmit(e) {
       throw new Error(`Worker status ${res.status}`);
     }
   } catch (err) {
-    console.warn('Cloudflare Worker fallback or CORS:', err);
-    // Graceful success fallback UX
-    btn.textContent = TRANSLATIONS[currentLang].contact_success;
-    btn.style.background = 'var(--accent-cream)';
-    btn.style.color = '#070709';
-    document.getElementById('contact-form').reset();
+    console.warn('Cloudflare Worker error:', err);
+    btn.textContent = t.contact_error;
+    btn.style.background = 'rgba(239,68,68,0.15)';
+    btn.style.color = '#fca5a5';
   } finally {
     setTimeout(() => {
       btn.textContent = originalText;
@@ -1482,6 +1472,7 @@ async function handleContactSubmit(e) {
   }
 }
 
+
 /* --------------------------------------------------------------------------
    6. 103 SCREENSHOT LIGHTBOX MODAL WITH ARROWS & SCROLL NAVIGATION
    -------------------------------------------------------------------------- */
@@ -1491,20 +1482,18 @@ const lbActiveImg = document.getElementById('lb-active-img');
 const lbThumbs = document.getElementById('lb-thumbs');
 const lbCounter = document.getElementById('lb-counter');
 
-const galleries = {
-  'dona-codex-vision': { title: 'Dona Codex: Vision (13 Görsel)', prefix: 'assets/dona_codex_vision_', count: 13, ext: 'webp' },
-  'agent-critiq': { title: 'Agent Critiq Platform (7 Görsel)', prefix: 'assets/agent_critiq_', count: 7, ext: 'webp' },
-  'dona-nova': { title: 'Dona Nova 3D WebGL (2 Görsel)', prefix: 'assets/dona_nova_', count: 2, ext: 'webp' },
-  'dona-mistik': { title: 'Dona Mistik Platform (6 Görsel)', prefix: 'assets/dona_mistik_', count: 6, ext: 'webp' },
-  'dona-codex-overmind': { title: 'Dona Codex: Overmind (19 Görsel)', prefix: 'assets/dona_codex_overmind_', count: 19, ext: 'webp' },
-  'dona-aeon': { title: 'Dona Æon — Spiking Neural Whitepaper', single: 'assets/dona_aeon_architecture.webp' },
-  'dona-nexus': { title: 'ApexBrain DRL Quant (8 Görsel)', prefix: 'assets/dona_nexus_', count: 8, ext: 'webp' },
-  'ai-prompt-builder': { title: 'AI Prompt Builder (10 Görsel)', prefix: 'assets/ai_prompt_builder_', count: 10, ext: 'webp' },
-  'ai-coin-empire': { title: 'AI Coin Empire Multiplayer (21 Görsel)', prefix: 'assets/ai_coin_empire_', count: 21, ext: 'webp' },
-  'dona-grid': { title: 'Dona Grid Spot Bot (5 Görsel)', prefix: 'assets/dona_grid_', count: 5, ext: 'webp' },
-  'dona-quantum': { title: 'Dona Quantum CrewAI (8 Görsel)', prefix: 'assets/dona_quantum_', count: 8, ext: 'webp' },
-  'zamanin-bekcisi': { title: 'Zamanın Bekçisi Engine (9 Görsel)', prefix: 'assets/zamanin_bekcisi_', count: 9, ext: 'webp' },
-};
+/* galleries is derived from PROJECTS — single source of truth */
+const galleries = Object.fromEntries(
+  PROJECTS.map(p => [p.id, {
+    title: p.single
+      ? `${p.title}`
+      : `${p.title} (${p.galleryCount} Görsel)`,
+    prefix: p.prefix,
+    count: p.galleryCount,
+    ext: p.ext,
+    single: p.single
+  }])
+);
 
 function openLightbox(key) {
   const config = galleries[key];
@@ -2538,11 +2527,114 @@ const PROJECT_ARCHITECTURES = {
         metrics: { throughput: 'Zero-Loss Save', latency: '0.1ms', acceleration: 'Client Storage' }
       }
     ]
+  },
+  'dona-rag': {
+    title: 'DONA RAG ASSISTANT',
+    pid: 'ENTERPRISE RAG // PID·4213',
+    layers: [
+      {
+        id: 'KATMAN 01',
+        tag: 'CLIENT PARSER & WASM EXTRACTION',
+        name: 'In-Memory PDF.js & WASM Text Streamer',
+        specs: ['PDF.js Worker', 'WebAssembly', 'Web Workers', 'Zero Disk I/O'],
+        desc: 'Yüklenen dokümanları doğrudan istemci tarayıcı RAM belleğinde izole bir worker thread içinde parçalara böler. Sunucu diskine veya veritabanına tek bir bayt dahi yazılmaz.',
+        metrics: { throughput: '15 MB/s Parsing', latency: '< 12ms', acceleration: 'Multi-Core WASM' }
+      },
+      {
+        id: 'KATMAN 02',
+        tag: 'SEMANTIC CHUNKER & VECTOR INDEX',
+        name: 'Recursive Semantic Chunker & Cosine Indexer',
+        specs: ['750-char Chunks', '100-char Overlap', 'Cosine Vector Index', 'RAM Cache'],
+        desc: 'Dokümanı anlamsal paragraflarına göre dinamik kayar pencerelerle indeksler. Sorulan soruya en yüksek semantik alaka skoruna sahip pasajları saniyeler içinde filtreler.',
+        metrics: { throughput: '500+ Chunks/sec', latency: '0.4ms Query', acceleration: 'Client SIMD Math' }
+      },
+      {
+        id: 'KATMAN 03',
+        tag: 'EDGE GATEWAY & KVKK SANITIZER',
+        name: 'Cloudflare Worker Edge Proxy & Sanitizer',
+        specs: ['Cloudflare Workers', 'Edge Caching', 'PII Masking', 'TLS 1.3 Strict'],
+        desc: 'Kullanıcı promptlarını ve doküman parçalarını uç sunucuda sanitize eder, kişisel verileri maskeler ve Groq LPU uç noktasına şifreli şekilde yönlendirir.',
+        metrics: { throughput: 'Edge Anycast', latency: '18ms Global TTFB', acceleration: 'V8 Isolate Engine' }
+      },
+      {
+        id: 'KATMAN 04',
+        tag: 'ULTRA-FAST INFERENCE ENGINE',
+        name: 'Groq LPU Llama-3.3-70B Streaming Pipeline',
+        specs: ['Groq LPU', 'Llama-3.3-70B-Versatile', 'SSE Streaming', 'Context Compression'],
+        desc: 'Alakalı bağlamı 128k bağlam penceresinde değerlendirerek saniyede 300+ token hızla akıcı yanıtlar üretir. Sıfır sunucu kaydı ile tam KVKK/GDPR uyumludur.',
+        metrics: { throughput: '310 tok/sec', latency: '< 240ms TTFT', acceleration: 'Groq LPUs Tensor Arch' }
+      }
+    ]
   }
 };
 
 let currentExplodedSeparation = 80;
 let currentArchProject = null;
+let archStageListenerAttached = false;
+
+function initArchStageParallax() {
+  if (archStageListenerAttached) return;
+  const stage = document.getElementById('arch-3d-stage');
+  const stack = document.getElementById('arch-stack');
+  if (!stage || !stack) return;
+
+  archStageListenerAttached = true;
+
+  const handlePointer = (clientX, clientY) => {
+    const rect = stage.getBoundingClientRect();
+    if (!rect.width || !rect.height) return;
+    const nx = (clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
+    const ny = (clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
+
+    const rotX = Math.max(30, Math.min(80, 56 - ny * 26));
+    const rotZ = Math.max(-65, Math.min(5, -32 + nx * 36));
+
+    stack.style.setProperty('--arch-rot-x', `${rotX.toFixed(1)}deg`);
+    stack.style.setProperty('--arch-rot-z', `${rotZ.toFixed(1)}deg`);
+  };
+
+  stage.addEventListener('mousemove', (e) => {
+    handlePointer(e.clientX, e.clientY);
+  });
+
+  stage.addEventListener('touchmove', (e) => {
+    if (e.touches && e.touches[0]) {
+      handlePointer(e.touches[0].clientX, e.touches[0].clientY);
+    }
+  }, { passive: true });
+
+  stage.addEventListener('mouseleave', () => {
+    stack.style.setProperty('--arch-rot-x', '56deg');
+    stack.style.setProperty('--arch-rot-z', '-32deg');
+  });
+}
+
+function renderArchConduits(stackEl) {
+  const existing = stackEl.querySelector('.at-arch-conduits');
+  if (existing) existing.remove();
+
+  const conduitWrap = document.createElement('div');
+  conduitWrap.className = 'at-arch-conduits';
+
+  const positions = [
+    'top: 14px; left: 14px;',
+    'top: 14px; right: 14px;',
+    'bottom: 14px; left: 14px;',
+    'bottom: 14px; right: 14px;'
+  ];
+
+  const totalHeight = currentExplodedSeparation * 3 + 20;
+  const startZ = -(currentExplodedSeparation * 1.5);
+
+  positions.forEach((pos) => {
+    const conduit = document.createElement('div');
+    conduit.className = 'at-arch-conduit';
+    conduit.style.cssText = `${pos} height: ${totalHeight}px; transform: translateZ(${startZ}px);`;
+    conduitWrap.appendChild(conduit);
+  });
+
+  stackEl.appendChild(conduitWrap);
+}
 
 function openExplodedArchitecture() {
   const proj = currentDetailProject || PROJECTS[0];
@@ -2576,8 +2668,11 @@ function openExplodedArchitecture() {
       `;
       stackEl.appendChild(slab);
     });
+
+    renderArchConduits(stackEl);
   }
 
+  initArchStageParallax();
   updateArchitectureExplosion(80);
   selectArchitectureLayer(2);
 
@@ -2601,6 +2696,11 @@ function updateArchitectureExplosion(val) {
     const offset = (i - (count - 1) / 2) * currentExplodedSeparation;
     layer.style.transform = `translateZ(${offset}px)`;
   });
+
+  const stackEl = document.getElementById('arch-stack');
+  if (stackEl) {
+    renderArchConduits(stackEl);
+  }
 }
 
 function selectArchitectureLayer(idx) {

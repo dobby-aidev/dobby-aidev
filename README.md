@@ -10,7 +10,7 @@
 [![Official Company](https://img.shields.io/badge/🏢%20Official%20Company-donacodex.com-0f172a?style=for-the-badge&logo=cloudflare&logoColor=white)](https://donacodex.com)
 [![GitHub Stars](https://img.shields.io/github/stars/dobby-aidev/dobby-aidev?style=for-the-badge&logo=github&color=f59e0b&label=⭐%20Star%20Repo)](https://github.com/dobby-aidev/dobby-aidev/stargazers)
 [![GitHub Followers](https://img.shields.io/github/followers/dobby-aidev?style=for-the-badge&logo=github&color=3b82f6&label=👤%20Follow%20%40dobby--aidev)](https://github.com/dobby-aidev)
-[![Whop Store](https://img.shields.io/badge/🛍️%20Whop%20Store-dona--ai-FFB800?style=for-the-badge)](https://whop.com/dona-ai)
+[![Whop Store](https://img.shields.io/badge/🛍️%20Whop%20Store-donacodex-FFB800?style=for-the-badge)](https://whop.com/donacodex/)
 [![Agent Critiq](https://img.shields.io/badge/Agent%20Critiq-agentcritiq.com-10b981?style=for-the-badge&logo=globe&logoColor=white)](https://agentcritiq.com)
 [![Dona Mistik](https://img.shields.io/badge/🔮%20Dona%20Mistik-Live%20AI%20Astrology-D4AF37?style=for-the-badge&logo=cloudflare&logoColor=white)](https://mistik.donacodex.com)
 [![Dona Nova](https://img.shields.io/badge/🌐%20Dona%20Nova-Live%20Platform-00C7B7?style=for-the-badge&logo=cloudflare&logoColor=white)](https://donanova.donacodex.workers.dev)
@@ -61,7 +61,7 @@ If you find this 3D Neural OS portfolio, the WebGL GLSL shaders, or any of the a
 
 - **⭐ Star this Repository:** Give a star to support open-source creative coding and bookmark it for inspiration.
 - **👤 Follow [@dobby-aidev](https://github.com/dobby-aidev):** Follow on GitHub for real-time releases of multi-agent OS tools and quant trading frameworks.
-- **🛍️ Whop Store ([whop.com/dona-ai](https://whop.com/dona-ai)):** Get access to private trading prompts, turn-key agent architectures, and direct support.
+- **🛍️ Whop Store ([whop.com/donacodex](https://whop.com/donacodex/)):** Get access to private trading prompts, turn-key agent architectures, and direct support.
 
 ---
 
@@ -71,7 +71,7 @@ Hi! I'm **Dobby B (@dobby-aidev)** — AI Systems Architect & Founder at **Dona 
 
 - 🏢 **Resmi Şirket Sitemiz (Official Company):** [donacodex.com](https://donacodex.com)
 - 🌐 **Resmi Portfolyo Sitemiz (Official Portfolio):** [dobby.donacodex.com](https://dobby.donacodex.com)
-- 🛍️ **Whop Store:** [whop.com/dona-ai](https://whop.com/dona-ai)
+- 🛍️ **Whop Store:** [whop.com/donacodex](https://whop.com/donacodex/)
 - 🌐 **Platform:** [agentcritiq.com](https://agentcritiq.com)
 - 💻 **GitHub:** [github.com/dobby-aidev](https://github.com/dobby-aidev)
 - 🤗 **Hugging Face:** [huggingface.co/dobbyb-aidev](https://huggingface.co/dobbyb-aidev)

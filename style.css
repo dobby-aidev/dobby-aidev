@@ -21,12 +21,18 @@
   --text-grey: #c4bcb2;
   --text-muted: #9c9388;
   --text-purple: #d4af37;
-  --accent-cyan: #f5eedc;
-  --accent-lime: #eedcb2;
-  --accent-emerald: #f5eedc;
-  --accent-mint: #eedcb2;
+  /* ── Canonical accent palette (2 actual values) ──────────────── */
   --accent-cream: #f5eedc;
+  /* warm cream — primary accent */
   --accent-champagne: #eedcb2;
+  /* deep champagne — secondary accent */
+
+  /* ── Semantic aliases (map to canonicals) ─────────────────────── */
+  --accent-cyan: var(--accent-cream);
+  --accent-emerald: var(--accent-cream);
+  --accent-lime: var(--accent-champagne);
+  --accent-mint: var(--accent-champagne);
+
   --accent-gold: #d4af37;
   --accent-glow: rgba(245, 238, 220, 0.45);
   --border-subtle: rgba(245, 238, 220, 0.18);
@@ -48,10 +54,22 @@
   -webkit-user-select: none;
 }
 
+/* Allow text selection on form fields and readable content */
+input,
+textarea,
+select,
+[contenteditable] {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+
 html,
 body {
   width: 100vw;
+  /* 100dvh: accounts for iOS Safari dynamic address bar; 100vh fallback for older browsers */
   height: 100vh;
+  height: 100dvh;
   overflow: hidden;
   background:
     radial-gradient(circle at 50% 10%, rgba(245, 238, 220, 0.42) 0%, rgba(238, 220, 178, 0.25) 30%, rgba(38, 30, 48, 0.98) 75%),
@@ -63,6 +81,7 @@ body {
   font-family: var(--font-at);
   -webkit-font-smoothing: antialiased;
 }
+
 
 /* ── FILM GRAIN OVERLAY ─────────────────────────────────────────────────── */
 .noise-overlay {
@@ -128,6 +147,10 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 50%;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  display: block;
 }
 
 .at-logo-top:hover .at-logo-avatar-wrap {
@@ -313,6 +336,73 @@ body {
   visibility: visible;
   pointer-events: auto;
   z-index: 10;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   SPATIAL CAMERA FLY-THROUGH & WARP TRANSITION RIG (ACTIVE THEORY 3D)
+   ═════════════════════════════════════════════════════════════════════ */
+.at-warp-portal-tunnel {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0;
+  background:
+    radial-gradient(circle at var(--warp-x, 50%) var(--warp-y, 50%), rgba(245, 238, 220, 0.5) 0%, rgba(212, 175, 55, 0.2) 28%, transparent 65%),
+    radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(7, 8, 14, 0.85) 100%);
+  mix-blend-mode: screen;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.at-warp-portal-tunnel.active {
+  opacity: 1;
+}
+
+/* Work stage accelerates forward into camera */
+.at-view-page.warp-out-fly {
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), filter 0.45s ease, opacity 0.4s ease !important;
+  transform: perspective(1000px) translateZ(550px) scale(1.6) !important;
+  filter: blur(12px) brightness(1.6) !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Detail view arrives zooming in from hyperspace depth */
+.at-view-page.warp-in-fly {
+  animation: warpFlyArrival 0.48s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+@keyframes warpFlyArrival {
+  0% {
+    transform: perspective(1200px) translateZ(-500px) scale(0.68);
+    filter: blur(14px) brightness(1.5);
+    opacity: 0;
+  }
+
+  100% {
+    transform: perspective(1200px) translateZ(0px) scale(1);
+    filter: blur(0px) brightness(1);
+    opacity: 1;
+  }
+}
+
+/* Reverse warp: Detail view pulls back into distance */
+.at-view-page.warp-reverse-exit {
+  animation: warpReverseExit 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+@keyframes warpReverseExit {
+  0% {
+    transform: perspective(1200px) translateZ(0px) scale(1);
+    filter: blur(0px);
+    opacity: 1;
+  }
+
+  100% {
+    transform: perspective(1200px) translateZ(-380px) scale(0.72);
+    filter: blur(10px);
+    opacity: 0;
+  }
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
@@ -1375,9 +1465,9 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-bottom: 2px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 
-    inset 0 0 20px rgba(0,0,0,0.8),
-    0 15px 45px rgba(0,0,0,0.8);
+  box-shadow:
+    inset 0 0 20px rgba(0, 0, 0, 0.8),
+    0 15px 45px rgba(0, 0, 0, 0.8);
   cursor: pointer;
   transition: border-color 0.3s, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, filter 0.4s ease;
 }
@@ -3433,22 +3523,22 @@ body {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
-   3D EXPLODED ARCHITECTURE DECONSTRUCTION MODAL
+   3D EXPLODED ARCHITECTURE DECONSTRUCTION MODAL (NEURAL OS LUXURY HUD)
    ═════════════════════════════════════════════════════════════════════ */
 .at-arch-modal {
   position: fixed;
   inset: 0;
   z-index: 10000;
   background:
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E"),
-    radial-gradient(circle at 20% 0%, #171512 0%, #0c0b09 70%);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+    radial-gradient(circle at 50% 20%, rgba(245, 238, 220, 0.05) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 100%, #121016 0%, #070709 85%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   display: flex;
   flex-direction: column;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .at-arch-modal.active {
@@ -3460,9 +3550,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.5rem 2.5rem;
-  border-bottom: 1px solid rgba(245, 238, 220, 0.22);
-  background: rgba(36, 30, 46, 0.6);
+  padding: 1.4rem 2.8rem;
+  border-bottom: 1px solid rgba(245, 238, 220, 0.12);
+  background: rgba(12, 11, 16, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  position: relative;
+  z-index: 10;
 }
 
 .at-arch-sub {
@@ -3484,18 +3578,18 @@ body {
 .at-arch-controls {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 20px;
 }
 
 .at-arch-slider-wrap {
   display: flex;
   align-items: center;
   gap: 14px;
-  background: rgba(38, 31, 48, 0.9);
-  border: 1px solid var(--border-cream);
+  background: rgba(18, 16, 23, 0.85);
+  border: 1px solid rgba(245, 238, 220, 0.18);
   padding: 8px 18px;
   border-radius: 999px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(245, 238, 220, 0.08);
 }
 
 .at-arch-slider-label {
@@ -3510,9 +3604,10 @@ body {
   appearance: none;
   width: 130px;
   height: 4px;
-  background: rgba(245, 238, 220, 0.25);
+  background: rgba(245, 238, 220, 0.2);
   border-radius: 2px;
   outline: none;
+  cursor: pointer;
 }
 
 #arch-explode-slider::-webkit-slider-thumb {
@@ -3522,35 +3617,68 @@ body {
   border-radius: 50%;
   background: var(--accent-cream);
   cursor: pointer;
-  box-shadow: 0 0 10px var(--accent-cream);
+  box-shadow: 0 0 12px rgba(245, 238, 220, 0.8);
+  transition: transform 0.2s ease;
+}
+
+#arch-explode-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
 }
 
 .at-arch-body {
   flex: 1;
   display: flex;
   align-items: center;
-  padding: 2rem 3vw;
+  padding: 2rem 4vw;
   gap: 4vw;
   position: relative;
   overflow: hidden;
 }
 
+/* 3D Stage with Interactive Mouse Orbit / Gyro */
 .at-arch-3d-stage {
-  flex: 1.2;
+  flex: 1.3;
   height: 100%;
+  min-height: 480px;
   display: flex;
   align-items: center;
   justify-content: center;
-  perspective: 1400px;
+  perspective: 1600px;
+  position: relative;
+  cursor: grab;
+  user-select: none;
 }
 
+.at-arch-3d-stage:active {
+  cursor: grabbing;
+}
+
+/* Central 3D Stack */
 .at-arch-stack {
-  width: 440px;
+  width: 460px;
   height: 380px;
   position: relative;
   transform-style: preserve-3d;
-  transform: rotateX(60deg) rotateZ(-38deg);
-  transition: transform 0.4s ease;
+  transform: rotateX(var(--arch-rot-x, 56deg)) rotateZ(var(--arch-rot-z, -32deg));
+  transition: transform 0.15s cubic-bezier(0.2, 0.8, 0.4, 1);
+  will-change: transform;
+}
+
+/* Holographic Laser Data Conduits linking layers */
+.at-arch-conduits {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transform-style: preserve-3d;
+}
+
+.at-arch-conduit {
+  position: absolute;
+  width: 2px;
+  background: linear-gradient(180deg, rgba(245, 238, 220, 0.05), rgba(245, 238, 220, 0.6), rgba(245, 238, 220, 0.05));
+  box-shadow: 0 0 8px rgba(245, 238, 220, 0.4);
+  transform-style: preserve-3d;
+  transition: height 0.4s ease;
 }
 
 /* Individual 3D Isometric Glass Layer Slab */
@@ -3558,25 +3686,70 @@ body {
   position: absolute;
   inset: 0;
   border-radius: 14px;
-  background: rgba(45, 36, 56, 0.88);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1.5px solid rgba(245, 238, 220, 0.35);
-  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.6), 0 0 25px rgba(245, 238, 220, 0.15);
+  background: linear-gradient(135deg, rgba(20, 18, 25, 0.85) 0%, rgba(11, 10, 15, 0.94) 100%);
+  background-image:
+    radial-gradient(rgba(245, 238, 220, 0.08) 1px, transparent 1px),
+    linear-gradient(135deg, rgba(20, 18, 25, 0.85) 0%, rgba(11, 10, 15, 0.94) 100%);
+  background-size: 18px 18px, auto;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1.5px solid rgba(245, 238, 220, 0.22);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.7),
+    0 0 20px rgba(245, 238, 220, 0.06),
+    inset 0 1px 0 rgba(245, 238, 220, 0.15);
   transform-style: preserve-3d;
   cursor: pointer;
-  padding: 1.4rem;
+  padding: 1.5rem 1.8rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s, box-shadow 0.3s, background 0.3s;
+  transition:
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
 }
 
-.at-arch-layer:hover,
+/* HUD Corner Crosshairs */
+.at-arch-layer::before,
+.at-arch-layer::after {
+  content: '+';
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: rgba(245, 238, 220, 0.3);
+  pointer-events: none;
+}
+
+.at-arch-layer::before {
+  top: 6px;
+  left: 8px;
+}
+
+.at-arch-layer::after {
+  bottom: 6px;
+  right: 8px;
+}
+
+.at-arch-layer:hover {
+  border-color: rgba(245, 238, 220, 0.5);
+  box-shadow:
+    0 25px 65px rgba(0, 0, 0, 0.8),
+    0 0 30px rgba(245, 238, 220, 0.2);
+}
+
 .at-arch-layer.selected {
   border-color: var(--accent-cream);
-  background: rgba(60, 48, 76, 0.95);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(245, 238, 220, 0.45);
+  background: linear-gradient(135deg, rgba(28, 24, 35, 0.92) 0%, rgba(15, 13, 20, 0.98) 100%);
+  background-image:
+    radial-gradient(rgba(245, 238, 220, 0.14) 1px, transparent 1px),
+    linear-gradient(135deg, rgba(28, 24, 35, 0.92) 0%, rgba(15, 13, 20, 0.98) 100%);
+  background-size: 18px 18px, auto;
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.9),
+    0 0 40px rgba(245, 238, 220, 0.35),
+    inset 0 0 25px rgba(245, 238, 220, 0.08);
 }
 
 .at-arch-layer-head {
@@ -3588,7 +3761,7 @@ body {
 .at-arch-layer-id {
   font-family: var(--font-mono);
   font-size: 0.68rem;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   color: var(--accent-champagne);
   font-weight: 700;
 }
@@ -3596,21 +3769,28 @@ body {
 .at-arch-layer-chip {
   font-family: var(--font-mono);
   font-size: 0.58rem;
-  letter-spacing: 0.1em;
-  background: rgba(245, 238, 220, 0.1);
-  border: 1px solid var(--border-cream);
-  padding: 2px 8px;
+  letter-spacing: 0.12em;
+  background: rgba(245, 238, 220, 0.08);
+  border: 1px solid rgba(245, 238, 220, 0.25);
+  padding: 3px 10px;
   border-radius: 4px;
   color: var(--text-cream);
 }
 
+.at-arch-layer.selected .at-arch-layer-chip {
+  background: rgba(245, 238, 220, 0.2);
+  border-color: var(--accent-cream);
+  color: #fff;
+  box-shadow: 0 0 10px rgba(245, 238, 220, 0.3);
+}
+
 .at-arch-layer-name {
   font-family: var(--font-sans);
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: #fff;
   letter-spacing: 0.02em;
-  margin-top: 0.5rem;
+  margin-top: 0.6rem;
 }
 
 .at-arch-layer-specs {
@@ -3621,24 +3801,46 @@ body {
 
 .at-arch-spec-pill {
   font-family: var(--font-mono);
-  font-size: 0.58rem;
+  font-size: 0.6rem;
   color: var(--text-grey);
-  background: rgba(255, 255, 255, 0.04);
-  padding: 3px 7px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 3px 8px;
   border-radius: 4px;
+}
+
+.at-arch-layer.selected .at-arch-spec-pill {
+  color: var(--text-cream);
+  border-color: rgba(245, 238, 220, 0.2);
+  background: rgba(245, 238, 220, 0.06);
 }
 
 /* Layer Inspector Panel (Right Column) */
 .at-arch-inspector {
   flex: 0.9;
-  background: rgba(38, 30, 48, 0.9);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid var(--border-cream);
+  background: rgba(14, 13, 18, 0.92);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(245, 238, 220, 0.18);
   border-radius: 16px;
-  padding: 2.2rem;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 25px rgba(245, 238, 220, 0.1);
+  padding: 2.4rem;
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.8),
+    0 0 30px rgba(245, 238, 220, 0.08),
+    inset 0 1px 0 rgba(245, 238, 220, 0.1);
   max-width: 480px;
+  position: relative;
+}
+
+.at-arch-inspector::before {
+  content: 'SPEC INSPECTOR //';
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.16em;
+  color: rgba(245, 238, 220, 0.3);
 }
 
 .at-inspector-tag {
@@ -3651,7 +3853,7 @@ body {
 
 .at-inspector-title {
   font-family: var(--font-sans);
-  font-size: 1.35rem;
+  font-size: 1.4rem;
   font-weight: 700;
   color: var(--text-bright);
   margin-bottom: 1rem;
@@ -3659,7 +3861,7 @@ body {
 
 .at-inspector-desc {
   font-family: var(--font-sans);
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   color: var(--text-grey);
   line-height: 1.7;
   margin-bottom: 1.8rem;
@@ -3669,7 +3871,7 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
-  border-top: 1px solid rgba(245, 238, 220, 0.2);
+  border-top: 1px solid rgba(245, 238, 220, 0.14);
   padding-top: 1.4rem;
 }
 
@@ -3978,7 +4180,7 @@ body {
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.2em;
-  color: rgba(255,255,255,0.2);
+  color: rgba(255, 255, 255, 0.2);
   z-index: 20;
   pointer-events: none;
 }
@@ -4002,9 +4204,9 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-bottom: 2px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 
-    inset 0 0 40px rgba(0,0,0,0.8),
-    0 30px 60px rgba(0,0,0,0.6),
+  box-shadow:
+    inset 0 0 40px rgba(0, 0, 0, 0.8),
+    0 30px 60px rgba(0, 0, 0, 0.6),
     0 0 20px rgba(245, 238, 220, 0.03);
   display: flex;
   flex-direction: column;
@@ -4140,13 +4342,13 @@ body {
   font-family: var(--font-mono);
   font-size: 9px;
   letter-spacing: 0.1em;
-  color: rgba(255,255,255,0.2);
+  color: rgba(255, 255, 255, 0.2);
   max-width: 60%;
 }
 
 .cdx-open-btn {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: var(--text-white);
   font-family: var(--font-mono);
   font-size: 11px;
@@ -4169,11 +4371,25 @@ body {
 }
 
 /* Category Specific Subtle Accents */
-.codex-tablet-slab[data-category="intelligence"] .cdx-tablet-engraved-edge { border-left: 2px solid rgba(16, 185, 129, 0.3); }
-.codex-tablet-slab[data-category="systems"] .cdx-tablet-engraved-edge { border-left: 2px solid rgba(245, 158, 11, 0.3); }
-.codex-tablet-slab[data-category="simulations"] .cdx-tablet-engraved-edge { border-left: 2px solid rgba(168, 85, 247, 0.3); }
-.codex-tablet-slab[data-category="research"] .cdx-tablet-engraved-edge { border-left: 2px solid rgba(236, 72, 153, 0.3); }
-.codex-tablet-slab[data-category="experiments"] .cdx-tablet-engraved-edge { border-left: 2px solid rgba(59, 130, 246, 0.3); }
+.codex-tablet-slab[data-category="intelligence"] .cdx-tablet-engraved-edge {
+  border-left: 2px solid rgba(16, 185, 129, 0.3);
+}
+
+.codex-tablet-slab[data-category="systems"] .cdx-tablet-engraved-edge {
+  border-left: 2px solid rgba(245, 158, 11, 0.3);
+}
+
+.codex-tablet-slab[data-category="simulations"] .cdx-tablet-engraved-edge {
+  border-left: 2px solid rgba(168, 85, 247, 0.3);
+}
+
+.codex-tablet-slab[data-category="research"] .cdx-tablet-engraved-edge {
+  border-left: 2px solid rgba(236, 72, 153, 0.3);
+}
+
+.codex-tablet-slab[data-category="experiments"] .cdx-tablet-engraved-edge {
+  border-left: 2px solid rgba(59, 130, 246, 0.3);
+}
 
 /* MOBILE RESPONSIVE TWEAKS */
 @media (max-width: 768px) {
@@ -4189,7 +4405,7 @@ body {
     letter-spacing: 0.25em;
     margin-bottom: 2px;
   }
-  
+
   .codex-nav-filters {
     display: flex;
     gap: 8px;
@@ -4207,7 +4423,7 @@ body {
   .codex-nav-filters::-webkit-scrollbar {
     display: none;
   }
-  
+
   .codex-filter-btn {
     flex-shrink: 0;
     font-size: 11px;
@@ -4230,7 +4446,7 @@ body {
   .codex-filter-btn.active::after {
     display: none;
   }
-  
+
   .codex-tablet-slab {
     width: min(88vw, 360px);
     height: min(48vh, 340px);
@@ -4239,7 +4455,7 @@ body {
   .cdx-tablet-content {
     padding: 20px 18px;
   }
-  
+
   .cdx-tablet-title {
     font-size: clamp(19px, 5.5vw, 24px);
     line-height: 1.15;
@@ -4248,7 +4464,7 @@ body {
   .cdx-tablet-tech {
     font-size: 10px;
   }
-  
+
   .cdx-tablet-metrics {
     display: none;
   }
@@ -4264,6 +4480,7 @@ body {
     letter-spacing: 0.16em;
   }
 }
+
 /* --- IBM AI Engineering Master Credential Hero Badge --- */
 /* --- Dual Hero Credentials Container --- */
 .at-hero-certs-wrap {
@@ -4301,6 +4518,7 @@ body {
   color: #e2f1ff;
   box-shadow: 0 2px 14px rgba(0, 102, 204, 0.2), inset 0 0 10px rgba(0, 166, 255, 0.08);
 }
+
 .at-hero-cert-ibm:hover {
   background: rgba(0, 102, 204, 0.18);
   border-color: rgba(0, 166, 255, 0.75);
@@ -4308,6 +4526,7 @@ body {
   transform: translateY(-1px);
   color: #ffffff;
 }
+
 .at-cert-dot-ibm {
   background: #00a6ff;
   box-shadow: 0 0 8px #00a6ff;
@@ -4344,6 +4563,7 @@ body {
 
 /* --- Mobile Ergonomics, Responsive Master Overrides & Safe Area Enhancements --- */
 @media (max-width: 768px) {
+
   /* Prevent horizontal overflow on entire mobile document */
   html,
   body {
@@ -4585,7 +4805,9 @@ body {
   .at-contact-input,
   .at-contact-textarea,
   .at-underline-input,
-  input, textarea, select {
+  input,
+  textarea,
+  select {
     font-size: 16px !important;
   }
 
@@ -4641,6 +4863,7 @@ body.dona-perf-eco * {
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
 }
+
 body.dona-perf-eco .cdx-tablet-glass,
 body.dona-perf-eco .at-circle-btn,
 body.dona-perf-eco .at-bottom-hud,
@@ -4660,4 +4883,3 @@ body.dona-perf-eco .at-exploded-panel {
   white-space: normal !important;
   border: 0 !important;
 }
-

@@ -82,6 +82,7 @@
         "sameAs": [
           "https://github.com/dobby-aidev",
           "https://www.linkedin.com/in/dobbyb-aidev",
+          "https://bionluk.com/dobbyb",
           "https://x.com/dobbyb_ai",
           "https://instagram.com/dobby.aidev"
         ],
@@ -112,7 +113,7 @@
   }
   </script>
 
-  <link rel="icon" type="image/png" href="profile.png" />
+  <link rel="icon" type="image/png" href="../profile.png" />
 
   <!-- Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -121,7 +122,7 @@
     href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet" />
 
-  <link rel="stylesheet" href="style.css?v=2026_rl_mistik_v1" />
+  <link rel="stylesheet" href="../style.css?v=2026_rl_mistik_v2" />
 </head>
 
 <body data-initial-view="contact">
@@ -133,7 +134,7 @@
   <!-- Top-Left Architectural Logo -->
   <a href="en/" onclick="if(window.switchView){switchView('home');return false;}" class="at-logo-top" title="Home">
     <div class="at-logo-avatar-wrap">
-      <img src="profile.png" class="at-logo-avatar" alt="Dobby B" onerror="this.style.display='none'" />
+      <img src="../profile.webp" class="at-logo-avatar" alt="Dobby B" onerror="this.style.display='none'" />
     </div>
     <span class="at-logo-text">Dobby B</span>
   </a>
@@ -230,7 +231,7 @@
         <div class="at-ring-outer"></div>
         <div class="at-ring-inner"></div>
         <div class="at-ring-core-avatar-wrap">
-          <img src="profile.png" class="at-ring-core-avatar" alt="Dobby B Profile" />
+          <img src="../profile.webp" class="at-ring-core-avatar" alt="Dobby B Profile" width="124" height="124" fetchpriority="high" />
         </div>
       </div>
       <a href="https://donacodex.com" target="_blank" rel="noopener noreferrer" class="at-hero-company-badge">
@@ -341,14 +342,26 @@
           <div class="at-network-header" data-i18n="network_header">PROJECTS &amp; ECOSYSTEM</div>
 
           <div class="at-node-filters">
-            <button class="at-node-filter active" onclick="filterNetworkTiles('all', this)" data-i18n="node_tab_all">ALL (11)</button>
+            <button class="at-node-filter active" onclick="filterNetworkTiles('all', this)" data-i18n="node_tab_all">ALL (12)</button>
             <button class="at-node-filter" onclick="filterNetworkTiles('live', this)" data-i18n="node_tab_live">⚡ LIVE APPS (4)</button>
-            <button class="at-node-filter" onclick="filterNetworkTiles('repos', this)" data-i18n="node_tab_repos">📦 STORE &amp; DOCS (3)</button>
+            <button class="at-node-filter" onclick="filterNetworkTiles('repos', this)" data-i18n="node_tab_repos">📦 STORE, DOCS &amp; BIONLUK (4)</button>
             <button class="at-node-filter" onclick="filterNetworkTiles('certs', this)" data-i18n="node_tab_certs">🎓 CERTIFICATES (2)</button>
             <button class="at-node-filter" onclick="filterNetworkTiles('social', this)" data-i18n="node_tab_social">🌐 NETWORK (3)</button>
           </div>
 
           <div class="at-network-grid" id="network-grid">
+            <!-- Bionluk (Freelance / B2B AI Architect) -->
+            <a href="https://bionluk.com/dobbyb" target="_blank" rel="noopener noreferrer"
+              class="at-network-tile" data-cat="repos" title="Bionluk Profile — AI Systems Architect & Freelance Services">
+              <div class="at-node-left">
+                <span class="at-node-badge" style="background:rgba(235, 77, 75, 0.15); color:#eb4d4b; border-color:rgba(235, 77, 75, 0.4); font-weight:700;">BIONLUK</span>
+                <div class="at-node-info">
+                  <span class="at-node-title">BIONLUK PROFILE</span>
+                  <span class="at-node-sub">bionluk.com/dobbyb // AI Systems &amp; Consulting</span>
+                </div>
+              </div>
+              <span class="at-network-arrow" style="color:#eb4d4b;">EXPERT ↗</span>
+            </a>
             <a href="https://coursera.org/share/01556978dc385b43fc0eb91413f38378" target="_blank" rel="noopener noreferrer"
               class="at-network-tile" data-cat="certs">
               <div class="at-node-left">
@@ -474,7 +487,7 @@
 
   </main>
 
-  <script src="script.js?v=verified_links_preloaded_v23"></script>
+  <script src="../script.js?v=verified_links_preloaded_v23"></script>
 </body>
 
 </html>

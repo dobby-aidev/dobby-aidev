@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KVKK & Gizlilik Bildirimi — Dona RAG | Dona Codex</title>
+  <meta name="description" content="6698 Sayılı KVKK ve AB GDPR Kapsamında Dona RAG Kurumsal Aydınlatma Metni.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="canonical" href="https://rag.donacodex.com/kvkk.html">
+  <meta name="google-adsense-account" content="ca-pub-XXXXXXXXXXXXXXXX">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="KVKK & Gizlilik Bildirimi — Dona RAG">
+  <meta property="og:image" content="https://rag.donacodex.com/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body.site-body { overflow-y: auto !important; }
+    .doc-page { max-width: 860px; margin: 40px auto 80px; padding: 0 24px; }
+    .back-nav { display: inline-flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: 12px; margin-bottom: 28px; padding: 6px 12px; background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); transition: all 0.15s ease; text-decoration: none; }
+    .back-nav:hover { color: var(--text-main); border-color: var(--border-active); }
+    .doc-header { margin-bottom: 32px; border-bottom: 1px solid var(--border-subtle); padding-bottom: 20px; }
+    .doc-header h1 { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 8px; }
+    .doc-meta { font-size: 12px; font-family: var(--font-mono); color: var(--text-sub); }
+    .doc-content h2 { font-size: 16px; font-weight: 700; margin: 28px 0 10px; color: var(--text-main); }
+    .doc-content p { color: var(--text-muted); font-size: 13.5px; line-height: 1.7; margin-bottom: 14px; }
+    .doc-content ul { padding-left: 20px; margin-bottom: 16px; color: var(--text-muted); font-size: 13.5px; line-height: 1.7; }
+    .doc-content li { margin-bottom: 6px; }
+    .callout { background: var(--bg-surface); border: 1px solid var(--border-active); padding: 16px 20px; border-radius: var(--radius-sm); margin: 24px 0; font-size: 13px; color: var(--text-main); box-shadow: var(--shadow-sm); }
+  </style>
+</head>
+<body class="site-body">
+
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-group">
+        <img src="logo.svg" alt="Dona RAG Logo" width="24" height="24" class="brand-logo-img">
+        <span class="brand-name">DONA RAG</span>
+      </a>
+      <div class="nav-actions">
+        <a href="app.html" class="btn-primary">Doküman Analizine Başla →</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="doc-page">
+    <a href="index.html" class="back-nav">← Ana Sayfaya Dön</a>
+    
+    <header class="doc-header">
+      <h1>Kişisel Verilerin Korunması ve Gizlilik Bildirimi</h1>
+      <div class="doc-meta">Mevzuat: 6698 Sayılı KVKK & AB GDPR • Yürürlük Tarihi: 08 Ekim 2026 • Dona Codex</div>
+    </header>
+
+    <article class="doc-content">
+      <div class="callout">
+        <strong>Kurumsal Güvenlik Taahhüdü:</strong> Dona RAG, "Sıfır Veri Depolaması" (Zero-Persistence) ve "Uç Noktada İzolasyon" prensipleriyle çalışır. Yüklediğiniz dokümanlar hiçbir sunucu diski üzerinde saklanmaz, veritabanına yazılmaz ve model eğitimi için kullanılmaz.
+      </div>
+
+      <h2>1. Veri Sorumlusu ve Kapsam</h2>
+      <p>
+        İşbu Aydınlatma Metni, 6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") m. 10 ile Avrupa Birliği Genel Veri Koruma Tüzüğü ("GDPR") kapsamında; <strong>Dona Codex</strong> yazılım laboratuvarı bünyesinde geliştirilen <strong>Dona RAG</strong> masaüstü ve web platformu kullanıcılarının veri güvenliği süreçlerini açıklamak amacıyla hazırlanmıştır.
+      </p>
+
+      <h2>2. Dokümanların İşlenme Biçimi ve Tarayıcı Belleği İzolasyonu</h2>
+      <p>
+        Dona RAG mimarisi, geleneksel bulut tabanlı yazılımlardan farklı olarak uçtan uca istemci odaklıdır:
+      </p>
+      <ul>
+        <li><strong>Yerel Ayrıştırma:</strong> Sisteme yüklenen PDF, DOCX, TXT ve MD uzantılı dokümanlar istemcinin yerel tarayıcısında (WebAssembly ve bellek çalışma alanında) okunur.</li>
+        <li><strong>Geçici Vektör İndeksleme:</strong> Metin parçaları ve TF-IDF/vektör hesaplamaları tarayıcının geçici RAM belleğinde tutulur. Sekme kapatıldığında veya "Temizle" butonuna basıldığında tüm veriler bellekten anında silinir.</li>
+        <li><strong>Sunucu Depolama Reddi:</strong> Cloudflare veya Dona Codex altyapısında hiçbir kullanıcı dokümanı kalıcı diske (Disk, S3, SQL vb.) kaydedilmez.</li>
+      </ul>
+
+      <h2>3. Yapay Zekâ Çıkarım Ağı ve Veri İletimi</h2>
+      <p>
+        Kullanıcı soru yönelttiğinde, yalnızca ilgili sorunun yanıtlanabilmesi için gereken <em>en yüksek benzerliğe sahip birkaç metin parçası (Top-K)</em> şifreli HTTPS kanalı üzerinden Dona RAG Çıkarım Ağına (Dona Neural Inference Core) iletilir. Bu veriler:
+      </p>
+      <ul>
+        <li>Kurumsal API gizlilik sözleşmeleri uyarınca kesinlikle modellerin eğitimi veya ağırlık güncellemeleri için saklanmaz.</li>
+        <li>İşlem tamamlandığında oturum logları hariç anlık olarak imha edilir.</li>
+      </ul>
+
+      <h2>4. Çerezler ve Yerel Depolama (Local Storage)</h2>
+      <p>
+        Platformda kullanıcı deneyimini sağlamak için yalnızca tarayıcınızın <code>localStorage</code> alanında teknik tercihler tutulur. Bu veriler hiçbir harici sunucuya veya üçüncü taraf analitik aracına aktarılmaz.
+      </p>
+
+      <h2>5. İletişim & Hak Talepleri</h2>
+      <p>
+        Veri güvenliği ve KVKK kapsamındaki resmi başvurularınız için doğrudan kurumsal e-posta adresimiz üzerinden iletişime geçebilirsiniz: <a href="mailto:info@donacodex.com" style="color:var(--accent-gold); font-weight:600;">info@donacodex.com</a> veya ana şirketimiz <a href="https://donacodex.com" style="color:var(--accent-gold); font-weight:600;" target="_blank" rel="noopener">Dona Codex</a>.
+      </p>
+    </article>
+  </div>
+
+  <!-- Centered Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand-centered">
+        <div class="brand-line">
+          <span class="gold-mark">✦</span>
+          <strong>DONA RAG</strong>
+        </div>
+        <p class="brand-desc">Kurumsal Doküman Zekâsı & Sıfır Veri Sızıntılı RAG Mimarisi</p>
+      </div>
+
+      <div class="footer-legal-bar">
+        <a href="kvkk.html" class="legal-link" style="color:var(--text-main);">KVKK & Gizlilik</a>
+        <span class="sep">•</span>
+        <a href="kullanim-sartlari.html" class="legal-link">Şartlar</a>
+        <span class="sep">•</span>
+        <a href="mimari.html" class="legal-link">Mimari</a>
+        <span class="sep">•</span>
+        <a href="fiyatlandirma.html" class="legal-link">Fiyatlandırma</a>
+        <span class="sep">•</span>
+        <a href="https://donacodex.com" target="_blank" rel="noopener" class="legal-link portal-link">Dona Codex ↗</a>
+      </div>
+      <div class="footer-copyright-centered">
+        <p>© 2026 <strong>Dona Codex</strong> • Tüm hakları saklıdır.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistem Mimarisi & Güvenlik Raporu — Dona RAG | Dona Codex</title>
+  <meta name="description" content="Dona RAG Teknik Mimarisi, Bellek İçi Vektör İndeksleme ve Kurumsal Güvenlik Şeması.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="canonical" href="https://rag.donacodex.com/mimari.html">
+  <meta name="google-adsense-account" content="ca-pub-XXXXXXXXXXXXXXXX">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Sistem Mimarisi & Güvenlik Raporu — Dona RAG">
+  <meta property="og:image" content="https://rag.donacodex.com/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body.site-body { overflow-y: auto !important; }
+    .doc-page { max-width: 860px; margin: 40px auto 80px; padding: 0 24px; }
+    .back-nav { display: inline-flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: 12px; margin-bottom: 28px; padding: 6px 12px; background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); transition: all 0.15s ease; text-decoration: none; }
+    .back-nav:hover { color: var(--text-main); border-color: var(--border-active); }
+    .doc-header { margin-bottom: 32px; border-bottom: 1px solid var(--border-subtle); padding-bottom: 20px; }
+    .doc-header h1 { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 8px; }
+    .doc-meta { font-size: 11px; font-family: var(--font-mono); color: var(--accent-gold); }
+    .doc-content h2 { font-size: 16px; font-weight: 700; margin: 28px 0 10px; color: var(--text-main); }
+    .doc-content p { color: var(--text-muted); font-size: 13.5px; line-height: 1.7; margin-bottom: 14px; }
+    .arch-diagram { background: #08080b; border: 1px solid var(--border-accent); border-radius: var(--radius-md); padding: 20px; font-family: var(--font-mono); font-size: 12px; line-height: 1.6; color: #a5a5b5; overflow-x: auto; margin: 24px 0; }
+    .spec-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 13px; }
+    .spec-table th, .spec-table td { border: 1px solid var(--border-subtle); padding: 12px 14px; text-align: left; }
+    .spec-table th { background: var(--bg-surface); color: var(--text-main); font-weight: 600; }
+    .spec-table td { color: var(--text-muted); }
+    .highlight-cell { color: var(--accent-emerald) !important; font-family: var(--font-mono); font-weight: 600; }
+  </style>
+</head>
+<body class="site-body">
+
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-group">
+        <img src="logo.svg" alt="Dona RAG Logo" width="24" height="24" class="brand-logo-img">
+        <span class="brand-name">DONA RAG</span>
+      </a>
+      <div class="nav-actions">
+        <a href="app.html" class="btn-primary">Doküman Analizine Başla →</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="doc-page">
+    <a href="index.html" class="back-nav">← Ana Sayfaya Dön</a>
+    
+    <header class="doc-header">
+      <h1>Teknik Sistem Mimarisi & Güvenlik Şeması</h1>
+      <div class="doc-meta">Kurumsal Güvenlik Raporu (Whitepaper) • Versiyon: 2.5 • Dona Codex</div>
+    </header>
+
+    <article class="doc-content">
+      <h2>1. Mimari Genel Bakış & Teknik Standartlar</h2>
+      <p>
+        Dona RAG, kurumsal ve kişisel gizlilik hassasiyeti yüksek dokümanların (hukuki sözleşmeler, ihale şartnameleri, araştırma raporları) analizinde <strong>"Sıfır Sunucu Depolaması ve İstemci İçi RAM İzolasyonu"</strong> garantisi sunmak üzere tasarlanmış modern WebAssembly tabanlı doküman zekâsı mimarisidir.
+      </p>
+
+      <!-- Technical Whitepaper Card -->
+      <div style="background:var(--bg-surface); border:1px solid var(--border-active); border-radius:var(--radius-md); padding:20px 24px; margin:22px 0; display:flex; align-items:center; justify-content:space-between; gap:18px; flex-wrap:wrap; box-shadow:var(--shadow-sm);">
+        <div>
+          <div style="font-size:12px; font-family:var(--font-mono); color:var(--text-sub); font-weight:700; letter-spacing:0.5px;">KURUMSAL GÜVENLİK BİLGİLENDİRMESİ</div>
+          <h3 style="font-size:16px; font-weight:800; color:var(--text-main); margin:4px 0;">Dona RAG Mimari ve Güvenlik Raporu</h3>
+          <p style="font-size:13px; color:var(--text-muted); margin:0;">WebAssembly bellek izolasyonu, sıfır telemetri politikası ve Groq LPU uç model iletişim standartları.</p>
+        </div>
+        <a href="app.html" style="display:inline-flex; align-items:center; gap:8px; padding:10px 18px; background:#ffffff; color:#08090c; font-weight:700; font-size:13px; border-radius:var(--radius-sm); text-decoration:none; transition:background 0.15s ease;">
+          Web Studio'da İncele →
+        </a>
+      </div>
+
+      <div class="arch-diagram">
+[KULLANICI WEB TARAYICISI (Chrome / Edge / Safari / Firefox)]
+  │
+  ├── 1. Doküman Girişi (PDF / DOCX / TXT / MD)
+  │      └── Dosyalar asla sunucuya yüklenmez; doğrudan tarayıcı belleğine (RAM) okunur.
+  │
+  ├── 2. İstemci İçi Ayrıştırıcı (WebAssembly PDF.js & Mammoth Worker)
+  │      └── 0 Bayt sunucu trafiği ile tarayıcıda metin ayıklama.
+  │
+  ├── 3. Dinamik Bloklama (Chunking)
+  │      └── 512 karakterlik anlamsal pencereler + 64 karakter ardışık örtüşme.
+  │
+  ├── 4. Bellek İçi Vektör Dizini (In-Memory TF-IDF & Cosine Similarity)
+  │      └── &lt; 15ms gecikmeyle tarayıcı RAM'inde vektör eşleme.
+  │
+  ▼
+[UÇ ÇIKARIM VE MODEL İLETİŞİMİ]
+  │
+  ├── Yalnızca Eşleşen 3 Paragraf (Şifrelenmiş HTTPS)
+  │      ├── Dokümanın tamamı değil; yalnızca sorguyla eşleşen küçük bağlam parçaları.
+  │      └── Cloudflare Edge Functions + Groq LPU (Llama 3.3 70B Versatile).
+  │
+  ▼
+[DOĞRULANABİLİR YANIT & KANIT]
+  └── Her yanıtta belgedeki sayfa ve paragraf numarası kullanıcıya anında sunulur.
+      </div>
+
+      <h2>2. Teknik Standartlar ve Karşılaştırma Matrisi</h2>
+      <table class="spec-table">
+        <thead>
+          <tr>
+            <th>Kriter</th>
+            <th>Geleneksel Bulut Abonelikleri</th>
+            <th>Dona RAG Web Studio</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Doküman Depolama Yeri</td>
+            <td>Üçüncü taraf yabancı bulut diskleri</td>
+            <td class="highlight-cell">%100 Tarayıcı RAM (0 B Sunucu Deposu)</td>
+          </tr>
+          <tr>
+            <td>Veri İzi & Kalıcılık</td>
+            <td>Sunucu veritabanlarında saklanır</td>
+            <td class="highlight-cell">Sekme Kapandığı An Tüm Bellek Silinir</td>
+          </tr>
+          <tr>
+            <td>Arama Gecikmesi (Latency)</td>
+            <td>300 - 800 ms (Ağ gecikmesi)</td>
+            <td class="highlight-cell">&lt; 15 ms (İstemci RAM Hızı)</td>
+          </tr>
+          <tr>
+            <td>Yapay Zekâ Motoru</td>
+            <td>Genel API sağlayıcıları</td>
+            <td class="highlight-cell">Groq LPU (Llama 3.3 70B Sub-Second Streaming)</td>
+          </tr>
+          <tr>
+            <td>Kurulum & Başlangıç</td>
+            <td>Zorunlu hesap oluşturma ve kart</td>
+            <td class="highlight-cell">Sıfır Kurulum, Hesap Gerektirmez</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>3. Vektör Bloklama (Chunking) ve Hibrit Sıralama</h2>
+      <p>
+        Yüklenen kurumsal dokümanlar <strong>512 karakterlik dinamik bloklar</strong> ve <strong>64 karakterlik ardışık örtüşme (overlap)</strong> ile ayrıştırılır. Noktalama işaretleri ve paragraf sınırları gözetilerek anlamsal bütünlük korunur. Kullanıcı sorgusu geldiğinde, sorgu terimleri Cosine Similarity (%70 ağırlık) ve TF-IDF/BM25 leksikal frekansı (%30 ağırlık) üzerinden normalize edilir; 0.65 eşik skorunun altındaki tüm bağlamlar elenerek halüsinasyon riski sıfırlanır.
+      </p>
+
+      <h2>4. Groq API ve İnternetsiz Yerel Model Çalışma Ayrımı</h2>
+      <p>
+        <strong>Kullanıcıların en çok merak ettiği iki çalışma modu:</strong><br>
+        1. <strong>İnternetsiz (Air-Gapped) Yerel Mod:</strong> Windows uygulamasında yerel donanımınız (RAM ve CPU/GPU) kullanılarak dokümanlar parçalanır ve yerel GGUF / Llama.cpp kütüphanesiyle bilgisayarınızdan dışarı tek bir bayt veri dahi çıkmadan yanıt oluşturulur.<br>
+        2. <strong>Hafif / Bulut Destekli Mod:</strong> Yalnızca kullanıcının açık onayıyla, tüm PDF değil, sadece bulunan 2-3 adet ilgili paragraf parçası Cloudflare Edge ve Groq API'ye anlık iletilir. Burada kullanıcının kendi API anahtarı gerekmez; yazılım mimarisi sıfır veri saklama (zero-retention) protokolüyle çalışır.
+      </p>
+
+      <h2>5. Kurumsal Dağıtım ve İletişim</h2>
+      <p>
+        Sistem kurumunuzun güvenlik standartlarına göre <strong>Air-Gapped (İnternetsiz Yerel Sunucu / On-Premise)</strong> veya <strong>Windows Masaüstü Filo Dağıtımı (MSI / EXE)</strong> formatında anahtar teslim devreye alınabilmektedir. Kurulum ve kurumsal lisans başvuruları için <a href="mailto:info@donacodex.com" style="color:var(--text-main); font-weight:600; text-decoration:underline;">info@donacodex.com</a> ile veya ana şirketimiz <a href="https://donacodex.com" style="color:var(--text-main); font-weight:600; text-decoration:underline;" target="_blank" rel="noopener">Dona Codex</a> üzerinden iletişime geçebilirsiniz.
+      </p>
+    </article>
+  </div>
+
+  <!-- Centered Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand-centered">
+        <div class="brand-line">
+          <span class="gold-mark">✦</span>
+          <strong>DONA RAG</strong>
+        </div>
+        <p class="brand-desc">Kurumsal Doküman Zekâsı & Sıfır Veri Sızıntılı RAG Mimarisi</p>
+      </div>
+
+      <div class="footer-legal-bar">
+        <a href="kvkk.html" class="legal-link">KVKK & Gizlilik</a>
+        <span class="sep">•</span>
+        <a href="kullanim-sartlari.html" class="legal-link">Şartlar</a>
+        <span class="sep">•</span>
+        <a href="mimari.html" class="legal-link" style="color:var(--text-main);">Mimari</a>
+        <span class="sep">•</span>
+        <a href="fiyatlandirma.html" class="legal-link">Fiyatlandırma</a>
+        <span class="sep">•</span>
+        <a href="https://donacodex.com" target="_blank" rel="noopener" class="legal-link portal-link">Dona Codex ↗</a>
+      </div>
+      <div class="footer-copyright-centered">
+        <p>© 2026 <strong>Dona Codex</strong> • Tüm hakları saklıdır.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

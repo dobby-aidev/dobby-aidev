@@ -160,7 +160,7 @@ Visit `http://localhost:5173` to launch the **Dona Codex: Vision** platform.
 Developed with ❤️ by **Dobby B (@dobby-aidev) — AI Dev**.
 
 - **GitHub**: [@dobby-aidev](https://github.com/dobby-aidev)
-- **Whop Store**: [whop.com/dona-ai](https://whop.com/dona-ai)
+- **Whop Store**: [whop.com/donacodex](https://whop.com/donacodex/)
 - **LinkedIn**: [in/dobbyb-aidev](https://www.linkedin.com/in/dobbyb-aidev)
 - **X (Twitter)**: [@dobbyb_ai](https://x.com/dobbyb_ai)
 

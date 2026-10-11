@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Şeffaf Planlar & Fiyatlandırma — Dona RAG Studio</title>
+  <meta name="description" content="Dona RAG Studio Web ve Kurumsal paketleri. Bireysel profesyoneller ve kurumlar için şeffaf, güvenli, sıfır veri sızıntılı doküman zekâsı.">
+  <link rel="canonical" href="https://rag.donacodex.com/fiyatlandirma.html">
+
+  <!-- Google AdSense Readiness -->
+  <meta name="google-adsense-account" content="ca-pub-XXXXXXXXXXXXXXXX">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rag.donacodex.com/fiyatlandirma.html">
+  <meta property="og:title" content="Planlar & Fiyatlandırma — Dona RAG Studio">
+  <meta property="og:description" content="Dona RAG Studio Web ve Kurumsal paketleri. Şirketinize özel sıfır sızıntılı yapay zekâ analiz altyapısı.">
+  <meta property="og:image" content="https://rag.donacodex.com/logo.svg">
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  
+  <!-- Schema.org Pricing Matrix -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Dona RAG Studio",
+    "image": "https://rag.donacodex.com/logo.svg",
+    "description": "Kurumsal dokümanlar için %100 tarayıcı RAM belleğinde çalışan, sıfır sunucu depolamalı Web RAG platformu.",
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Web Studio Başlangıç",
+        "price": "0.00",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body.site-body { overflow-y: auto !important; }
+    .pricing-hero { padding: 48px 20px 36px; text-align: center; }
+    .pricing-container { max-width: 1080px; margin: 0 auto; }
+    
+    /* 3 Column Tiers Grid */
+    .pricing-grid-three { 
+      display: grid; 
+      grid-template-columns: repeat(3, 1fr); 
+      gap: 18px; 
+      margin-top: 32px; 
+      text-align: left;
+    }
+
+    .pricing-card { 
+      background: var(--bg-surface); 
+      border: 1px solid var(--border-subtle); 
+      border-radius: var(--radius-lg); 
+      padding: 26px 22px; 
+      display: flex; 
+      flex-direction: column; 
+      position: relative; 
+      transition: all 0.2s ease; 
+      box-shadow: var(--shadow-sm);
+    }
+
+    .pricing-card:hover { 
+      border-color: var(--border-active); 
+      transform: translateY(-2px); 
+    }
+
+    .pricing-card.featured { 
+      border-color: rgba(255, 255, 255, 0.35); 
+      background: linear-gradient(180deg, #141926 0%, #0e121a 100%); 
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6); 
+    }
+
+    .badge-featured { 
+      position: absolute; 
+      top: -11px; 
+      left: 50%; 
+      transform: translateX(-50%); 
+      background: #ffffff; 
+      color: #080b13; 
+      font-size: 11px; 
+      font-weight: 800; 
+      padding: 3px 14px; 
+      border-radius: 16px; 
+      letter-spacing: 0.5px; 
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .tier-name { font-size: 16px; font-weight: 700; margin-bottom: 6px; color: var(--text-main); }
+    .tier-desc { font-size: 12px; color: var(--text-muted); margin-bottom: 16px; min-height: 34px; line-height: 1.5; }
+    .tier-price { font-size: 26px; font-weight: 800; color: var(--text-main); margin-bottom: 6px; display: flex; align-items: baseline; gap: 6px; }
+    .tier-period { font-size: 12px; font-weight: 500; color: var(--text-sub); }
+    
+    .tier-features { 
+      list-style: none; 
+      margin: 18px 0 auto; 
+      padding: 0; 
+      display: flex; 
+      flex-direction: column; 
+      gap: 10px; 
+      border-top: 1px solid var(--border-subtle); 
+      padding-top: 18px; 
+    }
+
+    .tier-features li { 
+      font-size: 12px; 
+      color: var(--text-muted); 
+      display: flex; 
+      align-items: flex-start; 
+      gap: 8px; 
+      line-height: 1.5;
+    }
+
+    .tier-features li span.check { 
+      color: var(--accent-emerald); 
+      font-weight: 800; 
+      flex-shrink: 0;
+    }
+
+    .tier-btn { 
+      margin-top: 24px; 
+      width: 100%; 
+      padding: 10px; 
+      border-radius: var(--radius-sm); 
+      font-size: 12.5px; 
+      font-weight: 700; 
+      text-align: center; 
+      cursor: pointer; 
+      transition: all 0.15s ease; 
+      border: none; 
+      text-decoration: none; 
+      display: inline-block; 
+    }
+
+    .tier-btn-primary { 
+      background: #ffffff; 
+      color: #080b13; 
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    }
+
+    .tier-btn-primary:hover { 
+      background: #e2e8f0; 
+    }
+
+    .tier-btn-outline { 
+      background: var(--bg-card); 
+      border: 1px solid var(--border-active); 
+      color: var(--text-main); 
+    }
+
+    .tier-btn-outline:hover { 
+      border-color: rgba(255, 255, 255, 0.35); 
+      background: var(--bg-surface-elevated); 
+    }
+
+    /* Comparison Table Matrix */
+    .matrix-section { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border-subtle); }
+    .matrix-box-shell {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 12px;
+      overflow: hidden;
+      margin-top: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .matrix-table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 12.5px; border-radius: var(--radius-sm); overflow: hidden; }
+    .matrix-table th, .matrix-table td { padding: 13px 18px; border-bottom: 1px solid var(--border-subtle); text-align: left; }
+    .matrix-table th { background: #0b0e16; color: var(--text-main); font-weight: 700; font-size: 12.5px; }
+    .matrix-table th:first-child { width: 34%; }
+    .matrix-table td { color: var(--text-muted); }
+    .matrix-table td.center { text-align: center; }
+    .matrix-table tr:last-child td { border-bottom: none; }
+    .matrix-table tr:hover td { background: rgba(255, 255, 255, 0.02); }
+
+    .matrix-col-badge {
+      display: inline-block;
+      font-size: 12px;
+      font-family: var(--font-mono);
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-top: 4px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+    }
+
+    .faq-section { padding: 60px 20px; border-top: 1px solid var(--border-subtle); }
+    .faq-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; max-width: 980px; margin: 30px auto 0; }
+    .faq-card { background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 20px; text-align: left; }
+    .faq-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 6px; color: var(--text-main); }
+    .faq-card p { font-size: 12.5px; color: var(--text-muted); line-height: 1.6; }
+
+    @media (max-width: 960px) {
+      .pricing-grid-three { grid-template-columns: 1fr; }
+      .faq-grid { grid-template-columns: 1fr; }
+      .matrix-box-shell { overflow-x: auto; }
+      .matrix-table { min-width: 650px; }
+    }
+  </style>
+</head>
+<body class="site-body">
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-group">
+        <img src="logo.svg" alt="Dona RAG Logo" width="24" height="24" class="brand-logo-img">
+        <span class="brand-name">DONA RAG</span>
+      </a>
+
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Ana Sayfa</a>
+        <a href="app.html" class="nav-link">Çalışma Alanı</a>
+        <a href="fiyatlandirma.html" class="nav-link" style="color:var(--text-main);">Fiyatlandırma</a>
+        <a href="mimari.html" class="nav-link">Güvenlik Raporu</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="app.html" class="btn-primary">
+          Web Studio'yu Aç →
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+  <!-- Pricing Hero -->
+  <section class="pricing-hero">
+    <div class="pricing-container">
+      <div class="compliance-pill">
+        <span class="status-dot"></span> ŞEFFAF LİSANSLAMA • SIFIR SUNUCU KAYDI
+      </div>
+      <h1 class="hero-headline" style="font-size:clamp(22px, 2.6vw, 30px); margin:12px 0 8px;">İhtiyacınıza Uygun Esnek ve Şeffaf Planlar</h1>
+      <p class="hero-subhead" style="font-size:13.5px; max-width:580px; margin:0 auto 28px;">
+        Kişisel profesyonel araştırmalardan büyük kurumsal sözleşme denetimlerine kadar sıfır veri sızıntılı doküman zekâsı.
+      </p>
+
+      <!-- 3 Tier Pricing Matrix -->
+      <div class="pricing-grid-three">
+        
+        <!-- Tier 1: Web Studio (Community) -->
+        <div class="pricing-card featured">
+          <span class="badge-featured">HEMEN KULLAN • KURULUMSUZ</span>
+          <div class="tier-name">Web Studio (Topluluk)</div>
+          <div class="tier-desc">
+            Tarayıcınızda doğrudan çalışan, %100 RAM belleğinde sıfır sızıntılı doküman analizi.
+          </div>
+          <div class="tier-price">
+            Ücretsiz <span class="tier-period">/ kalıcı olarak</span>
+          </div>
+
+          <ul class="tier-features">
+            <li><span class="check">✓</span> <strong>Tarayıcı İçi WASM Parser:</strong> PDF, Word (.docx) ve TXT desteği</li>
+            <li><span class="check">✓</span> <strong>%100 RAM İzolasyonu:</strong> Belgeler asla sunucu diskine kaydedilmez</li>
+            <li><span class="check">✓</span> <strong>Llama 3.3 70B Modeli:</strong> Groq LPU altyapısıyla anlık yanıtlar</li>
+            <li><span class="check">✓</span> <strong>Sayfa & Paragraf Alıntısı:</strong> Doğrulanabilir referans kanıtları</li>
+            <li><span class="check">✓</span> <strong>Kayıt ve Kredi Kartı Yok:</strong> Tek tıkla hemen başlatın</li>
+          </ul>
+
+          <a href="app.html" class="tier-btn tier-btn-primary">
+            Web Studio'yu Başlat (Ücretsiz) →
+          </a>
+        </div>
+
+        <!-- Tier 2: Enterprise Web & Dedicated API -->
+        <div class="pricing-card">
+          <div class="tier-name">Kurumsal & Özel API</div>
+          <div class="tier-desc">
+            Büyük kurumlar, hukuk büroları ve finans kuruluşları için özelleştirilmiş altyapı.
+          </div>
+          <div class="tier-price">
+            Özel Teklif <span class="tier-period">/ kurumsal</span>
+          </div>
+
+          <ul class="tier-features">
+            <li><span class="check">✓</span> <strong>Özel Model Entegrasyonu:</strong> Kurum içi özel LLM / API uç noktaları</li>
+            <li><span class="check">✓</span> <strong>Genişletilmiş Hacim:</strong> Çoklu büyük doküman indeksleme desteği</li>
+            <li><span class="check">✓</span> <strong>Öncelikli SLA & Destek:</strong> 7/24 teknik mimarlık desteği</li>
+            <li><span class="check">✓</span> <strong>Özel KVKK / GDPR Raporu:</strong> Kurumsal denetim ve uyumluluk paketi</li>
+            <li><span class="check">✓</span> <strong>Fatura & Şirket Anlaşması:</strong> Kurumsal faturalandırma</li>
+          </ul>
+
+          <a href="mailto:contact@donacodex.com?subject=Kurumsal%20Dona%20RAG%20Talebi" class="tier-btn tier-btn-outline">
+            Bizimle İletişime Geçin →
+          </a>
+        </div>
+
+        <!-- Tier 3: Air-Gapped Desktop -->
+        <div class="pricing-card">
+          <div class="tier-name">Dona Rag - Air-Gapped Kurumsal Beta</div>
+          <div class="tier-desc">
+            Tamamen internetsiz ortamlarda, kurum içi yerel donanımda çalışan bağımsız masaüstü yazılımı.
+          </div>
+          <div class="tier-price">
+            Kapalı Beta <span class="tier-period">/ erken erişim</span>
+          </div>
+
+          <ul class="tier-features">
+            <li><span class="check">✓</span> <strong>%100 Çevrimdışı Çalışma:</strong> İnternet kablosu çekilse bile tam işlev</li>
+            <li><span class="check">✓</span> <strong>Yerel CPU & GPU Çıkarımı:</strong> Bilgisayarınızın kendi donanım gücü</li>
+            <li><span class="check">✓</span> <strong>Yerel SQLite / LanceDB:</strong> Cihazınızda kalan vektör deposu</li>
+            <li><span class="check">✓</span> <strong>Windows, macOS, Linux:</strong> Bağımsız yerel uygulama paketi</li>
+            <li><span class="check">✓</span> <strong>Sıfır Dış Bağlantı:</strong> Sıfır telemetri ve tam hava boşluğu</li>
+          </ul>
+
+          <a href="index.html#beta" class="tier-btn tier-btn-outline">
+            Beta Sırasına Katıl ↗
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Feature Comparison Matrix -->
+      <div class="matrix-section">
+        <h2 class="section-title" style="font-size:20px; text-align:center;">Hizmet Karşılaştırma Matrisi</h2>
+        
+        <div class="matrix-box-shell">
+          <table class="matrix-table">
+            <thead>
+              <tr>
+                <th>Özellik</th>
+                <th class="center">
+                  <div>Web Studio</div>
+                  <span class="matrix-col-badge">Ücretsiz / Tarayıcı</span>
+                </th>
+                <th class="center">
+                  <div>Kurumsal & Özel API</div>
+                  <span class="matrix-col-badge">Dedicated / SLA</span>
+                </th>
+                <th class="center">
+                  <div>Dona Rag - Air-Gapped Beta</div>
+                  <span class="matrix-col-badge">Yerel / %100 Çevrimdışı</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Çalışma Ortamı</strong></td>
+                <td class="center" style="color:var(--text-main);">Tüm Web Tarayıcıları</td>
+                <td class="center">Web + Kurumsal API</td>
+                <td class="center" style="color:var(--text-main);">Yerel OS (Windows / macOS / Linux)</td>
+              </tr>
+              <tr>
+                <td><strong>Veri Gizliliği</strong></td>
+                <td class="center" style="color:var(--accent-emerald);">%100 Tarayıcı RAM (0 B Sunucu)</td>
+                <td class="center">İzole Kurumsal Kanal</td>
+                <td class="center" style="color:var(--accent-emerald);">%100 Çevrimdışı (Air-Gapped)</td>
+              </tr>
+              <tr>
+                <td><strong>İnternet Gereksinimi</strong></td>
+                <td class="center">Var (Model akışı için)</td>
+                <td class="center">Var (Özel endpoint)</td>
+                <td class="center" style="color:var(--accent-emerald);">YOK (Tamamen Çevrimdışı)</td>
+              </tr>
+              <tr>
+                <td><strong>AI Modeli</strong></td>
+                <td class="center">Llama 3.3 70B (Groq LPU)</td>
+                <td class="center">Özelleştirilebilir / Özel Fine-Tune</td>
+                <td class="center">Yerel GGUF / ONNX Modelleri</td>
+              </tr>
+              <tr>
+                <td><strong>Kurulum Gereksinimi</strong></td>
+                <td class="center" style="color:var(--accent-emerald);">Sıfır (Tek Tıkla Açılır)</td>
+                <td class="center">API Entegrasyonu</td>
+                <td class="center">Yerel Kurulum Paketi</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section">
+    <div class="pricing-container">
+      <div class="section-header" style="text-align:center;">
+        <h2 class="section-title">Sıkça Sorulan Sorular</h2>
+      </div>
+
+      <div class="faq-grid">
+        <div class="faq-card">
+          <h3>Web Studio'da yüklediğim dokümanlar sunucuya kaydedilir mi?</h3>
+          <p>Kesinlikle hayır. Yüklediğiniz PDF veya DOCX dosyası doğrudan WebAssembly ile tarayıcınızın geçici RAM belleğinde ayrıştırılır ve vektörize edilir. Sunucumuza dosyanız veya tam metniniz hiçbir zaman yüklenmez.</p>
+        </div>
+
+        <div class="faq-card">
+          <h3>Groq LPU ile ne gönderilir?</h3>
+          <p>Yalnızca sorduğunuz soruyla en yüksek benzerliğe sahip birkaç küçük metin parçacığı (chunk) HTTPS üzerinden şifreli olarak model çıkarımı için iletilir. Model yanıtı ürettikten sonra sunucu tarafında hiçbir kayıt tutulmaz.</p>
+        </div>
+
+        <div class="faq-card">
+          <h3>Masaüstü (Air-Gapped) sürümü ne zaman yayınlanacak?</h3>
+          <p>Air-Gapped sürümümüz şu anda kapalı beta aşamasındadır. Ana sayfadaki veya yukarıdaki bekleme listesine e-posta adresinizi bırakarak ilk test edenler arasına katılabilirsiniz.</p>
+        </div>
+
+        <div class="faq-card">
+          <h3>Kurumsal sürüm için nasıl teklif alabilirim?</h3>
+          <p>Şirket içi özel modeller, toplu kullanıcı erişimi ve özel API entegrasyonu için contact@donacodex.com adresinden teknik ekibimizle doğrudan iletişime geçebilirsiniz.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <!-- Centered Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand-centered">
+        <div class="brand-line">
+          <span class="gold-mark">✦</span>
+          <strong>DONA RAG</strong>
+        </div>
+        <p class="brand-desc">Kurumsal Doküman Zekâsı & Sıfır Veri Sızıntılı RAG Mimarisi</p>
+      </div>
+
+      <div class="footer-legal-bar">
+        <a href="kvkk.html" class="legal-link">KVKK & Gizlilik</a>
+        <span class="sep">•</span>
+        <a href="kullanim-sartlari.html" class="legal-link">Şartlar</a>
+        <span class="sep">•</span>
+        <a href="mimari.html" class="legal-link">Mimari</a>
+        <span class="sep">•</span>
+        <a href="fiyatlandirma.html" class="legal-link" style="color:var(--text-main);">Fiyatlandırma</a>
+        <span class="sep">•</span>
+        <a href="https://donacodex.com" target="_blank" rel="noopener" class="legal-link portal-link">Dona Codex ↗</a>
+      </div>
+
+      <div class="footer-copyright-centered">
+        <p>© 2026 <strong>Dona Codex</strong> • Tüm hakları saklıdır.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

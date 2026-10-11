@@ -1,0 +1,24 @@
+{
+  "name": "dona-rag-assistant",
+  "version": "1.0.0",
+  "description": "Kurumsal RAG Destekli Akıllı Doküman ve QA Asistanı - Dona Codex",
+  "main": "public/index.html",
+  "scripts": {
+    "dev": "wrangler pages dev public",
+    "deploy": "wrangler pages deploy public --project-name dona-rag-assistant"
+  },
+  "keywords": [
+    "rag",
+    "langchain",
+    "groq",
+    "llama3",
+    "cloudflare-pages",
+    "dona-codex"
+  ],
+  "author": "Dona Codex (https://donacodex.com)",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@pdf-lib/fontkit": "^1.1.1",
+    "pdf-lib": "^1.17.1"
+  }
+}
