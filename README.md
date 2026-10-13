@@ -4,6 +4,10 @@
 
 <br/>
 
+<img src="https://raw.githubusercontent.com/dobby-aidev/dobby-aidev/main/profile-circle.png" alt="Dobby B — AI Systems Architect & Founder at Dona Codex" width="160" style="border-radius: 50%; border: 3px solid #6366f1; box-shadow: 0 0 30px rgba(99,102,241,0.5);" />
+
+<h3>Dobby B — AI Systems Architect & Founder at Dona Codex</h3>
+
 [![IBM Certified AI Engineer](https://img.shields.io/badge/IBM-Certified%20AI%20Engineer-0066CC?style=for-the-badge&logo=ibm&logoColor=white)](https://coursera.org/share/01556978dc385b43fc0eb91413f38378)
 [![Alberta Reinforcement Learning Specialist](https://img.shields.io/badge/Alberta-Reinforcement%20Learning%20Specialist-007A3D?style=for-the-badge&logo=coursera&logoColor=white)](https://coursera.org/verify/specialization/BEBRVX1A161B)
 [![Official Portfolio](https://img.shields.io/badge/🌐%20Official%20Portfolio-dobby.donacodex.com-6366f1?style=for-the-badge&logo=google-chrome&logoColor=white)](https://dobby.donacodex.com)
@@ -87,7 +91,7 @@ Hi! I'm **Dobby B (@dobby-aidev)** — AI Systems Architect & Founder at **Dona 
 
 <div align="center">
   <a href="https://coursera.org/share/01556978dc385b43fc0eb91413f38378" target="_blank">
-    <img src="./assets/ibm-ai-engineering-professional-certificate.png" alt="IBM AI Engineering Professional Certificate" width="650" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.35);" />
+    <img src="https://raw.githubusercontent.com/dobby-aidev/dobby-aidev/main/Sertifikalar/ibm-ai-engineering-professional-certificate.png" alt="IBM AI Engineering Professional Certificate" width="650" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.35);" />
   </a>
   <br/>
   <h3>IBM AI Engineering Professional Certificate</h3>
@@ -109,7 +113,7 @@ Hi! I'm **Dobby B (@dobby-aidev)** — AI Systems Architect & Founder at **Dona 
 
 <div align="center">
   <a href="https://coursera.org/verify/specialization/BEBRVX1A161B" target="_blank">
-    <img src="./assets/reinforcement-learning-specialization.png" alt="Reinforcement Learning Specialization Certificate" width="650" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.35);" />
+    <img src="https://raw.githubusercontent.com/dobby-aidev/dobby-aidev/main/Sertifikalar/reinforcement-learning-specialization.png" alt="Reinforcement Learning Specialization Certificate" width="650" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.35);" />
   </a>
   <br/>
   <h3>Reinforcement Learning Specialization</h3>

@@ -1,4 +1,4 @@
-﻿# ==============================================================================
+# ==============================================================================
 # DONA CODEX // PRODUCTION 1-CLICK CLEAN SLATE DEPLOYMENT ENGINE v3
 # Copyright (c) 2021-2026 Dona Codex. All Rights Reserved.
 # https://dobby.donacodex.com
@@ -135,7 +135,8 @@ $productionWhitelist = @(
     "projects",
     ".gitignore",
     "deploy.bat",
-    "deploy.ps1"
+    "deploy.ps1",
+    "Sertifikalar"
 )
 
 if (Test-Path "favicon.svg") {
@@ -158,7 +159,6 @@ foreach ($item in $productionWhitelist) {
 # CIFT GUVENLIK: yasak yollari kesinlikle unstage et
 $bannedPaths = @(
     "kisisel_dosyalar",
-    "Sertifikalar",
     ".agents",
     ".impeccable",
     ".gemini",
