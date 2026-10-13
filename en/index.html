@@ -265,11 +265,12 @@
   }
   </script>
 
-  <!-- Favicon & Circular Tab Icon (Ultra-Crisp Retina) -->
-  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
-  <link rel="shortcut icon" href="../favicon.ico" />
+  <!-- Favicon & Circular Tab Icon (Ultra-Crisp Vector & Retina) -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="shortcut icon" href="favicon.ico" />
 
   <!-- Typography -->
   <!-- Resource Hints for Performance -->
@@ -282,7 +283,7 @@
     href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet" />
 
-  <link rel="stylesheet" href="../style.css?v=2026_rl_mistik_v1" />
+  <link rel="stylesheet" href="../style.css?v=2026_dona_brand_v2" />
 </head>
 
 <body data-initial-view="home">
@@ -291,12 +292,15 @@
   <canvas id="canvas-3d"></canvas>
   <canvas id="canvas-shatter-transition"></canvas>
 
-  <!-- Top-Left Architectural Logo -->
+  <!-- Top-Left Architectural Logo with Neural Vector Badge -->
   <a href="en/" onclick="if(window.switchView){switchView('home');return false;}" class="at-logo-top" title="Home">
     <div class="at-logo-avatar-wrap">
-      <img src="profile-circle.png" class="at-logo-avatar" alt="Dobby B" onerror="this.src='../profile.webp'" />
+      <img src="assets/dona_codex_logo.png" class="at-logo-avatar" alt="Dona Codex" />
     </div>
-    <span class="at-logo-text">Dobby B</span>
+    <div class="at-logo-brand-text">
+      <span class="at-logo-text">Dobby B</span>
+      <span class="at-logo-sub">Dona Codex</span>
+    </div>
   </a>
 
   <!-- Top-Right HUD Navigation (Desktop) -->
@@ -406,14 +410,28 @@
 
     <!-- VIEW 1: HOME -->
     <section class="at-view-page at-home-hero active" id="view-home">
+      <!-- Dual-State Interactive Node (Default: Dona Codex Core Emblem / Hover: Architect Studio Portrait) -->
       <div class="at-hero-symbol-3d" id="hero-avatar-node"
         onclick="triggerElementShatterTransition(this, 'work', 'avatar', event)" style="cursor:pointer;"
-        title="Explore Projects">
+        title="Dona Codex Neural Core // Click to Explore Projects">
         <div class="at-ring-outer"></div>
         <div class="at-ring-inner"></div>
         <div class="at-ring-core-avatar-wrap">
-          <img src="../profile.webp" class="at-ring-core-avatar" alt="Dobby B Profile" width="124" height="124"
-            fetchpriority="high" />
+          <!-- State A: Neural Core Vector Emblem -->
+          <div class="at-node-face at-node-emblem" aria-hidden="false">
+            <img src="assets/dona_codex_logo.png" class="at-node-emblem-img" alt="Dona Codex Neural Core" width="124" height="124" fetchpriority="high" />
+          </div>
+          <!-- State B: High-Res Architect Studio Portrait -->
+          <div class="at-node-face at-node-portrait" aria-hidden="true">
+            <img src="profile.webp" class="at-ring-core-avatar" alt="Dobby B — AI Systems Architect" width="124" height="124"
+              onerror="this.src='profile.png'" />
+          </div>
+        </div>
+        <!-- Precision Telemetry Status Chip -->
+        <div class="at-node-status-chip">
+          <span class="at-node-chip-dot"></span>
+          <span class="at-node-chip-label">SYSTEM CORE</span>
+          <span class="at-node-chip-flip">ARCHITECT ACTIVE ↗</span>
         </div>
       </div>
       <a href="https://donacodex.com" target="_blank" rel="noopener noreferrer" class="at-hero-company-badge">
@@ -863,10 +881,7 @@
     </div>
   </div>
 
-  <script src="../script.js?v=verified_links_preloaded_v23"></script>
-</body>
-
-</html>
+  <script src="../script.js?v=2026_dona_brand_v2"></script>
 </body>
 
 </html>

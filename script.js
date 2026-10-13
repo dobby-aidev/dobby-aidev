@@ -2771,6 +2771,7 @@ function filterContactNodes(category, btn) {
 window.DonaPerformanceEngine = (() => {
   let frameCount = 0;
   let lastTime = performance.now();
+  let startupGraceTime = performance.now() + 4000; // Allow 4s initial grace period for assets to compile
   let currentFps = 60;
   let tier = 'ultra'; // 'ultra' | 'balanced' | 'eco'
   let lowFpsStreak = 0;
@@ -2785,18 +2786,20 @@ window.DonaPerformanceEngine = (() => {
       frameCount = 0;
       lastTime = now;
 
-      // Adaptive Performance Control
-      if (currentFps < 42) {
-        lowFpsStreak++;
-        if (lowFpsStreak >= 2 && tier !== 'eco') {
-          tier = 'eco';
-          document.body.classList.add('dona-perf-eco');
-        }
-      } else {
-        lowFpsStreak = Math.max(0, lowFpsStreak - 1);
-        if (lowFpsStreak === 0 && currentFps >= 55 && tier === 'eco') {
-          tier = 'ultra';
-          document.body.classList.remove('dona-perf-eco');
+      // Adaptive Performance Control (only after initial startup grace period)
+      if (now > startupGraceTime) {
+        if (currentFps < 42) {
+          lowFpsStreak++;
+          if (lowFpsStreak >= 3 && tier !== 'eco') {
+            tier = 'eco';
+            document.body.classList.add('dona-perf-eco');
+          }
+        } else {
+          lowFpsStreak = Math.max(0, lowFpsStreak - 1);
+          if (lowFpsStreak === 0 && currentFps >= 55 && tier === 'eco') {
+            tier = 'ultra';
+            document.body.classList.remove('dona-perf-eco');
+          }
         }
       }
     }

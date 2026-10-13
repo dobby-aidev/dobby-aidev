@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Background Radial Obsidian Gradient -->
+    <radialGradient id="bgGrad" cx="50%" cy="38%" r="68%">
+      <stop offset="0%" stop-color="#1e1828"/>
+      <stop offset="55%" stop-color="#14111c"/>
+      <stop offset="100%" stop-color="#0b0910"/>
+    </radialGradient>
+
+    <!-- Bezel Border Linear Gradient -->
+    <linearGradient id="bezelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="rgba(245, 238, 220, 0.75)"/>
+      <stop offset="35%" stop-color="rgba(212, 175, 55, 0.5)"/>
+      <stop offset="70%" stop-color="rgba(245, 238, 220, 0.2)"/>
+      <stop offset="100%" stop-color="rgba(238, 220, 178, 0.45)"/>
+    </linearGradient>
+
+    <!-- Core Golden Neural Prism Gradient -->
+    <linearGradient id="prismGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="25%" stop-color="#faf4e6"/>
+      <stop offset="60%" stop-color="#e2c882"/>
+      <stop offset="100%" stop-color="#9a7a2a"/>
+    </linearGradient>
+
+    <!-- Radiant Core Flare Gradient -->
+    <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
+      <stop offset="30%" stop-color="#f5eedc" stop-opacity="0.85"/>
+      <stop offset="65%" stop-color="#d4af37" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#d4af37" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Facet Shadow Gradient -->
+    <linearGradient id="facetShadow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2a2236"/>
+      <stop offset="100%" stop-color="#14101d"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Base Squircle Canvas with Bezel Border -->
+  <rect x="16" y="16" width="480" height="480" rx="120" fill="url(#bgGrad)" stroke="url(#bezelGrad)" stroke-width="8"/>
+
+  <!-- Concentric Orbit Ring -->
+  <circle cx="256" cy="256" r="184" fill="none" stroke="rgba(245, 238, 220, 0.12)" stroke-width="3" stroke-dasharray="8 12"/>
+  <circle cx="256" cy="256" r="140" fill="none" stroke="rgba(212, 175, 55, 0.22)" stroke-width="2"/>
+
+  <!-- 4 Cardinal Nodes -->
+  <circle cx="256" cy="72" r="6" fill="#f5eedc"/>
+  <circle cx="256" cy="440" r="6" fill="#f5eedc"/>
+  <circle cx="72" cy="256" r="6" fill="#f5eedc"/>
+  <circle cx="440" cy="256" r="6" fill="#f5eedc"/>
+
+  <!-- Ambient Radiant Core Glow -->
+  <circle cx="256" cy="256" r="128" fill="url(#coreGlow)"/>
+
+  <!-- Architectural Neural Prism (Central Diamond Monolith) -->
+  <g id="neural-prism" transform="translate(256, 256)">
+    <!-- Outer Diamond Facets -->
+    <!-- Top-Left Facet -->
+    <polygon points="0,-120 -86,0 0,0" fill="url(#prismGrad)" opacity="0.95"/>
+    <!-- Top-Right Facet -->
+    <polygon points="0,-120 86,0 0,0" fill="#ffffff" opacity="0.85"/>
+    <!-- Bottom-Left Facet -->
+    <polygon points="-86,0 0,120 0,0" fill="#b8933b" opacity="0.9"/>
+    <!-- Bottom-Right Facet -->
+    <polygon points="86,0 0,120 0,0" fill="url(#prismGrad)" opacity="0.75"/>
+
+    <!-- Inner Floating Micro-Diamond Vault -->
+    <polygon points="0,-60 -44,0 0,60 44,0" fill="#13101b" stroke="url(#bezelGrad)" stroke-width="4"/>
+
+    <!-- Central 8-Pointed Star of Precision -->
+    <polygon points="0,-36 6,-9 36,0 6,9 0,36 -6,9 -36,0 -6,-9" fill="#ffffff"/>
+    <polygon points="0,-22 4,-6 22,0 4,6 0,22 -4,6 -22,0 -4,-6" fill="#f5eedc" opacity="0.9"/>
+
+    <!-- Precision Spark Core -->
+    <circle cx="0" cy="0" r="4.5" fill="#ffffff"/>
+  </g>
+</svg>

@@ -105,21 +105,10 @@ body {
 
 /* ── FULLSCREEN GLASS SHATTER & QUANTUM REASSEMBLY INTRO ────────────────── */
 #canvas-shatter-transition {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 99999;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.15s ease;
+  display: none !important;
 }
 
-#canvas-shatter-transition.active {
-  opacity: 1;
-}
-
-/* ── TOP-LEFT LOGO ─────────────────────────────────────────────────────── */
+/* ── TOP-LEFT ARCHITECTURAL LOGO ───────────────────────────────────────── */
 .at-logo-top {
   position: fixed;
   top: 24px;
@@ -133,39 +122,75 @@ body {
 }
 
 .at-logo-avatar-wrap {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
   overflow: hidden;
   border: 1.5px solid rgba(245, 238, 220, 0.4);
   position: relative;
-  transition: transform 0.4s ease, border-color 0.4s, box-shadow 0.4s;
-  background: #0f0f13;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s, box-shadow 0.4s;
+  background: #121018;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
 }
 
 .at-logo-avatar {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
+  object-fit: contain;
   display: block;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .at-logo-top:hover .at-logo-avatar-wrap {
-  transform: scale(1.1);
+  transform: translateY(-1px) scale(1.08);
   border-color: var(--accent-cream);
-  box-shadow: 0 0 20px var(--accent-glow);
+  box-shadow: 0 0 25px var(--accent-glow);
+}
+
+.at-logo-top:hover .at-logo-avatar {
+  transform: rotate(10deg);
+}
+
+.at-logo-brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .at-logo-text {
   font-family: var(--font-sans);
-  font-size: 0.82rem;
-  letter-spacing: 0.14em;
+  font-size: 0.84rem;
+  letter-spacing: 0.16em;
   color: var(--text-bright);
   font-weight: 700;
   text-transform: uppercase;
+  line-height: 1.1;
+  transition: color 0.3s;
+}
+
+.at-logo-sub {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.22em;
+  color: var(--accent-champagne);
+  font-weight: 600;
+  text-transform: uppercase;
+  opacity: 0.75;
+  line-height: 1;
+  transition: opacity 0.3s, color 0.3s;
+}
+
+.at-logo-top:hover .at-logo-text {
+  color: #ffffff;
+}
+
+.at-logo-top:hover .at-logo-sub {
+  opacity: 1;
+  color: var(--accent-cream);
 }
 
 /* ── TOP-RIGHT HUD: ONLY PILL [ ANA SAYFA ── PROJELER ── İLETİŞİM ] ────── */
@@ -228,6 +253,7 @@ body {
   justify-content: space-between;
   align-items: center;
   pointer-events: none;
+  background: transparent !important;
 }
 
 .at-hud-bottom-left {
@@ -448,22 +474,147 @@ body {
 }
 
 .at-ring-core-avatar-wrap {
-  width: 124px;
-  height: 124px;
+  width: 132px;
+  height: 132px;
   border-radius: 50%;
   overflow: hidden;
   position: relative;
   z-index: 2;
-  border: 2.5px solid var(--accent-cream);
-  box-shadow: 0 0 50px rgba(245, 238, 220, 0.5), 0 0 100px rgba(0, 0, 0, 0.95);
-  transition: transform 0.4s ease;
-  background: #0f0f13;
+  border: 2px solid var(--accent-cream);
+  box-shadow: 0 0 50px rgba(245, 238, 220, 0.45), 0 0 100px rgba(0, 0, 0, 0.95);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.5s, box-shadow 0.5s;
+  background: #100d17;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.at-node-face {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+/* Face A: Dona Codex Vector Neural Prism Core (Default State) */
+.at-node-face.at-node-emblem {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+  z-index: 2;
+}
+
+.at-node-emblem-img {
+  width: 86%;
+  height: 86%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 18px rgba(212, 175, 55, 0.4));
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Face B: High-Res Architect Studio Portrait (Interactive State) */
+.at-node-face.at-node-portrait {
+  opacity: 0;
+  transform: scale(1.08) rotate(4deg);
+  z-index: 1;
+  pointer-events: none;
 }
 
 .at-ring-core-avatar {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Dual-State Interaction Mechanics */
+.at-hero-symbol-3d:hover .at-node-emblem,
+.at-hero-symbol-3d.state-portrait .at-node-emblem {
+  opacity: 0;
+  transform: scale(0.9) rotate(-15deg);
+  pointer-events: none;
+}
+
+.at-hero-symbol-3d:hover .at-node-portrait,
+.at-hero-symbol-3d.state-portrait .at-node-portrait {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+  pointer-events: auto;
+}
+
+.at-hero-symbol-3d:hover .at-ring-core-avatar-wrap {
+  transform: scale(1.06);
+  border-color: #ffffff;
+  box-shadow: 0 0 60px rgba(245, 238, 220, 0.7), 0 0 120px rgba(0, 0, 0, 0.98);
+}
+
+/* Interactive Status Pill Under Hero Node */
+.at-node-status-chip {
+  position: absolute;
+  bottom: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 12px;
+  background: rgba(20, 17, 28, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(245, 238, 220, 0.25);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 4;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+.at-node-chip-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-cream);
+  box-shadow: 0 0 8px var(--accent-cream);
+  transition: all 0.4s ease;
+}
+
+.at-node-chip-flip {
+  display: none;
+}
+
+.at-hero-symbol-3d:hover .at-node-status-chip,
+.at-hero-symbol-3d.state-portrait .at-node-status-chip {
+  border-color: var(--accent-cream);
+  color: var(--text-bright);
+  box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.at-hero-symbol-3d:hover .at-node-chip-dot,
+.at-hero-symbol-3d.state-portrait .at-node-chip-dot {
+  background: #10b981;
+  box-shadow: 0 0 10px #10b981;
+}
+
+.at-hero-symbol-3d:hover .at-node-chip-label,
+.at-hero-symbol-3d.state-portrait .at-node-chip-label {
+  display: none;
+}
+
+.at-hero-symbol-3d:hover .at-node-chip-flip,
+.at-hero-symbol-3d.state-portrait .at-node-chip-flip {
+  display: inline;
+  color: var(--accent-cream);
 }
 
 @keyframes spinRing {
@@ -4866,9 +5017,14 @@ body.dona-perf-eco * {
 
 body.dona-perf-eco .cdx-tablet-glass,
 body.dona-perf-eco .at-circle-btn,
-body.dona-perf-eco .at-bottom-hud,
 body.dona-perf-eco .at-exploded-panel {
   background: rgba(14, 12, 18, 0.96) !important;
+}
+
+@media (max-width: 600px) {
+  body.dona-perf-eco .at-bottom-hud {
+    background: rgba(14, 12, 18, 0.96) !important;
+  }
 }
 
 /* ── SEMANTIC ACCESSIBILITY & SEARCH ENGINE CRAWLABLE TEXT (SEO & GEO) ────── */
